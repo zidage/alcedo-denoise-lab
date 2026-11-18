@@ -1,0 +1,45 @@
+# Logs, evidence, datasets, model weights, temporary scripts, and experiment output.
+build/
+
+# Photos and images made from photos. The evaluation photos must not be shared again; the
+# comparison images stay on the local machine.
+docs/findings/images/
+*.jpg
+*.jpeg
+*.png
+*.tif
+*.tiff
+*.exr
+*.dng
+*.arw
+*.nef
+*.cr2
+*.cr3
+*.raf
+
+# Binary arrays of the results. Only the text results are committed.
+results/**/*.npz
+results/**/*.npy
+
+# Model weights and exported graphs.
+*.onnx
+*.onnx.data
+*.pt
+*.pth
+*.safetensors
+*.mlpackage/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Agent tool local state
+.uv-cache/
+.uv-python/
+.scratch/
+skills-lock.json
+.claude/
+.codex/
