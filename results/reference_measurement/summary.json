@@ -1,0 +1,820 @@
+{
+ "source": "results/reference_measurement/pair_metrics.jsonl",
+ "pairs": 228,
+ "main_test_set": {
+  "pairs": 163,
+  "identity_pairs": 15,
+  "input": {
+   "manproc_msssim": 0.7633229890849693,
+   "manproc_psnr": 25.627508005550624,
+   "developed_msssim": 0.7480513532560296,
+   "developed_psnr": 28.29519791824003
+  },
+  "bayer_public": {
+   "manproc_msssim": 0.9563033251674629,
+   "manproc_psnr": 32.976477203588225,
+   "developed_msssim": 0.9741052641459038,
+   "developed_psnr": 36.99678991662994
+  },
+  "linear_public": {
+   "manproc_msssim": 0.9568023524401378,
+   "manproc_psnr": 33.15214961534474,
+   "developed_msssim": 0.9749213844720571,
+   "developed_psnr": 37.27027340283967
+  },
+  "galosh": {
+   "manproc_msssim": 0.9078046961064719,
+   "manproc_psnr": 30.372966514016355,
+   "developed_msssim": 0.9368368328714664,
+   "developed_psnr": 33.0672341854421
+  },
+  "stored_by_authors_manproc_msssim": {
+   "bayer_public": 0.9562532857883196,
+   "linear_public": 0.9567529230030036
+  }
+ },
+ "unknown_sensor": {
+  "pairs": 65,
+  "identity_pairs": 10,
+  "input": {
+   "developed_msssim": 0.7376199857546732,
+   "developed_psnr": 26.590406398307117
+  },
+  "bayer_public": {
+   "developed_msssim": 0.9494136296785795,
+   "developed_psnr": 34.77036277360612
+  },
+  "linear_public": {
+   "developed_msssim": 0.9523615396939791,
+   "developed_psnr": 35.271046553021705
+  },
+  "galosh": {
+   "developed_msssim": 0.9226481923690208,
+   "developed_psnr": 33.261107858589625
+  },
+  "stored_by_authors_manproc_msssim": {
+   "bayer_public": 0.8728627635882451,
+   "linear_public": 0.8744736955716059
+  }
+ },
+ "reported_by_authors": {
+  "main_test_set": {
+   "input": 0.763,
+   "bayer_public": 0.956,
+   "linear_public": 0.957
+  },
+  "unknown_sensor": {
+   "input": 0.686,
+   "bayer_public": 0.873,
+   "linear_public": 0.874
+  }
+ },
+ "authors_noise_subsets": {
+  "le_0.85": {
+   "pairs": 16,
+   "identity_pairs": 0,
+   "input": {
+    "manproc_msssim": 0.3326064180582762,
+    "manproc_psnr": 16.25084220640965,
+    "developed_msssim": 0.22826180653646588,
+    "developed_psnr": 14.156514713735348
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9336275979876518,
+    "manproc_psnr": 30.442507340859066,
+    "developed_msssim": 0.9300589859485626,
+    "developed_psnr": 30.099628602306375
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9335546083748341,
+    "manproc_psnr": 30.516698278964846,
+    "developed_msssim": 0.9327038899064064,
+    "developed_psnr": 30.40670326805912
+   },
+   "galosh": {
+    "manproc_msssim": 0.7596471346914768,
+    "manproc_psnr": 23.97323530269669,
+    "developed_msssim": 0.7808113805949688,
+    "developed_psnr": 20.75791532721192
+   },
+   "stored_by_authors_manproc_msssim": {
+    "bayer_public": 0.9336214698851109,
+    "linear_public": null
+   }
+  },
+  "le_0.9": {
+   "pairs": 31,
+   "identity_pairs": 0,
+   "input": {
+    "manproc_msssim": 0.4083460569381714,
+    "manproc_psnr": 17.271058743848908,
+    "developed_msssim": 0.30806294107629406,
+    "developed_psnr": 16.22499524959391
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9314712324450093,
+    "manproc_psnr": 30.70874300502669,
+    "developed_msssim": 0.9418143399300114,
+    "developed_psnr": 31.870580807324174
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9314952050485918,
+    "manproc_psnr": 30.80709977682736,
+    "developed_msssim": 0.9439707706051488,
+    "developed_psnr": 32.212622767347845
+   },
+   "galosh": {
+    "manproc_msssim": 0.7880048194239216,
+    "manproc_psnr": 25.379363519135882,
+    "developed_msssim": 0.8213844606953282,
+    "developed_psnr": 23.51502586562453
+   },
+   "stored_by_authors_manproc_msssim": {
+    "bayer_public": 0.9314253676322198,
+    "linear_public": null
+   }
+  },
+  "le_0.97": {
+   "pairs": 51,
+   "identity_pairs": 0,
+   "input": {
+    "manproc_msssim": 0.4690763050434636,
+    "manproc_psnr": 18.159161503497863,
+    "developed_msssim": 0.426533506927537,
+    "developed_psnr": 19.044046625234607
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9301785966929268,
+    "manproc_psnr": 31.066830050184794,
+    "developed_msssim": 0.9528386207187877,
+    "developed_psnr": 33.659395919191304
+   },
+   "linear_public": {
+    "manproc_msssim": 0.930427049889284,
+    "manproc_psnr": 31.188114012272244,
+    "developed_msssim": 0.9544090406567443,
+    "developed_psnr": 33.93842489929563
+   },
+   "galosh": {
+    "manproc_msssim": 0.8118726704634872,
+    "manproc_psnr": 26.739751276910717,
+    "developed_msssim": 0.8643298324416665,
+    "developed_psnr": 27.117509059841424
+   },
+   "stored_by_authors_manproc_msssim": {
+    "bayer_public": 0.9301275458990359,
+    "linear_public": 0.9303665032573775
+   }
+  },
+  "le_0.99": {
+   "pairs": 83,
+   "identity_pairs": 0,
+   "input": {
+    "manproc_msssim": 0.5991887159376259,
+    "manproc_psnr": 21.069146766492636,
+    "developed_msssim": 0.567269082259701,
+    "developed_psnr": 22.720242716811892
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9411301742117089,
+    "manproc_psnr": 32.01260343008695,
+    "developed_msssim": 0.9619659357760326,
+    "developed_psnr": 35.139534469831894
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9415686906102192,
+    "manproc_psnr": 32.15879472367361,
+    "developed_msssim": 0.9631900184125786,
+    "developed_psnr": 35.40717941563732
+   },
+   "galosh": {
+    "manproc_msssim": 0.8585772198366831,
+    "manproc_psnr": 28.723314285111627,
+    "developed_msssim": 0.8982530530676784,
+    "developed_psnr": 29.8317608692016
+   },
+   "stored_by_authors_manproc_msssim": {
+    "bayer_public": 0.9410737982715469,
+    "linear_public": 0.9415037696620068
+   }
+  },
+  "le_0.9975": {
+   "pairs": 115,
+   "identity_pairs": 0,
+   "input": {
+    "manproc_msssim": 0.6795466534469439,
+    "manproc_psnr": 23.41732647883547,
+    "developed_msssim": 0.6549443201526352,
+    "developed_psnr": 25.514988977799778
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9486651000769242,
+    "manproc_psnr": 32.53957985800337,
+    "developed_msssim": 0.9676930774813113,
+    "developed_psnr": 36.00978173952806
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9491273543109064,
+    "manproc_psnr": 32.6999481794957,
+    "developed_msssim": 0.968727591763372,
+    "developed_psnr": 36.287431233194205
+   },
+   "galosh": {
+    "manproc_msssim": 0.8846184771993886,
+    "manproc_psnr": 29.760130514255213,
+    "developed_msssim": 0.9175973622695259,
+    "developed_psnr": 31.474869203821353
+   },
+   "stored_by_authors_manproc_msssim": {
+    "bayer_public": 0.9485988492551057,
+    "linear_public": 0.9490614865137184
+   }
+  },
+  "ge_0.5": {
+   "pairs": 163,
+   "identity_pairs": 15,
+   "input": {
+    "manproc_msssim": 0.7633229890849693,
+    "manproc_psnr": 25.627508005550624,
+    "developed_msssim": 0.7480513532560296,
+    "developed_psnr": 28.29519791824003
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9563033251674629,
+    "manproc_psnr": 32.976477203588225,
+    "developed_msssim": 0.9741052641459038,
+    "developed_psnr": 36.99678991662994
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9568023524401378,
+    "manproc_psnr": 33.15214961534474,
+    "developed_msssim": 0.9749213844720571,
+    "developed_psnr": 37.27027340283967
+   },
+   "galosh": {
+    "manproc_msssim": 0.9078046961064719,
+    "manproc_psnr": 30.372966514016355,
+    "developed_msssim": 0.9368368328714664,
+    "developed_psnr": 33.0672341854421
+   },
+   "stored_by_authors_manproc_msssim": {
+    "bayer_public": 0.9562605783983242,
+    "linear_public": 0.9567529230030036
+   }
+  },
+  "ge_0.8": {
+   "pairs": 152,
+   "identity_pairs": 15,
+   "input": {
+    "manproc_msssim": 0.7978164312478743,
+    "manproc_psnr": 26.421494125646916,
+    "developed_msssim": 0.7885391684739214,
+    "developed_psnr": 29.511219898931746
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9579425136509695,
+    "manproc_psnr": 33.20085648846234,
+    "developed_msssim": 0.9778878182957047,
+    "developed_psnr": 37.644937395101344
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9584656738136944,
+    "manproc_psnr": 33.38489000865789,
+    "developed_msssim": 0.9785484067703548,
+    "developed_psnr": 37.91554928952209
+   },
+   "galosh": {
+    "manproc_msssim": 0.9203929461930928,
+    "manproc_psnr": 30.98521396696231,
+    "developed_msssim": 0.9501417349827918,
+    "developed_psnr": 34.193304682614844
+   },
+   "stored_by_authors_manproc_msssim": {
+    "bayer_public": 0.9578967851243521,
+    "linear_public": null
+   }
+  },
+  "ge_0.9": {
+   "pairs": 132,
+   "identity_pairs": 15,
+   "input": {
+    "manproc_msssim": 0.8466887837558081,
+    "manproc_psnr": 27.84160994668527,
+    "developed_msssim": 0.8513819652073311,
+    "developed_psnr": 31.493285804804387
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9621351045189481,
+    "manproc_psnr": 33.57732985448914,
+    "developed_msssim": 0.9816887387723634,
+    "developed_psnr": 38.35501626183062
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9627456976608797,
+    "manproc_psnr": 33.77348760674678,
+    "developed_msssim": 0.9821900892438311,
+    "developed_psnr": 38.61033468232896
+   },
+   "galosh": {
+    "manproc_msssim": 0.9359395156304041,
+    "manproc_psnr": 31.696057905822286,
+    "developed_msssim": 0.9639506475491957,
+    "developed_psnr": 35.598161176162996
+   },
+   "stored_by_authors_manproc_msssim": {
+    "bayer_public": 0.9620930900176367,
+    "linear_public": 0.9626980690342007
+   }
+  },
+  "ge_0.99": {
+   "pairs": 80,
+   "identity_pairs": 15,
+   "input": {
+    "manproc_msssim": 0.933612297475338,
+    "manproc_psnr": 31.448184664655447,
+    "developed_msssim": 0.9356129594147206,
+    "developed_psnr": 35.413986867755966
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9720454692840577,
+    "manproc_psnr": 34.20726986821293,
+    "developed_msssim": 0.9866998173296452,
+    "developed_psnr": 39.36836225638744
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9726072765886784,
+    "manproc_psnr": 34.420587400094036,
+    "developed_msssim": 0.9870926767587662,
+    "developed_psnr": 39.64930110957498
+   },
+   "galosh": {
+    "manproc_msssim": 0.9588782027363777,
+    "manproc_psnr": 32.479445514002386,
+    "developed_msssim": 0.9768675044178963,
+    "developed_psnr": 37.198684727718444
+   },
+   "stored_by_authors_manproc_msssim": {
+    "bayer_public": 0.9720168627798558,
+    "linear_public": 0.9725739195942879
+   }
+  },
+  "ge_1.0": {
+   "pairs": 15,
+   "identity_pairs": 15,
+   "input": {
+    "manproc_msssim": 1.0,
+    "developed_msssim": 1.0
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9819185018539429,
+    "developed_msssim": 0.9916409691174825
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9829960664113363,
+    "developed_msssim": 0.9920392513275147
+   },
+   "galosh": {
+    "manproc_msssim": 0.9651007334391276,
+    "developed_msssim": 0.9821383873621623
+   },
+   "stored_by_authors_manproc_msssim": {
+    "bayer_public": 0.9818883220354716,
+    "linear_public": 0.9829593141873677
+   }
+  }
+ },
+ "noise_bins_main_test_set": {
+  "0 <= score < 0.85": {
+   "pairs": 16,
+   "identity_pairs": 0,
+   "input": {
+    "manproc_msssim": 0.3326064180582762,
+    "manproc_psnr": 16.25084220640965,
+    "developed_msssim": 0.22826180653646588,
+    "developed_psnr": 14.156514713735348
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9336275979876518,
+    "manproc_psnr": 30.442507340859066,
+    "developed_msssim": 0.9300589859485626,
+    "developed_psnr": 30.099628602306375
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9335546083748341,
+    "manproc_psnr": 30.516698278964846,
+    "developed_msssim": 0.9327038899064064,
+    "developed_psnr": 30.40670326805912
+   },
+   "galosh": {
+    "manproc_msssim": 0.7596471346914768,
+    "manproc_psnr": 23.97323530269669,
+    "developed_msssim": 0.7808113805949688,
+    "developed_psnr": 20.75791532721192
+   }
+  },
+  "0.85 <= score < 0.97": {
+   "pairs": 35,
+   "identity_pairs": 0,
+   "input": {
+    "manproc_msssim": 0.531462539093835,
+    "manproc_psnr": 19.031536039309618,
+    "developed_msssim": 0.5171719985348838,
+    "developed_psnr": 21.27834692763427
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9286019103867668,
+    "manproc_psnr": 31.352234717305127,
+    "developed_msssim": 0.9632521680423192,
+    "developed_psnr": 35.28671812119585
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9289973088673182,
+    "manproc_psnr": 31.49504691892706,
+    "developed_msssim": 0.9643313952854702,
+    "developed_psnr": 35.55292621643233
+   },
+   "galosh": {
+    "manproc_msssim": 0.8357472011021205,
+    "manproc_psnr": 28.004444293694274,
+    "developed_msssim": 0.9025096961430141,
+    "developed_psnr": 30.024751909043484
+   }
+  },
+  "0.97 <= score < 0.99": {
+   "pairs": 32,
+   "identity_pairs": 0,
+   "input": {
+    "manproc_msssim": 0.8065553708001971,
+    "manproc_psnr": 25.70693577939055,
+    "developed_msssim": 0.7915664054453373,
+    "developed_psnr": 28.579180237763186
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.958584250882268,
+    "manproc_psnr": 33.519929754306,
+    "developed_msssim": 0.9765125941485167,
+    "developed_psnr": 37.49850528491534
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9593256805092096,
+    "manproc_psnr": 33.70581710746952,
+    "developed_msssim": 0.9771847017109394,
+    "developed_psnr": 37.748006926056895
+   },
+   "galosh": {
+    "manproc_msssim": 0.9330125954002142,
+    "manproc_psnr": 31.884617829431825,
+    "developed_msssim": 0.9523181859403849,
+    "developed_psnr": 34.157599690369366
+   }
+  },
+  "0.99 <= score < 0.9975": {
+   "pairs": 32,
+   "identity_pairs": 0,
+   "input": {
+    "manproc_msssim": 0.8879750538617373,
+    "manproc_psnr": 29.5079176077247,
+    "developed_msssim": 0.8823519684374332,
+    "developed_psnr": 32.763862092237105
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9682088140398264,
+    "manproc_psnr": 33.90642496791158,
+    "developed_msssim": 0.9825478512793779,
+    "developed_psnr": 38.26698559530247
+   },
+   "linear_public": {
+    "manproc_msssim": 0.968732638284564,
+    "manproc_psnr": 34.10356495553425,
+    "developed_msssim": 0.9830906726419926,
+    "developed_psnr": 38.57058438498238
+   },
+   "galosh": {
+    "manproc_msssim": 0.9521629884839058,
+    "manproc_psnr": 32.44937260859639,
+    "developed_msssim": 0.9677716642618179,
+    "developed_psnr": 35.73668144674135
+   }
+  },
+  "0.9975 <= score <= 1": {
+   "pairs": 48,
+   "identity_pairs": 15,
+   "input": {
+    "manproc_msssim": 0.9640371265510718,
+    "manproc_psnr": 33.32965575016405,
+    "developed_msssim": 0.9711202867329121,
+    "developed_psnr": 37.98380483189547
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9746032394468784,
+    "manproc_psnr": 34.49899825638394,
+    "developed_msssim": 0.9894677946964899,
+    "developed_psnr": 40.436363867136514
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9751903687914213,
+    "manproc_psnr": 34.72800310390958,
+    "developed_msssim": 0.989760679503282,
+    "developed_psnr": 40.69532944857386
+   },
+   "galosh": {
+    "manproc_msssim": 0.9633550122380257,
+    "manproc_psnr": 32.508607119244566,
+    "developed_msssim": 0.9829313978552818,
+    "developed_psnr": 38.61638487896896
+   }
+  }
+ },
+ "noise_bins_unknown_sensor": {
+  "0 <= score < 0.85": {
+   "pairs": 10,
+   "identity_pairs": 0,
+   "input": {
+    "developed_msssim": 0.3005970850586891,
+    "developed_psnr": 16.21759225210607
+   },
+   "bayer_public": {
+    "developed_msssim": 0.8967747926712036,
+    "developed_psnr": 30.74566432890066
+   },
+   "linear_public": {
+    "developed_msssim": 0.9047254741191864,
+    "developed_psnr": 31.53008774848284
+   },
+   "galosh": {
+    "developed_msssim": 0.7977805495262146,
+    "developed_psnr": 26.345489273982974
+   }
+  },
+  "0.85 <= score < 0.97": {
+   "pairs": 12,
+   "identity_pairs": 0,
+   "input": {
+    "developed_msssim": 0.5182096088925997,
+    "developed_psnr": 20.790530036764967
+   },
+   "bayer_public": {
+    "developed_msssim": 0.9330626328786215,
+    "developed_psnr": 33.43658426798495
+   },
+   "linear_public": {
+    "developed_msssim": 0.9367055197556814,
+    "developed_psnr": 34.072207168036826
+   },
+   "galosh": {
+    "developed_msssim": 0.8966123809417089,
+    "developed_psnr": 31.175861174863815
+   }
+  },
+  "0.97 <= score < 0.99": {
+   "pairs": 9,
+   "identity_pairs": 0,
+   "input": {
+    "developed_msssim": 0.7346208426687453,
+    "developed_psnr": 26.51404821282435
+   },
+   "bayer_public": {
+    "developed_msssim": 0.9521099792586433,
+    "developed_psnr": 35.63628479272057
+   },
+   "linear_public": {
+    "developed_msssim": 0.9544491701655917,
+    "developed_psnr": 35.932315045918486
+   },
+   "galosh": {
+    "developed_msssim": 0.9400809473461575,
+    "developed_psnr": 35.00478009743968
+   }
+  },
+  "0.99 <= score < 0.9975": {
+   "pairs": 18,
+   "identity_pairs": 0,
+   "input": {
+    "developed_msssim": 0.912035862604777,
+    "developed_psnr": 33.07944866357597
+   },
+   "bayer_public": {
+    "developed_msssim": 0.9657142327891456,
+    "developed_psnr": 36.593711378290024
+   },
+   "linear_public": {
+    "developed_msssim": 0.9683044883939955,
+    "developed_psnr": 36.97779570509722
+   },
+   "galosh": {
+    "developed_msssim": 0.9614470567968156,
+    "developed_psnr": 36.23980413329554
+   }
+  },
+  "0.9975 <= score <= 1": {
+   "pairs": 16,
+   "identity_pairs": 10,
+   "input": {
+    "developed_msssim": 0.9807862378656864,
+    "developed_psnr": 36.12559318081075
+   },
+   "bayer_public": {
+    "developed_msssim": 0.9747212752699852,
+    "developed_psnr": 37.37682168330078
+   },
+   "linear_public": {
+    "developed_msssim": 0.9747659862041473,
+    "developed_psnr": 37.79150646831784
+   },
+   "galosh": {
+    "developed_msssim": 0.9667626805603504,
+    "developed_psnr": 37.406035017992785
+   }
+  }
+ },
+ "cameras": {
+  "Canon EOS 500D": {
+   "pairs": 7,
+   "identity_pairs": 1,
+   "input": {
+    "manproc_msssim": 0.8508543031556266,
+    "manproc_psnr": 29.02888365711827,
+    "developed_msssim": 0.8440663984843663,
+    "developed_psnr": 28.664403024358467
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9632406745638166,
+    "manproc_psnr": 34.512496587000015,
+    "developed_msssim": 0.9667221648352486,
+    "developed_psnr": 34.977794342942744
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9649370227541242,
+    "manproc_psnr": 34.9842530246105,
+    "developed_msssim": 0.968037452016558,
+    "developed_psnr": 35.532865603620955
+   },
+   "galosh": {
+    "manproc_msssim": 0.9527468255587986,
+    "manproc_psnr": 33.222356836458104,
+    "developed_msssim": 0.9563820787838527,
+    "developed_psnr": 33.576098199207934
+   }
+  },
+  "Canon EOS 6D": {
+   "pairs": 11,
+   "identity_pairs": 1,
+   "input": {
+    "manproc_msssim": 0.7402778918092902,
+    "manproc_psnr": 24.956860878463793,
+    "developed_msssim": 0.7891701405698602,
+    "developed_psnr": 28.247538548706178
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9655734950845892,
+    "manproc_psnr": 33.205078017423276,
+    "developed_msssim": 0.9811890396204862,
+    "developed_psnr": 36.16297666379917
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9652923941612244,
+    "manproc_psnr": 33.34311893875094,
+    "developed_msssim": 0.9812744639136575,
+    "developed_psnr": 36.406618317029746
+   },
+   "galosh": {
+    "manproc_msssim": 0.937106425111944,
+    "manproc_psnr": 31.971604465914577,
+    "developed_msssim": 0.9607316472313621,
+    "developed_psnr": 34.6460827728401
+   }
+  },
+  "Canon EOS 7D": {
+   "pairs": 8,
+   "identity_pairs": 1,
+   "input": {
+    "manproc_msssim": 0.8515502586960793,
+    "manproc_psnr": 26.37513702202306,
+    "developed_msssim": 0.8307784721255302,
+    "developed_psnr": 28.901816209156472
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9481664746999741,
+    "manproc_psnr": 30.809100527418824,
+    "developed_msssim": 0.965570867061615,
+    "developed_psnr": 34.9885219106947
+   },
+   "linear_public": {
+    "manproc_msssim": 0.948853574693203,
+    "manproc_psnr": 30.99991028318879,
+    "developed_msssim": 0.9664179906249046,
+    "developed_psnr": 35.2491337088483
+   },
+   "galosh": {
+    "manproc_msssim": 0.9330333322286606,
+    "manproc_psnr": 29.55059679656491,
+    "developed_msssim": 0.953194871544838,
+    "developed_psnr": 33.13329558671137
+   }
+  },
+  "Canon EOS D60": {
+   "pairs": 5,
+   "identity_pairs": 1,
+   "input": {
+    "manproc_msssim": 0.9739442586898803,
+    "manproc_psnr": 34.17407107242062,
+    "developed_msssim": 0.9543611168861389,
+    "developed_psnr": 33.524039442448945
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9867703557014466,
+    "manproc_psnr": 36.28533426372343,
+    "developed_msssim": 0.9872518420219422,
+    "developed_psnr": 37.092108552944296
+   },
+   "linear_public": {
+    "manproc_msssim": 0.985962426662445,
+    "manproc_psnr": 36.35665428368811,
+    "developed_msssim": 0.987555181980133,
+    "developed_psnr": 37.765523963572534
+   },
+   "galosh": {
+    "manproc_msssim": 0.9820116400718689,
+    "manproc_psnr": 34.4008401613239,
+    "developed_msssim": 0.9794910192489624,
+    "developed_psnr": 34.72192993459455
+   }
+  },
+  "Canon EOS M100": {
+   "pairs": 65,
+   "identity_pairs": 10,
+   "input": {
+    "developed_msssim": 0.7376199857546732,
+    "developed_psnr": 26.590406398307117
+   },
+   "bayer_public": {
+    "developed_msssim": 0.9494136296785795,
+    "developed_psnr": 34.77036277360612
+   },
+   "linear_public": {
+    "developed_msssim": 0.9523615396939791,
+    "developed_psnr": 35.271046553021705
+   },
+   "galosh": {
+    "developed_msssim": 0.9226481923690208,
+    "developed_psnr": 33.261107858589625
+   }
+  },
+  "DMC-GH1": {
+   "pairs": 6,
+   "identity_pairs": 1,
+   "input": {
+    "manproc_msssim": 0.7274116178353628,
+    "manproc_psnr": 23.795273384671777,
+    "developed_msssim": 0.8985924422740936,
+    "developed_psnr": 30.854736500274157
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.903637021780014,
+    "manproc_psnr": 30.876791423407695,
+    "developed_msssim": 0.9777645766735077,
+    "developed_psnr": 37.252626222092445
+   },
+   "linear_public": {
+    "manproc_msssim": 0.9026980598767599,
+    "manproc_psnr": 30.854926844191255,
+    "developed_msssim": 0.9777845342954,
+    "developed_psnr": 37.22227675467113
+   },
+   "galosh": {
+    "manproc_msssim": 0.8834639092286428,
+    "manproc_psnr": 29.86481310830832,
+    "developed_msssim": 0.9698028862476349,
+    "developed_psnr": 35.529377586864406
+   }
+  },
+  "ILCE-7C": {
+   "pairs": 126,
+   "identity_pairs": 10,
+   "input": {
+    "manproc_msssim": 0.7482223588795889,
+    "manproc_psnr": 25.248540204542607,
+    "developed_msssim": 0.7185194145237642,
+    "developed_psnr": 27.952973573543538
+   },
+   "bayer_public": {
+    "manproc_msssim": 0.9569241518066043,
+    "manproc_psnr": 32.98451610837035,
+    "developed_msssim": 0.9737429353925917,
+    "developed_psnr": 37.27997548507311
+   },
+   "linear_public": {
+    "manproc_msssim": 0.957533165575966,
+    "manproc_psnr": 33.15931734653292,
+    "developed_msssim": 0.9746514076278323,
+    "developed_psnr": 37.54154888998848
+   },
+   "galosh": {
+    "manproc_msssim": 0.8993623706083449,
+    "manproc_psnr": 30.02040736753219,
+    "developed_msssim": 0.9293638865152994,
+    "developed_psnr": 32.73763418743192
+   }
+  }
+ }
+}

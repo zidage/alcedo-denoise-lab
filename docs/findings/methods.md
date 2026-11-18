@@ -7,7 +7,9 @@ until [quality.md](quality.md) has a run of this lab.
 ## Current state
 
 - The start point of the lab is the public **RawNIND UtNet2** weights, which the lab fine-tunes.
-  The weights have the licenses GPL-3.0 and CC BY 4.0 (2026-11-17, RawNIND models).
+  The weights have the licenses GPL-3.0 and CC BY 4.0 (2026-11-17, RawNIND models). The lab uses
+  the two checkpoints that darktable-ai ships: Bayer iteration 4,350,000 and linear iteration
+  3,900,000, with their SHA-256 in `models/public/SOURCE.md` (2026-11-18, public weights files).
 - The Bayer model reads a packed Bayer image with 4 channels and writes RGB at 2 times the size, so
   it also does the demosaic. The linear model reads and writes linear Rec.2020 RGB and serves
   X-Trans. The authors report the same quality for the two inputs, and a cost of 55 GMAC per
@@ -19,8 +21,11 @@ until [quality.md](quality.md) has a run of this lab.
 - Properties of the public weights that the integration must handle: the output has an arbitrary
   gain, the Bayer model writes camera RGB without the color matrix, the Bayer model overflows
   16-bit float, and the export has fixed 512 x 512 tiles (2026-11-17, RawNIND models).
-- The public weights lose quality on a camera that the training did not see: MS-SSIM 0.873 against
-  0.956 on the full test set, as reported (2026-11-17, RawNIND models).
+- The reported MS-SSIM of the public weights on the RawNIND test set (0.956 Bayer, 0.957 linear)
+  is reproduced by a run of the lab ([quality.md](quality.md), 2026-11-18). The reported value on
+  the camera that the training did not see (0.873) cannot be reproduced, because the authors did
+  not publish the XMP files of those scenes; the lab measures that camera with the developed
+  metric only (2026-11-18, public weights files).
 - The reference for a classical method is **GALOSH**. It is the only new classical method of 2026
   with public GPU code that the search found. Its raw path supports RGGB Bayer only
   (2026-11-17, GALOSH).
@@ -29,6 +34,26 @@ until [quality.md](quality.md) has a run of this lab.
   (2026-11-17, other neural methods).
 
 ## Entries
+
+### 2026-11-18 Public weights files
+
+- **Source**: the Google Drive folder that the rawnind_jddc README links (commit e80fb7b),
+  downloaded by `scripts/reference_measurement/download_public_weights.py`; `models/public/SOURCE.md`
+  and `sha256sums.txt` (not committed). The folder lists 495 files of many experiments (with the
+  optimizer states); the lab downloaded the two experiments that darktable-ai names.
+- **Result**:
+  - Bayer: `DenoiserTrainingBayerToProfiledRGB_4ch_2024-02-21-bayer_ms-ssim_mgout_notrans_valeither_-4`,
+    `iter_4350000.pt`, SHA-256 `c1f7de3de24cb12f4803ee65e11cfb467e9a5b80c3cb7126746ef026106c15e0`.
+    `args.yaml`: MS-SSIM loss, `match_gain: output`, crop 256, batch 4 noisy and 1 clean, clean
+    images of raw.pixls.us and of the authors' own collection, the 10 main test scenes reserved.
+  - Linear: `DenoiserTrainingProfiledRGBToProfiledRGB_3ch_2024-10-09-prgb_ms-ssim_mgout_notrans_valeither_-1`,
+    `iter_3900000.pt`, SHA-256 `b436b86c5ee282a0bdbad31acd57261f8e934b1efc6ac687b96d2116f072f94d`.
+  - The `trainres.yaml` of each experiment stores the authors' test results. Bayer:
+    `manproc_msssim_loss` 0.04375 (MS-SSIM 0.9563) and `manproc_bostitch_msssim_loss` 0.12714
+    (MS-SSIM 0.8729, the Canon EOS M100). These agree with Table III of the paper.
+  - The test of the M100 scenes (`manproc_bostitch`) reads the dataset `RawNIND_Bostitch` with
+    XMP files that are not in the rawnind_jddc repository and not in the Dataverse record.
+- **Effect**: the statements of Current state about the checkpoints and the reproduction.
 
 ### 2026-11-17 Other neural methods
 

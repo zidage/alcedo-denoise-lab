@@ -1,0 +1,23 @@
+{
+ "description": "Tiled against one-pass output of the public linear model",
+ "command": "python -I scripts/reference_measurement/check_linear_tiling.py --authors-repo build/tmp/reference_measurement/rawnind_jddc --darktable-cli build/tmp/reference_measurement/darktable-5.0.1/bin/darktable-cli.exe --darktable-configdir build/tmp/reference_measurement/darktable_config --tmp-dir build/tmp/reference_measurement/work/tiling --raw data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+ "raw_file": "Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+ "crop": {
+  "top": 720,
+  "left": 1728,
+  "size": 2560
+ },
+ "tile": 1536,
+ "margin": 256,
+ "largest_absolute_difference": 0.0,
+ "largest_output_value": 749135424.0,
+ "largest_relative_difference": 0.0,
+ "tolerance_relative": 0.0001,
+ "within_tolerance": true,
+ "one_pass_seconds": 2.9322962760925293,
+ "tiled_seconds": 0.5488274097442627,
+ "one_pass_gpu_peak_bytes": 5039146496,
+ "tiled_gpu_peak_bytes": 2484553216,
+ "gpu": "NVIDIA GeForce RTX 3080 Laptop GPU",
+ "torch": "2.11.0+cu128"
+}

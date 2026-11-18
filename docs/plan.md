@@ -23,14 +23,21 @@ list of decisions.
 - The training data is real photographs of real noise. Synthetic noise is not part of this plan.
 - The lab does not photograph its own training pairs.
 - The model has no strength control. It has one output for one input.
+- The model runs in FP32 in Alcedo Studio. 16-bit float is not part of this plan. A lower cost
+  comes from a smaller model.
 - The training budget is low. The rented compute is Google Colab and RunPod.
+- The development machine does not get all of RawNIND (120.2 GB). It downloads only the scenes
+  that a check on that machine uses, to keep the disk use low. The rented machines download the
+  full dataset for the training.
 - The integration in Alcedo Studio is the design of Alcedo Studio. The lab does not copy the
   darktable integration (a separate DNG file, fixed tiles in ONNX Runtime).
 
 ## Terms
 
 - **Public weights**: the RawNIND UtNet2 checkpoints of the authors, before any change by the lab.
-- **Bayer model**: packed Bayer input with 4 channels, RGB output at 2 times the size.
+- **Bayer model**: packed Bayer input with 4 channels, RGB output at 2 times the size. It denoises
+  and demosaics in one pass (joint denoising and demosaicing), so Alcedo Studio does not
+  demosaic a Bayer photo that goes through it.
 - **Linear model**: linear Rec.2020 RGB input and output at the same size. It serves X-Trans.
 - **Test split**: the test scenes of the RawNIND paper.
 - **Held-out camera**: a camera whose scenes are removed from the training data of one run, so the
@@ -68,7 +75,8 @@ then the linear model.
 Question: what quality do the public weights and GALOSH have on the test split, on the held-out
 camera, and on the evaluation photos?
 
-- Download RawNIND (120.2 GB) to `data/rawnind/`. Record the file count and the hash list.
+- Download the test split of RawNIND (the 16 scenes of the authors' `test_reserve.yaml`, 5.38 GB)
+  to `data/rawnind/`. Record the file count and the hash list.
 - Download the public weights to `models/public/`. Record the URL, the license, and the file hash.
 - Run the public Bayer model and the public linear model on the test split with the evaluation code
   of the authors. Compare the MS-SSIM with the reported values (0.956 and 0.957).
@@ -82,17 +90,27 @@ Compute: the development machine. No rented compute.
 
 Findings: `quality.md`, and `datasets.md` for the file count.
 
+Status on 2026-11-18: the test split, the Canon EOS M100, and GALOSH are measured, and the
+comparison sheets of one evaluation photo are made ([findings/quality.md](findings/quality.md)).
+More evaluation photos extend the check by eye to other cameras and scenes.
+
 ### Step 2: training patches
 
 Question: how large is the training data as patches, and how long does one pass take to load?
 
-- Apply the alignment and the masks of the authors. Remove the test split and the held-out camera.
-- Cut the aligned pairs into patches of `patch_size` and write them as shards of fixed size to
-  `data/patches/`.
-- Record the patch count per camera, the total size, and the read rate.
-- Upload the shards to the storage that Colab and RunPod read.
+- Write the patch script: apply the alignment and the masks of the authors, remove the test split,
+  the held-out camera, and the 4 scenes with a research-only license
+  ([findings/datasets.md](findings/datasets.md)), cut the aligned pairs into patches of
+  `patch_size`, and write them as shards of fixed size.
+- On the development machine, run the script on a few training scenes of each camera to
+  `data/patches/` and check the patches. Download only these scenes.
+- On a rented machine, download the full RawNIND record, check the MD5 of each file, and run the
+  same script on all training scenes. Write the shards to the storage that Colab and RunPod read.
+- Record the patch count per camera, the total size, the read rate, and the time and cost of the
+  rented run.
 
-Compute: the development machine. The rented machines then spend their time on training only.
+Compute: the development machine for the check on a few scenes; a rented machine for the full
+dataset.
 
 Findings: `datasets.md`.
 
@@ -127,13 +145,32 @@ Compute: RunPod.
 
 Findings: `training.md`, `quality.md`.
 
-### Step 5: export and cost
+### Step 5: smaller model
 
-Question: what does the fine-tuned model cost to run, and what must the integration handle?
+Question: how much quality does a smaller model lose against the fine-tuned model of step 4, for
+each decrease of the cost?
+
+- On the development machine, measure the cost of UtNet2 variants with fewer channels or fewer
+  levels before any training: MAC per megapixel, and the FP32 time and peak memory for one
+  24 megapixel photo. Select the variants (`student_variants`) whose time is at most
+  `target_time` and one variant between that and the full model.
+- Train each selected variant on the full training data by distillation: the fine-tuned model of
+  step 4 is the teacher, and the loss is the loss of step 3 against the teacher output plus the
+  same loss against the clean image.
+- Measure each variant with all metrics of step 1 and with the comparison sheets of the
+  evaluation photos. Report the quality and the cost of each variant in one table with the
+  fine-tuned model and the public weights.
+
+Compute: the development machine for the cost of the variants; RunPod for the distillation.
+
+Findings: `methods.md`, `training.md`, `quality.md`, `inference_cost.md`.
+
+### Step 6: export and cost
+
+Question: what does the selected model cost to run, and what must the integration handle?
 
 - Export to ONNX and to safetensors. Compare the outputs with PyTorch and record the largest
   difference.
-- Measure the largest activation value, to find out whether 16-bit float can hold it.
 - Measure the difference at the tile borders for tiles of `tile_size` with `tile_overlap`.
 - Measure the time and the peak memory for one 24 megapixel photo and one 45 megapixel photo.
 
@@ -141,16 +178,20 @@ Compute: the development machine.
 
 Findings: `inference_cost.md`.
 
-### Step 6: specification for Alcedo Studio
+### Step 7: specification for Alcedo Studio
 
 - Write `docs/alcedo_integration.md`: tensor layout, value range, gain match, color matrix of the
-  Bayer output, tile size and overlap, numeric precision, and the weights file with its hash and
-  license.
+  Bayer output, tile size and overlap, FP32, and the weights file with its hash and license.
 - Open the integration issue in the Alcedo Studio repository with a link to this file.
 
 ## Items that need the user
 
-- `budget_cap`: the amount that step 4 can spend. Step 4 does not start without it.
+- `budget_cap`: the amount that steps 4 and 5 can spend. Step 4 does not start without it.
+- `target_time`: the largest time for one 45 megapixel photo in Alcedo Studio on the RTX 3080
+  Laptop GPU. Step 5 selects the variants with it.
+- More evaluation photos, if the user wants the check by eye on other cameras, ISO values, or
+  scenes. `data/evaluation_photos/` has one photo (Canon EOS R3, ISO 25600). The scripts of step 1
+  make the sheets for each photo in that folder.
 - The request to the SID authors for a written permission to use the Fuji part of SID
   ([findings/datasets.md](findings/datasets.md)). The plan does not depend on the answer; a
   permission adds X-Trans data to the linear model.
@@ -164,6 +205,8 @@ Findings: `inference_cost.md`.
 | `short_run_iterations` | Set in step 3 from the measured iteration rate, so that one run fits one Colab session | Length of runs A and B |
 | `checkpoint_interval` | Set in step 4 from the measured iteration rate, one checkpoint for each hour | Iterations between two checkpoints |
 | `stop_patience` | 3 checkpoints | Checkpoints without an increase before the run stops |
-| `budget_cap` | From the user | Largest cost of step 4 |
+| `budget_cap` | From the user | Largest cost of steps 4 and 5 |
+| `target_time` | From the user | Largest time for one 45 megapixel photo in Alcedo Studio |
+| `student_variants` | Set in step 5 from the measured cost of each variant | The smaller models that step 5 trains |
 | `tile_size` | 512 x 512 packed Bayer, the tile of the public export | Tile of the border measurement |
-| `tile_overlap` | Measured in step 5: the smallest overlap with a border difference below the output difference between ONNX and PyTorch | Overlap between two tiles |
+| `tile_overlap` | Measured in step 6: the smallest overlap with a border difference below the output difference between ONNX and PyTorch | Overlap between two tiles |

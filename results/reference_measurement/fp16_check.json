@@ -1,0 +1,751 @@
+{
+  "command": "python -I scripts/reference_measurement/check_fp16.py --authors-repo build/tmp/reference_measurement/rawnind_jddc --darktable-cli build/tmp/reference_measurement/darktable-5.0.1/bin/darktable-cli.exe --darktable-configdir build/tmp/reference_measurement/darktable_config --tmp-dir build/tmp/reference_measurement/work/fp16 --calibration-raw data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw --raw data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw --raw data/evaluation_photos/20220827-9578.cr3 --raw data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/Bayer_UNK_TEST_LucieB_bw_drawing1_ISO25600_sha1=9655eaa7d80a329d5543552d04123b8408d8dede.cr2 --raw data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO65535_sha1=03f25da2ca87f0caa2d066992ab5c4ab277bc83f.cr2",
+  "bayer_weights_sha256": "c1f7de3de24cb12f4803ee65e11cfb467e9a5b80c3cb7126746ef026106c15e0",
+  "linear_weights_sha256": "b436b86c5ee282a0bdbad31acd57261f8e934b1efc6ac687b96d2116f072f94d",
+  "torch": "2.11.0+cu128",
+  "gpu": "NVIDIA GeForce RTX 3080 Laptop GPU",
+  "fp32_reference_tf32": false,
+  "fp16_max": 65504.0,
+  "seconds": 141,
+  "peak_working_set_bytes": 7781265408,
+  "calibration_raw": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+  "rescale_target": 1024.0,
+  "calibration": {
+    "bayer_public": {
+      "largest_abs_per_layer": {
+        "convs1.0": 0.3993724584579468,
+        "convs1.2": 3.1857171058654785,
+        "convs2.0": 3.6041431427001953,
+        "convs2.2": 19.804222106933594,
+        "convs3.0": 35.99372100830078,
+        "convs3.2": 51.232723236083984,
+        "convs4.0": 75.45806121826172,
+        "convs4.2": 77.11680603027344,
+        "bottom.0": 100.49661254882812,
+        "bottom.2": 180.77767944335938,
+        "up1": 64.12220001220703,
+        "tconvs1.0": 265.8836364746094,
+        "tconvs1.2": 216.04537963867188,
+        "up2": 40.921199798583984,
+        "tconvs2.0": 153.93902587890625,
+        "tconvs2.2": 433.78680419921875,
+        "up3": 188.32154846191406,
+        "tconvs3.0": 707.6301879882812,
+        "tconvs3.2": 4616.4716796875,
+        "up4": 4402.57275390625,
+        "tconvs4.0": 13345.1298828125,
+        "tconvs4.2": 76326.0546875,
+        "output_module.0": 176378.796875
+      },
+      "scales": {
+        "convs1.0": 1.0,
+        "convs1.2": 1.0,
+        "convs2.0": 1.0,
+        "convs2.2": 1.0,
+        "convs3.0": 1.0,
+        "convs3.2": 1.0,
+        "convs4.0": 1.0,
+        "convs4.2": 1.0,
+        "bottom.0": 1.0,
+        "bottom.2": 1.0,
+        "up1": 1.0,
+        "tconvs1.0": 1.0,
+        "tconvs1.2": 1.0,
+        "up2": 1.0,
+        "tconvs2.0": 1.0,
+        "tconvs2.2": 1.0,
+        "up3": 1.0,
+        "tconvs3.0": 1.0,
+        "tconvs3.2": 4.508273124694824,
+        "up4": 4.299387454986572,
+        "tconvs4.0": 13.032353401184082,
+        "tconvs4.2": 74.53716278076172,
+        "output_module.0": 172.2449188232422
+      }
+    },
+    "linear_public": {
+      "largest_abs_per_layer": {
+        "convs1.0": 0.5091966986656189,
+        "convs1.2": 2.4274652004241943,
+        "convs2.0": 4.728014945983887,
+        "convs2.2": 19.764408111572266,
+        "convs3.0": 56.684364318847656,
+        "convs3.2": 223.8925018310547,
+        "convs4.0": 563.9835815429688,
+        "convs4.2": 1408.8753662109375,
+        "bottom.0": 3146.92919921875,
+        "bottom.2": 2747.85009765625,
+        "up1": 532.63623046875,
+        "tconvs1.0": 3353.31591796875,
+        "tconvs1.2": 7604.00732421875,
+        "up2": 4170.77294921875,
+        "tconvs2.0": 17472.392578125,
+        "tconvs2.2": 75617.8046875,
+        "up3": 119154.578125,
+        "tconvs3.0": 884853.375,
+        "tconvs3.2": 4462180.5,
+        "up4": 6874458.0,
+        "tconvs4.0": 30724748.0,
+        "tconvs4.2": 177772352.0,
+        "output_module.0": 789907648.0
+      },
+      "scales": {
+        "convs1.0": 1.0,
+        "convs1.2": 1.0,
+        "convs2.0": 1.0,
+        "convs2.2": 1.0,
+        "convs3.0": 1.0,
+        "convs3.2": 1.0,
+        "convs4.0": 1.0,
+        "convs4.2": 1.3758548498153687,
+        "bottom.0": 3.0731730461120605,
+        "bottom.2": 2.6834473609924316,
+        "up1": 1.0,
+        "tconvs1.0": 3.2747225761413574,
+        "tconvs1.2": 7.425788402557373,
+        "up2": 4.0730204582214355,
+        "tconvs2.0": 17.062883377075195,
+        "tconvs2.2": 73.84551239013672,
+        "up3": 116.36189270019531,
+        "tconvs3.0": 864.1146240234375,
+        "tconvs3.2": 4357.59814453125,
+        "up4": 6713.337890625,
+        "tconvs4.0": 30004.63671875,
+        "tconvs4.2": 173605.8125,
+        "output_module.0": 771394.1875
+      }
+    }
+  },
+  "results": [
+    {
+      "raw": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+      "camera": "ILCE-7C",
+      "model": "bayer_public",
+      "image_size": [
+        4000,
+        6016
+      ],
+      "fp32_output_largest_abs_before_gain_match": 176378.796875,
+      "largest_activation": {
+        "layer": "output_module.0",
+        "value": 176378.796875
+      },
+      "layers_above_fp16_max": [
+        "output_module.0",
+        "tconvs4.2"
+      ],
+      "activation_largest_abs_per_layer": {
+        "convs1.0": 0.3993724584579468,
+        "convs1.2": 3.1857171058654785,
+        "convs2.0": 3.6041431427001953,
+        "convs2.2": 19.804222106933594,
+        "convs3.0": 35.99372100830078,
+        "convs3.2": 51.232723236083984,
+        "convs4.0": 75.45806121826172,
+        "convs4.2": 77.11680603027344,
+        "bottom.0": 100.49661254882812,
+        "bottom.2": 180.77767944335938,
+        "up1": 64.12220001220703,
+        "tconvs1.0": 265.8836364746094,
+        "tconvs1.2": 216.04537963867188,
+        "up2": 40.921199798583984,
+        "tconvs2.0": 153.93902587890625,
+        "tconvs2.2": 433.78680419921875,
+        "up3": 188.32154846191406,
+        "tconvs3.0": 707.6301879882812,
+        "tconvs3.2": 4616.4716796875,
+        "up4": 4402.57275390625,
+        "tconvs4.0": 13345.1298828125,
+        "tconvs4.2": 76326.0546875,
+        "output_module.0": 176378.796875
+      },
+      "rescaled_fp32_largest_rel_diff": 8.012494276954385e-07,
+      "variants": {
+        "tf32": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 176367.625,
+          "developed_msssim_vs_fp32": 0.9999998807907104,
+          "developed_psnr_vs_fp32": 94.45394508571376,
+          "largest_abs_diff_vs_fp32_relative": 0.00028277942328713834
+        },
+        "fp16": {
+          "inf_count": 6937795,
+          "nan_count": 38,
+          "largest_activation": Infinity
+        },
+        "bf16": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 176128.0,
+          "developed_msssim_vs_fp32": 0.9999428987503052,
+          "developed_psnr_vs_fp32": 62.11179737197381,
+          "largest_abs_diff_vs_fp32_relative": 0.010614089667797089
+        },
+        "fp16_rescaled": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 1024.0,
+          "developed_msssim_vs_fp32": 0.9999991655349731,
+          "developed_psnr_vs_fp32": 79.42055594786268,
+          "largest_abs_diff_vs_fp32_relative": 0.0013030165573582053
+        }
+      }
+    },
+    {
+      "raw": "data/evaluation_photos/20220827-9578.cr3",
+      "camera": "Canon EOS R3",
+      "model": "bayer_public",
+      "image_size": [
+        4032,
+        6016
+      ],
+      "fp32_output_largest_abs_before_gain_match": 1245871.125,
+      "largest_activation": {
+        "layer": "tconvs4.2",
+        "value": 1298233.25
+      },
+      "layers_above_fp16_max": [
+        "tconvs4.2",
+        "output_module.0",
+        "tconvs4.0"
+      ],
+      "activation_largest_abs_per_layer": {
+        "convs1.0": 3.163456678390503,
+        "convs1.2": 24.64097023010254,
+        "convs2.0": 47.363338470458984,
+        "convs2.2": 181.90040588378906,
+        "convs3.0": 341.9497375488281,
+        "convs3.2": 774.393310546875,
+        "convs4.0": 1209.94873046875,
+        "convs4.2": 1464.812255859375,
+        "bottom.0": 2153.81982421875,
+        "bottom.2": 1363.378173828125,
+        "up1": 431.4848327636719,
+        "tconvs1.0": 2889.30078125,
+        "tconvs1.2": 3029.311767578125,
+        "up2": 545.5494995117188,
+        "tconvs2.0": 3365.74169921875,
+        "tconvs2.2": 7644.21923828125,
+        "up3": 3386.4951171875,
+        "tconvs3.0": 11608.4169921875,
+        "tconvs3.2": 47587.0703125,
+        "up4": 41561.51953125,
+        "tconvs4.0": 178510.8125,
+        "tconvs4.2": 1298233.25,
+        "output_module.0": 1245871.125
+      },
+      "rescaled_fp32_largest_rel_diff": 7.898687499618973e-07,
+      "variants": {
+        "tf32": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 1297805.75,
+          "developed_msssim_vs_fp32": 0.9999998807907104,
+          "developed_psnr_vs_fp32": 92.32462408600463,
+          "largest_abs_diff_vs_fp32_relative": 0.0005823762621730566
+        },
+        "fp16": {
+          "inf_count": 9493550,
+          "nan_count": 3061946,
+          "largest_activation": Infinity
+        },
+        "bf16": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 1294336.0,
+          "developed_msssim_vs_fp32": 0.9999493956565857,
+          "developed_psnr_vs_fp32": 61.50655055656262,
+          "largest_abs_diff_vs_fp32_relative": 0.00965401902794838
+        },
+        "fp16_rescaled": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 17408.0,
+          "developed_msssim_vs_fp32": 0.9999992251396179,
+          "developed_psnr_vs_fp32": 79.69190639107369,
+          "largest_abs_diff_vs_fp32_relative": 0.0016154638724401593
+        }
+      }
+    },
+    {
+      "raw": "data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/Bayer_UNK_TEST_LucieB_bw_drawing1_ISO25600_sha1=9655eaa7d80a329d5543552d04123b8408d8dede.cr2",
+      "camera": "Canon EOS M100",
+      "model": "bayer_public",
+      "image_size": [
+        4000,
+        6016
+      ],
+      "fp32_output_largest_abs_before_gain_match": 189759.8125,
+      "largest_activation": {
+        "layer": "output_module.0",
+        "value": 189759.8125
+      },
+      "layers_above_fp16_max": [
+        "output_module.0",
+        "tconvs4.2"
+      ],
+      "activation_largest_abs_per_layer": {
+        "convs1.0": 0.5655534863471985,
+        "convs1.2": 4.596611022949219,
+        "convs2.0": 4.988495349884033,
+        "convs2.2": 25.895122528076172,
+        "convs3.0": 51.78934097290039,
+        "convs3.2": 116.15040588378906,
+        "convs4.0": 169.7134552001953,
+        "convs4.2": 228.24917602539062,
+        "bottom.0": 321.19183349609375,
+        "bottom.2": 382.3501892089844,
+        "up1": 98.23072814941406,
+        "tconvs1.0": 449.9140319824219,
+        "tconvs1.2": 725.0340576171875,
+        "up2": 179.1864776611328,
+        "tconvs2.0": 493.9429626464844,
+        "tconvs2.2": 1085.83154296875,
+        "up3": 567.0183715820312,
+        "tconvs3.0": 2026.7266845703125,
+        "tconvs3.2": 6421.7431640625,
+        "up4": 6159.40869140625,
+        "tconvs4.0": 21089.1640625,
+        "tconvs4.2": 163198.171875,
+        "output_module.0": 189759.8125
+      },
+      "rescaled_fp32_largest_rel_diff": 8.866331313583942e-07,
+      "variants": {
+        "tf32": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 189799.375,
+          "developed_msssim_vs_fp32": 0.9999998807907104,
+          "developed_psnr_vs_fp32": 89.25201893109937,
+          "largest_abs_diff_vs_fp32_relative": 0.0004929680144414306
+        },
+        "fp16": {
+          "inf_count": 31043148,
+          "nan_count": 552665,
+          "largest_activation": Infinity
+        },
+        "bf16": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 190464.0,
+          "developed_msssim_vs_fp32": 0.9998773336410522,
+          "developed_psnr_vs_fp32": 57.9942250161487,
+          "largest_abs_diff_vs_fp32_relative": 0.010218978859484196
+        },
+        "fp16_rescaled": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 2190.0,
+          "developed_msssim_vs_fp32": 0.9999982714653015,
+          "developed_psnr_vs_fp32": 76.68660774195352,
+          "largest_abs_diff_vs_fp32_relative": 0.001464717905037105
+        }
+      }
+    },
+    {
+      "raw": "data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO65535_sha1=03f25da2ca87f0caa2d066992ab5c4ab277bc83f.cr2",
+      "camera": "Canon EOS 6D",
+      "model": "bayer_public",
+      "image_size": [
+        3648,
+        5472
+      ],
+      "fp32_output_largest_abs_before_gain_match": 939544.0,
+      "largest_activation": {
+        "layer": "output_module.0",
+        "value": 939544.0
+      },
+      "layers_above_fp16_max": [
+        "output_module.0",
+        "tconvs4.2",
+        "tconvs4.0"
+      ],
+      "activation_largest_abs_per_layer": {
+        "convs1.0": 2.084991455078125,
+        "convs1.2": 17.632648468017578,
+        "convs2.0": 26.196983337402344,
+        "convs2.2": 88.57350158691406,
+        "convs3.0": 200.1471405029297,
+        "convs3.2": 418.7801513671875,
+        "convs4.0": 562.1370849609375,
+        "convs4.2": 505.0281982421875,
+        "bottom.0": 448.8401184082031,
+        "bottom.2": 862.868408203125,
+        "up1": 324.8099670410156,
+        "tconvs1.0": 980.8038330078125,
+        "tconvs1.2": 1218.576904296875,
+        "up2": 378.9212646484375,
+        "tconvs2.0": 1048.33642578125,
+        "tconvs2.2": 2223.004150390625,
+        "up3": 1103.065185546875,
+        "tconvs3.0": 3597.072265625,
+        "tconvs3.2": 22656.228515625,
+        "up4": 21577.814453125,
+        "tconvs4.0": 114953.1796875,
+        "tconvs4.2": 669196.9375,
+        "output_module.0": 939544.0
+      },
+      "rescaled_fp32_largest_rel_diff": 6.496352966678387e-07,
+      "variants": {
+        "tf32": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 939564.625,
+          "developed_msssim_vs_fp32": 0.9999999403953552,
+          "developed_psnr_vs_fp32": 91.1340480352435,
+          "largest_abs_diff_vs_fp32_relative": 0.00034387363120913506
+        },
+        "fp16": {
+          "inf_count": 12498338,
+          "nan_count": 8093665,
+          "largest_activation": Infinity
+        },
+        "bf16": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 942080.0,
+          "developed_msssim_vs_fp32": 0.9999174475669861,
+          "developed_psnr_vs_fp32": 58.82761754197575,
+          "largest_abs_diff_vs_fp32_relative": 0.011599021963775158
+        },
+        "fp16_rescaled": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 8984.0,
+          "developed_msssim_vs_fp32": 0.9999987483024597,
+          "developed_psnr_vs_fp32": 77.77705969798463,
+          "largest_abs_diff_vs_fp32_relative": 0.0013293704250827432
+        }
+      }
+    },
+    {
+      "raw": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+      "camera": "ILCE-7C",
+      "model": "linear_public",
+      "image_size": [
+        4000,
+        6016
+      ],
+      "fp32_output_largest_abs_before_gain_match": 776419200.0,
+      "largest_activation": {
+        "layer": "output_module.0",
+        "value": 789907648.0
+      },
+      "layers_above_fp16_max": [
+        "output_module.0",
+        "tconvs4.2",
+        "tconvs4.0",
+        "up4",
+        "tconvs3.2",
+        "tconvs3.0",
+        "up3",
+        "tconvs2.2"
+      ],
+      "activation_largest_abs_per_layer": {
+        "convs1.0": 0.5091966986656189,
+        "convs1.2": 2.4274652004241943,
+        "convs2.0": 4.728014945983887,
+        "convs2.2": 19.764408111572266,
+        "convs3.0": 56.684364318847656,
+        "convs3.2": 223.8925018310547,
+        "convs4.0": 563.9835815429688,
+        "convs4.2": 1408.8753662109375,
+        "bottom.0": 3146.92919921875,
+        "bottom.2": 2747.85009765625,
+        "up1": 532.63623046875,
+        "tconvs1.0": 3353.31591796875,
+        "tconvs1.2": 7604.00732421875,
+        "up2": 4170.77294921875,
+        "tconvs2.0": 17472.392578125,
+        "tconvs2.2": 75617.8046875,
+        "up3": 119154.578125,
+        "tconvs3.0": 884853.375,
+        "tconvs3.2": 4462180.5,
+        "up4": 6874458.0,
+        "tconvs4.0": 30724748.0,
+        "tconvs4.2": 177772352.0,
+        "output_module.0": 789907648.0
+      },
+      "rescaled_fp32_largest_rel_diff": 6.102240490690747e-07,
+      "variants": {
+        "tf32": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 789840640.0,
+          "developed_msssim_vs_fp32": 0.9999999403953552,
+          "developed_psnr_vs_fp32": 95.92920284612651,
+          "largest_abs_diff_vs_fp32_relative": 0.00023896375205367804
+        },
+        "fp16": {
+          "inf_count": 0,
+          "nan_count": 72192000,
+          "largest_activation": Infinity
+        },
+        "bf16": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 788529152.0,
+          "developed_msssim_vs_fp32": 0.9999688863754272,
+          "developed_psnr_vs_fp32": 64.73531320762794,
+          "largest_abs_diff_vs_fp32_relative": 0.007352834101766348
+        },
+        "fp16_rescaled": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 1024.0,
+          "developed_msssim_vs_fp32": 0.9999997019767761,
+          "developed_psnr_vs_fp32": 83.6709463694151,
+          "largest_abs_diff_vs_fp32_relative": 0.0008879370288923383
+        }
+      }
+    },
+    {
+      "raw": "data/evaluation_photos/20220827-9578.cr3",
+      "camera": "Canon EOS R3",
+      "model": "linear_public",
+      "image_size": [
+        4032,
+        6016
+      ],
+      "fp32_output_largest_abs_before_gain_match": 6202790912.0,
+      "largest_activation": {
+        "layer": "output_module.0",
+        "value": 6202790912.0
+      },
+      "layers_above_fp16_max": [
+        "output_module.0",
+        "tconvs4.2",
+        "tconvs4.0",
+        "up4",
+        "tconvs3.2",
+        "tconvs3.0",
+        "up3",
+        "tconvs2.2",
+        "tconvs2.0",
+        "tconvs1.2",
+        "bottom.0"
+      ],
+      "activation_largest_abs_per_layer": {
+        "convs1.0": 7.780682563781738,
+        "convs1.2": 20.274137496948242,
+        "convs2.0": 61.11209487915039,
+        "convs2.2": 215.96023559570312,
+        "convs3.0": 632.8914184570312,
+        "convs3.2": 3410.406494140625,
+        "convs4.0": 6171.37255859375,
+        "convs4.2": 16662.494140625,
+        "bottom.0": 74170.5859375,
+        "bottom.2": 44496.21484375,
+        "up1": 9460.7939453125,
+        "tconvs1.0": 61402.18359375,
+        "tconvs1.2": 85751.7265625,
+        "up2": 31002.65234375,
+        "tconvs2.0": 196692.5625,
+        "tconvs2.2": 942720.0,
+        "up3": 1522339.75,
+        "tconvs3.0": 9257935.0,
+        "tconvs3.2": 52912800.0,
+        "up4": 84720672.0,
+        "tconvs4.0": 399117248.0,
+        "tconvs4.2": 1472303744.0,
+        "output_module.0": 6202790912.0
+      },
+      "rescaled_fp32_largest_rel_diff": 7.897645559751254e-07,
+      "variants": {
+        "tf32": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 6203105280.0,
+          "developed_msssim_vs_fp32": 0.9999999403953552,
+          "developed_psnr_vs_fp32": 94.4921520434518,
+          "largest_abs_diff_vs_fp32_relative": 0.0004319404542911798
+        },
+        "fp16": {
+          "inf_count": 0,
+          "nan_count": 72769536,
+          "largest_activation": Infinity
+        },
+        "bf16": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 6207569920.0,
+          "developed_msssim_vs_fp32": 0.9999747276306152,
+          "developed_psnr_vs_fp32": 64.48082919435471,
+          "largest_abs_diff_vs_fp32_relative": 0.007563939783722162
+        },
+        "fp16_rescaled": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 24144.0,
+          "developed_msssim_vs_fp32": 0.9999997019767761,
+          "developed_psnr_vs_fp32": 84.21723380592601,
+          "largest_abs_diff_vs_fp32_relative": 0.0008923124405555427
+        }
+      }
+    },
+    {
+      "raw": "data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/Bayer_UNK_TEST_LucieB_bw_drawing1_ISO25600_sha1=9655eaa7d80a329d5543552d04123b8408d8dede.cr2",
+      "camera": "Canon EOS M100",
+      "model": "linear_public",
+      "image_size": [
+        4000,
+        6016
+      ],
+      "fp32_output_largest_abs_before_gain_match": 998871104.0,
+      "largest_activation": {
+        "layer": "output_module.0",
+        "value": 998871104.0
+      },
+      "layers_above_fp16_max": [
+        "output_module.0",
+        "tconvs4.2",
+        "tconvs4.0",
+        "up4",
+        "tconvs3.2",
+        "tconvs3.0",
+        "up3",
+        "tconvs2.2"
+      ],
+      "activation_largest_abs_per_layer": {
+        "convs1.0": 0.7029697895050049,
+        "convs1.2": 3.133246898651123,
+        "convs2.0": 6.085907936096191,
+        "convs2.2": 24.92626953125,
+        "convs3.0": 50.687068939208984,
+        "convs3.2": 260.9442138671875,
+        "convs4.0": 991.5496826171875,
+        "convs4.2": 2693.31982421875,
+        "bottom.0": 8221.294921875,
+        "bottom.2": 5726.095703125,
+        "up1": 1377.6624755859375,
+        "tconvs1.0": 6872.884765625,
+        "tconvs1.2": 14035.4267578125,
+        "up2": 5134.38916015625,
+        "tconvs2.0": 20925.046875,
+        "tconvs2.2": 85018.5625,
+        "up3": 128052.8125,
+        "tconvs3.0": 1014555.9375,
+        "tconvs3.2": 4198803.0,
+        "up4": 7554374.5,
+        "tconvs4.0": 25399988.0,
+        "tconvs4.2": 221499008.0,
+        "output_module.0": 998871104.0
+      },
+      "rescaled_fp32_largest_rel_diff": 6.650624300164054e-07,
+      "variants": {
+        "tf32": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 998750528.0,
+          "developed_msssim_vs_fp32": 0.9999998807907104,
+          "developed_psnr_vs_fp32": 93.42056181559379,
+          "largest_abs_diff_vs_fp32_relative": 0.00029604777228087187
+        },
+        "fp16": {
+          "inf_count": 0,
+          "nan_count": 72192000,
+          "largest_activation": Infinity
+        },
+        "bf16": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 998244352.0,
+          "developed_msssim_vs_fp32": 0.9999545812606812,
+          "developed_psnr_vs_fp32": 63.00108331601762,
+          "largest_abs_diff_vs_fp32_relative": 0.0068440623581409454
+        },
+        "fp16_rescaled": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 2676.0,
+          "developed_msssim_vs_fp32": 0.999999463558197,
+          "developed_psnr_vs_fp32": 82.97799817551031,
+          "largest_abs_diff_vs_fp32_relative": 0.0007451549172401428
+        }
+      }
+    },
+    {
+      "raw": "data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO65535_sha1=03f25da2ca87f0caa2d066992ab5c4ab277bc83f.cr2",
+      "camera": "Canon EOS 6D",
+      "model": "linear_public",
+      "image_size": [
+        3648,
+        5472
+      ],
+      "fp32_output_largest_abs_before_gain_match": 3780109824.0,
+      "largest_activation": {
+        "layer": "output_module.0",
+        "value": 3780109824.0
+      },
+      "layers_above_fp16_max": [
+        "output_module.0",
+        "tconvs4.2",
+        "tconvs4.0",
+        "up4",
+        "tconvs3.2",
+        "tconvs3.0",
+        "up3",
+        "tconvs2.2",
+        "tconvs2.0"
+      ],
+      "activation_largest_abs_per_layer": {
+        "convs1.0": 5.371030330657959,
+        "convs1.2": 14.326160430908203,
+        "convs2.0": 40.30653381347656,
+        "convs2.2": 146.41392517089844,
+        "convs3.0": 321.4343566894531,
+        "convs3.2": 1690.770751953125,
+        "convs4.0": 3502.58740234375,
+        "convs4.2": 10096.7470703125,
+        "bottom.0": 24988.6015625,
+        "bottom.2": 15042.6015625,
+        "up1": 4618.63525390625,
+        "tconvs1.0": 17604.935546875,
+        "tconvs1.2": 32963.6015625,
+        "up2": 16940.244140625,
+        "tconvs2.0": 75183.234375,
+        "tconvs2.2": 443999.21875,
+        "up3": 816941.375,
+        "tconvs3.0": 5213915.0,
+        "tconvs3.2": 34163252.0,
+        "up4": 48090976.0,
+        "tconvs4.0": 262255936.0,
+        "tconvs4.2": 798544000.0,
+        "output_module.0": 3780109824.0
+      },
+      "rescaled_fp32_largest_rel_diff": 5.582034532380931e-07,
+      "variants": {
+        "tf32": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 3779336704.0,
+          "developed_msssim_vs_fp32": 0.9999998807907104,
+          "developed_psnr_vs_fp32": 93.1763643527947,
+          "largest_abs_diff_vs_fp32_relative": 0.00033948919735848904
+        },
+        "fp16": {
+          "inf_count": 0,
+          "nan_count": 59885568,
+          "largest_activation": Infinity
+        },
+        "bf16": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 3791650816.0,
+          "developed_msssim_vs_fp32": 0.9999648928642273,
+          "developed_psnr_vs_fp32": 63.97007998264834,
+          "largest_abs_diff_vs_fp32_relative": 0.0059665353037416935
+        },
+        "fp16_rescaled": {
+          "inf_count": 0,
+          "nan_count": 0,
+          "largest_activation": 8744.0,
+          "developed_msssim_vs_fp32": 0.999999463558197,
+          "developed_psnr_vs_fp32": 82.5093466585055,
+          "largest_abs_diff_vs_fp32_relative": 0.0010940787615254521
+        }
+      }
+    }
+  ]
+}

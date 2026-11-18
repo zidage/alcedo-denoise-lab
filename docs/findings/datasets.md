@@ -14,7 +14,14 @@ Training and evaluation data: content, cameras, size, and license. The rules of 
 - RawNIND has 310 scenes and 2,831 images from 9 Bayer cameras and 2 X-Trans cameras. One camera,
   the Sony ILCE-7C, has 148 of the 310 scenes. The X-Trans data is the Fujifilm X-T1 (104 scenes)
   and the X-T2 (10 scenes) (2026-11-17, RawNIND content).
-- The download is 120.2 GB in 2,845 files (2026-11-17, licenses).
+- The full record is 120.2 GB in 2,845 files (2026-11-17, licenses). The lab has downloaded the
+  test split only: the 16 scenes of the authors' `test_reserve.yaml`, 138 files, 5.38 GB, with the
+  MD5 of each file checked against the record (2026-11-17, test split download).
+- The record gives a license for each scene in `permissions.txt` for 141 of its 307 scenes: 135
+  CC0, 2 CC BY with the permission of the artist, and 4 "fair-use / research purpose only"
+  (`MuseeL-AnneBonnet`, `MuseeL-MigQuinet`, `MuseeL-PDelvaux`, `MuseeL-plaster`, photos of
+  copyrighted artworks). The training data of the lab does not include these 4 scenes
+  (2026-11-17, scene licenses).
 - No other real paired RAW dataset is usable for a camera model at this time. SIDD has a license
   that permits commercial use, but its sensors are smartphone sensors. SID, ELD, the AIM 2025
   benchmark, LRID, and PMRID have no license, a license without commercial use, or evaluation-only
@@ -23,6 +30,31 @@ Training and evaluation data: content, cameras, size, and license. The rules of 
   from the SID authors. The request was not sent (2026-11-17, licenses).
 
 ## Entries
+
+### 2026-11-17 Scene licenses in the RawNIND record
+
+- **Source**: `permissions.txt` and `dataset.yaml` of the Dataverse record (version 1.0),
+  downloaded to `data/rawnind/meta/` by `scripts/reference_measurement/download_rawnind_subset.py`.
+- **Result**:
+  - `dataset.yaml` lists 307 scenes (196 Bayer, 111 X-Trans), not the 310 of the paper. It marks
+    the 6 test scenes and 5 other scenes of the Canon EOS M100 (`LucieB_*`) as `unknown_sensor`.
+  - `permissions.txt` lists 141 scenes: 135 CC0 (photographers Peter Wemmert, Benoit Brummer, Iain
+    Fergusson, Matti Blume), 2 CC BY "with permission from author" (`MuseeL-GhyselsHera`,
+    `MuseeL-TinelKoenraad`), and 4 "fair-use / research purpose only" (`MuseeL-AnneBonnet`,
+    `MuseeL-MigQuinet`, `MuseeL-PDelvaux`, `MuseeL-plaster`). The other 166 scenes are not in the
+    file; the license of the record (CC BY-SA 4.0) applies to them.
+  - This entry is a reading of the record and is not legal advice.
+- **Effect**: the statement of Current state about the scene licenses.
+
+### 2026-11-17 Test split download
+
+- **Source**: `scripts/reference_measurement/download_rawnind_subset.py`, with the scene list
+  `src/rawnind/config/test_reserve.yaml` of rawnind_jddc (commit e80fb7b); `data/rawnind/md5sums.txt`
+  and `data/rawnind/SOURCE.md` (not committed). Free space of D: before the download: 409 GB.
+- **Result**: 16 scenes (10 of the RawNIND test set, 6 of the Canon EOS M100), 138 data files and 3
+  metadata files, 5,383,309,072 bytes. Each MD5 agrees with the Dataverse record. The user asked
+  for a part of the dataset only, so the other 2,704 files were not downloaded.
+- **Effect**: the statement of Current state about the download.
 
 ### 2026-11-17 Licenses of the real paired RAW datasets
 
