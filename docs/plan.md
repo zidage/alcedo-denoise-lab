@@ -44,8 +44,13 @@ list of decisions.
   demosaic a Bayer photo that goes through it.
 - **Linear model**: linear Rec.2020 RGB input and output at the same size. It serves X-Trans.
 - **Test split**: the test scenes of the RawNIND paper.
-- **Held-out camera**: a camera whose scenes are removed from the training data of one run, so the
-  run measures the quality on a camera that the model did not see.
+- **Held-out camera**: the Canon EOS M100. No training data has its scenes, the test split has 6
+  of them, and the public weights also did not see it, so each run measures the quality on a camera
+  that the model did not see, in the same way as for the public weights.
+- **Validation scenes**: the first training scene (by name) of each training camera:
+  `2pilesofplates`, `MuseeL-C500D-mammal`, `Bark`, `7D-1`, `D60-2`, `Iain01`, `bananapi`. They are
+  removed from the training of steps 3 and 4 and select between runs and checkpoints, so the test
+  split is used only for the final measurement. The authors validate on their test scenes.
 - **Developed metric**: a metric on the output and the clean image after the same fixed
   development: an exposure gain of `developed_gain_ev` and the sRGB transfer curve. It measures the
   noise that a user sees after the shadows are made brighter.
@@ -63,8 +68,8 @@ The public weights have three weak points that a fine-tune can reach without new
    step 3 measures the new loss on short runs before the paid run.
 2. **One camera has 148 of the 310 scenes.** The fine-tune samples the training patches with an
    equal share for each camera.
-3. **The quality on a camera that the training did not see is lower.** Each run removes one
-   held-out camera, and its report gives the metrics on that camera separately.
+3. **The quality on a camera that the training did not see is lower.** The report of each run
+   gives the metrics on the held-out camera separately.
 4. **The demosaic of the Bayer model is weak.** The authors made the clean images with the OpenCV
    EA demosaic, and the public Bayer model learned it; the original DemosaicNet is better on all
    images of the check ([findings/quality.md](findings/quality.md)). The fine-tune uses clean
@@ -111,8 +116,8 @@ Question: how large is the training data, and how fast does the training read cr
   remove the test split, the 4 scenes with a research-only license, and the 5 Canon EOS M100
   scenes outside the test split ([findings/datasets.md](findings/datasets.md)). Store each clean
   target and each packed input one time, and the alignment and the mask of each pair. Each pair
-  has the camera of its scene: a training run removes its held-out camera when it reads the data,
-  and cuts random crops of `patch_size`, as the authors' training does. One set of files serves all
+  has the camera of its scene, for the equal camera share and the validation scenes. The training
+  cuts random crops of `patch_size`, as the authors' training does. One set of files serves all
   runs. The X-Trans data of the linear model is not part of this step now.
 - On the development machine, run the script on the first training scene of each camera (two of
   the Sony ILCE-7C) to `data/patches/` and check the result. Download only these scenes.
@@ -137,13 +142,16 @@ and without a decrease of MS-SSIM on linear values?
 
 - Run A (control): fine-tune with the loss of the authors and the equal camera share, for
   `short_run_iterations`.
-- Run B: the same, with the loss on logarithmic values.
-- Compare A, B, and the public weights on a fixed validation subset with the metrics of step 1.
+- Run B: the same, with the loss on logarithmic values: the authors' MS-SSIM after the encoding
+  `log(1 + x / e) / log(1 + 1 / e)` of the output and the clean image, so A and B differ only in
+  the encoding. The script states the value of `e` and its reason.
+- Compare A, B, and the public weights on the validation scenes with the metrics of step 1.
   The clean reference images of the metrics are demosaiced with `demosaic_target`; the reference
   of the authors (OpenCV EA) is kept only for the comparison with the paper.
 - Record the time and the cost of each run.
 
-Compute: RunPod, with the network volume of step 2.
+Compute: RunPod, with the network volume of step 2. Runs A and B start on the pod of step 2 when
+step 2 ends with no check failures (`scripts/loss_check/run_rented_machine.sh`).
 
 Findings: `training.md`, `quality.md`.
 
@@ -153,8 +161,8 @@ Question: what quality does the fine-tuned model reach on the test split and on 
 for the budget?
 
 - Fine-tune with the loss that step 3 supports. Save a checkpoint every
-  `checkpoint_interval` iterations and measure it on the validation subset.
-- Stop when the developed metric on the validation subset has no increase over
+  `checkpoint_interval` iterations and measure it on the validation scenes.
+- Stop when the developed metric on the validation scenes has no increase over
   `stop_patience` checkpoints, or when the cost reaches `budget_cap`.
 - Measure the final checkpoint with all metrics of step 1, and make the comparison sheets of the
   evaluation photos against the public weights and GALOSH.
@@ -221,7 +229,8 @@ Findings: `inference_cost.md`.
 | `developed_gain_ev` | +2 EV | Exposure gain of the developed metric |
 | `demosaic_target` | The original Bayer DemosaicNet with the input preparation of Alcedo Studio ([findings/methods.md](findings/methods.md)) | Demosaic of the clean training images and of the clean reference images |
 | `patch_size` | 128 x 128 packed Bayer (256 x 256 RGB), the crop size of the authors | Size of one random training crop |
-| `short_run_iterations` | Set in step 3 from the measured iteration rate | Length of runs A and B |
+| `short_run_iterations` | 100,000, with a validation every 10,000 iterations: about 1.1 hours at the 25 iterations per second expected on the A40 (twice the 12 to 16 of the RTX 3080 Laptop GPU), and 10 validation points | Length of runs A and B |
+| `fine_tune_lr` | 3e-5 after a linear warm-up of 1,000 iterations: one tenth of the authors' initial rate; their rate at iteration 4,350,000 was 1.65e-6, and their Adam state is not published | Learning rate of runs A and B |
 | `checkpoint_interval` | Set in step 4 from the measured iteration rate, one checkpoint for each hour | Iterations between two checkpoints |
 | `stop_patience` | 3 checkpoints | Checkpoints without an increase before the run stops |
 | `budget_cap` | From the user | Largest cost of steps 4 and 5 |

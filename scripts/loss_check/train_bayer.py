@@ -1,0 +1,336 @@
+"""Fine-tune the public RawNIND Bayer model on the training images of step 2 (runs A and B).
+
+Input:
+- The training images of step 2 (`data/patches/rawnind_bayer_demosaicnet/`,
+  scripts/training_patches/README.md).
+- The public Bayer weights (`models/public/.../iter_4350000.pt`, from
+  scripts/reference_measurement/download_public_weights.py).
+- The authors' code (rawnind_jddc): the model class UtNet2, the MS-SSIM loss, the gain match, and
+  the color conversion.
+
+Output:
+- `--run-dir` (`models/<run>/`): `checkpoint_<step>.pt` (model, optimizer, step) at each
+  validation, and `run.json` (settings, hashes).
+- `--results-dir` (`results/loss_check/<run>/`): `train_log.jsonl` (loss, iteration rate, memory
+  every `--log-interval` steps) and `validation.jsonl` (metrics of each validation, the public
+  weights at step 0).
+
+Training, as the authors' `DenoiserTrainingBayerToProfiledRGB` (train_denoise_bayer2prgb.yaml)
+unless stated:
+- A batch is `--pairs-per-batch` pairs (authors: batch_size_noisy 4) with `--crops-per-pair`
+  random crops each (authors: num_crops_per_image 4) of 256 x 256 RGB / 128 x 128 packed
+  (training_crops.py). The pairs are all admitted pairs of the training scenes, clean pairs
+  included, as the authors use them.
+- Equal camera share (docs/plan.md): each pair of a batch is a random camera, then a random pair
+  of that camera. The authors draw a random pair of all pairs.
+- The validation scenes of docs/plan.md are not training data.
+- The output (camera RGB) is matched in gain to the clean crop, converted to linear Rec.2020 with
+  the color matrix of the pair, and matched in gain again (`process_net_output`,
+  match_gain: output). The loss is the authors' MS-SSIM loss (data range 1) of the output and the
+  clean crop, both multiplied by the mask.
+- `--loss linear_msssim` (run A): the loss of the authors. `--loss log_msssim` (run B): the same
+  loss after the encoding `log(1 + max(x, 0) / e) / log(1 + 1 / e)` of the output and the clean
+  crop, with e = 2^-8 (LOG_ENCODING_OFFSET). Reason for e: the encoding then follows the curve of
+  the developed metric (+2 EV, sRGB transfer curve) within 0.01 for linear values from 0.0005 to
+  0.03, where the shadow noise is, and it does not clip above 0.25 as that curve does. Values
+  below 0 are encoded as 0.
+- Optimizer: Adam with a learning rate of `--lr` (default 3e-5, one tenth of the authors' initial
+  rate; the authors' rate at iteration 4,350,000 was 1.65e-6, and their Adam state was not
+  published, so the Adam moments start at 0) and a linear warm-up over `--warmup-steps`.
+- PyTorch defaults for precision: FP32 weights and activations; cuDNN may run convolutions in TF32.
+
+Validation (every `--val-interval` steps and at step 0): all admitted noisy pairs of the
+validation scenes, the full aligned image (cropped to a multiple of 32 RGB px), as
+scripts/reference_measurement/measure_test_split.py measures the public weights: the packed input
+times `raw_gain`, the output converted to linear Rec.2020 and scaled to the mean of the clean
+target, then MS-SSIM on linear values (clipped to [0, 1]), and the developed MS-SSIM and PSNR
+(+2 EV, sRGB transfer curve). The clean reference is the DemosaicNet target of step 2. No mask.
+
+Step: loss check on short runs (step 3 of docs/plan.md).
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import math
+import os
+import platform
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+import numpy as np
+import torch
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parent / "training_patches"))
+sys.path.insert(0, str(HERE.parent / "reference_measurement"))
+import training_crops as tc  # noqa: E402
+import training_images_common as tic  # noqa: E402
+
+VALIDATION_SCENES = ("2pilesofplates", "MuseeL-C500D-mammal", "Bark", "7D-1", "D60-2", "Iain01",
+                     "bananapi")
+LOG_ENCODING_OFFSET = 2.0 ** -8
+DEVELOPED_GAIN_EV = 2.0
+PUBLIC_BAYER_WEIGHTS = ("models/public/DenoiserTrainingBayerToProfiledRGB_4ch_2024-02-21-bayer_"
+                        "ms-ssim_mgout_notrans_valeither_-4/saved_models/iter_4350000.pt")
+
+
+def log_encoding(image: torch.Tensor) -> torch.Tensor:
+    e = LOG_ENCODING_OFFSET
+    return torch.log1p(image.clamp(min=0.0) / e) / math.log1p(1.0 / e)
+
+
+def developed(image: torch.Tensor) -> torch.Tensor:
+    """The fixed development of the developed metric: gain, clip to [0, 1], sRGB curve."""
+    clipped = (image * 2.0 ** DEVELOPED_GAIN_EV).clamp(0.0, 1.0)
+    return torch.where(clipped <= 0.0031308, clipped * 12.92,
+                       1.055 * clipped.clamp(min=1e-12) ** (1.0 / 2.4) - 0.055)
+
+
+def psnr(output: torch.Tensor, reference: torch.Tensor) -> float:
+    mse = float(((output - reference) ** 2).mean())
+    return float("inf") if mse == 0.0 else 10.0 * math.log10(1.0 / mse)
+
+
+def sha256_of(path: Path) -> str:
+    return tic.sha256_of(path)
+
+
+class BatchStream(torch.utils.data.IterableDataset):
+    """Endless batches with an equal camera share; each worker has its own random generator."""
+
+    def __init__(self, root: Path, validation_scenes: tuple[str, ...], pairs_per_batch: int,
+                 crops_per_pair: int, seed: int):
+        self.root, self.validation_scenes = root, validation_scenes
+        self.pairs_per_batch, self.crops_per_pair, self.seed = pairs_per_batch, crops_per_pair, seed
+
+    def __iter__(self):
+        info = torch.utils.data.get_worker_info()
+        worker = info.id if info is not None else 0
+        rng = np.random.default_rng([self.seed, worker])
+        images = tc.TrainingImages(self.root, exclude_scenes=self.validation_scenes)
+        groups = images.pairs_of_camera()
+        cameras = sorted(groups)
+        while True:
+            packed, clean, mask, matrix = [], [], [], []
+            while len(packed) < self.pairs_per_batch * self.crops_per_pair:
+                group = groups[cameras[int(rng.integers(len(cameras)))]]
+                pair = group[int(rng.integers(len(group)))]
+                crops = [images.random_crop(pair, rng) for _ in range(self.crops_per_pair)]
+                if any(c is None for c in crops):
+                    continue  # the authors also skip a pair without valid crops
+                for crop in crops:
+                    packed.append(crop.packed)
+                    clean.append(crop.clean)
+                    mask.append(crop.mask)
+                    matrix.append(crop.rgb_xyz_matrix)
+            yield (torch.from_numpy(np.stack(packed)), torch.from_numpy(np.stack(clean)),
+                   torch.from_numpy(np.stack(mask)), torch.from_numpy(np.stack(matrix)))
+
+
+def validation_pairs(root: Path, scenes: tuple[str, ...]) -> list[dict]:
+    images = tc.TrainingImages(root)
+    return [p for p in images.pairs if p["scene"] in scenes and not p["f_is_clean"]]
+
+
+def validate(model, code, msssim, pairs: list[dict], root: Path, device) -> dict:
+    """Metrics of the model on the full aligned images of the validation pairs."""
+    images = tc.TrainingImages(root)
+    model.eval()
+    records = []
+    started = time.time()
+    with torch.no_grad():
+        for pair in pairs:
+            clean_view, packed_view, _ = images.aligned(pair)
+            height = (clean_view.shape[0] // 32) * 32
+            width = (clean_view.shape[1] // 32) * 32
+            clean = torch.from_numpy(np.asarray(clean_view[:height, :width], dtype=np.float32)
+                                     .transpose(2, 0, 1).copy())[None].to(device)
+            packed = torch.from_numpy(np.asarray(packed_view[:height // 2, :width // 2],
+                                                 dtype=np.float32).transpose(2, 0, 1).copy())[None]
+            cam_rgb = model((packed * pair["raw_gain"]).to(device))
+            matrix = torch.tensor(pair["rgb_xyz_matrix"], dtype=torch.float32)[None].to(device)
+            output = code.rawproc.camRGB_to_lin_rec2020_images(cam_rgb, matrix)
+            output = output * (clean.mean() / output.mean())
+            record = {
+                "scene": pair["scene"], "camera": pair["camera"], "f_iso": pair["f_iso"],
+                "key": pair["key"],
+                "linear_msssim": float(msssim(output.clamp(0, 1), clean.clamp(0, 1))),
+                "developed_msssim": float(msssim(developed(output), developed(clean))),
+                "developed_psnr": psnr(developed(output), developed(clean)),
+            }
+            records.append(record)
+            del clean, packed, cam_rgb, output
+    model.train()
+    summary = {name: float(np.mean([r[name] for r in records]))
+               for name in ("linear_msssim", "developed_msssim", "developed_psnr")}
+    by_camera = {}
+    for camera in sorted({r["camera"] for r in records}):
+        rows = [r for r in records if r["camera"] == camera]
+        by_camera[camera] = {name: float(np.mean([r[name] for r in rows]))
+                             for name in ("linear_msssim", "developed_msssim", "developed_psnr")}
+        by_camera[camera]["pairs"] = len(rows)
+    return {"mean": summary, "by_camera": by_camera, "pairs": records,
+            "seconds": round(time.time() - started, 1)}
+
+
+def git_commit(path: Path) -> str:
+    return subprocess.run(["git", "-C", str(path), "rev-parse", "HEAD"], capture_output=True,
+                          text=True).stdout.strip()
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("--images", type=Path,
+                        default=Path("data/patches/rawnind_bayer_demosaicnet"))
+    parser.add_argument("--weights", type=Path, default=Path(PUBLIC_BAYER_WEIGHTS))
+    parser.add_argument("--authors-repo", type=Path, required=True)
+    parser.add_argument("--tmp-dir", type=Path, required=True)
+    parser.add_argument("--run-dir", type=Path, required=True, help="models/<run>")
+    parser.add_argument("--results-dir", type=Path, required=True, help="results/loss_check/<run>")
+    parser.add_argument("--loss", choices=("linear_msssim", "log_msssim"), required=True)
+    parser.add_argument("--iterations", type=int, required=True)
+    parser.add_argument("--val-interval", type=int, required=True)
+    parser.add_argument("--log-interval", type=int, default=100)
+    parser.add_argument("--lr", type=float, default=3e-5)
+    parser.add_argument("--warmup-steps", type=int, default=1000)
+    parser.add_argument("--pairs-per-batch", type=int, default=4)
+    parser.add_argument("--crops-per-pair", type=int, default=4)
+    parser.add_argument("--loader-workers", type=int, default=4)
+    parser.add_argument("--validation-scenes", nargs="+", default=list(VALIDATION_SCENES))
+    parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--no-validation", action="store_true",
+                        help="only for a measurement of the iteration rate")
+    args = parser.parse_args()
+    for name in ("images", "weights", "authors_repo", "tmp_dir", "run_dir", "results_dir"):
+        setattr(args, name, getattr(args, name).resolve())
+    repo_root = HERE.parents[1]
+    command = "python -I " + " ".join(sys.argv)
+
+    code = tic.load_authors_code(args.authors_repo, args.tmp_dir)
+    from rawnind.models import raw_denoiser  # noqa: E402  (path set by load_authors_code)
+    from common.libs import pt_losses  # noqa: E402
+
+    torch.manual_seed(args.seed)
+    torch.set_num_threads(4)
+    device = torch.device("cuda")
+    model = raw_denoiser.UtNet2(in_channels=4, funit=32, activation="LeakyReLU")
+    model.load_state_dict(torch.load(args.weights, map_location="cpu", weights_only=True))
+    model.to(device).train()
+    loss_function = pt_losses.MS_SSIM_loss().to(device)
+    msssim = pt_losses.MS_SSIM_metric().to(device)
+    optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
+    validation_scenes = tuple(args.validation_scenes)
+
+    args.run_dir.mkdir(parents=True, exist_ok=True)
+    args.results_dir.mkdir(parents=True, exist_ok=True)
+    start_step = 0
+    checkpoints = sorted(args.run_dir.glob("checkpoint_*.pt"),
+                         key=lambda p: int(p.stem.split("_")[1]))
+    if checkpoints:  # continue a stopped run
+        state = torch.load(checkpoints[-1], map_location="cpu", weights_only=True)
+        model.load_state_dict(state["model"])
+        optimizer.load_state_dict(state["optimizer"])
+        start_step = int(state["step"])
+        print(f"continue from {checkpoints[-1].name}", flush=True)
+
+    train_images = tc.TrainingImages(args.images, exclude_scenes=validation_scenes)
+    groups = train_images.pairs_of_camera()
+    empty = [c for c, g in groups.items() if not g]
+    if empty or not groups:
+        raise RuntimeError(f"cameras without training pairs: {empty or 'all'}")
+    val_pairs = [] if args.no_validation else validation_pairs(args.images, validation_scenes)
+    if not args.no_validation and not val_pairs:
+        raise RuntimeError(f"no validation pairs in {validation_scenes}")
+    run_info = {
+        "command": command, "repository_commit": git_commit(repo_root),
+        "authors_commit": git_commit(args.authors_repo),
+        "weights": {"path": tic.posix(args.weights), "sha256": sha256_of(args.weights)},
+        "images_manifest_sha256": sha256_of(args.images / tic.MANIFEST),
+        "loss": args.loss, "log_encoding_offset": LOG_ENCODING_OFFSET, "lr": args.lr,
+        "warmup_steps": args.warmup_steps, "pairs_per_batch": args.pairs_per_batch,
+        "crops_per_pair": args.crops_per_pair, "iterations": args.iterations,
+        "validation_scenes": list(validation_scenes), "validation_pairs": len(val_pairs),
+        "training_pairs_by_camera": {c: len(g) for c, g in sorted(groups.items())},
+        "torch": torch.__version__, "gpu": torch.cuda.get_device_name(0),
+        "machine": f"{platform.node()} {platform.system()}", "seed": args.seed,
+    }
+    (args.run_dir / "run.json").write_text(json.dumps(run_info, indent=1) + "\n",
+                                           encoding="utf-8", newline="\n")
+    print(json.dumps({k: run_info[k] for k in ("loss", "training_pairs_by_camera",
+                                                "validation_pairs")}), flush=True)
+
+    validation_log = args.results_dir / "validation.jsonl"
+    train_log = args.results_dir / "train_log.jsonl"
+
+    def run_validation(step: int) -> None:
+        result = validate(model, code, msssim, val_pairs, args.images, device)
+        result["step"] = step
+        with validation_log.open("a", encoding="utf-8", newline="\n") as stream:
+            stream.write(json.dumps(result) + "\n")
+        print(f"validation step {step}: {json.dumps(result['mean'])} ({result['seconds']} s)",
+              flush=True)
+
+    if start_step == 0 and not args.no_validation:
+        run_validation(0)  # the public weights
+
+    loader = torch.utils.data.DataLoader(
+        BatchStream(args.images, validation_scenes, args.pairs_per_batch, args.crops_per_pair,
+                    args.seed * 1000 + start_step),
+        batch_size=None, num_workers=args.loader_workers, pin_memory=True,
+        persistent_workers=args.loader_workers > 0, prefetch_factor=4 if args.loader_workers else None)
+    batches = iter(loader)
+    torch.cuda.reset_peak_memory_stats(device)
+    window_started, window_losses, wait_seconds = time.time(), [], 0.0
+    for step in range(start_step + 1, args.iterations + 1):
+        lr = args.lr * min(1.0, step / max(1, args.warmup_steps))
+        for group in optimizer.param_groups:
+            group["lr"] = lr
+        waited = time.time()
+        packed, clean, mask, matrix = next(batches)
+        wait_seconds += time.time() - waited
+        packed, clean = packed.to(device, non_blocking=True), clean.to(device, non_blocking=True)
+        mask = mask.to(device, non_blocking=True)[:, None].expand_as(clean)
+        matrix = matrix.to(device, non_blocking=True)
+        cam_rgb = model(packed)
+        output = code.rawproc.match_gain(clean, cam_rgb)
+        output = code.rawproc.camRGB_to_lin_rec2020_images(output, matrix)
+        output = code.rawproc.match_gain(clean, output)
+        target = clean
+        if args.loss == "log_msssim":
+            output, target = log_encoding(output), log_encoding(target)
+        loss = loss_function(output * mask, target * mask)
+        optimizer.zero_grad(set_to_none=True)
+        loss.backward()
+        optimizer.step()
+        loss_value = float(loss.detach())
+        if not math.isfinite(loss_value):
+            raise RuntimeError(f"loss is not finite at step {step}: {loss_value}")
+        window_losses.append(loss_value)
+        if step % args.log_interval == 0:
+            seconds = time.time() - window_started
+            entry = {"step": step, "loss": float(np.mean(window_losses)), "lr": lr,
+                     "iterations_per_second": len(window_losses) / seconds,
+                     "loader_wait_fraction": wait_seconds / seconds,
+                     "gpu_peak_allocated_bytes": torch.cuda.max_memory_allocated(device),
+                     "process_peak_memory_bytes": tic.peak_memory_bytes()}
+            with train_log.open("a", encoding="utf-8", newline="\n") as stream:
+                stream.write(json.dumps(entry) + "\n")
+            print(f"step {step}: loss {entry['loss']:.5f}, {entry['iterations_per_second']:.2f} it/s, "
+                  f"loader wait {entry['loader_wait_fraction']:.0%}", flush=True)
+            window_started, window_losses, wait_seconds = time.time(), [], 0.0
+        if step % args.val_interval == 0 or step == args.iterations:
+            torch.save({"model": model.state_dict(), "optimizer": optimizer.state_dict(),
+                        "step": step}, args.run_dir / f"checkpoint_{step}.pt")
+            if not args.no_validation:
+                run_validation(step)
+            window_started = time.time()
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

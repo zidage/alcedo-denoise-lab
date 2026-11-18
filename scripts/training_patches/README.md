@@ -23,9 +23,8 @@ check of 8 scenes it is 4.1 times larger (docs/findings/datasets.md).
 | `clean_targets.jsonl`, `packed_inputs.jsonl`, `pairs.jsonl` | One line for each file and each pair: camera, ISO, alignment, gains, color matrix, admission |
 | `manifest.json`, `sha256sums.txt` | Command, commits, counts, bytes, time; SHA-256 of each `.npy` file |
 
-Each pair has the camera of its scene, so a training run removes its held-out camera when it reads
-the data (`training_crops.TrainingImages(exclude_cameras=...)`), and one set of files serves all
-runs. The test split, the 4 research-only scenes, and the 5 Canon EOS M100 scenes outside the test
+Each pair has the camera of its scene, for the equal camera share of the training and the
+validation scenes of docs/plan.md, so one set of files serves all runs. The test split, the 4 research-only scenes, and the 5 Canon EOS M100 scenes outside the test
 split are not in the training data (`list_bayer_scenes.py`).
 
 ## Environment

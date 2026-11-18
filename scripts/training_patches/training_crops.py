@@ -3,8 +3,9 @@
 The training scripts and check_training_images.py import this module; it is not run directly.
 
 `TrainingImages(root)` reads `pairs.jsonl` of `data/patches/<name>/` and keeps the admitted pairs.
-`exclude_cameras` removes the held-out camera of a run. `pairs_of_camera` gives the pairs of each
-camera, so that a sampler can give each camera an equal share.
+`exclude_scenes` removes scenes (the validation scenes of docs/plan.md) and `exclude_cameras`
+removes cameras. `pairs_of_camera` gives the pairs of each camera, so that a sampler can give each
+camera an equal share.
 
 `random_crop(pair, rng)` cuts one crop of `crop_size` RGB px (`crop_size / 2` packed px) as the
 authors' `rawds.CleanProfiledRGBNoisyBayerImageCropsDataset` cuts it:
@@ -80,11 +81,12 @@ class Crop:
 
 class TrainingImages:
     def __init__(self, root: Path, exclude_cameras: tuple[str, ...] = (),
-                 include_clean_pairs: bool = True):
+                 include_clean_pairs: bool = True, exclude_scenes: tuple[str, ...] = ()):
         self.root = Path(root)
         lines = (self.root / tic.PAIR_INDEX).read_text(encoding="utf-8").splitlines()
         self.pairs = [p for p in map(json.loads, lines)
                       if p["admitted"] and p["camera"] not in exclude_cameras
+                      and p["scene"] not in exclude_scenes
                       and (include_clean_pairs or not p["f_is_clean"])]
         self._arrays: dict[str, np.ndarray] = {}
 
