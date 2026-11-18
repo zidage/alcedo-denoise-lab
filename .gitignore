@@ -1,9 +1,21 @@
-# Logs, evidence, datasets, model weights, temporary scripts, and experiment output.
+# Temporary build files only: virtual environments, logs, caches. Safe to delete at any time.
 build/
 
-# Photos and images made from photos. The evaluation photos must not be shared again; the
-# comparison images stay on the local machine.
-docs/findings/images/
+# Datasets and training patches. Only the folder README is committed.
+data/*
+!data/README.md
+
+# Model weights, checkpoints, and exported graphs. Only the folder README is committed.
+models/*
+!models/README.md
+
+# Results: the text results (JSON, tables, Markdown) are committed. Images and binary arrays of a
+# result stay on the local machine.
+results/**/images/
+results/**/*.npz
+results/**/*.npy
+
+# Photos and images made from photos, in any folder. The evaluation photos must not be shared.
 *.jpg
 *.jpeg
 *.png
@@ -17,11 +29,7 @@ docs/findings/images/
 *.cr3
 *.raf
 
-# Binary arrays of the results. Only the text results are committed.
-results/**/*.npz
-results/**/*.npy
-
-# Model weights and exported graphs.
+# Weight and graph files, in any folder.
 *.onnx
 *.onnx.data
 *.pt

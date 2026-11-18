@@ -32,10 +32,13 @@ add a new numbered decision beside the old ones. The rules are in
 | `docs/plan.md` | The plan, with the constraints from the user and the parameters |
 | `docs/findings/` | Present knowledge and dated entries, one file for each category |
 | `scripts/<step>/` | The scripts of each step, each with a README that states its commands |
-| `results/<step>/` | The text results of each run (JSON, tables) |
-| `build/tmp/` | Not committed: datasets, weights, logs, virtual environments, images |
+| `results/<step>/` | The results of each step: text results (JSON, tables) are committed, `images/` is not |
+| `data/` | Not committed: the datasets, the training patches, the evaluation photos |
+| `models/` | Not committed: the public weights, the checkpoints, the exports |
+| `build/tmp/` | Not committed: temporary build files only (virtual environments, logs, caches) |
 
-Photos, images made from photos, datasets, and model weights are not committed.
+Photos, images made from photos, datasets, and model weights are not committed. The `.gitignore`
+keeps the README of `data/` and `models/` and ignores their content.
 
 ## License
 

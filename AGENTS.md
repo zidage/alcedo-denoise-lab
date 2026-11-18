@@ -17,10 +17,13 @@ public RawNIND UtNet2 weights into a denoising model for the Develop stage of Al
 - [docs/plan.md](docs/plan.md) holds the plan, the constraints from the user, and the parameters.
 - [docs/findings/](docs/findings/README.md) holds what the lab knows: one file for each category of
   experiment data, with a "Current state" text and dated entries.
-- `scripts/<step>/` holds the scripts of each step of the plan.
-- `results/<step>/` holds the text results of each run (JSON, tables).
-- `build/tmp/` (not committed) holds the datasets, the weights, the logs, the virtual environments,
-  and the images.
+- `scripts/<step>/` holds the scripts of each step of the plan (committed).
+- `results/<step>/` holds the results of each step. The text results (JSON, tables) are committed;
+  `results/<step>/images/` and binary arrays are not.
+- `data/` holds the datasets and the training patches (content not committed).
+- `models/` holds the public weights, the checkpoints, and the exports (content not committed).
+- `build/tmp/` holds temporary build files only: virtual environments, logs, caches (not
+  committed).
 
 The production integration (the CUDA, OpenCL, and Metal forward code, the stored result, the editor
 control) is done in the Alcedo Studio repository.
@@ -103,8 +106,8 @@ prototype. In particular:
 ### Photos and privacy
 
 - The evaluation photos must not be shared. Do not commit photos, crops, comparison sheets, or any
-  other image that shows them. Keep them under `build/tmp/` or `docs/findings/images/` (both are in
-  `.gitignore`).
+  other image that shows them. Keep the photos under `data/evaluation_photos/` and the images made
+  from them under `results/<step>/images/` (both are in `.gitignore`).
 - An entry can name a photo file and describe its content in words. It states the command that
   makes its images again from the local evidence.
 - Images of the RawNIND dataset have the license CC BY-SA 4.0. They are also not committed; an
@@ -177,11 +180,22 @@ Branch names describe the purpose of the work, for example `feature/reference-me
   line for an AI tool, no "Generated with" line).
 - Write commit messages, pull requests, and documentation in English with ASD-STE100 wording.
 
-### Temporary files and local state
+### Where each file goes
 
-Do **not** create temporary directories or ad-hoc dump files at the repository root. **Always use
-`build/tmp/<task_name>/`** for logs, evidence, temporary scripts, virtual environments, datasets,
-model files, and experiment output. `build/` is in `.gitignore`.
+Each kind of file has one folder. Do not create other directories or ad-hoc dump files at the
+repository root.
+
+| Kind of file | Folder | Committed |
+| --- | --- | --- |
+| Dataset download, training patches, evaluation photos | `data/` | No (only `data/README.md`) |
+| Public weights, checkpoints, exported graphs | `models/` | No (only `models/README.md`) |
+| Script that makes a number of a findings entry | `scripts/<step>/` | Yes |
+| Result of a step, complete or not: JSON, tables | `results/<step>/` | Yes |
+| Comparison sheets and other images of a result | `results/<step>/images/` | No |
+| Virtual environment, log, cache, one-time script | `build/tmp/<task_name>/` | No |
+
+`build/tmp/` holds temporary build files only. Everything in it can be deleted at any time without
+loss. Do not put a dataset, a model file, a script that a result depends on, or a result there.
 
 ## Development environment
 

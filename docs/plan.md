@@ -68,16 +68,15 @@ then the linear model.
 Question: what quality do the public weights and GALOSH have on the test split, on the held-out
 camera, and on the evaluation photos?
 
-- Download RawNIND (120.2 GB) to `build/tmp/datasets/rawnind/`. Record the file count and the hash
-  list.
-- Download the public weights. Record the URL, the license, and the file hash.
+- Download RawNIND (120.2 GB) to `data/rawnind/`. Record the file count and the hash list.
+- Download the public weights to `models/public/`. Record the URL, the license, and the file hash.
 - Run the public Bayer model and the public linear model on the test split with the evaluation code
   of the authors. Compare the MS-SSIM with the reported values (0.956 and 0.957).
 - Add the developed metric and PSNR, and report each metric per camera and per noise level (the
   MS-SSIM of the noisy input is the measure of the noise level).
 - Run the GALOSH OpenCL build on the same Bayer inputs, with the same metrics.
 - Run the public weights and GALOSH on the evaluation photos. Make comparison sheets under
-  `docs/findings/images/` (not committed) for a check by eye.
+  `results/reference_measurement/images/` (not committed) for a check by eye.
 
 Compute: the development machine. No rented compute.
 
@@ -88,7 +87,8 @@ Findings: `quality.md`, and `datasets.md` for the file count.
 Question: how large is the training data as patches, and how long does one pass take to load?
 
 - Apply the alignment and the masks of the authors. Remove the test split and the held-out camera.
-- Cut the aligned pairs into patches of `patch_size` and write them as shards of fixed size.
+- Cut the aligned pairs into patches of `patch_size` and write them as shards of fixed size to
+  `data/patches/`.
 - Record the patch count per camera, the total size, and the read rate.
 - Upload the shards to the storage that Colab and RunPod read.
 
