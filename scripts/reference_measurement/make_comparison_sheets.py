@@ -1,12 +1,13 @@
 """Make comparison sheets of the evaluation photos for the check by eye.
 
-Input: the folders that denoise_evaluation_photos.py writes, `<outputs>/<photo stem>/<method>.npy`
+Input: the folders that denoise_evaluation_photos.py or demosaic_photos.py write,
+`<outputs>/<photo stem>/<method>.npy`
 (linear Rec.2020, float16, (3, H, W)).
 
 Output, in `results/reference_measurement/images/<photo stem>/` (not committed, see .gitignore):
-- `overview_<ev>.png`: the 4 methods side by side in a 2 x 2 grid, scaled down.
+- `overview_<ev>.png`: the methods side by side (a 2 x 2 grid for 4 methods), scaled down.
 - `crop_<n>_<ev>.png`: one crop at 100 % (each pixel shown as `--zoom` x `--zoom` screen pixels)
-  of the 4 methods side by side.
+  of the methods side by side.
 - `sheet.json`: the crop boxes, the display settings, and for each crop the mean linear Rec.2020
   value of each channel for each method. The noisy input is not clipped, so its mean over a crop
   is an estimate of the true mean without bias; a method whose crop mean differs from it changes
@@ -79,11 +80,16 @@ def main() -> int:
     parser.add_argument("--ev", type=float, action="append", default=None)
     parser.add_argument("--overview-width", type=int, default=1400)
     parser.add_argument("--zoom", type=int, default=1)
+    parser.add_argument("--methods", action="append", default=None, metavar="NAME=TITLE",
+                        help="methods to show (file name and title); default: the 4 methods of "
+                        "denoise_evaluation_photos.py")
     args = parser.parse_args()
     evs = args.ev or [0.0, 2.0]
+    methods = [tuple(m.split("=", 1)) for m in args.methods] if args.methods else list(METHODS)
+    columns = 2 if len(methods) == 4 else len(methods)
 
-    images = {name: np.load(args.outputs / args.photo / f"{name}.npy") for name, _ in METHODS}
-    height, width = images["input"].shape[-2:]
+    images = {name: np.load(args.outputs / args.photo / f"{name}.npy") for name, _ in methods}
+    height, width = images[methods[0][0]].shape[-2:]
     ax, ay, aw, ah = args.area or (0, 0, width, height)
     if ax + aw > width or ay + ah > height:
         raise SystemExit(f"area {args.area} is outside the image {width} x {height}")
@@ -93,7 +99,7 @@ def main() -> int:
 
     for ev in evs:
         panels = []
-        for name, title in METHODS:
+        for name, title in methods:
             picture = display(images[name], ev)
             scale = args.overview_width / picture.shape[1]
             picture = cv2.resize(picture, (args.overview_width, round(picture.shape[0] * scale)),
@@ -105,25 +111,25 @@ def main() -> int:
                 cv2.putText(picture, str(number), (p0[0] + 4, p0[1] + 22), cv2.FONT_HERSHEY_SIMPLEX,
                             0.7, (0, 220, 255), 2, cv2.LINE_AA)
             panels.append(label(picture, f"{title}, {ev:+g} EV"))
-        cv2.imwrite(str(target / f"overview_{ev:+g}EV.png"), grid(panels, 2))
+        cv2.imwrite(str(target / f"overview_{ev:+g}EV.png"), grid(panels, columns))
 
         for number, (x, y, w, h) in enumerate(args.crop, 1):
             if x + w > aw or y + h > ah:
                 raise SystemExit(f"crop {number} {x, y, w, h} is outside the area {aw} x {ah}")
             panels = []
-            for name, title in METHODS:
+            for name, title in methods:
                 picture = display(images[name][:, y:y + h, x:x + w], ev)
                 if args.zoom > 1:
                     picture = cv2.resize(picture, (w * args.zoom, h * args.zoom),
                                          interpolation=cv2.INTER_NEAREST)
                 panels.append(label(picture, f"{title}, {ev:+g} EV"))
-            cv2.imwrite(str(target / f"crop_{number}_{ev:+g}EV.png"), grid(panels, 2))
+            cv2.imwrite(str(target / f"crop_{number}_{ev:+g}EV.png"), grid(panels, columns))
 
     crop_means = []
     for x, y, w, h in args.crop:
         crop_means.append({name: [round(float(v), 6) for v in
                                   images[name][:, y:y + h, x:x + w].astype(np.float64).mean(axis=(1, 2))]
-                           for name, _ in METHODS})
+                           for name, _ in methods})
     (target / "sheet.json").write_text(json.dumps({
         "photo": args.photo, "area": [ax, ay, aw, ah], "crops": [list(c) for c in args.crop],
         "crop_mean_lin_rec2020": crop_means,

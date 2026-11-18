@@ -74,6 +74,22 @@ $P scripts/reference_measurement/denoise_evaluation_photos.py $COMMON --tmp-dir 
 
 # 8. Comparison sheets of one photo (CPU). The crops (x,y,w,h) are chosen by eye on the overview.
 $P scripts/reference_measurement/make_comparison_sheets.py --outputs $E/evaluation_outputs   --photo 20220827-9578 --ev 0 --ev 2 --crop 2000,800,512,512 --crop 1100,1250,512,512   --crop 4800,1850,512,512 --crop 2900,1900,512,512 --crop 700,3200,512,512 --crop 3500,3000,512,512
+
+# 9. Demosaic check on a binned truth of the clean test images (GPU).
+$P scripts/reference_measurement/compare_demosaic.py $COMMON --tmp-dir $E/work/demosaic
+
+# 10. Demosaic of the detail photos in data/evaluation_photos/demosaic/ (GPU), then the sheets.
+$P scripts/reference_measurement/demosaic_photos.py $COMMON --tmp-dir $E/work/demosaic_photos \
+  --out-dir $E/demosaic_outputs
+M=(--methods "opencv_ea=OpenCV EA (target of the public model)" --methods "demosaicnet=DemosaicNet (original)" \
+   --methods "public_bayer=Public Bayer model")
+$P scripts/reference_measurement/make_comparison_sheets.py --outputs $E/demosaic_outputs --photo _DSC0729 \
+  --out-dir results/reference_measurement/images/demosaic --ev 1.5 --zoom 2 --overview-width 1000 "${M[@]}" \
+  --crop 3445,1035,320,320 --crop 3824,2629,320,320 --crop 3824,1752,320,320 --crop 3426,3824,320,320
+$P scripts/reference_measurement/make_comparison_sheets.py --outputs $E/demosaic_outputs --photo P1832629 \
+  --out-dir results/reference_measurement/images/demosaic --ev 1.5 --zoom 2 --overview-width 1000 "${M[@]}" \
+  --crop 3080,1991,320,320 --crop 2432,1006,320,320 --crop 255,1810,320,320 --crop 1654,410,320,320 \
+  --crop 2432,2665,320,320
 ```
 
 ## Notes on the procedure

@@ -61,6 +61,10 @@ The public weights have three weak points that a fine-tune can reach without new
    equal share for each camera.
 3. **The quality on a camera that the training did not see is lower.** Each run removes one
    held-out camera, and its report gives the metrics on that camera separately.
+4. **The demosaic of the Bayer model is weak.** The authors made the clean images with the OpenCV
+   EA demosaic, and the public Bayer model learned it; the original DemosaicNet is better on all
+   images of the check ([findings/quality.md](findings/quality.md)). The fine-tune uses clean
+   images demosaiced by the original DemosaicNet (`demosaic_target`).
 
 The fine-tune keeps the input and output format of the public weights, because a change of that
 format loses the benefit of the public weights.
@@ -98,7 +102,8 @@ More evaluation photos extend the check by eye to other cameras and scenes.
 
 Question: how large is the training data as patches, and how long does one pass take to load?
 
-- Write the patch script: apply the alignment and the masks of the authors, remove the test split,
+- Write the patch script: make the clean images with `demosaic_target` instead of the OpenCV EA
+  demosaic of the authors, apply the alignment and the masks of the authors, remove the test split,
   the held-out camera, and the 4 scenes with a research-only license
   ([findings/datasets.md](findings/datasets.md)), cut the aligned pairs into patches of
   `patch_size`, and write them as shards of fixed size.
@@ -123,6 +128,8 @@ and without a decrease of MS-SSIM on linear values?
   `short_run_iterations`.
 - Run B: the same, with the loss on logarithmic values.
 - Compare A, B, and the public weights on a fixed validation subset with the metrics of step 1.
+  The clean reference images of the metrics are demosaiced with `demosaic_target`; the reference
+  of the authors (OpenCV EA) is kept only for the comparison with the paper.
 - Record the time and the cost of each run.
 
 Compute: Colab.
@@ -201,6 +208,7 @@ Findings: `inference_cost.md`.
 | Parameter | Value | Meaning |
 | --- | --- | --- |
 | `developed_gain_ev` | +2 EV | Exposure gain of the developed metric |
+| `demosaic_target` | The original Bayer DemosaicNet with the input preparation of Alcedo Studio ([findings/methods.md](findings/methods.md)) | Demosaic of the clean training images and of the clean reference images |
 | `patch_size` | 128 x 128 packed Bayer (256 x 256 RGB), the crop size of the authors | Size of one training patch |
 | `short_run_iterations` | Set in step 3 from the measured iteration rate, so that one run fits one Colab session | Length of runs A and B |
 | `checkpoint_interval` | Set in step 4 from the measured iteration rate, one checkpoint for each hour | Iterations between two checkpoints |

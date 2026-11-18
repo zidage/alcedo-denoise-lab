@@ -32,8 +32,40 @@ until [quality.md](quality.md) has a run of this lab.
 - vkdt shows that a joint demosaic and denoise U-Net can run in about 45 ms for 100 megapixels on
   an RTX 4080 Super. Its weights have no stated license and no stated training data
   (2026-11-17, other neural methods).
+- The demosaic target of the lab is the original Bayer **DemosaicNet** of Gharbi et al. 2016
+  (MIT license, the weights of the package `demosaicnet` 0.0.14). Its weights are the same as the
+  Caffe-converted weights that the Neural Engine of Alcedo Studio was distilled from. The input
+  preparation is that of Alcedo Studio: camera white balance on the mosaic, the GRBG pattern,
+  gamma 1/2.2 in and 2.2 out (2026-11-18, DemosaicNet weights).
 
 ## Entries
+
+### 2026-11-18 DemosaicNet weights
+
+- **Source**: the package `demosaicnet` 0.0.14 from PyPI
+  (`demosaicnet-0.0.14-py3-none-any.whl`, SHA-256
+  `e50d502a1336736fc83fdaca97c6e709c3114419083cb1854def3355fb6894c9`), MIT license, copyright
+  2016 Michael Gharbi. Weights `demosaicnet/data/bayer.pth`, SHA-256
+  `a90f45c34b89fea3faf49060687839a7d191d302f597a302b31d1bbc021ff7d8`. The input preparation of
+  Alcedo Studio: `docs/roadmap/alcedo_studio/raw-processing/demosaicnet/cuda_nn_forward_demosaicnet_plan.md`
+  of the Alcedo Studio repository and its reference `pytorch/raw_pipeline.py` of the local
+  demosaicnet_caffe clone (commit 336cadec).
+- **Result**:
+  - The 40 tensors of `bayer.pth` are equal (largest difference 0.0) to the Caffe-converted
+    `bayer.pt` of the demosaicnet_caffe clone, the frozen teacher of the Neural Engine of Alcedo
+    Studio. The two names are the same model.
+  - The network: a 2 x 2 packing convolution, 15 convolutions of 64 channels at half the
+    resolution, a mask and filter product, a transposed convolution, and one convolution of 64
+    channels at full resolution. Without padding, the output is 31 px smaller on each side. The
+    input is a 3-channel mosaic with the GRBG pattern at (0, 0).
+  - The input preparation of Alcedo Studio: black level and white level, camera white balance on
+    the mosaic, the pattern moved to GRBG, gamma 1/2.2 before the network and 2.2 after it with
+    the sign kept and without a clip, and reflected borders. The network was trained on sRGB
+    images, so the gamma is a part of its input format.
+  - demosaic_methods.py of the lab follows this preparation, removes the white balance after the
+    network (the RawNIND clean images are camera RGB without white balance), and moves the
+    pattern with a reflected border of 33 columns.
+- **Effect**: the statement of Current state about the demosaic target.
 
 ### 2026-11-18 Public weights files
 

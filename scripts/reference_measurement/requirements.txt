@@ -3,8 +3,10 @@
 # The versions below are the versions of the reference measurement run of 2026-11-17.
 colour-science==0.4.7
 ConfigArgParse==1.7.1
+demosaicnet==0.0.14
 exif==1.6.1
 gdown==6.5.1
+imageio==2.38.2
 matplotlib==3.11.2
 numpy==2.5.4
 opencv-python==5.1.0.95
@@ -21,3 +23,4 @@ rawpy==0.28.0
 requests==2.34.2
 scipy==1.18.1
 tqdm==4.70.1
+wget==3.2

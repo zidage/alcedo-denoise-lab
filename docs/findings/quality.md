@@ -33,8 +33,71 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   the mean color of each crop within 4 % of the input. One photo of one camera is not a
   measurement of a camera or of a noise level (2026-11-18, check by eye on one evaluation
   photo).
+- The public Bayer model demosaics worse than the classical methods and much worse than the
+  original DemosaicNet. On a binned truth made from the 25 clean images of the test split, the
+  PSNR after the 0 EV development is 43.86 dB for DemosaicNet, 40.49 dB for OpenCV EA (the method
+  of the authors' clean images, which the public model learned), 40.58 dB for OpenCV bilinear,
+  and 38.90 dB for the public Bayer model on the clean mosaic. DemosaicNet is first on all 25
+  images, 1.0 to 5.1 dB above EA, and also first in false color. On two detail photos at ISO 100
+  and 200, DemosaicNet shows the most leaf and building detail, and the public Bayer model makes
+  distant foliage soft (2026-11-18, demosaic of the public Bayer model against DemosaicNet).
 
 ## Entries
+
+### 2026-11-18 Demosaic of the public Bayer model against DemosaicNet
+
+- **Source**: `scripts/reference_measurement/compare_demosaic.py` (result
+  `results/reference_measurement/demosaic_check.json`, 50 s, peak working set 3.0 GB),
+  `demosaic_photos.py` (run record `results/reference_measurement/demosaic_photo_runs.jsonl`),
+  `make_comparison_sheets.py` with `--methods` (sheets in
+  `results/reference_measurement/images/demosaic/`, not committed). Commands in the README of
+  that folder. RTX 3080 Laptop GPU; `compare_demosaic.py` runs with TF32 off.
+- **Methods**, all from the same RGGB mosaic (demosaic_methods.py): OpenCV bilinear; OpenCV EA,
+  the method of the authors' clean images; the original Bayer DemosaicNet (methods.md, 2026-11-18,
+  DemosaicNet weights) with the input preparation of Alcedo Studio; the public RawNIND Bayer model
+  on the clean mosaic, scaled to the mean of the EA image.
+- **Binned truth**: each 2 x 2 RGGB cell of a clean raw image becomes one pixel (R, the mean of the
+  two G, B), so each pixel has three measured colors at half the resolution. The truth is sampled
+  again as an RGGB mosaic, and each method demosaics it. Metrics against the truth after the
+  developed transform at 0 EV (the clean images have a normal exposure), without a border of
+  16 px: PSNR, MS-SSIM, and the PSNR of the two color differences R - G and B - G (false color).
+  Limits: the binned image is sharper per pixel than a camera image, and its three colors are
+  offset by half a pixel. The check ranks the methods; it does not give the quality on a camera
+  image.
+- **Result, binned truth** (25 clean images of the 16 scenes of the test split, 7 cameras; some
+  scenes have two clean images that are almost the same):
+
+  | Method | PSNR (dB) | MS-SSIM | Color difference PSNR (dB) | Best PSNR on |
+  | --- | ---: | ---: | ---: | ---: |
+  | OpenCV bilinear | 40.58 | 0.9917 | 44.24 | 0 images |
+  | OpenCV EA | 40.49 | 0.9914 | 43.78 | 0 images |
+  | DemosaicNet (original) | 43.86 | 0.9952 | 47.13 | 25 images |
+  | Public Bayer model | 38.90 | 0.9891 | 43.88 | 0 images |
+
+  - DemosaicNet minus EA, per image: PSNR +1.0 to +5.1 dB, color difference PSNR +1.0 to +5.1 dB.
+  - EA minus bilinear, per image: PSNR -0.21 to +0.13 dB. EA is not better than bilinear here.
+  - Public Bayer model minus EA, per image: PSNR -2.6 to -0.3 dB. In color difference PSNR the
+    public model is above EA on 14 of the 25 images (-1.6 to +1.6 dB). The public model also
+    denoises, so a part of its loss on a clean mosaic can come from the denoise.
+- **Result, two detail photos** (in `data/evaluation_photos/demosaic/`, not committed): Sony
+  ILCE-7RM3 ISO 100 `_DSC0729.ARW` (a valley with trees, a hillside, and a distant village;
+  5312 x 7968 px; the file was copied from the user's photo folder) and Panasonic DC-G9 ISO 200
+  `P1832629.RW2` (a forest hillside and a town above a beach; 3904 x 5184 px; from the test
+  resources of the Alcedo Studio repository, folder `bad_lens`). 9 crops of 320 x 320 px of
+  distant foliage and buildings, shown at 2 times, +1.5 EV:
+  - DemosaicNet shows the most detail in leaves, branches against the sky, window frames, and
+    fences.
+  - EA is softer than DemosaicNet in leaves, branches, and thin lines.
+  - The public Bayer model is the softest: distant foliage loses its leaf texture, and thin lines
+    (window bars, fences) blur. At ISO 100 and 200 this is a loss of detail without a noise
+    benefit.
+  - The crop means of DemosaicNet and of the public model are within 1.0 % of EA in each channel,
+    so the white balance before DemosaicNet and its removal after it do not change the color.
+  - Time for the 42 megapixel Sony photo: EA 1.08 s (CPU), DemosaicNet 3.51 s (GPU, tiles of
+    2048 px), public Bayer model 1.75 s (GPU, tiles of 1536 packed px with a margin of 256).
+- Not measured: RCD and the Neural Engine of Alcedo Studio (a distilled DemosaicNet); noisy
+  mosaics; X-Trans.
+- **Effect**: the statement of Current state about the demosaic of the public Bayer model.
 
 ### 2026-11-18 Check by eye on one evaluation photo
 
