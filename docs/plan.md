@@ -29,6 +29,8 @@ list of decisions.
 - The development machine does not get all of RawNIND (120.2 GB). It downloads only the scenes
   that a check on that machine uses, to keep the disk use low. The rented machines download the
   full dataset for the training.
+- The clean targets of the training data are made on the GPU with the PyTorch default, which
+  runs the convolutions in TF32. The difference against IEEE FP32 is accepted.
 - The training data is made on RunPod and stored on a RunPod network volume, and the runs of steps
   3 to 5 read it there. It is deleted after step 5; the scripts and the hash lists make it again.
 - The integration in Alcedo Studio is the design of Alcedo Studio. The lab does not copy the

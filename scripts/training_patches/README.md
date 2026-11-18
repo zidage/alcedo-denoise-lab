@@ -72,8 +72,11 @@ $P scripts/training_patches/check_training_images.py --images $OUT --authors-rep
 ## Rented run (RunPod)
 
 `run_rented_machine.sh` runs commands 2b, 3, and 4 on all 175 training scenes on a RunPod pod. It
-makes its own Python 3.14 environment with uv, clones the authors' code at commit e80fb7b, and
-writes its logs and the phase times (`results/training_patches/rented_run.json`).
+installs uv with its standalone installer (the system Python of the Ubuntu 24.04 image refuses
+`pip install`), makes a Python 3.14 environment, clones the authors' code at commit e80fb7b, and
+writes its logs and the phase times (`results/training_patches/rented_run.json`). The count of CPU
+workers comes from the CPU quota and the memory limit of the container: `nproc` and `free` show
+the host (96 CPUs and 503 GB on a pod with a quota of 7.65 CPUs and 50 GB).
 
 Pod settings:
 
@@ -81,7 +84,7 @@ Pod settings:
 | --- | --- | --- |
 | Network volume | 200 GB, mounted at `/workspace`, in a data center that also has the GPUs of steps 3 to 5 | The training data (about 161 GB) stays on it for steps 3 to 5 |
 | Container disk | 120 GB | The RawNIND download (91.7 GB) and the environment; deleted with the pod |
-| vCPU and memory | At least 16 vCPU, at least 3.5 GiB of memory for each vCPU | One CPU worker for each vCPU; each worker has a peak of 3.1 GB |
+| vCPU and memory | As many vCPU as the budget permits, at least 3.5 GiB of memory for each vCPU | One CPU worker for each CPU of the quota; each worker has a peak of 3.1 GB; the CPU work is 32.6 CPU-core hours of the development machine |
 | GPU | Any NVIDIA GPU with a driver for CUDA 12.8 (driver 570 or later) | DemosaicNet uses 2.2 GB of GPU memory, 34 GPU minutes in total |
 | Image | A RunPod PyTorch template (Ubuntu) | The script installs its own environment |
 
@@ -95,10 +98,12 @@ nohup bash scripts/training_patches/run_rented_machine.sh > /workspace/step2_run
 tail -f /workspace/step2_run.log
 ```
 
-At the end, also after an error, the script deletes the pod (`runpodctl pod delete`): a pod with a
-network volume cannot be stopped, only terminated, and the network volume stays. If runpodctl
-cannot read the pod at the start, the script stops before the download; then run it with
-`DELETE_POD_AT_END=0` and terminate the pod by hand when it ends.
+A pod with a network volume cannot be stopped, only terminated; the network volume stays. The
+runpodctl of the pod has no API key, so by default the script does not delete the pod, and the pod
+is terminated by hand when the run ends. To delete it at the end, also after an error, give
+runpodctl an API key (`runpodctl config --apiKey ...`) and start the script with
+`DELETE_POD_AT_END=1` (it then checks `runpodctl get pod` before the download), or create the file
+`build/tmp/training_patches/rented_run/DELETE_POD_AT_END` during the run.
 
 ## Notes on the procedure
 
