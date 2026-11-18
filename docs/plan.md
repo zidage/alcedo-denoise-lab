@@ -29,6 +29,8 @@ list of decisions.
 - The development machine does not get all of RawNIND (120.2 GB). It downloads only the scenes
   that a check on that machine uses, to keep the disk use low. The rented machines download the
   full dataset for the training.
+- The training data is made on RunPod and stored on a RunPod network volume, and the runs of steps
+  3 to 5 read it there. It is deleted after step 5; the scripts and the hash lists make it again.
 - The integration in Alcedo Studio is the design of Alcedo Studio. The lab does not copy the
   darktable integration (a separate DNG file, fixed tiles in ONNX Runtime).
 
@@ -100,24 +102,31 @@ More evaluation photos extend the check by eye to other cameras and scenes.
 
 ### Step 2: training patches
 
-Question: how large is the training data as patches, and how long does one pass take to load?
+Question: how large is the training data, and how fast does the training read crops from it?
 
-- Write the patch script: make the clean images with `demosaic_target` instead of the OpenCV EA
-  demosaic of the authors, apply the alignment and the masks of the authors, remove the test split,
-  the held-out camera, and the 4 scenes with a research-only license
-  ([findings/datasets.md](findings/datasets.md)), cut the aligned pairs into patches of
-  `patch_size`, and write them as shards of fixed size.
-- On the development machine, run the script on a few training scenes of each camera to
-  `data/patches/` and check the patches. Download only these scenes.
-- On a rented machine, download the full RawNIND record, check the MD5 of each file, and run the
-  same script on all training scenes. Write the shards to the storage that Colab and RunPod read.
-- Record the patch count per camera, the total size, the read rate, and the time and cost of the
-  rented run.
+- Write the script of the training data: make the clean images with `demosaic_target` instead of
+  the OpenCV EA demosaic of the authors, apply the alignment and the masks of the authors, and
+  remove the test split, the 4 scenes with a research-only license, and the 5 Canon EOS M100
+  scenes outside the test split ([findings/datasets.md](findings/datasets.md)). Store each clean
+  target and each packed input one time, and the alignment and the mask of each pair. Each pair
+  has the camera of its scene: a training run removes its held-out camera when it reads the data,
+  and cuts random crops of `patch_size`, as the authors' training does. One set of files serves all
+  runs. The X-Trans data of the linear model is not part of this step now.
+- On the development machine, run the script on the first training scene of each camera (two of
+  the Sony ILCE-7C) to `data/patches/` and check the result. Download only these scenes.
+- On a rented machine, download all Bayer training scenes, check the MD5 of each file, and run the
+  same script on them. Write the result to the RunPod network volume.
+- Record the crop positions per camera, the total size, the read rate, and the time and cost of
+  the rented run.
 
 Compute: the development machine for the check on a few scenes; a rented machine for the full
 dataset.
 
 Findings: `datasets.md`.
+
+Status on 2026-11-18: the scripts are written and the check on 8 scenes passes
+([findings/datasets.md](findings/datasets.md)). The rented run downloads 91.7 GB and writes about
+161 GB; `scripts/training_patches/run_rented_machine.sh` runs it on a RunPod pod.
 
 ### Step 3: loss check on short runs
 
@@ -132,7 +141,7 @@ and without a decrease of MS-SSIM on linear values?
   of the authors (OpenCV EA) is kept only for the comparison with the paper.
 - Record the time and the cost of each run.
 
-Compute: Colab.
+Compute: RunPod, with the network volume of step 2.
 
 Findings: `training.md`, `quality.md`.
 
@@ -209,8 +218,8 @@ Findings: `inference_cost.md`.
 | --- | --- | --- |
 | `developed_gain_ev` | +2 EV | Exposure gain of the developed metric |
 | `demosaic_target` | The original Bayer DemosaicNet with the input preparation of Alcedo Studio ([findings/methods.md](findings/methods.md)) | Demosaic of the clean training images and of the clean reference images |
-| `patch_size` | 128 x 128 packed Bayer (256 x 256 RGB), the crop size of the authors | Size of one training patch |
-| `short_run_iterations` | Set in step 3 from the measured iteration rate, so that one run fits one Colab session | Length of runs A and B |
+| `patch_size` | 128 x 128 packed Bayer (256 x 256 RGB), the crop size of the authors | Size of one random training crop |
+| `short_run_iterations` | Set in step 3 from the measured iteration rate | Length of runs A and B |
 | `checkpoint_interval` | Set in step 4 from the measured iteration rate, one checkpoint for each hour | Iterations between two checkpoints |
 | `stop_patience` | 3 checkpoints | Checkpoints without an increase before the run stops |
 | `budget_cap` | From the user | Largest cost of steps 4 and 5 |

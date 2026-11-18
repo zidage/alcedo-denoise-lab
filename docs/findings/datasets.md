@@ -15,13 +15,27 @@ Training and evaluation data: content, cameras, size, and license. The rules of 
   the Sony ILCE-7C, has 148 of the 310 scenes. The X-Trans data is the Fujifilm X-T1 (104 scenes)
   and the X-T2 (10 scenes) (2026-11-17, RawNIND content).
 - The full record is 120.2 GB in 2,845 files (2026-11-17, licenses). The lab has downloaded the
-  test split only: the 16 scenes of the authors' `test_reserve.yaml`, 138 files, 5.38 GB, with the
-  MD5 of each file checked against the record (2026-11-17, test split download).
+  test split (the 16 scenes of the authors' `test_reserve.yaml`, 138 files, 5.38 GB) and 8 training
+  scenes for the check of step 2 (78 files, 2.50 GB), with the MD5 of each file checked against the
+  record (2026-11-17, test split download; 2026-11-18, training images check). The Dataverse rate
+  on the development machine is about 1.25 MB/s for each connection and grows with the count of
+  connections (4.9 MB/s with 4) (2026-11-18, training images check).
+- The Bayer training data is 175 scenes of 7 cameras: Sony ILCE-7C 143, Canon EOS 500D 12, Canon
+  EOS 6D 7, Canon EOS 7D 6, Nikon Z 6 3, Canon EOS D60 2, Nikon D40 2; 389 clean files, 1,993 files,
+  and 4,538 (clean, other) pairs. The Canon EOS M100 (11 scenes) and the Panasonic DMC-GH1 (1
+  scene) have no training scene (2026-11-18, Bayer scene list).
+- The training data is stored as aligned images: each clean target (DemosaicNet, linear Rec.2020,
+  float16) and each packed input one time, and the alignment and the mask of each pair. The
+  training cuts random crops of `patch_size` from them, as the authors' training does. All 175
+  scenes are estimated at 161 GB, of which the Sony ILCE-7C is 147 GB; a fixed grid of patches for
+  each pair is 4.1 times larger. One process reads 1,600 random crops per second from files in the
+  file cache of the development machine (2026-11-18, training images check).
 - The record gives a license for each scene in `permissions.txt` for 141 of its 307 scenes: 135
   CC0, 2 CC BY with the permission of the artist, and 4 "fair-use / research purpose only"
   (`MuseeL-AnneBonnet`, `MuseeL-MigQuinet`, `MuseeL-PDelvaux`, `MuseeL-plaster`, photos of
   copyrighted artworks). The training data of the lab does not include these 4 scenes
-  (2026-11-17, scene licenses).
+  (2026-11-17, scene licenses). The 4 scenes are X-Trans scenes, so the Bayer training data is not
+  changed by them (2026-11-18, Bayer scene list).
 - No other real paired RAW dataset is usable for a camera model at this time. SIDD has a license
   that permits commercial use, but its sensors are smartphone sensors. SID, ELD, the AIM 2025
   benchmark, LRID, and PMRID have no license, a license without commercial use, or evaluation-only
@@ -30,6 +44,80 @@ Training and evaluation data: content, cameras, size, and license. The rules of 
   from the SID authors. The request was not sent (2026-11-17, licenses).
 
 ## Entries
+
+### 2026-11-18 Training images check
+
+- **Source**: `scripts/training_patches/make_training_images.py` and
+  `scripts/training_patches/check_training_images.py` (commands in
+  `scripts/training_patches/README.md`), result
+  `results/training_patches/check_development_machine.json`. The 8 scenes are the first training
+  scene (by name) of each camera and the first two of the Sony ILCE-7C: `2pilesofplates`,
+  `European_hornbeam_bark`, `MuseeL-C500D-mammal`, `Bark`, `7D-1`, `D60-2`, `Iain01`, `bananapi`,
+  downloaded by `download_rawnind_scenes.py` (78 files, 2.50 GB, each MD5 checked; free space of D:
+  before the download: 417.9 GB). Development machine, 4 CPU worker processes, DemosaicNet on the
+  RTX 3080 Laptop GPU.
+- **Result**:
+  - 14 clean targets, 78 packed inputs, 140 pairs; all 140 pairs are admitted by the authors' rule
+    (alignment loss, mask mean, exposure). 4.70 GB: clean targets 1.38 GB, packed inputs 3.00 GB,
+    pair masks 0.32 GB.
+  - Checks (tolerances in the result file): the aligned views of the crop reader are equal to the
+    output of the authors' `rawproc.shift_images` for all 140 pairs; each float16 value differs from
+    its float32 value by at most half a float16 step; the channel means of each DemosaicNet target
+    in camera RGB are within 0.55 % of the means of the mosaic (0.9945 to 1.0035); `raw_gain` times
+    the mean of the aligned input is within 0.07 % of the mean of the aligned clean file. A check by
+    eye of one 512 x 512 crop of each camera (`results/training_patches/images/`, not committed)
+    shows the input and the target aligned, with the same color.
+  - The authors' mask PNG has 3 equal channels, and their loader expands it to the 3 channels of
+    the target. Their crop rule `mask.sum() / crop_size**2 < 0.5` therefore rejects a crop only if
+    less than 1/6 of its pixels are valid. The crop reader keeps this rule.
+
+    | Camera | Check scenes | Pairs | Noisy pairs | Crop positions | MB per clean target | MB per packed input | s per pair (CPU) | Training scenes | Pairs, all | Estimate GB |
+    | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+    | ILCE-7C | 2 | 64 | 51 | 22,080 | 145 | 48 | 26 | 143 | 4,218 | 147.3 |
+    | Canon EOS 6D | 1 | 11 | 10 | 3,234 | 121 | 40 | 44 | 7 | 77 | 4.1 |
+    | Canon EOS 500D | 1 | 7 | 6 | 1,512 | 91 | 30 | 19 | 12 | 77 | 3.6 |
+    | NIKON Z 6 | 1 | 13 | 12 | 4,485 | 147 | 49 | 24 | 3 | 44 | 2.7 |
+    | Canon EOS 7D | 1 | 8 | 7 | 2,080 | 108 | 36 | 20 | 6 | 48 | 2.5 |
+    | NIKON D40 | 1 | 32 | 16 | 2,464 | 37 | 12 | 6 | 2 | 64 | 0.5 |
+    | Canon EOS D60 | 1 | 5 | 4 | 480 | 38 | 13 | 6 | 2 | 10 | 0.2 |
+
+    A crop position is a 256 x 256 RGB cell of a fixed grid on the aligned pair that passes the
+    authors' mask rule; it is the patch count of a fixed grid. The 140 pairs have 36,335 positions
+    (29,407 in noisy pairs). A fixed grid stored for each pair is 19.3 GB against the 4.70 GB of
+    the aligned images (4.1 times).
+  - Estimate for all 175 training scenes, from the bytes and the seconds of each kind of file of
+    each camera: 161 GB; 32.6 CPU-core hours of the development machine (alignment and mask of the
+    pairs: 6 to 44 s for each pair in each worker); 34 GPU minutes for the 389 clean targets (1.5 to
+    5.6 s each). The peak working set is 3.1 GB for each CPU worker and 6.0 GB for the GPU process;
+    the GPU peak is 2.2 GB.
+  - Read rate of random 128 x 128 packed crops with an equal share for each camera: 1,601 crops per
+    second (852 MB/s) in 1 process, 2,049 crops per second in 4 processes, including the process
+    start. The files were written shortly before, so this is the rate of the file cache and of the
+    crop code, not of the disk.
+  - The Dataverse rate on the development machine: 1.26 MB/s for one connection (40 MiB of one file)
+    and 4.9 MB/s for 4 connections at the same time.
+  - Not measured: the read rate from a disk without the file cache and from a RunPod network
+    volume; the X-Trans data.
+- **Effect**: the statements of Current state about the download, the form and the size of the
+  training data, and the read rate.
+
+### 2026-11-18 Bayer scene list
+
+- **Source**: `scripts/training_patches/list_bayer_scenes.py`, result
+  `results/training_patches/bayer_scenes.json`. The camera of each scene is the EXIF `Model` of its
+  first file (by name), read from the first 256 KiB of the file through the Dataverse API, or from
+  the complete file for the Canon CRW files.
+- **Result**:
+  - 196 Bayer scenes. Test split (the 16 scenes of the authors' `test_reserve.yaml`): Canon EOS
+    M100 6, Sony ILCE-7C 5, and one each of the Canon EOS 500D, 6D, 7D, D60, and the Panasonic
+    DMC-GH1. The 5 other Canon EOS M100 scenes (`UNK_LucieB_*`) are not training data, because the
+    authors keep this camera out of all training and the lab measures it as the camera that the
+    training did not see. The 175 other scenes are the training scenes; their cameras are in
+    Current state.
+  - The 4 research-only scenes have X-Trans files only.
+  - The Dataverse files name 310 scenes (196 Bayer, 114 X-Trans); `dataset.yaml` lists 307.
+- **Effect**: the statements of Current state about the Bayer training scenes and the
+  research-only scenes.
 
 ### 2026-11-17 Scene licenses in the RawNIND record
 
