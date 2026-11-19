@@ -20,7 +20,10 @@ authors' `rawds.CleanProfiledRGBNoisyBayerImageCropsDataset` cuts it:
   (`MIN_VALID_FRACTION`). After 10 more rejected crops the function returns None; the authors then
   remove the crop list of the pair.
 
-The arrays are memory-mapped, so a crop reads only its own rows from the disk.
+The arrays are memory-mapped, so a crop reads only its own rows from the disk. Each memory map
+keeps one file descriptor open, and the full data has about 6,900 files, more than the usual limit
+of 1,024 open files of a process. So at most `MAX_OPEN_ARRAYS` maps stay open; the least recently
+used map closes first.
 
 Step: training patches (step 2 of docs/plan.md).
 """
@@ -28,6 +31,7 @@ Step: training patches (step 2 of docs/plan.md).
 from __future__ import annotations
 
 import json
+from collections import OrderedDict
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -40,6 +44,7 @@ AUTHORS_MAX_MASKED = 0.5        # rawds.MAX_MASKED
 AUTHORS_MASK_CHANNELS = 3       # the authors expand the mask to the 3 channels of the target
 MIN_VALID_FRACTION = AUTHORS_MAX_MASKED / AUTHORS_MASK_CHANNELS
 MAX_RANDOM_CROP_ATTEMPTS = 10   # rawds.MAX_RANDOM_CROP_ATTEMPS
+MAX_OPEN_ARRAYS = 256           # memory maps that stay open in one process
 
 
 def axis_slices(shift: int, anchor_size: int, target_size: int, target_is_bayer: bool = True
@@ -88,7 +93,7 @@ class TrainingImages:
                       if p["admitted"] and p["camera"] not in exclude_cameras
                       and p["scene"] not in exclude_scenes
                       and (include_clean_pairs or not p["f_is_clean"])]
-        self._arrays: dict[str, np.ndarray] = {}
+        self._arrays: OrderedDict[str, np.ndarray] = OrderedDict()
 
     def pairs_of_camera(self) -> dict[str, list[dict]]:
         groups: dict[str, list[dict]] = {}
@@ -97,8 +102,12 @@ class TrainingImages:
         return groups
 
     def _array(self, relative: str) -> np.ndarray:
-        if relative not in self._arrays:
+        if relative in self._arrays:
+            self._arrays.move_to_end(relative)
+        else:
             self._arrays[relative] = np.load(self.root / relative, mmap_mode="r")
+            if len(self._arrays) > MAX_OPEN_ARRAYS:
+                self._arrays.popitem(last=False)
         return self._arrays[relative]
 
     def clean_path(self, pair: dict) -> str:
