@@ -150,8 +150,25 @@ and without a decrease of MS-SSIM on linear values?
   of the authors (OpenCV EA) is kept only for the comparison with the paper.
 - Record the time and the cost of each run.
 
+Second question (added 2026-11-19, after run A): run A is sharper than the public weights on the
+detail photos, but much softer than DemosaicNet. Does the softness come from the network
+(UtNet2) or from the loss and the training pairs?
+
+- E1: measure the checkpoints of A and B on the binned truth of step 1
+  (`compare_demosaic.py --checkpoint`), and run them on the evaluation photos and the detail
+  photos for the check by eye (`photos_with_checkpoints.py`).
+- E2: fine-tune with the loss of the user's DemosaicNet student (`--loss gamma_detail`:
+  Charbonnier, Sobel gradients, and chroma in a gamma 1/2.2 domain) on the pairs of a clean image
+  with itself only (`--pairs clean_self`: no noise, no misalignment). If E2 comes near
+  DemosaicNet on the binned truth, the network is not the limit.
+- E3: the same loss on all pairs. E3 against A gives the effect of the loss; E3 against E2 gives
+  the effect of the noisy, separately captured pairs.
+- E2 and E3 run for 30,000 iterations with a validation every 10,000 (run A had no increase
+  after 10,000) and the other settings of A.
+
 Compute: RunPod, with the network volume of step 2. Runs A and B start on the pod of step 2 when
-step 2 ends with no check failures (`scripts/loss_check/run_rented_machine.sh`).
+step 2 ends with no check failures (`scripts/loss_check/run_rented_machine.sh`). E2 and E3 run
+on the same pod after B. E1 runs on the development machine.
 
 Findings: `training.md`, `quality.md`.
 

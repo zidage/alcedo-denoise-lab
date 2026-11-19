@@ -40,6 +40,34 @@ $P scripts/loss_check/train_bayer.py --authors-repo build/tmp/reference_measurem
   --validation-scenes European_hornbeam_bark
 ```
 
+## Runs E2 and E3, and the check E1
+
+E2 and E3 (docs/plan.md, step 3, second question) run on the pod after B, with the environment
+of step 2:
+
+```bash
+P="/root/step2/venv/bin/python -I"
+COMMON="--images data/patches/rawnind_bayer_demosaicnet --authors-repo /root/step2/rawnind_jddc   --tmp-dir /root/step2/loss_check_tmp --iterations 30000 --val-interval 10000 --loader-workers 16"
+$P scripts/loss_check/train_bayer.py $COMMON --loss gamma_detail --pairs clean_self   --run-dir models/loss_check_e2_detail_clean_self --results-dir results/loss_check/loss_check_e2_detail_clean_self
+$P scripts/loss_check/train_bayer.py $COMMON --loss gamma_detail --pairs all   --run-dir models/loss_check_e3_detail_all --results-dir results/loss_check/loss_check_e3_detail_all
+```
+
+E1 on the development machine, with the environment of step 1 (scripts/reference_measurement/):
+the binned truth of the clean test images with the checkpoints as more methods, and the outputs of
+the checkpoints on the evaluation photos and the detail photos for the comparison sheets.
+
+```bash
+E=build/tmp/reference_measurement
+P="$E/venv/Scripts/python -I"
+COMMON="--authors-repo $E/rawnind_jddc --darktable-cli $E/darktable-5.0.1/bin/darktable-cli.exe --darktable-configdir $E/darktable_config"
+$P scripts/reference_measurement/compare_demosaic.py $COMMON --tmp-dir $E/work/demosaic   --checkpoint loss_check_a=models/loss_check_a_linear_msssim/checkpoint_100000.pt   --out results/loss_check/demosaic_check.json
+$P scripts/loss_check/photos_with_checkpoints.py $COMMON --tmp-dir build/tmp/loss_check_photos/tmp   --checkpoint loss_check_a=models/loss_check_a_linear_msssim/checkpoint_100000.pt   --evaluation-out $E/evaluation_outputs --demosaic-out $E/demosaic_outputs
+```
+
+The comparison sheets: scripts/reference_measurement/make_comparison_sheets.py with `--methods`,
+the crops of the README of that folder, and `--out-dir results/loss_check/images/...` (not
+committed).
+
 ## Measurement on the development machine (2026-11-18)
 
 RTX 3080 Laptop GPU, 3 loader processes, batches of 16 crops: 12 iterations per second in run A

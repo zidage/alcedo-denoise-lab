@@ -18,7 +18,8 @@ the same transform, which measures false color. A border of `--border` px is not
 Methods (demosaic_methods.py): `opencv_bilinear`, `opencv_ea` (the method of the authors' clean
 images), `demosaicnet` (the original Bayer DemosaicNet with the input preparation of Alcedo
 Studio), `public_bayer` (the public RawNIND Bayer model on the clean mosaic, scaled to the mean of
-the EA image).
+the EA image). `--checkpoint NAME=PATH` adds a method NAME: a checkpoint of
+scripts/loss_check/train_bayer.py, run as `public_bayer`.
 
 Step: reference measurement (step 1 of docs/plan.md), the demosaic check. GPU, one job at a time;
 PyTorch uses 4 CPU threads. TF32 is off.
@@ -76,10 +77,13 @@ def main() -> int:
     parser.add_argument("--out", type=Path, default=Path("results/reference_measurement/demosaic_check.json"))
     parser.add_argument("--ev", type=float, default=0.0)
     parser.add_argument("--border", type=int, default=16)
+    parser.add_argument("--checkpoint", action="append", default=[], metavar="NAME=PATH",
+                        help="a checkpoint of train_bayer.py as one more method")
     args = parser.parse_args()
     for name in ("pairs", "rawnind", "bayer_weights", "authors_repo", "darktable_cli",
                  "darktable_configdir", "tmp_dir", "out"):
         setattr(args, name, getattr(args, name).resolve())
+    args.checkpoint = [f"{c.split('=', 1)[0]}={Path(c.split('=', 1)[1]).resolve()}" for c in args.checkpoint]
 
     started = time.time()
     repo_root = Path(__file__).resolve().parents[2]
@@ -91,6 +95,14 @@ def main() -> int:
     msssim = code.pt_losses.MS_SSIM_metric().to(device)
     bayer_model = load_model(code, 4, args.bayer_weights, device)
     dnet = dm.load_demosaicnet(device)
+    checkpoints = {}
+    for spec in args.checkpoint:
+        name, path = spec.split("=", 1)
+        path = Path(path)
+        model = code.raw_denoiser.UtNet2(in_channels=4, funit=32, activation="LeakyReLU")
+        model.load_state_dict(torch.load(path, map_location="cpu", weights_only=True)["model"])
+        checkpoints[name] = (model.to(device).eval(), path)
+    methods = METHODS + tuple(checkpoints)
 
     pairs = json.loads(args.pairs.read_text(encoding="utf-8"))["pairs"]
     clean = sorted({(p["gt_file"], p["camera"], p["scene"]) for p in pairs})
@@ -112,6 +124,9 @@ def main() -> int:
         outputs["demosaicnet"] = dm.demosaicnet(dnet, mosaic, metadata["camera_whitebalance_norm"], device)
         outputs["public_bayer"] = dm.public_bayer(code, bayer_model, mosaic,
                                                   float(outputs["opencv_ea"].mean()), device)
+        for name, (model, _) in checkpoints.items():
+            outputs[name] = dm.public_bayer(code, model, mosaic, float(outputs["opencv_ea"].mean()),
+                                            device)
 
         matrix = torch.from_numpy(metadata["rgb_xyz_matrix"]).unsqueeze(0)
         b = args.border
@@ -123,7 +138,7 @@ def main() -> int:
         reference = developed(truth)
         ref_chroma = torch.stack([reference[:, 0] - reference[:, 1], reference[:, 2] - reference[:, 1]], 1)
         metrics = {}
-        for name in METHODS:
+        for name in methods:
             candidate = developed(outputs[name])
             chroma = torch.stack([candidate[:, 0] - candidate[:, 1], candidate[:, 2] - candidate[:, 1]], 1)
             chroma_mse = float(((chroma - ref_chroma) ** 2).mean())
@@ -144,15 +159,17 @@ def main() -> int:
             flush=True)
 
     summary = {}
-    for name in METHODS:
+    for name in methods:
         summary[name] = {key: float(np.mean([r["metrics"][name][key] for r in results]))
                          for key in ("psnr", "msssim", "chroma_psnr")}
         summary[name]["images_best_psnr"] = sum(
-            1 for r in results if max(METHODS, key=lambda n: r["metrics"][n]["psnr"]) == name)
+            1 for r in results if max(methods, key=lambda n: r["metrics"][n]["psnr"]) == name)
     memory = psutil.Process().memory_info()
     args.out.write_text(json.dumps({
         "command": "python -I " + " ".join(sys.argv),
         "bayer_weights_sha256": sha256_of(args.bayer_weights),
+        "checkpoints": {name: {"path": common.posix(os.path.relpath(path, repo_root)),
+                               "sha256": sha256_of(path)} for name, (_, path) in checkpoints.items()},
         "demosaicnet_weights_sha256": sha256_of(Path(__import__("demosaicnet").__file__).parent / "data" / "bayer.pth"),
         "torch": torch.__version__, "gpu": torch.cuda.get_device_name(0), "tf32": False,
         "ev": args.ev, "border": args.border, "seconds": round(time.time() - started),

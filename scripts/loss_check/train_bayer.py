@@ -34,6 +34,16 @@ unless stated:
   the developed metric (+2 EV, sRGB transfer curve) within 0.01 for linear values from 0.0005 to
   0.03, where the shadow noise is, and it does not clip above 0.25 as that curve does. Values
   below 0 are encoded as 0.
+- `--loss gamma_detail` (runs E2 and E3): the loss of the user's DemosaicNet student
+  (deepjoint_demosiacing/demosaicnet_caffe/pytorch/distill_losses.py, without the teacher term):
+  Charbonnier (eps 1e-3) + 0.25 x L1 of the Sobel gradients of each channel + 0.20 x L1 of the
+  chroma (R - G, B - (R + G + B) / 3), on the output and the clean crop after the encoding
+  `(max(x, 0) + o)^(1 / 2.2) - o^(1 / 2.2)` with o = 1e-4 (GAMMA_OFFSET; the offset keeps the
+  gradient at 0 finite). The student loss is in the same gamma 1/2.2 domain. The mask multiplies
+  both images after the encoding.
+- `--pairs clean_self` (run E2): only the pairs of a clean image with itself (the input is the
+  mosaic of the clean image, the target its DemosaicNet image): no noise and no misalignment.
+  `--pairs all` (default): all admitted pairs.
 - Optimizer: Adam with a learning rate of `--lr` (default 3e-5, one tenth of the authors' initial
   rate; the authors' rate at iteration 4,350,000 was 1.65e-6, and their Adam state was not
   published, so the Adam moments start at 0) and a linear warm-up over `--warmup-steps`.
@@ -74,6 +84,10 @@ import training_images_common as tic  # noqa: E402
 VALIDATION_SCENES = ("2pilesofplates", "MuseeL-C500D-mammal", "Bark", "7D-1", "D60-2", "Iain01",
                      "bananapi")
 LOG_ENCODING_OFFSET = 2.0 ** -8
+GAMMA = 2.2
+GAMMA_OFFSET = 1e-4
+DETAIL_WEIGHTS = {"charbonnier": 1.0, "sobel_l1": 0.25, "chroma_l1": 0.20}
+CHARBONNIER_EPS = 1e-3
 DEVELOPED_GAIN_EV = 2.0
 PUBLIC_BAYER_WEIGHTS = ("models/public/DenoiserTrainingBayerToProfiledRGB_4ch_2024-02-21-bayer_"
                         "ms-ssim_mgout_notrans_valeither_-4/saved_models/iter_4350000.pt")
@@ -82,6 +96,40 @@ PUBLIC_BAYER_WEIGHTS = ("models/public/DenoiserTrainingBayerToProfiledRGB_4ch_20
 def log_encoding(image: torch.Tensor) -> torch.Tensor:
     e = LOG_ENCODING_OFFSET
     return torch.log1p(image.clamp(min=0.0) / e) / math.log1p(1.0 / e)
+
+
+def gamma_encoding(image: torch.Tensor) -> torch.Tensor:
+    o = GAMMA_OFFSET
+    return (image.clamp(min=0.0) + o) ** (1.0 / GAMMA) - o ** (1.0 / GAMMA)
+
+
+def sobel_l1(output: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
+    kx = torch.tensor([[-1.0, 0.0, 1.0], [-2.0, 0.0, 2.0], [-1.0, 0.0, 1.0]],
+                      device=output.device, dtype=output.dtype)
+    channels = output.shape[1]
+    wx = kx.view(1, 1, 3, 3).expand(channels, 1, 3, 3)
+    wy = kx.t().reshape(1, 1, 3, 3).expand(channels, 1, 3, 3)
+    conv = torch.nn.functional.conv2d
+    return (torch.nn.functional.l1_loss(conv(output, wx, groups=channels), conv(target, wx, groups=channels))
+            + torch.nn.functional.l1_loss(conv(output, wy, groups=channels), conv(target, wy, groups=channels)))
+
+
+def chroma(image: torch.Tensor) -> torch.Tensor:
+    r, g, b = image[:, 0:1], image[:, 1:2], image[:, 2:3]
+    return torch.cat([r - g, b - (r + g + b) / 3.0], dim=1)
+
+
+def detail_loss(output: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
+    """The loss of `--loss gamma_detail` on gamma-encoded images."""
+    charbonnier = torch.sqrt((output - target) ** 2 + CHARBONNIER_EPS ** 2).mean()
+    return (DETAIL_WEIGHTS["charbonnier"] * charbonnier
+            + DETAIL_WEIGHTS["sobel_l1"] * sobel_l1(output, target)
+            + DETAIL_WEIGHTS["chroma_l1"] * torch.nn.functional.l1_loss(chroma(output), chroma(target)))
+
+
+def select_pairs(images: "tc.TrainingImages", mode: str) -> None:
+    if mode == "clean_self":
+        images.pairs = [p for p in images.pairs if p["gt_file"] == p["f_file"]]
 
 
 def developed(image: torch.Tensor) -> torch.Tensor:
@@ -104,8 +152,8 @@ class BatchStream(torch.utils.data.IterableDataset):
     """Endless batches with an equal camera share; each worker has its own random generator."""
 
     def __init__(self, root: Path, validation_scenes: tuple[str, ...], pairs_per_batch: int,
-                 crops_per_pair: int, seed: int):
-        self.root, self.validation_scenes = root, validation_scenes
+                 crops_per_pair: int, seed: int, pairs: str = "all"):
+        self.root, self.validation_scenes, self.pairs = root, validation_scenes, pairs
         self.pairs_per_batch, self.crops_per_pair, self.seed = pairs_per_batch, crops_per_pair, seed
 
     def __iter__(self):
@@ -113,6 +161,7 @@ class BatchStream(torch.utils.data.IterableDataset):
         worker = info.id if info is not None else 0
         rng = np.random.default_rng([self.seed, worker])
         images = tc.TrainingImages(self.root, exclude_scenes=self.validation_scenes)
+        select_pairs(images, self.pairs)
         groups = images.pairs_of_camera()
         cameras = sorted(groups)
         while True:
@@ -192,7 +241,9 @@ def main() -> int:
     parser.add_argument("--tmp-dir", type=Path, required=True)
     parser.add_argument("--run-dir", type=Path, required=True, help="models/<run>")
     parser.add_argument("--results-dir", type=Path, required=True, help="results/loss_check/<run>")
-    parser.add_argument("--loss", choices=("linear_msssim", "log_msssim"), required=True)
+    parser.add_argument("--loss", choices=("linear_msssim", "log_msssim", "gamma_detail"),
+                        required=True)
+    parser.add_argument("--pairs", choices=("all", "clean_self"), default="all")
     parser.add_argument("--iterations", type=int, required=True)
     parser.add_argument("--val-interval", type=int, required=True)
     parser.add_argument("--log-interval", type=int, default=100)
@@ -239,6 +290,7 @@ def main() -> int:
         print(f"continue from {checkpoints[-1].name}", flush=True)
 
     train_images = tc.TrainingImages(args.images, exclude_scenes=validation_scenes)
+    select_pairs(train_images, args.pairs)
     groups = train_images.pairs_of_camera()
     empty = [c for c, g in groups.items() if not g]
     if empty or not groups:
@@ -251,7 +303,9 @@ def main() -> int:
         "authors_commit": git_commit(args.authors_repo),
         "weights": {"path": tic.posix(args.weights), "sha256": sha256_of(args.weights)},
         "images_manifest_sha256": sha256_of(args.images / tic.MANIFEST),
-        "loss": args.loss, "log_encoding_offset": LOG_ENCODING_OFFSET, "lr": args.lr,
+        "loss": args.loss, "log_encoding_offset": LOG_ENCODING_OFFSET, "pairs": args.pairs,
+        "gamma": GAMMA, "gamma_offset": GAMMA_OFFSET, "detail_weights": DETAIL_WEIGHTS,
+        "charbonnier_eps": CHARBONNIER_EPS, "lr": args.lr,
         "warmup_steps": args.warmup_steps, "pairs_per_batch": args.pairs_per_batch,
         "crops_per_pair": args.crops_per_pair, "iterations": args.iterations,
         "validation_scenes": list(validation_scenes), "validation_pairs": len(val_pairs),
@@ -280,7 +334,7 @@ def main() -> int:
 
     loader = torch.utils.data.DataLoader(
         BatchStream(args.images, validation_scenes, args.pairs_per_batch, args.crops_per_pair,
-                    args.seed * 1000 + start_step),
+                    args.seed * 1000 + start_step, args.pairs),
         batch_size=None, num_workers=args.loader_workers, pin_memory=True,
         persistent_workers=args.loader_workers > 0, prefetch_factor=4 if args.loader_workers else None)
     batches = iter(loader)
@@ -303,7 +357,10 @@ def main() -> int:
         target = clean
         if args.loss == "log_msssim":
             output, target = log_encoding(output), log_encoding(target)
-        loss = loss_function(output * mask, target * mask)
+        if args.loss == "gamma_detail":
+            loss = detail_loss(gamma_encoding(output) * mask, gamma_encoding(target) * mask)
+        else:
+            loss = loss_function(output * mask, target * mask)
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
         optimizer.step()
