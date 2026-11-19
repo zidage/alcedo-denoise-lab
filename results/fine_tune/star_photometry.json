@@ -1,0 +1,181 @@
+{
+ "command": "python -I scripts/loss_check/star_photometry.py --outputs build/tmp/reference_measurement/evaluation_outputs/_DSC8539 --methods bayer_public loss_check_e3 s4_25k galosh --region 0 0 5800 4400 --out results/fine_tune/star_photometry.json",
+ "region": [
+  0,
+  0,
+  5800,
+  4400
+ ],
+ "input_noise_sigma": 0.0033010307561606167,
+ "stars_snr_above_5": 58174,
+ "methods": {
+  "bayer_public": [
+   {
+    "snr": [
+     5,
+     10
+    ],
+    "stars": 35162,
+    "median_flux_ratio": 0.42830749818296565
+   },
+   {
+    "snr": [
+     10,
+     20
+    ],
+    "stars": 12578,
+    "median_flux_ratio": 0.7916268776508701
+   },
+   {
+    "snr": [
+     20,
+     50
+    ],
+    "stars": 6776,
+    "median_flux_ratio": 0.939844499791841
+   },
+   {
+    "snr": [
+     50,
+     200
+    ],
+    "stars": 2934,
+    "median_flux_ratio": 0.9663876103580902
+   },
+   {
+    "snr": [
+     200,
+     null
+    ],
+    "stars": 724,
+    "median_flux_ratio": 0.9326357785321865
+   }
+  ],
+  "loss_check_e3": [
+   {
+    "snr": [
+     5,
+     10
+    ],
+    "stars": 35162,
+    "median_flux_ratio": 0.4158003786814772
+   },
+   {
+    "snr": [
+     10,
+     20
+    ],
+    "stars": 12578,
+    "median_flux_ratio": 0.7673703976669944
+   },
+   {
+    "snr": [
+     20,
+     50
+    ],
+    "stars": 6776,
+    "median_flux_ratio": 0.9301507542257017
+   },
+   {
+    "snr": [
+     50,
+     200
+    ],
+    "stars": 2934,
+    "median_flux_ratio": 0.9777663887524872
+   },
+   {
+    "snr": [
+     200,
+     null
+    ],
+    "stars": 724,
+    "median_flux_ratio": 0.9526730488004449
+   }
+  ],
+  "s4_25k": [
+   {
+    "snr": [
+     5,
+     10
+    ],
+    "stars": 35162,
+    "median_flux_ratio": 0.4937297450300431
+   },
+   {
+    "snr": [
+     10,
+     20
+    ],
+    "stars": 12578,
+    "median_flux_ratio": 0.8175764294598871
+   },
+   {
+    "snr": [
+     20,
+     50
+    ],
+    "stars": 6776,
+    "median_flux_ratio": 0.982525244294872
+   },
+   {
+    "snr": [
+     50,
+     200
+    ],
+    "stars": 2934,
+    "median_flux_ratio": 1.0091124853494282
+   },
+   {
+    "snr": [
+     200,
+     null
+    ],
+    "stars": 724,
+    "median_flux_ratio": 0.9772443636124617
+   }
+  ],
+  "galosh": [
+   {
+    "snr": [
+     5,
+     10
+    ],
+    "stars": 35162,
+    "median_flux_ratio": 0.388974245936782
+   },
+   {
+    "snr": [
+     10,
+     20
+    ],
+    "stars": 12578,
+    "median_flux_ratio": 0.6525207353527065
+   },
+   {
+    "snr": [
+     20,
+     50
+    ],
+    "stars": 6776,
+    "median_flux_ratio": 0.8363527175266801
+   },
+   {
+    "snr": [
+     50,
+     200
+    ],
+    "stars": 2934,
+    "median_flux_ratio": 0.8882933288024993
+   },
+   {
+    "snr": [
+     200,
+     null
+    ],
+    "stars": 724,
+    "median_flux_ratio": 0.8949270687716411
+   }
+  ]
+ }
+}

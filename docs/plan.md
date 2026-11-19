@@ -35,6 +35,8 @@ list of decisions.
   3 to 5 read it there. It is deleted after step 5; the scripts and the hash lists make it again.
 - The integration in Alcedo Studio is the design of Alcedo Studio. The lab does not copy the
   darktable integration (a separate DNG file, fixed tiles in ONNX Runtime).
+- The model of this lab runs only when the user turns on the noise reduction. When the noise
+  reduction is off (for example for a daylight photo), Alcedo Studio demosaics with DemosaicNet.
 
 ## Terms
 
@@ -63,9 +65,10 @@ The public weights have three weak points that a fine-tune can reach without new
 ([findings/methods.md](findings/methods.md), [findings/datasets.md](findings/datasets.md)):
 
 1. **The loss is MS-SSIM on linear values.** Dark areas have a small weight, and dark areas show
-   the most noise after development. The fine-tune uses a loss on values after a logarithmic
-   encoding. The authors found that a gamma curve before the loss made the training less stable, so
-   step 3 measures the new loss on short runs before the paid run.
+   the most noise after development. Step 3 measured a logarithmic encoding before MS-SSIM (run
+   B) and the loss of the user's DemosaicNet student in a gamma 1/2.2 domain (`gamma_detail`);
+   the gamma loss gives the better validation and trained without instability, so the fine-tune
+   uses it ([findings/training.md](findings/training.md)).
 2. **One camera has 148 of the 310 scenes.** The fine-tune samples the training patches with an
    equal share for each camera.
 3. **The quality on a camera that the training did not see is lower.** The report of each run
@@ -73,7 +76,9 @@ The public weights have three weak points that a fine-tune can reach without new
 4. **The demosaic of the Bayer model is weak.** The authors made the clean images with the OpenCV
    EA demosaic, and the public Bayer model learned it; the original DemosaicNet is better on all
    images of the check ([findings/quality.md](findings/quality.md)). The fine-tune uses clean
-   images demosaiced by the original DemosaicNet (`demosaic_target`).
+   images demosaiced by the original DemosaicNet (`demosaic_target`). With camera images only,
+   UtNet2 still removes all detail above 0.25 cycles/px, so the fine-tune also trains on binned
+   pairs (`--binned-fraction`), which have that detail ([findings/quality.md](findings/quality.md)).
 
 The fine-tune keeps the input and output format of the public weights, because a change of that
 format loses the benefit of the public weights.
@@ -219,6 +224,11 @@ long run from the public weights:
 - Estimated cost: 0.6 to 0.9 hours of an A40, 0.4 to 0.6 USD (the measured 18.5 iterations per
   second of E5c). `budget_cap` of step 5 is still open.
 
+Status (2026-11-19): the run took 0.95 hours (about 0.56 USD). The user selected the checkpoint
+at 25,000 iterations (`models/fine_tune_e5c_cosine/checkpoint_25000.pt`). Its measurement on the
+test split and on the held-out camera with the metrics of step 1 is not done
+([findings/quality.md](findings/quality.md)).
+
 Compute: RunPod.
 
 Findings: `training.md`, `quality.md`.
@@ -264,12 +274,15 @@ Findings: `inference_cost.md`.
 
 ## Items that need the user
 
-- `budget_cap`: the amount that steps 4 and 5 can spend. Step 4 does not start without it.
+- `budget_cap`: the amount that step 5 can spend. Step 5 does not start without it. Step 4 ran
+  as the short end of E5c that the user selected (about 0.56 USD).
 - `target_time`: the largest time for one 45 megapixel photo in Alcedo Studio on the RTX 3080
   Laptop GPU. Step 5 selects the variants with it.
 - More evaluation photos, if the user wants the check by eye on other cameras, ISO values, or
-  scenes. `data/evaluation_photos/` has one photo (Canon EOS R3, ISO 25600). The scripts of step 1
-  make the sheets for each photo in that folder.
+  scenes. `data/evaluation_photos/` has a Canon EOS R3 photo at ISO 25600, two Panasonic DC-GH6
+  photos at ISO 1600 and 6400 (`high_iso_gh6/`), a Sony ILCE-7RM3 star photo at ISO 3200
+  (`astro/`), and two low-ISO detail photos (`demosaic/`). The scripts of step 1 and
+  `scripts/loss_check/photos_with_checkpoints.py` make the outputs for each photo in a folder.
 - The request to the SID authors for a written permission to use the Fuji part of SID
   ([findings/datasets.md](findings/datasets.md)). The plan does not depend on the answer; a
   permission adds X-Trans data to the linear model.

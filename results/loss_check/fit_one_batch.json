@@ -1,0 +1,67 @@
+{
+ "command": "python -I scripts/loss_check/fit_one_batch.py --authors-repo build/tmp/reference_measurement/rawnind_jddc --tmp-dir build/tmp/loss_check/diag_tmp --out results/loss_check/fit_one_batch.json",
+ "crops": 16,
+ "scenes": [
+  "2pilesofplates",
+  "7D-1",
+  "Bark",
+  "D60-2",
+  "European_hornbeam_bark",
+  "Iain01",
+  "MuseeL-C500D-mammal",
+  "bananapi"
+ ],
+ "bilinear_loss": 0.01545780524611473,
+ "runs": [
+  {
+   "start": "public",
+   "lr": 0.0003,
+   "loss_at_step": {
+    "1": 0.024161621928215027,
+    "100": 0.02165881358087063,
+    "500": 0.01644832082092762,
+    "1000": 0.01425315160304308,
+    "2000": 0.012231547385454178
+   },
+   "seconds": 95
+  },
+  {
+   "start": "public",
+   "lr": 0.001,
+   "loss_at_step": {
+    "1": 0.024161621928215027,
+    "100": 0.022451603785157204,
+    "500": 0.017708830535411835,
+    "1000": 0.013941142708063126,
+    "2000": 0.011079379357397556
+   },
+   "seconds": 99
+  },
+  {
+   "start": "random",
+   "lr": 0.0003,
+   "loss_at_step": {
+    "1": 0.5874530076980591,
+    "100": 0.07760555297136307,
+    "500": 0.0434781089425087,
+    "1000": 0.030349001288414,
+    "2000": 0.020465347915887833
+   },
+   "seconds": 100
+  },
+  {
+   "start": "random",
+   "lr": 0.001,
+   "loss_at_step": {
+    "1": 0.5746789574623108,
+    "100": 0.06367819756269455,
+    "500": 0.028597969561815262,
+    "1000": 0.07279740273952484,
+    "2000": 0.05450284481048584
+   },
+   "seconds": 100
+  }
+ ],
+ "torch": "2.11.0+cu128",
+ "gpu": "NVIDIA GeForce RTX 3080 Laptop GPU"
+}

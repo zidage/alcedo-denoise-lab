@@ -1,0 +1,1357 @@
+{
+  "command": "python -I scripts/reference_measurement/compare_demosaic.py --authors-repo build/tmp/reference_measurement/rawnind_jddc --darktable-cli build/tmp/reference_measurement/darktable-5.0.1/bin/darktable-cli.exe --darktable-configdir build/tmp/reference_measurement/darktable_config --tmp-dir build/tmp/reference_measurement/work/demosaic --checkpoint E3=models/loss_check_e3_detail_all/checkpoint_30000.pt --checkpoint E5c_60k=models/loss_check_e5c_binned_all_lr3e-4/checkpoint_60000.pt --checkpoint S4_25k=models/fine_tune_e5c_cosine/checkpoint_25000.pt --checkpoint S4_50k=models/fine_tune_e5c_cosine/checkpoint_50000.pt --out results/fine_tune/demosaic_check.json",
+  "bayer_weights_sha256": "c1f7de3de24cb12f4803ee65e11cfb467e9a5b80c3cb7126746ef026106c15e0",
+  "checkpoints": {
+    "E3": {
+      "path": "models/loss_check_e3_detail_all/checkpoint_30000.pt",
+      "sha256": "13a4bd8bb1724c92b0fc90bef74544c80e17e281f4061051f998fdebf0354631"
+    },
+    "E5c_60k": {
+      "path": "models/loss_check_e5c_binned_all_lr3e-4/checkpoint_60000.pt",
+      "sha256": "be34d37279811679965cc294a3f021d356be4e4f91f6f114c7c790c304c9473c"
+    },
+    "S4_25k": {
+      "path": "models/fine_tune_e5c_cosine/checkpoint_25000.pt",
+      "sha256": "0e925bc96e4551b1769cdb239a29ee7257c3a85bf82b31d225e5b4c7256813d9"
+    },
+    "S4_50k": {
+      "path": "models/fine_tune_e5c_cosine/checkpoint_50000.pt",
+      "sha256": "d6dd9c012f0bb3364f85776cc08debac4ff9f8ab74bdfdb88589f0cfcba1a98b"
+    }
+  },
+  "demosaicnet_weights_sha256": "a90f45c34b89fea3faf49060687839a7d191d302f597a302b31d1bbc021ff7d8",
+  "torch": "2.11.0+cu128",
+  "gpu": "NVIDIA GeForce RTX 3080 Laptop GPU",
+  "tf32": false,
+  "ev": 0.0,
+  "border": 16,
+  "seconds": 61,
+  "peak_working_set_bytes": 3301748736,
+  "summary": {
+    "opencv_bilinear": {
+      "psnr": 40.57755722518081,
+      "msssim": 0.9917481327056885,
+      "chroma_psnr": 44.244721712795226,
+      "images_best_psnr": 0
+    },
+    "opencv_ea": {
+      "psnr": 40.49437101897372,
+      "msssim": 0.9913913249969483,
+      "chroma_psnr": 43.78263819978497,
+      "images_best_psnr": 0
+    },
+    "demosaicnet": {
+      "psnr": 43.86046419145751,
+      "msssim": 0.9952290797233582,
+      "chroma_psnr": 47.12700245060774,
+      "images_best_psnr": 25
+    },
+    "public_bayer": {
+      "psnr": 38.89960543694092,
+      "msssim": 0.989092059135437,
+      "chroma_psnr": 43.87681653869425,
+      "images_best_psnr": 0
+    },
+    "E3": {
+      "psnr": 39.39838882615097,
+      "msssim": 0.9899488139152527,
+      "chroma_psnr": 44.46399092623633,
+      "images_best_psnr": 0
+    },
+    "E5c_60k": {
+      "psnr": 40.29221916806885,
+      "msssim": 0.9913716793060303,
+      "chroma_psnr": 44.57689233646244,
+      "images_best_psnr": 0
+    },
+    "S4_25k": {
+      "psnr": 40.97316631999567,
+      "msssim": 0.9923017168045044,
+      "chroma_psnr": 44.81582197129894,
+      "images_best_psnr": 0
+    },
+    "S4_50k": {
+      "psnr": 41.17087663855642,
+      "msssim": 0.9925216746330261,
+      "chroma_psnr": 45.0042709979681,
+      "images_best_psnr": 0
+    }
+  },
+  "images": [
+    {
+      "gt_file": "src/Bayer/TEST_7D-2/gt/Bayer_TEST_7D-2_GT_ISO100_sha1=45803fc993c395c515b165a1f5d7417f4af4fe1e.cr2",
+      "camera": "Canon EOS 7D",
+      "scene": "TEST_7D-2",
+      "truth_size": [
+        1728,
+        2592
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9904929995536804,
+          "psnr": 38.26480564748361,
+          "chroma_psnr": 41.2999349431028
+        },
+        "opencv_ea": {
+          "msssim": 0.9900388121604919,
+          "psnr": 38.199599466481345,
+          "chroma_psnr": 40.732769090976014
+        },
+        "demosaicnet": {
+          "msssim": 0.993964672088623,
+          "psnr": 42.00830222924645,
+          "chroma_psnr": 44.6206289562092
+        },
+        "public_bayer": {
+          "msssim": 0.9865419268608093,
+          "psnr": 35.67133288723136,
+          "chroma_psnr": 39.15079437588735
+        },
+        "E3": {
+          "msssim": 0.9884052276611328,
+          "psnr": 36.91552014484953,
+          "chroma_psnr": 40.17848778861228
+        },
+        "E5c_60k": {
+          "msssim": 0.9901988506317139,
+          "psnr": 38.27963764348783,
+          "chroma_psnr": 40.84439084294337
+        },
+        "S4_25k": {
+          "msssim": 0.9910211563110352,
+          "psnr": 38.69232036581411,
+          "chroma_psnr": 41.059325268562276
+        },
+        "S4_50k": {
+          "msssim": 0.9914193153381348,
+          "psnr": 38.901642511595156,
+          "chroma_psnr": 41.21287936216139
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_D60-1/gt/Bayer_TEST_D60-1_GT_ISO100_sha1=8ed4d50624a199ed767b2c7167b172a1d5eb4031.crw",
+      "camera": "Canon EOS D60",
+      "scene": "TEST_D60-1",
+      "truth_size": [
+        1024,
+        1536
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9947018027305603,
+          "psnr": 39.249857290629635,
+          "chroma_psnr": 43.420723234909964
+        },
+        "opencv_ea": {
+          "msssim": 0.9945053458213806,
+          "psnr": 39.28913961038654,
+          "chroma_psnr": 42.82273256163761
+        },
+        "demosaicnet": {
+          "msssim": 0.9972219467163086,
+          "psnr": 44.09309897013806,
+          "chroma_psnr": 47.933531865385966
+        },
+        "public_bayer": {
+          "msssim": 0.9915236234664917,
+          "psnr": 36.682748685571454,
+          "chroma_psnr": 42.361720700596464
+        },
+        "E3": {
+          "msssim": 0.9926282167434692,
+          "psnr": 37.75797723091628,
+          "chroma_psnr": 43.49030547462485
+        },
+        "E5c_60k": {
+          "msssim": 0.9941045641899109,
+          "psnr": 39.08130925775055,
+          "chroma_psnr": 44.14693534950371
+        },
+        "S4_25k": {
+          "msssim": 0.99500572681427,
+          "psnr": 39.849970270002956,
+          "chroma_psnr": 44.471633004326996
+        },
+        "S4_50k": {
+          "msssim": 0.9953495860099792,
+          "psnr": 40.17027785075102,
+          "chroma_psnr": 44.62862321120332
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_Laura_Lemons_platformer/gt/Bayer_TEST_Laura_Lemons_platformer_GT_ISO50_sha1=3e34f36581d12caf9233bde0bf38586e9a1abe7d.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_Laura_Lemons_platformer",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9891135096549988,
+          "psnr": 39.11109073593097,
+          "chroma_psnr": 43.450485221712334
+        },
+        "opencv_ea": {
+          "msssim": 0.9886299967765808,
+          "psnr": 39.0325127802769,
+          "chroma_psnr": 42.82717962340091
+        },
+        "demosaicnet": {
+          "msssim": 0.9963110685348511,
+          "psnr": 43.527897228942514,
+          "chroma_psnr": 47.31707079724812
+        },
+        "public_bayer": {
+          "msssim": 0.9844067096710205,
+          "psnr": 37.01110875788114,
+          "chroma_psnr": 42.96194965142979
+        },
+        "E3": {
+          "msssim": 0.984677255153656,
+          "psnr": 37.29615004623777,
+          "chroma_psnr": 43.156341022282376
+        },
+        "E5c_60k": {
+          "msssim": 0.9880685210227966,
+          "psnr": 38.48428999320368,
+          "chroma_psnr": 43.5535834599849
+        },
+        "S4_25k": {
+          "msssim": 0.9901694059371948,
+          "psnr": 39.361804162819226,
+          "chroma_psnr": 43.74804888576438
+        },
+        "S4_50k": {
+          "msssim": 0.9905626177787781,
+          "psnr": 39.55632472917904,
+          "chroma_psnr": 43.878669623326246
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_Laura_Lemons_platformer/gt/Bayer_TEST_Laura_Lemons_platformer_GT_ISO50_sha1=e65e60c925d304bbb01cf8bb1310c41e85a05d62.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_Laura_Lemons_platformer",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9891009330749512,
+          "psnr": 39.10991667757522,
+          "chroma_psnr": 43.4525394831235
+        },
+        "opencv_ea": {
+          "msssim": 0.9886221885681152,
+          "psnr": 39.031866450324856,
+          "chroma_psnr": 42.82933439305693
+        },
+        "demosaicnet": {
+          "msssim": 0.9962975382804871,
+          "psnr": 43.5274323347393,
+          "chroma_psnr": 47.315298080563835
+        },
+        "public_bayer": {
+          "msssim": 0.9844106435775757,
+          "psnr": 37.0126964923173,
+          "chroma_psnr": 42.96406480240047
+        },
+        "E3": {
+          "msssim": 0.9846714735031128,
+          "psnr": 37.2981820307193,
+          "chroma_psnr": 43.16134422995393
+        },
+        "E5c_60k": {
+          "msssim": 0.9880623817443848,
+          "psnr": 38.484608301232974,
+          "chroma_psnr": 43.555693890595755
+        },
+        "S4_25k": {
+          "msssim": 0.9901682138442993,
+          "psnr": 39.36233971521317,
+          "chroma_psnr": 43.75051378118064
+        },
+        "S4_50k": {
+          "msssim": 0.9905765056610107,
+          "psnr": 39.56085114316358,
+          "chroma_psnr": 43.88347405293462
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/gt/Bayer_TEST_MuseeL-Saint-Pierre-C500D_GT_ISO100_sha1=f71bff2d267cefbf243971b98beb973daeee84db.cr2",
+      "camera": "Canon EOS 500D",
+      "scene": "TEST_MuseeL-Saint-Pierre-C500D",
+      "truth_size": [
+        1568,
+        2368
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9864810705184937,
+          "psnr": 35.44541395690711,
+          "chroma_psnr": 39.3901557221742
+        },
+        "opencv_ea": {
+          "msssim": 0.9858841896057129,
+          "psnr": 35.31462389368211,
+          "chroma_psnr": 38.91559904761975
+        },
+        "demosaicnet": {
+          "msssim": 0.9921431541442871,
+          "psnr": 38.93756309455627,
+          "chroma_psnr": 42.54421212185665
+        },
+        "public_bayer": {
+          "msssim": 0.9846311807632446,
+          "psnr": 33.965785291385025,
+          "chroma_psnr": 38.77534199241503
+        },
+        "E3": {
+          "msssim": 0.9862068891525269,
+          "psnr": 34.77321251768268,
+          "chroma_psnr": 39.81766436275733
+        },
+        "E5c_60k": {
+          "msssim": 0.9884775876998901,
+          "psnr": 35.82060171770018,
+          "chroma_psnr": 40.174966262280975
+        },
+        "S4_25k": {
+          "msssim": 0.9894771575927734,
+          "psnr": 36.3436362291742,
+          "chroma_psnr": 40.36634868994902
+        },
+        "S4_50k": {
+          "msssim": 0.9897699356079102,
+          "psnr": 36.47131530751947,
+          "chroma_psnr": 40.47672214244652
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_MuseeL-bluebirds-A7C/gt/Bayer_TEST_MuseeL-bluebirds-A7C_GT_ISO50_sha1=3156b462861d9e67f6e0305d8d55ad695a4d937c.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_MuseeL-bluebirds-A7C",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9961874485015869,
+          "psnr": 40.56946515688685,
+          "chroma_psnr": 44.24092330725707
+        },
+        "opencv_ea": {
+          "msssim": 0.9960843324661255,
+          "psnr": 40.52797493630184,
+          "chroma_psnr": 43.9300360963955
+        },
+        "demosaicnet": {
+          "msssim": 0.9975624084472656,
+          "psnr": 43.863372755689355,
+          "chroma_psnr": 47.06534729981005
+        },
+        "public_bayer": {
+          "msssim": 0.994806706905365,
+          "psnr": 39.02731401658295,
+          "chroma_psnr": 45.498197806684985
+        },
+        "E3": {
+          "msssim": 0.994990348815918,
+          "psnr": 39.43789405583959,
+          "chroma_psnr": 45.96318273784529
+        },
+        "E5c_60k": {
+          "msssim": 0.9958070516586304,
+          "psnr": 40.56603139650525,
+          "chroma_psnr": 46.13147556322029
+        },
+        "S4_25k": {
+          "msssim": 0.9965402483940125,
+          "psnr": 41.386759638140205,
+          "chroma_psnr": 46.19659502167206
+        },
+        "S4_50k": {
+          "msssim": 0.996736466884613,
+          "psnr": 41.56589136477307,
+          "chroma_psnr": 46.26749650730111
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_MuseeL-bluebirds-A7C/gt/Bayer_TEST_MuseeL-bluebirds-A7C_GT_ISO50_sha1=862fee8e80372d815f0875558939b938c62bb00d.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_MuseeL-bluebirds-A7C",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9961303472518921,
+          "psnr": 40.50568875983967,
+          "chroma_psnr": 44.171262421216326
+        },
+        "opencv_ea": {
+          "msssim": 0.9960259199142456,
+          "psnr": 40.47049700372639,
+          "chroma_psnr": 43.86798780693992
+        },
+        "demosaicnet": {
+          "msssim": 0.9975168108940125,
+          "psnr": 43.79636056456076,
+          "chroma_psnr": 47.004471351648654
+        },
+        "public_bayer": {
+          "msssim": 0.994727611541748,
+          "psnr": 38.97148706093819,
+          "chroma_psnr": 45.43168165569646
+        },
+        "E3": {
+          "msssim": 0.9949100017547607,
+          "psnr": 39.377346726277985,
+          "chroma_psnr": 45.890655423321476
+        },
+        "E5c_60k": {
+          "msssim": 0.9957200288772583,
+          "psnr": 40.49832920480454,
+          "chroma_psnr": 46.07343974055106
+        },
+        "S4_25k": {
+          "msssim": 0.9964690208435059,
+          "psnr": 41.31677301327562,
+          "chroma_psnr": 46.13746696532759
+        },
+        "S4_50k": {
+          "msssim": 0.9966593980789185,
+          "psnr": 41.502489899713375,
+          "chroma_psnr": 46.2015113146418
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_MuseeL-vases-A7C/gt/Bayer_TEST_MuseeL-vases-A7C_GT_ISO50_sha1=128aac6285487ec36b828f31db6d634b094f7ae3.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_MuseeL-vases-A7C",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9962844848632812,
+          "psnr": 40.84739287179602,
+          "chroma_psnr": 45.229467259315896
+        },
+        "opencv_ea": {
+          "msssim": 0.9961563944816589,
+          "psnr": 40.8805815172898,
+          "chroma_psnr": 44.727808687381724
+        },
+        "demosaicnet": {
+          "msssim": 0.9981719851493835,
+          "psnr": 45.85464433638257,
+          "chroma_psnr": 49.47913319078023
+        },
+        "public_bayer": {
+          "msssim": 0.9942888617515564,
+          "psnr": 38.698780840636445,
+          "chroma_psnr": 45.01237216426694
+        },
+        "E3": {
+          "msssim": 0.9944525957107544,
+          "psnr": 39.210299771487406,
+          "chroma_psnr": 45.843831506794565
+        },
+        "E5c_60k": {
+          "msssim": 0.9956687688827515,
+          "psnr": 40.89367241722178,
+          "chroma_psnr": 46.37221623042908
+        },
+        "S4_25k": {
+          "msssim": 0.996442973613739,
+          "psnr": 41.867648882784174,
+          "chroma_psnr": 46.547933300961745
+        },
+        "S4_50k": {
+          "msssim": 0.9966570138931274,
+          "psnr": 42.10420341167396,
+          "chroma_psnr": 46.73465134839124
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_MuseeL-vases-A7C/gt/Bayer_TEST_MuseeL-vases-A7C_GT_ISO50_sha1=3512b789004767165f4330b1e82c6fdce766b221.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_MuseeL-vases-A7C",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9962362051010132,
+          "psnr": 40.820763937377706,
+          "chroma_psnr": 45.208561028091914
+        },
+        "opencv_ea": {
+          "msssim": 0.9961071014404297,
+          "psnr": 40.851189556027705,
+          "chroma_psnr": 44.70597350385855
+        },
+        "demosaicnet": {
+          "msssim": 0.9981260299682617,
+          "psnr": 45.810839365260165,
+          "chroma_psnr": 49.45407212902202
+        },
+        "public_bayer": {
+          "msssim": 0.994206428527832,
+          "psnr": 38.66015208289316,
+          "chroma_psnr": 44.96890282368055
+        },
+        "E3": {
+          "msssim": 0.9943772554397583,
+          "psnr": 39.180643101354924,
+          "chroma_psnr": 45.820595742677696
+        },
+        "E5c_60k": {
+          "msssim": 0.9956080317497253,
+          "psnr": 40.867577419373625,
+          "chroma_psnr": 46.35812105347449
+        },
+        "S4_25k": {
+          "msssim": 0.9963936805725098,
+          "psnr": 41.836138726346626,
+          "chroma_psnr": 46.52945405063753
+        },
+        "S4_50k": {
+          "msssim": 0.9965997934341431,
+          "psnr": 42.07416725495492,
+          "chroma_psnr": 46.709306913313966
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_Pen-pile/gt/Bayer_TEST_Pen-pile_GT_ISO100_sha1=dead5469f750d32cd50f8673f1ae3608bdb9a99d.dng",
+      "camera": "DMC-GH1",
+      "scene": "TEST_Pen-pile",
+      "truth_size": [
+        1472,
+        1984
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9926522970199585,
+          "psnr": 42.42768192553524,
+          "chroma_psnr": 45.89534365801391
+        },
+        "opencv_ea": {
+          "msssim": 0.992419421672821,
+          "psnr": 42.33250076221489,
+          "chroma_psnr": 45.550823792300235
+        },
+        "demosaicnet": {
+          "msssim": 0.9936773180961609,
+          "psnr": 43.318410139505374,
+          "chroma_psnr": 46.59328774714629
+        },
+        "public_bayer": {
+          "msssim": 0.99210524559021,
+          "psnr": 41.30510506432684,
+          "chroma_psnr": 45.033510242418245
+        },
+        "E3": {
+          "msssim": 0.9923157095909119,
+          "psnr": 41.62380193407694,
+          "chroma_psnr": 45.25365018142432
+        },
+        "E5c_60k": {
+          "msssim": 0.992912232875824,
+          "psnr": 42.08334427792125,
+          "chroma_psnr": 45.4461456944675
+        },
+        "S4_25k": {
+          "msssim": 0.9932932257652283,
+          "psnr": 42.29937813132178,
+          "chroma_psnr": 45.58062631933158
+        },
+        "S4_50k": {
+          "msssim": 0.9934272766113281,
+          "psnr": 42.419058525160516,
+          "chroma_psnr": 45.701440190689155
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_TitusToys/gt/Bayer_TEST_TitusToys_GT_ISO50_sha1=85c54ed5174f0ca97385984e6301a1fab08cbdbe.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_TitusToys",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9970681071281433,
+          "psnr": 45.71470715371114,
+          "chroma_psnr": 49.562201102850445
+        },
+        "opencv_ea": {
+          "msssim": 0.9969403147697449,
+          "psnr": 45.50278955130164,
+          "chroma_psnr": 49.00658254264588
+        },
+        "demosaicnet": {
+          "msssim": 0.9982587099075317,
+          "psnr": 47.926519542248215,
+          "chroma_psnr": 51.53043845857076
+        },
+        "public_bayer": {
+          "msssim": 0.9946293234825134,
+          "psnr": 43.46889732262458,
+          "chroma_psnr": 48.7590886748783
+        },
+        "E3": {
+          "msssim": 0.9946366548538208,
+          "psnr": 43.60828120423764,
+          "chroma_psnr": 48.639591227250264
+        },
+        "E5c_60k": {
+          "msssim": 0.9957655668258667,
+          "psnr": 44.35821247548227,
+          "chroma_psnr": 48.66093911559819
+        },
+        "S4_25k": {
+          "msssim": 0.9965196847915649,
+          "psnr": 45.39356090769263,
+          "chroma_psnr": 49.051637330631486
+        },
+        "S4_50k": {
+          "msssim": 0.9967004656791687,
+          "psnr": 45.64413020477558,
+          "chroma_psnr": 49.373130504513796
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_TitusToys/gt/Bayer_TEST_TitusToys_GT_ISO50_sha1=daecb17e3525d230e7e3441d1335f00ca9446405.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_TitusToys",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9970681667327881,
+          "psnr": 45.703438022197304,
+          "chroma_psnr": 49.55044696493892
+        },
+        "opencv_ea": {
+          "msssim": 0.9969382286071777,
+          "psnr": 45.48923547612479,
+          "chroma_psnr": 48.9885066283579
+        },
+        "demosaicnet": {
+          "msssim": 0.9982590675354004,
+          "psnr": 47.916504564427115,
+          "chroma_psnr": 51.519005336935216
+        },
+        "public_bayer": {
+          "msssim": 0.9946202039718628,
+          "psnr": 43.455568606370285,
+          "chroma_psnr": 48.74586708144547
+        },
+        "E3": {
+          "msssim": 0.9946318864822388,
+          "psnr": 43.59875285015551,
+          "chroma_psnr": 48.63218611767434
+        },
+        "E5c_60k": {
+          "msssim": 0.9957606196403503,
+          "psnr": 44.34663562044325,
+          "chroma_psnr": 48.65125968584412
+        },
+        "S4_25k": {
+          "msssim": 0.9965135455131531,
+          "psnr": 45.381932419083746,
+          "chroma_psnr": 49.042375799662885
+        },
+        "S4_50k": {
+          "msssim": 0.9966963529586792,
+          "psnr": 45.633159258753096,
+          "chroma_psnr": 49.36351465605164
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_Vaxt-i-trad/gt/Bayer_TEST_Vaxt-i-trad_GT_ISO100_sha1=ca77ec885c0198357c413895c343b965c1ebcafb.cr2",
+      "camera": "Canon EOS 6D",
+      "scene": "TEST_Vaxt-i-trad",
+      "truth_size": [
+        1824,
+        2720
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9955052137374878,
+          "psnr": 39.833889008421195,
+          "chroma_psnr": 42.913880646734064
+        },
+        "opencv_ea": {
+          "msssim": 0.9953250288963318,
+          "psnr": 39.62574311705388,
+          "chroma_psnr": 42.40926780174658
+        },
+        "demosaicnet": {
+          "msssim": 0.9975498914718628,
+          "psnr": 43.744277457648415,
+          "chroma_psnr": 46.6206802507298
+        },
+        "public_bayer": {
+          "msssim": 0.9934818148612976,
+          "psnr": 38.307200991437384,
+          "chroma_psnr": 43.440934641056934
+        },
+        "E3": {
+          "msssim": 0.9943353533744812,
+          "psnr": 39.01139154913947,
+          "chroma_psnr": 44.3436771716824
+        },
+        "E5c_60k": {
+          "msssim": 0.9954347014427185,
+          "psnr": 40.09548871500211,
+          "chroma_psnr": 44.647248678362025
+        },
+        "S4_25k": {
+          "msssim": 0.996279239654541,
+          "psnr": 41.00209382644412,
+          "chroma_psnr": 44.90101651990629
+        },
+        "S4_50k": {
+          "msssim": 0.9964338541030884,
+          "psnr": 41.21080801475557,
+          "chroma_psnr": 44.988144420617296
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_boardgames_top/gt/Bayer_TEST_boardgames_top_GT_ISO50_sha1=8c121e3c1038766ee9f96565376eb264cf15b509.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_boardgames_top",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9978432059288025,
+          "psnr": 46.14024034009632,
+          "chroma_psnr": 50.24817414331285
+        },
+        "opencv_ea": {
+          "msssim": 0.997757077217102,
+          "psnr": 46.26158232902631,
+          "chroma_psnr": 49.864985816457406
+        },
+        "demosaicnet": {
+          "msssim": 0.9986015558242798,
+          "psnr": 49.14658582874726,
+          "chroma_psnr": 52.6361486711906
+        },
+        "public_bayer": {
+          "msssim": 0.9966531991958618,
+          "psnr": 43.99397759187987,
+          "chroma_psnr": 49.136276030074185
+        },
+        "E3": {
+          "msssim": 0.9968305826187134,
+          "psnr": 44.56917417825311,
+          "chroma_psnr": 49.490893063758605
+        },
+        "E5c_60k": {
+          "msssim": 0.9973840713500977,
+          "psnr": 45.81498677199035,
+          "chroma_psnr": 50.00393083900546
+        },
+        "S4_25k": {
+          "msssim": 0.9976857900619507,
+          "psnr": 46.462116332464575,
+          "chroma_psnr": 50.28210203882342
+        },
+        "S4_50k": {
+          "msssim": 0.9977613687515259,
+          "psnr": 46.6331906198392,
+          "chroma_psnr": 50.416194273773016
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_boardgames_top/gt/Bayer_TEST_boardgames_top_GT_ISO50_sha1=dfd6ae10e652751bc54c997af3547b33de5f824a.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_boardgames_top",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9978520274162292,
+          "psnr": 46.086517330782605,
+          "chroma_psnr": 50.19806167642073
+        },
+        "opencv_ea": {
+          "msssim": 0.9977688193321228,
+          "psnr": 46.21407423324963,
+          "chroma_psnr": 49.81771110057366
+        },
+        "demosaicnet": {
+          "msssim": 0.998612105846405,
+          "psnr": 49.143816923205975,
+          "chroma_psnr": 52.63246152718062
+        },
+        "public_bayer": {
+          "msssim": 0.9966574907302856,
+          "psnr": 43.93208683318187,
+          "chroma_psnr": 49.091591330215294
+        },
+        "E3": {
+          "msssim": 0.9968401789665222,
+          "psnr": 44.51545288432463,
+          "chroma_psnr": 49.45146565637211
+        },
+        "E5c_60k": {
+          "msssim": 0.9973994493484497,
+          "psnr": 45.79422714353291,
+          "chroma_psnr": 49.975499089803236
+        },
+        "S4_25k": {
+          "msssim": 0.9977031946182251,
+          "psnr": 46.44033968558195,
+          "chroma_psnr": 50.26471556561506
+        },
+        "S4_50k": {
+          "msssim": 0.997779369354248,
+          "psnr": 46.61559224424291,
+          "chroma_psnr": 50.398955594863125
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_board/gt/Bayer_UNK_TEST_LucieB_board_GT_ISO100_sha1=3300aa5ce5517dfbe1b2fc7c7e1a0a0cf40b8972.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_board",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9872538447380066,
+          "psnr": 37.463020071629074,
+          "chroma_psnr": 40.97140047212335
+        },
+        "opencv_ea": {
+          "msssim": 0.9865639209747314,
+          "psnr": 37.32702173565852,
+          "chroma_psnr": 40.38813847096932
+        },
+        "demosaicnet": {
+          "msssim": 0.9937940835952759,
+          "psnr": 42.38673179088734,
+          "chroma_psnr": 45.38046103653731
+        },
+        "public_bayer": {
+          "msssim": 0.9847723841667175,
+          "psnr": 36.348931583553,
+          "chroma_psnr": 41.92746049238619
+        },
+        "E3": {
+          "msssim": 0.9864770174026489,
+          "psnr": 36.91796898391949,
+          "chroma_psnr": 42.990691665205674
+        },
+        "E5c_60k": {
+          "msssim": 0.9886922240257263,
+          "psnr": 37.91833049398092,
+          "chroma_psnr": 42.79205000751546
+        },
+        "S4_25k": {
+          "msssim": 0.990226686000824,
+          "psnr": 38.85767586818669,
+          "chroma_psnr": 42.907532092847106
+        },
+        "S4_50k": {
+          "msssim": 0.9905509948730469,
+          "psnr": 39.05703144030412,
+          "chroma_psnr": 42.97646885384963
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_bw_drawing1/gt/Bayer_UNK_TEST_LucieB_bw_drawing1_GT_ISO100_sha1=8b07bb35e782274c8c3d0fe54a184dd299bbec2e.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_bw_drawing1",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9894518852233887,
+          "psnr": 37.97753901407092,
+          "chroma_psnr": 41.61783937747063
+        },
+        "opencv_ea": {
+          "msssim": 0.988763689994812,
+          "psnr": 37.93158413208013,
+          "chroma_psnr": 41.16316133819798
+        },
+        "demosaicnet": {
+          "msssim": 0.994901180267334,
+          "psnr": 42.82282970824129,
+          "chroma_psnr": 45.87684875141733
+        },
+        "public_bayer": {
+          "msssim": 0.981602668762207,
+          "psnr": 35.828418046705494,
+          "chroma_psnr": 40.38207723327068
+        },
+        "E3": {
+          "msssim": 0.9850009679794312,
+          "psnr": 36.76439849838039,
+          "chroma_psnr": 41.964701748296505
+        },
+        "E5c_60k": {
+          "msssim": 0.9877481460571289,
+          "psnr": 37.882447507918414,
+          "chroma_psnr": 42.00077217560032
+        },
+        "S4_25k": {
+          "msssim": 0.989500880241394,
+          "psnr": 38.76562119437398,
+          "chroma_psnr": 42.385733075866426
+        },
+        "S4_50k": {
+          "msssim": 0.9899004697799683,
+          "psnr": 39.00424325409469,
+          "chroma_psnr": 42.577203485647246
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_bw_drawing1/gt/Bayer_UNK_TEST_LucieB_bw_drawing1_GT_ISO100_sha1=ac88e9ee646fd6b39f6608f970ae2b9a41c05cd5.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_bw_drawing1",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9893158674240112,
+          "psnr": 37.89903687486738,
+          "chroma_psnr": 41.536366251334975
+        },
+        "opencv_ea": {
+          "msssim": 0.9886018633842468,
+          "psnr": 37.8520325196381,
+          "chroma_psnr": 41.07516674566608
+        },
+        "demosaicnet": {
+          "msssim": 0.9949007034301758,
+          "psnr": 42.81055199514049,
+          "chroma_psnr": 45.86316262732109
+        },
+        "public_bayer": {
+          "msssim": 0.9813288450241089,
+          "psnr": 35.75875900375943,
+          "chroma_psnr": 40.33638673164202
+        },
+        "E3": {
+          "msssim": 0.9847623109817505,
+          "psnr": 36.7016091328962,
+          "chroma_psnr": 41.93005485745072
+        },
+        "E5c_60k": {
+          "msssim": 0.9875502586364746,
+          "psnr": 37.81521906206625,
+          "chroma_psnr": 41.9556661891112
+        },
+        "S4_25k": {
+          "msssim": 0.9893358945846558,
+          "psnr": 38.70301972004556,
+          "chroma_psnr": 42.345441264735044
+        },
+        "S4_50k": {
+          "msssim": 0.9897408485412598,
+          "psnr": 38.946375150654525,
+          "chroma_psnr": 42.54090897323078
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_bw_drawing2/gt/Bayer_UNK_TEST_LucieB_bw_drawing2_GT_ISO100_sha1=04f3bdc33cab351daed498fc2f4d643f3eb3d689.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_bw_drawing2",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9913234710693359,
+          "psnr": 40.12123134615891,
+          "chroma_psnr": 43.44388514586057
+        },
+        "opencv_ea": {
+          "msssim": 0.9908928871154785,
+          "psnr": 40.07505316581888,
+          "chroma_psnr": 43.090508526069726
+        },
+        "demosaicnet": {
+          "msssim": 0.9942359328269958,
+          "psnr": 43.0270333248598,
+          "chroma_psnr": 45.90723035138588
+        },
+        "public_bayer": {
+          "msssim": 0.9867209196090698,
+          "psnr": 38.36454909694102,
+          "chroma_psnr": 42.81706610908597
+        },
+        "E3": {
+          "msssim": 0.9882692098617554,
+          "psnr": 39.068100751674805,
+          "chroma_psnr": 43.66872102859191
+        },
+        "E5c_60k": {
+          "msssim": 0.989778459072113,
+          "psnr": 39.75561592444963,
+          "chroma_psnr": 43.49131847024836
+        },
+        "S4_25k": {
+          "msssim": 0.990272045135498,
+          "psnr": 40.2631805802113,
+          "chroma_psnr": 43.8424243770044
+        },
+        "S4_50k": {
+          "msssim": 0.9904485940933228,
+          "psnr": 40.44624590953276,
+          "chroma_psnr": 44.0572255399737
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_groceries/gt/Bayer_UNK_TEST_LucieB_groceries_GT_ISO100_sha1=9ed597d2ab9e40f3a81317271c31e7400a95552a.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_groceries",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9903954267501831,
+          "psnr": 40.49684057866638,
+          "chroma_psnr": 43.7753010366409
+        },
+        "opencv_ea": {
+          "msssim": 0.9899887442588806,
+          "psnr": 40.3510972509102,
+          "chroma_psnr": 43.32979445080859
+        },
+        "demosaicnet": {
+          "msssim": 0.9934884905815125,
+          "psnr": 43.01638715372179,
+          "chroma_psnr": 45.90711706449188
+        },
+        "public_bayer": {
+          "msssim": 0.9879668951034546,
+          "psnr": 39.276570115954726,
+          "chroma_psnr": 43.51029166796594
+        },
+        "E3": {
+          "msssim": 0.9891390204429626,
+          "psnr": 39.732003134077395,
+          "chroma_psnr": 44.11772203590073
+        },
+        "E5c_60k": {
+          "msssim": 0.9904353022575378,
+          "psnr": 40.27974423356716,
+          "chroma_psnr": 43.79484721584984
+        },
+        "S4_25k": {
+          "msssim": 0.9911858439445496,
+          "psnr": 40.92913489775161,
+          "chroma_psnr": 44.05598313440953
+        },
+        "S4_50k": {
+          "msssim": 0.9913834929466248,
+          "psnr": 41.109988534593484,
+          "chroma_psnr": 44.288913692903506
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_groceries/gt/Bayer_UNK_TEST_LucieB_groceries_GT_ISO100_sha1=ec49e2743aab20d6b614b5a85af2c15a1ed87717.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_groceries",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9902753829956055,
+          "psnr": 40.33680569752172,
+          "chroma_psnr": 43.633748689400804
+        },
+        "opencv_ea": {
+          "msssim": 0.9898640513420105,
+          "psnr": 40.19217642653332,
+          "chroma_psnr": 43.18531096059626
+        },
+        "demosaicnet": {
+          "msssim": 0.9935051798820496,
+          "psnr": 42.97851360843563,
+          "chroma_psnr": 45.87936052007221
+        },
+        "public_bayer": {
+          "msssim": 0.9877066612243652,
+          "psnr": 39.09193305843218,
+          "chroma_psnr": 43.36299057820972
+        },
+        "E3": {
+          "msssim": 0.9889287948608398,
+          "psnr": 39.56207940074376,
+          "chroma_psnr": 44.000959561840425
+        },
+        "E5c_60k": {
+          "msssim": 0.9902849197387695,
+          "psnr": 40.13021308056373,
+          "chroma_psnr": 43.681221974520156
+        },
+        "S4_25k": {
+          "msssim": 0.9910578727722168,
+          "psnr": 40.79149665404473,
+          "chroma_psnr": 43.94523766438855
+        },
+        "S4_50k": {
+          "msssim": 0.9912673830986023,
+          "psnr": 40.973433054783996,
+          "chroma_psnr": 44.17491378130329
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_painted_plants/gt/Bayer_UNK_TEST_LucieB_painted_plants_GT_ISO100_sha1=52780251b69313b6f276be4a91d2250d7e55a45a.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_painted_plants",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.984484076499939,
+          "psnr": 39.7689569468323,
+          "chroma_psnr": 42.92714130679245
+        },
+        "opencv_ea": {
+          "msssim": 0.9838786125183105,
+          "psnr": 39.572503570389856,
+          "chroma_psnr": 42.48440739280908
+        },
+        "demosaicnet": {
+          "msssim": 0.9909011125564575,
+          "psnr": 41.615369463176904,
+          "chroma_psnr": 44.65117701942962
+        },
+        "public_bayer": {
+          "msssim": 0.9845890998840332,
+          "psnr": 39.230665796226575,
+          "chroma_psnr": 43.235102216757284
+        },
+        "E3": {
+          "msssim": 0.9855014681816101,
+          "psnr": 39.458854693992336,
+          "chroma_psnr": 43.569938507265846
+        },
+        "E5c_60k": {
+          "msssim": 0.9860483407974243,
+          "psnr": 39.54596261336865,
+          "chroma_psnr": 43.36382621781736
+        },
+        "S4_25k": {
+          "msssim": 0.986731231212616,
+          "psnr": 39.8179470698387,
+          "chroma_psnr": 43.64682933021011
+        },
+        "S4_50k": {
+          "msssim": 0.9869356155395508,
+          "psnr": 39.890361320984475,
+          "chroma_psnr": 43.71071100311301
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_painted_plants/gt/Bayer_UNK_TEST_LucieB_painted_plants_GT_ISO100_sha1=a126b73e171720aa187a33958a8a00f1bc5cea1d.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_painted_plants",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9844774603843689,
+          "psnr": 39.76886706189354,
+          "chroma_psnr": 42.929045730751476
+        },
+        "opencv_ea": {
+          "msssim": 0.9838659167289734,
+          "psnr": 39.57140777744437,
+          "chroma_psnr": 42.484854220874595
+        },
+        "demosaicnet": {
+          "msssim": 0.9909181594848633,
+          "psnr": 41.62471273386008,
+          "chroma_psnr": 44.66244021544534
+        },
+        "public_bayer": {
+          "msssim": 0.984538733959198,
+          "psnr": 39.22959683622406,
+          "chroma_psnr": 43.24088142367374
+        },
+        "E3": {
+          "msssim": 0.9854428768157959,
+          "psnr": 39.456272742887606,
+          "chroma_psnr": 43.57362802965933
+        },
+        "E5c_60k": {
+          "msssim": 0.9859985113143921,
+          "psnr": 39.541559443925685,
+          "chroma_psnr": 43.362114323332136
+        },
+        "S4_25k": {
+          "msssim": 0.9866892695426941,
+          "psnr": 39.81582161206227,
+          "chroma_psnr": 43.644935631489794
+        },
+        "S4_50k": {
+          "msssim": 0.9868969321250916,
+          "psnr": 39.8870371254595,
+          "chroma_psnr": 43.71120187885992
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_painted_wallpaper/gt/Bayer_UNK_TEST_LucieB_painted_wallpaper_GT_ISO100_sha1=4602545744cd1d2942b45aa5e6ebe81bfa1be39b.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_painted_wallpaper",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9869184494018555,
+          "psnr": 40.35408778614483,
+          "chroma_psnr": 43.49454928071523
+        },
+        "opencv_ea": {
+          "msssim": 0.9864901304244995,
+          "psnr": 40.19700692405735,
+          "chroma_psnr": 43.151316152505686
+        },
+        "demosaicnet": {
+          "msssim": 0.9908635020256042,
+          "psnr": 41.78441845078665,
+          "chroma_psnr": 44.87124976320501
+        },
+        "public_bayer": {
+          "msssim": 0.9851035475730896,
+          "psnr": 39.56652202282629,
+          "chroma_psnr": 43.3583498443327
+        },
+        "E3": {
+          "msssim": 0.9850426912307739,
+          "psnr": 39.528666093642386,
+          "chroma_psnr": 43.293575517890716
+        },
+        "E5c_60k": {
+          "msssim": 0.9856029748916626,
+          "psnr": 39.45085836577949,
+          "chroma_psnr": 42.66265729767448
+        },
+        "S4_25k": {
+          "msssim": 0.9863654375076294,
+          "psnr": 39.66479233730209,
+          "chroma_psnr": 42.81831997912952
+        },
+        "S4_50k": {
+          "msssim": 0.986322283744812,
+          "psnr": 39.91420499924841,
+          "chroma_psnr": 43.38633404775773
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_painted_wallpaper/gt/Bayer_UNK_TEST_LucieB_painted_wallpaper_GT_ISO100_sha1=c3d68aaedcc525bb312105e99c679da85a463509.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_painted_wallpaper",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9870896339416504,
+          "psnr": 40.42167643656473,
+          "chroma_psnr": 43.556604715615336
+        },
+        "opencv_ea": {
+          "msssim": 0.9866701364517212,
+          "psnr": 40.265481288343665,
+          "chroma_psnr": 43.21599824277827
+        },
+        "demosaicnet": {
+          "msssim": 0.9909443855285645,
+          "psnr": 41.82943122203015,
+          "chroma_psnr": 44.91022613161008
+        },
+        "public_bayer": {
+          "msssim": 0.9852807521820068,
+          "psnr": 39.62994783764235,
+          "chroma_psnr": 43.41751319688542
+        },
+        "E3": {
+          "msssim": 0.9852463603019714,
+          "psnr": 39.595686996007146,
+          "chroma_psnr": 43.35590849677433
+        },
+        "E5c_60k": {
+          "msssim": 0.9857804179191589,
+          "psnr": 39.516576120448754,
+          "chroma_psnr": 42.72198904382775
+        },
+        "S4_25k": {
+          "msssim": 0.9864954948425293,
+          "psnr": 39.72365575991569,
+          "chroma_psnr": 42.87332019003996
+        },
+        "S4_50k": {
+          "msssim": 0.9864659309387207,
+          "psnr": 39.979892833404136,
+          "chroma_psnr": 43.448179576335725
+        }
+      }
+    }
+  ]
+}

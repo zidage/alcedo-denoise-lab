@@ -1,0 +1,90 @@
+{
+ "command": "python -I scripts/loss_check/loss_on_training_crops.py --authors-repo build/tmp/reference_measurement/rawnind_jddc --tmp-dir build/tmp/loss_check/diag_tmp --checkpoint A=models/loss_check_a_linear_msssim/checkpoint_100000.pt --checkpoint E2=models/loss_check_e2_detail_clean_self/checkpoint_30000.pt --checkpoint E2b=models/loss_check_e2b_detail_clean_self_lr3e-4/checkpoint_30000.pt --checkpoint E4b_20k=models/loss_check_e4b_head_all/checkpoint_20000.pt --checkpoint E5a_10k=models/loss_check_e5a_binned_clean_self/checkpoint_10000.pt --checkpoint E5a_30k=models/loss_check_e5a_binned_clean_self/checkpoint_30000.pt --checkpoint E5a_100k=models/loss_check_e5a_binned_clean_self/checkpoint_100000.pt --crops clean_self --out results/loss_check/loss_on_training_crops_clean_self.json",
+ "crops": "clean_self",
+ "crop_count": 112,
+ "scenes": [
+  "2pilesofplates",
+  "7D-1",
+  "Bark",
+  "D60-2",
+  "European_hornbeam_bark",
+  "Iain01",
+  "MuseeL-C500D-mammal",
+  "bananapi"
+ ],
+ "clean_images": 14,
+ "checkpoints": {
+  "A": {
+   "path": "models/loss_check_a_linear_msssim/checkpoint_100000.pt",
+   "sha256": "ec610c449e4da02c8df6c4d72c49019c1a14670368a91e5769c67406599e71ba"
+  },
+  "E2": {
+   "path": "models/loss_check_e2_detail_clean_self/checkpoint_30000.pt",
+   "sha256": "f0e1813b634f88ed2cffe166c946f70020a364a998a50317bb333881992ad144"
+  },
+  "E2b": {
+   "path": "models/loss_check_e2b_detail_clean_self_lr3e-4/checkpoint_30000.pt",
+   "sha256": "3a8fcfac8cd89a2e544f38e2408085e79616345c85ba3871946f2fbb71227059"
+  },
+  "E4b_20k": {
+   "path": "models/loss_check_e4b_head_all/checkpoint_20000.pt",
+   "sha256": "d31cdeb653f199609d98995ac44505f8f2367a1205c6a49ec2aa9f630ee518a1"
+  },
+  "E5a_10k": {
+   "path": "models/loss_check_e5a_binned_clean_self/checkpoint_10000.pt",
+   "sha256": "d0c82a80c00d85041093681da7d4781b46b2ccb3b4188fce37f3f8b268c68a3c"
+  },
+  "E5a_30k": {
+   "path": "models/loss_check_e5a_binned_clean_self/checkpoint_30000.pt",
+   "sha256": "374091bceee94a0a23439f58ea6dde2d11439ec2dc4ab2ae4546d6a8b40220dd"
+  },
+  "E5a_100k": {
+   "path": "models/loss_check_e5a_binned_clean_self/checkpoint_100000.pt",
+   "sha256": "611476dca82c1c36aeffcdb6cde385f18987f386bf17ff6ceeb97ebc6807e75d"
+  }
+ },
+ "torch": "2.11.0+cu128",
+ "gpu": "NVIDIA GeForce RTX 3080 Laptop GPU",
+ "summary": {
+  "public_bayer": {
+   "detail_loss": 0.016110395434744924,
+   "gamma_psnr": 43.726807679791996
+  },
+  "A": {
+   "detail_loss": 0.015566206429087157,
+   "gamma_psnr": 43.86796365037235
+  },
+  "E2": {
+   "detail_loss": 0.013803211281940873,
+   "gamma_psnr": 46.778768068034765
+  },
+  "E2b": {
+   "detail_loss": 0.012801370413009343,
+   "gamma_psnr": 47.334545075735214
+  },
+  "E4b_20k": {
+   "detail_loss": 0.01475794130653542,
+   "gamma_psnr": 45.90962795349487
+  },
+  "E5a_10k": {
+   "detail_loss": 0.013611353854815076,
+   "gamma_psnr": 46.757568101116426
+  },
+  "E5a_30k": {
+   "detail_loss": 0.012751995028728353,
+   "gamma_psnr": 47.06335394891151
+  },
+  "E5a_100k": {
+   "detail_loss": 0.005025490961478292,
+   "gamma_psnr": 54.22673658474575
+  },
+  "opencv_bilinear": {
+   "detail_loss": 0.008896703168699917,
+   "gamma_psnr": 49.17482908779372
+  },
+  "opencv_ea": {
+   "detail_loss": 0.009408041591606369,
+   "gamma_psnr": 48.77653894574299
+  }
+ }
+}

@@ -1,0 +1,26 @@
+{
+ "description": "Rented runs of step 3: machine and run times",
+ "machine": {
+  "date_utc": "2026-11-19T01:36:47Z",
+  "repository_commit": "19e6c537967be6d62bee9dd33efb76163c2903ac",
+  "gpu": "NVIDIA A40, 46068 MiB, 595.112.07",
+  "cpu_quota": "765000 100000",
+  "loader_workers": "16",
+  "iterations": "100000",
+  "val_interval": "10000"
+ },
+ "runs": [
+  {
+   "run": "loss_check_a_linear_msssim",
+   "start_utc": "2026-11-19T01:36:47Z",
+   "end_utc": "2026-11-19T03:21:35Z",
+   "seconds": 6288.0
+  },
+  {
+   "run": "loss_check_b_log_msssim",
+   "start_utc": "2026-11-19T03:21:35Z",
+   "end_utc": "2026-11-19T05:11:12Z",
+   "seconds": 6577.0
+  }
+ ]
+}

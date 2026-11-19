@@ -113,3 +113,24 @@ $P scripts/loss_check/train_bayer.py $COMMON --iterations 50000 --val-interval 5
 ```
 
 `--seed 1`: other random crops than E5c (seed 0).
+
+## Checks of the softness and of the model of step 4
+
+On the development machine, with the environment of step 1 (`E`, `P`, and `COMMON` as above). The
+full commands with all checkpoints are in the `command` field of each result file.
+
+```bash
+# Synthetic slanted edge and zone plate (all step 3 checkpoints; step 4 in results/fine_tune/).
+$P scripts/loss_check/synthetic_resolution.py $COMMON --tmp-dir build/tmp/loss_check/synthetic_tmp   --checkpoint E3=models/loss_check_e3_detail_all/checkpoint_30000.pt ...   --out results/loss_check/synthetic_resolution.json
+# Loss of each method on clean and binned training crops (the clean images on this machine).
+$P scripts/loss_check/loss_on_training_crops.py --authors-repo $E/rawnind_jddc   --tmp-dir build/tmp/loss_check/diag_tmp --crops binned --checkpoint E2b=... --out results/loss_check/loss_on_training_crops_binned.json
+# UtNet2 on one fixed batch of binned crops.
+$P scripts/loss_check/fit_one_batch.py --authors-repo $E/rawnind_jddc --tmp-dir build/tmp/loss_check/diag_tmp   --out results/loss_check/fit_one_batch.json
+# Fine-detail energy on the detail photos, relative to DemosaicNet.
+$P scripts/loss_check/detail_energy.py --outputs $E/demosaic_outputs   --methods demosaicnet opencv_ea public_bayer s4_25k ... --out results/fine_tune/detail_energy.json
+# Star flux on the star photo (outputs of denoise_evaluation_photos.py and photos_with_checkpoints.py).
+$P scripts/loss_check/star_photometry.py --outputs $E/evaluation_outputs/_DSC8539   --methods bayer_public loss_check_e3 s4_25k galosh --region 0 0 5800 4400   --out results/fine_tune/star_photometry.json
+```
+
+The step 4 checkpoints run on the photos with `photos_with_checkpoints.py --checkpoint
+s4_25k=models/fine_tune_e5c_cosine/checkpoint_25000.pt --log results/fine_tune/photo_runs.jsonl`.

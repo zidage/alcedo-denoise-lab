@@ -1,0 +1,38 @@
+{
+ "command": "python -I scripts/loss_check/detail_energy.py --outputs build/tmp/reference_measurement/demosaic_outputs --methods demosaicnet opencv_ea public_bayer loss_check_a loss_check_e2 loss_check_e2b loss_check_e3 loss_check_e4b loss_check_e5a loss_check_e5a_90k loss_check_e5c_60k loss_check_e5c_100k s4_25k s4_50k --out results/fine_tune/detail_energy.json",
+ "gain_ev": 1.5,
+ "relative_laplacian_rms": {
+  "_DSC0729": {
+   "demosaicnet": 1.0,
+   "opencv_ea": 0.651652545330188,
+   "public_bayer": 0.46277877592041267,
+   "loss_check_a": 0.54175111219234,
+   "loss_check_e2": 0.5587167364258695,
+   "loss_check_e2b": 0.6175280316339207,
+   "loss_check_e3": 0.5366198525584911,
+   "loss_check_e4b": 0.5702072037759702,
+   "loss_check_e5a": 0.6480027199109847,
+   "loss_check_e5a_90k": 0.9931879390692082,
+   "loss_check_e5c_60k": 0.7025553204769017,
+   "loss_check_e5c_100k": 0.822331665626427,
+   "s4_25k": 0.7995635380378754,
+   "s4_50k": 0.8132008207590625
+  },
+  "P1832629": {
+   "demosaicnet": 1.0,
+   "opencv_ea": 0.6955942114914607,
+   "public_bayer": 0.4578544863088083,
+   "loss_check_a": 0.5313950373184353,
+   "loss_check_e2": 0.5426520630029378,
+   "loss_check_e2b": 0.598274563373507,
+   "loss_check_e3": 0.5118822542212348,
+   "loss_check_e4b": 0.5400454595389776,
+   "loss_check_e5a": 0.6413706242852696,
+   "loss_check_e5a_90k": 0.9744975275209043,
+   "loss_check_e5c_60k": 0.6928326998064818,
+   "loss_check_e5c_100k": 0.748465363709429,
+   "s4_25k": 0.7721469651349728,
+   "s4_50k": 0.760395580667728
+  }
+ }
+}

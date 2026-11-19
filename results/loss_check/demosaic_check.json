@@ -1,0 +1,3247 @@
+{
+  "command": "python -I scripts/reference_measurement/compare_demosaic.py --authors-repo build/tmp/reference_measurement/rawnind_jddc --darktable-cli build/tmp/reference_measurement/darktable-5.0.1/bin/darktable-cli.exe --darktable-configdir build/tmp/reference_measurement/darktable_config --tmp-dir build/tmp/reference_measurement/work/demosaic --checkpoint A=models/loss_check_a_linear_msssim/checkpoint_100000.pt --checkpoint B=models/loss_check_b_log_msssim/checkpoint_100000.pt --checkpoint E2=models/loss_check_e2_detail_clean_self/checkpoint_30000.pt --checkpoint E2b=models/loss_check_e2b_detail_clean_self_lr3e-4/checkpoint_30000.pt --checkpoint E3=models/loss_check_e3_detail_all/checkpoint_30000.pt --checkpoint E4a2=models/loss_check_e4a2_head_clean_self_lr3e-5/checkpoint_30000.pt --checkpoint E4b=models/loss_check_e4b_head_all/checkpoint_30000.pt --checkpoint E5a_30k=models/loss_check_e5a_binned_clean_self/checkpoint_30000.pt --checkpoint E5a_50k=models/loss_check_e5a_binned_clean_self/checkpoint_50000.pt --checkpoint E5a_70k=models/loss_check_e5a_binned_clean_self/checkpoint_70000.pt --checkpoint E5a_90k=models/loss_check_e5a_binned_clean_self/checkpoint_90000.pt --checkpoint E5a_100k=models/loss_check_e5a_binned_clean_self/checkpoint_100000.pt --checkpoint E5b=models/loss_check_e5b_binned_all/checkpoint_30000.pt --checkpoint E5c_30k=models/loss_check_e5c_binned_all_lr3e-4/checkpoint_30000.pt --checkpoint E5c_50k=models/loss_check_e5c_binned_all_lr3e-4/checkpoint_50000.pt --checkpoint E5c_60k=models/loss_check_e5c_binned_all_lr3e-4/checkpoint_60000.pt --checkpoint E5c_70k=models/loss_check_e5c_binned_all_lr3e-4/checkpoint_70000.pt --checkpoint E5c_100k=models/loss_check_e5c_binned_all_lr3e-4/checkpoint_100000.pt --out results/loss_check/demosaic_check.json",
+  "bayer_weights_sha256": "c1f7de3de24cb12f4803ee65e11cfb467e9a5b80c3cb7126746ef026106c15e0",
+  "checkpoints": {
+    "A": {
+      "path": "models/loss_check_a_linear_msssim/checkpoint_100000.pt",
+      "sha256": "ec610c449e4da02c8df6c4d72c49019c1a14670368a91e5769c67406599e71ba"
+    },
+    "B": {
+      "path": "models/loss_check_b_log_msssim/checkpoint_100000.pt",
+      "sha256": "31ce0b2d819e1505b768754f1b1cd308f59349c4b05162cff4c48c3a4164d147"
+    },
+    "E2": {
+      "path": "models/loss_check_e2_detail_clean_self/checkpoint_30000.pt",
+      "sha256": "f0e1813b634f88ed2cffe166c946f70020a364a998a50317bb333881992ad144"
+    },
+    "E2b": {
+      "path": "models/loss_check_e2b_detail_clean_self_lr3e-4/checkpoint_30000.pt",
+      "sha256": "3a8fcfac8cd89a2e544f38e2408085e79616345c85ba3871946f2fbb71227059"
+    },
+    "E3": {
+      "path": "models/loss_check_e3_detail_all/checkpoint_30000.pt",
+      "sha256": "13a4bd8bb1724c92b0fc90bef74544c80e17e281f4061051f998fdebf0354631"
+    },
+    "E4a2": {
+      "path": "models/loss_check_e4a2_head_clean_self_lr3e-5/checkpoint_30000.pt",
+      "sha256": "500b6d956a29591ceb7ec29ef60d3df26a786ba441b22c60c07ad0ae179a3fc0"
+    },
+    "E4b": {
+      "path": "models/loss_check_e4b_head_all/checkpoint_30000.pt",
+      "sha256": "6e7ded20571aa719361a20aae779ff1e81f8a94c81802484ccf1a1569e1c0f34"
+    },
+    "E5a_30k": {
+      "path": "models/loss_check_e5a_binned_clean_self/checkpoint_30000.pt",
+      "sha256": "374091bceee94a0a23439f58ea6dde2d11439ec2dc4ab2ae4546d6a8b40220dd"
+    },
+    "E5a_50k": {
+      "path": "models/loss_check_e5a_binned_clean_self/checkpoint_50000.pt",
+      "sha256": "b2c02579f0523f31f448af2aa972234cef86a826a8ee201304daf8286af613be"
+    },
+    "E5a_70k": {
+      "path": "models/loss_check_e5a_binned_clean_self/checkpoint_70000.pt",
+      "sha256": "d5b227c41151f1790cf9f460c97af79268a12175f713e9d6aa5299072a222677"
+    },
+    "E5a_90k": {
+      "path": "models/loss_check_e5a_binned_clean_self/checkpoint_90000.pt",
+      "sha256": "c8cd6fd7569ecc0a12d473539fb97a38cf28a351bed49d9229327e63ce0f6d9b"
+    },
+    "E5a_100k": {
+      "path": "models/loss_check_e5a_binned_clean_self/checkpoint_100000.pt",
+      "sha256": "611476dca82c1c36aeffcdb6cde385f18987f386bf17ff6ceeb97ebc6807e75d"
+    },
+    "E5b": {
+      "path": "models/loss_check_e5b_binned_all/checkpoint_30000.pt",
+      "sha256": "cb1b42b9ef2cd4d9b580f7e3b72ad71fd802c35fad6f7762efce3a01ea328a3b"
+    },
+    "E5c_30k": {
+      "path": "models/loss_check_e5c_binned_all_lr3e-4/checkpoint_30000.pt",
+      "sha256": "e31161012161ed535bb771262368589ef32ed87d33b743f041c4e6ae65b4528c"
+    },
+    "E5c_50k": {
+      "path": "models/loss_check_e5c_binned_all_lr3e-4/checkpoint_50000.pt",
+      "sha256": "fb5b5ecebee6838063dd04cce4586abc49b75c1efe7073c4471cb60d5ca7c452"
+    },
+    "E5c_60k": {
+      "path": "models/loss_check_e5c_binned_all_lr3e-4/checkpoint_60000.pt",
+      "sha256": "be34d37279811679965cc294a3f021d356be4e4f91f6f114c7c790c304c9473c"
+    },
+    "E5c_70k": {
+      "path": "models/loss_check_e5c_binned_all_lr3e-4/checkpoint_70000.pt",
+      "sha256": "11f00a1c126c6c20910775e5875fc29bff51ff586015db8ffc853890c28b9a97"
+    },
+    "E5c_100k": {
+      "path": "models/loss_check_e5c_binned_all_lr3e-4/checkpoint_100000.pt",
+      "sha256": "1e90e13d721b200a136da12f9557ee401c711bfd8b4dc4a2c66d3b679fcba49a"
+    }
+  },
+  "demosaicnet_weights_sha256": "a90f45c34b89fea3faf49060687839a7d191d302f597a302b31d1bbc021ff7d8",
+  "torch": "2.11.0+cu128",
+  "gpu": "NVIDIA GeForce RTX 3080 Laptop GPU",
+  "tf32": false,
+  "ev": 0.0,
+  "border": 16,
+  "seconds": 151,
+  "peak_working_set_bytes": 4315914240,
+  "summary": {
+    "opencv_bilinear": {
+      "psnr": 40.57755722518081,
+      "msssim": 0.9917481327056885,
+      "chroma_psnr": 44.244721712795226,
+      "images_best_psnr": 0
+    },
+    "opencv_ea": {
+      "psnr": 40.49437101897372,
+      "msssim": 0.9913913249969483,
+      "chroma_psnr": 43.78263819978497,
+      "images_best_psnr": 0
+    },
+    "demosaicnet": {
+      "psnr": 43.86046419145751,
+      "msssim": 0.9952290797233582,
+      "chroma_psnr": 47.12700245060774,
+      "images_best_psnr": 25
+    },
+    "public_bayer": {
+      "psnr": 38.89960543694092,
+      "msssim": 0.989092059135437,
+      "chroma_psnr": 43.87681653869425,
+      "images_best_psnr": 0
+    },
+    "A": {
+      "psnr": 39.30895464678069,
+      "msssim": 0.99013356924057,
+      "chroma_psnr": 44.267386633870416,
+      "images_best_psnr": 0
+    },
+    "B": {
+      "psnr": 39.22903575776434,
+      "msssim": 0.9902338147163391,
+      "chroma_psnr": 44.07966291508427,
+      "images_best_psnr": 0
+    },
+    "E2": {
+      "psnr": 39.61222601127235,
+      "msssim": 0.9901046085357667,
+      "chroma_psnr": 44.584546016836896,
+      "images_best_psnr": 0
+    },
+    "E2b": {
+      "psnr": 39.885890839224906,
+      "msssim": 0.9904190850257873,
+      "chroma_psnr": 44.61760838802454,
+      "images_best_psnr": 0
+    },
+    "E3": {
+      "psnr": 39.39838882615097,
+      "msssim": 0.9899488139152527,
+      "chroma_psnr": 44.46399092623633,
+      "images_best_psnr": 0
+    },
+    "E4a2": {
+      "psnr": 39.94353018479007,
+      "msssim": 0.9906005311012268,
+      "chroma_psnr": 44.8939974014892,
+      "images_best_psnr": 0
+    },
+    "E4b": {
+      "psnr": 39.77125725663428,
+      "msssim": 0.9904132890701294,
+      "chroma_psnr": 44.81631460607878,
+      "images_best_psnr": 0
+    },
+    "E5a_30k": {
+      "psnr": 40.217977979994174,
+      "msssim": 0.9909797620773315,
+      "chroma_psnr": 44.688413344270614,
+      "images_best_psnr": 0
+    },
+    "E5a_50k": {
+      "psnr": 40.806099400364445,
+      "msssim": 0.9919390249252319,
+      "chroma_psnr": 44.57428195848028,
+      "images_best_psnr": 0
+    },
+    "E5a_70k": {
+      "psnr": 41.20313392685698,
+      "msssim": 0.9930908179283142,
+      "chroma_psnr": 44.70859018824957,
+      "images_best_psnr": 0
+    },
+    "E5a_90k": {
+      "psnr": 41.83742565971673,
+      "msssim": 0.9936496496200562,
+      "chroma_psnr": 45.36996887465871,
+      "images_best_psnr": 0
+    },
+    "E5a_100k": {
+      "psnr": 42.09185146759185,
+      "msssim": 0.9937955832481384,
+      "chroma_psnr": 45.68604110990515,
+      "images_best_psnr": 0
+    },
+    "E5b": {
+      "psnr": 39.558974221563595,
+      "msssim": 0.990351026058197,
+      "chroma_psnr": 44.574997085129326,
+      "images_best_psnr": 0
+    },
+    "E5c_30k": {
+      "psnr": 39.80162589893028,
+      "msssim": 0.9907139539718628,
+      "chroma_psnr": 44.29155765738506,
+      "images_best_psnr": 0
+    },
+    "E5c_50k": {
+      "psnr": 40.15854740749321,
+      "msssim": 0.9909699130058288,
+      "chroma_psnr": 44.690652878579506,
+      "images_best_psnr": 0
+    },
+    "E5c_60k": {
+      "psnr": 40.29221916806885,
+      "msssim": 0.9913716793060303,
+      "chroma_psnr": 44.57689233646244,
+      "images_best_psnr": 0
+    },
+    "E5c_70k": {
+      "psnr": 40.6329371892405,
+      "msssim": 0.9918517589569091,
+      "chroma_psnr": 44.60480055558291,
+      "images_best_psnr": 0
+    },
+    "E5c_100k": {
+      "psnr": 40.90058460778679,
+      "msssim": 0.992187716960907,
+      "chroma_psnr": 44.72958315995867,
+      "images_best_psnr": 0
+    }
+  },
+  "images": [
+    {
+      "gt_file": "src/Bayer/TEST_7D-2/gt/Bayer_TEST_7D-2_GT_ISO100_sha1=45803fc993c395c515b165a1f5d7417f4af4fe1e.cr2",
+      "camera": "Canon EOS 7D",
+      "scene": "TEST_7D-2",
+      "truth_size": [
+        1728,
+        2592
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9904929995536804,
+          "psnr": 38.26480564748361,
+          "chroma_psnr": 41.2999349431028
+        },
+        "opencv_ea": {
+          "msssim": 0.9900388121604919,
+          "psnr": 38.199599466481345,
+          "chroma_psnr": 40.732769090976014
+        },
+        "demosaicnet": {
+          "msssim": 0.993964672088623,
+          "psnr": 42.00830222924645,
+          "chroma_psnr": 44.6206289562092
+        },
+        "public_bayer": {
+          "msssim": 0.9865419268608093,
+          "psnr": 35.67133288723136,
+          "chroma_psnr": 39.15079437588735
+        },
+        "A": {
+          "msssim": 0.9884821176528931,
+          "psnr": 36.61117328812876,
+          "chroma_psnr": 40.18524856031266
+        },
+        "B": {
+          "msssim": 0.9884817004203796,
+          "psnr": 36.753077464889486,
+          "chroma_psnr": 40.15419315648873
+        },
+        "E2": {
+          "msssim": 0.9884419441223145,
+          "psnr": 37.12714178501381,
+          "chroma_psnr": 40.3231097048201
+        },
+        "E2b": {
+          "msssim": 0.9892646670341492,
+          "psnr": 37.948139208972925,
+          "chroma_psnr": 40.98096094236971
+        },
+        "E3": {
+          "msssim": 0.9884052276611328,
+          "psnr": 36.91552014484953,
+          "chroma_psnr": 40.17848778861228
+        },
+        "E4a2": {
+          "msssim": 0.9890302419662476,
+          "psnr": 37.878736869409025,
+          "chroma_psnr": 41.08396812913706
+        },
+        "E4b": {
+          "msssim": 0.9888021349906921,
+          "psnr": 37.50129276311377,
+          "chroma_psnr": 40.784440129414335
+        },
+        "E5a_30k": {
+          "msssim": 0.9896384477615356,
+          "psnr": 38.1186465732043,
+          "chroma_psnr": 40.925142407304314
+        },
+        "E5a_50k": {
+          "msssim": 0.9910132884979248,
+          "psnr": 38.75437671909678,
+          "chroma_psnr": 41.140023122084145
+        },
+        "E5a_70k": {
+          "msssim": 0.9923276901245117,
+          "psnr": 39.59980391569337,
+          "chroma_psnr": 42.27459079031385
+        },
+        "E5a_90k": {
+          "msssim": 0.992778480052948,
+          "psnr": 39.922134376717345,
+          "chroma_psnr": 42.541741191208246
+        },
+        "E5a_100k": {
+          "msssim": 0.9930210113525391,
+          "psnr": 40.203619766652295,
+          "chroma_psnr": 42.94708890596998
+        },
+        "E5b": {
+          "msssim": 0.9886835813522339,
+          "psnr": 37.12454053192613,
+          "chroma_psnr": 40.33465222642015
+        },
+        "E5c_30k": {
+          "msssim": 0.9892940521240234,
+          "psnr": 37.839587033002985,
+          "chroma_psnr": 40.6483044002502
+        },
+        "E5c_50k": {
+          "msssim": 0.98954838514328,
+          "psnr": 38.10192424503241,
+          "chroma_psnr": 40.77758175435844
+        },
+        "E5c_60k": {
+          "msssim": 0.9901988506317139,
+          "psnr": 38.27963764348783,
+          "chroma_psnr": 40.84439084294337
+        },
+        "E5c_70k": {
+          "msssim": 0.9906255602836609,
+          "psnr": 38.480745155169906,
+          "chroma_psnr": 40.87668404720706
+        },
+        "E5c_100k": {
+          "msssim": 0.990776777267456,
+          "psnr": 38.61458871265393,
+          "chroma_psnr": 40.97044696451099
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_D60-1/gt/Bayer_TEST_D60-1_GT_ISO100_sha1=8ed4d50624a199ed767b2c7167b172a1d5eb4031.crw",
+      "camera": "Canon EOS D60",
+      "scene": "TEST_D60-1",
+      "truth_size": [
+        1024,
+        1536
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9947018027305603,
+          "psnr": 39.249857290629635,
+          "chroma_psnr": 43.420723234909964
+        },
+        "opencv_ea": {
+          "msssim": 0.9945053458213806,
+          "psnr": 39.28913961038654,
+          "chroma_psnr": 42.82273256163761
+        },
+        "demosaicnet": {
+          "msssim": 0.9972219467163086,
+          "psnr": 44.09309897013806,
+          "chroma_psnr": 47.933531865385966
+        },
+        "public_bayer": {
+          "msssim": 0.9915236234664917,
+          "psnr": 36.682748685571454,
+          "chroma_psnr": 42.361720700596464
+        },
+        "A": {
+          "msssim": 0.9929587244987488,
+          "psnr": 37.575288449769,
+          "chroma_psnr": 43.29910517778859
+        },
+        "B": {
+          "msssim": 0.9928624033927917,
+          "psnr": 37.60713022768173,
+          "chroma_psnr": 43.3873802892973
+        },
+        "E2": {
+          "msssim": 0.9930407404899597,
+          "psnr": 38.060532822677786,
+          "chroma_psnr": 43.74291568215312
+        },
+        "E2b": {
+          "msssim": 0.9935559034347534,
+          "psnr": 38.537364138145726,
+          "chroma_psnr": 43.96054218187907
+        },
+        "E3": {
+          "msssim": 0.9926282167434692,
+          "psnr": 37.75797723091628,
+          "chroma_psnr": 43.49030547462485
+        },
+        "E4a2": {
+          "msssim": 0.9935951232910156,
+          "psnr": 38.88287525252571,
+          "chroma_psnr": 44.48361845722765
+        },
+        "E4b": {
+          "msssim": 0.9932310581207275,
+          "psnr": 38.61240679041699,
+          "chroma_psnr": 44.18274640750895
+        },
+        "E5a_30k": {
+          "msssim": 0.9939579963684082,
+          "psnr": 38.86424956258173,
+          "chroma_psnr": 44.033589208496295
+        },
+        "E5a_50k": {
+          "msssim": 0.9947911500930786,
+          "psnr": 39.66302208216388,
+          "chroma_psnr": 44.35155665041133
+        },
+        "E5a_70k": {
+          "msssim": 0.9957122206687927,
+          "psnr": 40.43208577651718,
+          "chroma_psnr": 45.00314160318802
+        },
+        "E5a_90k": {
+          "msssim": 0.9961029887199402,
+          "psnr": 40.555615295144634,
+          "chroma_psnr": 44.459515540361174
+        },
+        "E5a_100k": {
+          "msssim": 0.9962455034255981,
+          "psnr": 41.2012285187621,
+          "chroma_psnr": 45.73109721910867
+        },
+        "E5b": {
+          "msssim": 0.9930065870285034,
+          "psnr": 38.01286611301721,
+          "chroma_psnr": 43.71497701482397
+        },
+        "E5c_30k": {
+          "msssim": 0.9936147928237915,
+          "psnr": 38.63314876597184,
+          "chroma_psnr": 43.93522809533156
+        },
+        "E5c_50k": {
+          "msssim": 0.9937664270401001,
+          "psnr": 38.88346459639122,
+          "chroma_psnr": 44.03296693418119
+        },
+        "E5c_60k": {
+          "msssim": 0.9941045641899109,
+          "psnr": 39.08130925775055,
+          "chroma_psnr": 44.14693534950371
+        },
+        "E5c_70k": {
+          "msssim": 0.9945735335350037,
+          "psnr": 39.42389114611326,
+          "chroma_psnr": 44.198561762565056
+        },
+        "E5c_100k": {
+          "msssim": 0.9951202869415283,
+          "psnr": 39.79461561148566,
+          "chroma_psnr": 44.025925773408545
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_Laura_Lemons_platformer/gt/Bayer_TEST_Laura_Lemons_platformer_GT_ISO50_sha1=3e34f36581d12caf9233bde0bf38586e9a1abe7d.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_Laura_Lemons_platformer",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9891135096549988,
+          "psnr": 39.11109073593097,
+          "chroma_psnr": 43.450485221712334
+        },
+        "opencv_ea": {
+          "msssim": 0.9886299967765808,
+          "psnr": 39.0325127802769,
+          "chroma_psnr": 42.82717962340091
+        },
+        "demosaicnet": {
+          "msssim": 0.9963110685348511,
+          "psnr": 43.527897228942514,
+          "chroma_psnr": 47.31707079724812
+        },
+        "public_bayer": {
+          "msssim": 0.9844067096710205,
+          "psnr": 37.01110875788114,
+          "chroma_psnr": 42.96194965142979
+        },
+        "A": {
+          "msssim": 0.984874963760376,
+          "psnr": 37.21385410017463,
+          "chroma_psnr": 43.085555993141554
+        },
+        "B": {
+          "msssim": 0.9850060343742371,
+          "psnr": 37.02210521614152,
+          "chroma_psnr": 42.52483175967026
+        },
+        "E2": {
+          "msssim": 0.98509281873703,
+          "psnr": 37.51748086373995,
+          "chroma_psnr": 43.327476855420414
+        },
+        "E2b": {
+          "msssim": 0.9863163828849792,
+          "psnr": 37.83497296571144,
+          "chroma_psnr": 43.471036206084996
+        },
+        "E3": {
+          "msssim": 0.984677255153656,
+          "psnr": 37.29615004623777,
+          "chroma_psnr": 43.156341022282376
+        },
+        "E4a2": {
+          "msssim": 0.9856151342391968,
+          "psnr": 37.82133804739857,
+          "chroma_psnr": 43.672199576253384
+        },
+        "E4b": {
+          "msssim": 0.9851633906364441,
+          "psnr": 37.608879780751444,
+          "chroma_psnr": 43.50315554211606
+        },
+        "E5a_30k": {
+          "msssim": 0.9868568181991577,
+          "psnr": 38.233342078726494,
+          "chroma_psnr": 43.595651157255446
+        },
+        "E5a_50k": {
+          "msssim": 0.9898781180381775,
+          "psnr": 39.267592312603774,
+          "chroma_psnr": 43.690814925834324
+        },
+        "E5a_70k": {
+          "msssim": 0.9921225309371948,
+          "psnr": 40.037492319199195,
+          "chroma_psnr": 44.19863487933138
+        },
+        "E5a_90k": {
+          "msssim": 0.9929853677749634,
+          "psnr": 40.608917281097455,
+          "chroma_psnr": 44.672875834094555
+        },
+        "E5a_100k": {
+          "msssim": 0.9931210875511169,
+          "psnr": 40.71885659138957,
+          "chroma_psnr": 44.844128269941564
+        },
+        "E5b": {
+          "msssim": 0.9853143692016602,
+          "psnr": 37.45677798807448,
+          "chroma_psnr": 43.262494860706006
+        },
+        "E5c_30k": {
+          "msssim": 0.9859591722488403,
+          "psnr": 37.68452006261433,
+          "chroma_psnr": 42.94206074819233
+        },
+        "E5c_50k": {
+          "msssim": 0.9867210388183594,
+          "psnr": 38.0764407575717,
+          "chroma_psnr": 43.46251679201936
+        },
+        "E5c_60k": {
+          "msssim": 0.9880685210227966,
+          "psnr": 38.48428999320368,
+          "chroma_psnr": 43.5535834599849
+        },
+        "E5c_70k": {
+          "msssim": 0.9888421893119812,
+          "psnr": 38.88973633551863,
+          "chroma_psnr": 43.43779994139215
+        },
+        "E5c_100k": {
+          "msssim": 0.9903899431228638,
+          "psnr": 39.34339360274326,
+          "chroma_psnr": 43.55443689318831
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_Laura_Lemons_platformer/gt/Bayer_TEST_Laura_Lemons_platformer_GT_ISO50_sha1=e65e60c925d304bbb01cf8bb1310c41e85a05d62.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_Laura_Lemons_platformer",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9891009330749512,
+          "psnr": 39.10991667757522,
+          "chroma_psnr": 43.4525394831235
+        },
+        "opencv_ea": {
+          "msssim": 0.9886221885681152,
+          "psnr": 39.031866450324856,
+          "chroma_psnr": 42.82933439305693
+        },
+        "demosaicnet": {
+          "msssim": 0.9962975382804871,
+          "psnr": 43.5274323347393,
+          "chroma_psnr": 47.315298080563835
+        },
+        "public_bayer": {
+          "msssim": 0.9844106435775757,
+          "psnr": 37.0126964923173,
+          "chroma_psnr": 42.96406480240047
+        },
+        "A": {
+          "msssim": 0.9848541021347046,
+          "psnr": 37.21408901278134,
+          "chroma_psnr": 43.08800404859941
+        },
+        "B": {
+          "msssim": 0.9849857687950134,
+          "psnr": 37.02163375438032,
+          "chroma_psnr": 42.526003174604114
+        },
+        "E2": {
+          "msssim": 0.9850798845291138,
+          "psnr": 37.52019820537796,
+          "chroma_psnr": 43.33257815173468
+        },
+        "E2b": {
+          "msssim": 0.9863065481185913,
+          "psnr": 37.83590974747687,
+          "chroma_psnr": 43.47308439515959
+        },
+        "E3": {
+          "msssim": 0.9846714735031128,
+          "psnr": 37.2981820307193,
+          "chroma_psnr": 43.16134422995393
+        },
+        "E4a2": {
+          "msssim": 0.9855999946594238,
+          "psnr": 37.82189067566701,
+          "chroma_psnr": 43.67298793396007
+        },
+        "E4b": {
+          "msssim": 0.9851502776145935,
+          "psnr": 37.60977195249996,
+          "chroma_psnr": 43.50661019600417
+        },
+        "E5a_30k": {
+          "msssim": 0.9868456125259399,
+          "psnr": 38.233720362124075,
+          "chroma_psnr": 43.597148736109254
+        },
+        "E5a_50k": {
+          "msssim": 0.989867091178894,
+          "psnr": 39.268393243419915,
+          "chroma_psnr": 43.6936746837234
+        },
+        "E5a_70k": {
+          "msssim": 0.9921178817749023,
+          "psnr": 40.03909646759398,
+          "chroma_psnr": 44.20464879156377
+        },
+        "E5a_90k": {
+          "msssim": 0.9929785132408142,
+          "psnr": 40.609836437097336,
+          "chroma_psnr": 44.67741092976324
+        },
+        "E5a_100k": {
+          "msssim": 0.993120551109314,
+          "psnr": 40.71957144643377,
+          "chroma_psnr": 44.84778683095689
+        },
+        "E5b": {
+          "msssim": 0.9853145480155945,
+          "psnr": 37.45895379348645,
+          "chroma_psnr": 43.268430709690556
+        },
+        "E5c_30k": {
+          "msssim": 0.9859632253646851,
+          "psnr": 37.686195724844474,
+          "chroma_psnr": 42.946293288172164
+        },
+        "E5c_50k": {
+          "msssim": 0.9867178797721863,
+          "psnr": 38.07802948282306,
+          "chroma_psnr": 43.466158954155965
+        },
+        "E5c_60k": {
+          "msssim": 0.9880623817443848,
+          "psnr": 38.484608301232974,
+          "chroma_psnr": 43.555693890595755
+        },
+        "E5c_70k": {
+          "msssim": 0.9888316988945007,
+          "psnr": 38.88789701058903,
+          "chroma_psnr": 43.43727137780274
+        },
+        "E5c_100k": {
+          "msssim": 0.9903969764709473,
+          "psnr": 39.347527133296005,
+          "chroma_psnr": 43.55725444908332
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/gt/Bayer_TEST_MuseeL-Saint-Pierre-C500D_GT_ISO100_sha1=f71bff2d267cefbf243971b98beb973daeee84db.cr2",
+      "camera": "Canon EOS 500D",
+      "scene": "TEST_MuseeL-Saint-Pierre-C500D",
+      "truth_size": [
+        1568,
+        2368
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9864810705184937,
+          "psnr": 35.44541395690711,
+          "chroma_psnr": 39.3901557221742
+        },
+        "opencv_ea": {
+          "msssim": 0.9858841896057129,
+          "psnr": 35.31462389368211,
+          "chroma_psnr": 38.91559904761975
+        },
+        "demosaicnet": {
+          "msssim": 0.9921431541442871,
+          "psnr": 38.93756309455627,
+          "chroma_psnr": 42.54421212185665
+        },
+        "public_bayer": {
+          "msssim": 0.9846311807632446,
+          "psnr": 33.965785291385025,
+          "chroma_psnr": 38.77534199241503
+        },
+        "A": {
+          "msssim": 0.9865255355834961,
+          "psnr": 34.6109528151069,
+          "chroma_psnr": 39.666518540927655
+        },
+        "B": {
+          "msssim": 0.9863294363021851,
+          "psnr": 34.693395653194386,
+          "chroma_psnr": 39.71604063828817
+        },
+        "E2": {
+          "msssim": 0.9859578013420105,
+          "psnr": 34.94180963722409,
+          "chroma_psnr": 39.894339345898764
+        },
+        "E2b": {
+          "msssim": 0.9865171313285828,
+          "psnr": 35.29979686403684,
+          "chroma_psnr": 39.97963964315515
+        },
+        "E3": {
+          "msssim": 0.9862068891525269,
+          "psnr": 34.77321251768268,
+          "chroma_psnr": 39.81766436275733
+        },
+        "E4a2": {
+          "msssim": 0.9864979982376099,
+          "psnr": 35.31843040110952,
+          "chroma_psnr": 40.15099683333062
+        },
+        "E4b": {
+          "msssim": 0.9868327975273132,
+          "psnr": 35.15635442359334,
+          "chroma_psnr": 40.080422947460406
+        },
+        "E5a_30k": {
+          "msssim": 0.9875630140304565,
+          "psnr": 35.62341075551977,
+          "chroma_psnr": 40.09824264895918
+        },
+        "E5a_50k": {
+          "msssim": 0.9888095855712891,
+          "psnr": 36.28358114050023,
+          "chroma_psnr": 40.322437132866106
+        },
+        "E5a_70k": {
+          "msssim": 0.9898445010185242,
+          "psnr": 36.658761741978154,
+          "chroma_psnr": 40.71233212775445
+        },
+        "E5a_90k": {
+          "msssim": 0.9902609586715698,
+          "psnr": 36.974301444393696,
+          "chroma_psnr": 41.00578446279737
+        },
+        "E5a_100k": {
+          "msssim": 0.9904356002807617,
+          "psnr": 37.029601358660685,
+          "chroma_psnr": 41.09373318037563
+        },
+        "E5b": {
+          "msssim": 0.9866790175437927,
+          "psnr": 34.954000468409305,
+          "chroma_psnr": 39.930668470155595
+        },
+        "E5c_30k": {
+          "msssim": 0.9874178767204285,
+          "psnr": 35.45448054024361,
+          "chroma_psnr": 40.14159530266226
+        },
+        "E5c_50k": {
+          "msssim": 0.987886369228363,
+          "psnr": 35.66897854617779,
+          "chroma_psnr": 40.21712254637035
+        },
+        "E5c_60k": {
+          "msssim": 0.9884775876998901,
+          "psnr": 35.82060171770018,
+          "chroma_psnr": 40.174966262280975
+        },
+        "E5c_70k": {
+          "msssim": 0.9890099763870239,
+          "psnr": 36.093776379881,
+          "chroma_psnr": 40.21565052920239
+        },
+        "E5c_100k": {
+          "msssim": 0.9895339012145996,
+          "psnr": 36.35111301911992,
+          "chroma_psnr": 40.325000680149955
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_MuseeL-bluebirds-A7C/gt/Bayer_TEST_MuseeL-bluebirds-A7C_GT_ISO50_sha1=3156b462861d9e67f6e0305d8d55ad695a4d937c.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_MuseeL-bluebirds-A7C",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9961874485015869,
+          "psnr": 40.56946515688685,
+          "chroma_psnr": 44.24092330725707
+        },
+        "opencv_ea": {
+          "msssim": 0.9960843324661255,
+          "psnr": 40.52797493630184,
+          "chroma_psnr": 43.9300360963955
+        },
+        "demosaicnet": {
+          "msssim": 0.9975624084472656,
+          "psnr": 43.863372755689355,
+          "chroma_psnr": 47.06534729981005
+        },
+        "public_bayer": {
+          "msssim": 0.994806706905365,
+          "psnr": 39.02731401658295,
+          "chroma_psnr": 45.498197806684985
+        },
+        "A": {
+          "msssim": 0.9950398206710815,
+          "psnr": 39.33600740566203,
+          "chroma_psnr": 45.79345546148646
+        },
+        "B": {
+          "msssim": 0.9952208995819092,
+          "psnr": 39.45500380445561,
+          "chroma_psnr": 45.8136322840972
+        },
+        "E2": {
+          "msssim": 0.9951338768005371,
+          "psnr": 39.54434198503468,
+          "chroma_psnr": 45.873466856104905
+        },
+        "E2b": {
+          "msssim": 0.9951147437095642,
+          "psnr": 39.84266998416237,
+          "chroma_psnr": 45.826995838234524
+        },
+        "E3": {
+          "msssim": 0.994990348815918,
+          "psnr": 39.43789405583959,
+          "chroma_psnr": 45.96318273784529
+        },
+        "E4a2": {
+          "msssim": 0.9953858852386475,
+          "psnr": 39.960513205184284,
+          "chroma_psnr": 46.059325257299086
+        },
+        "E4b": {
+          "msssim": 0.9952309131622314,
+          "psnr": 39.870253934052954,
+          "chroma_psnr": 46.158801326929776
+        },
+        "E5a_30k": {
+          "msssim": 0.9957732558250427,
+          "psnr": 40.367197965764646,
+          "chroma_psnr": 46.03405456096275
+        },
+        "E5a_50k": {
+          "msssim": 0.9960400462150574,
+          "psnr": 41.28856971100403,
+          "chroma_psnr": 46.11559734951618
+        },
+        "E5a_70k": {
+          "msssim": 0.9967209696769714,
+          "psnr": 41.751410515037044,
+          "chroma_psnr": 45.95653252850048
+        },
+        "E5a_90k": {
+          "msssim": 0.996934175491333,
+          "psnr": 42.302198630792546,
+          "chroma_psnr": 46.09773239009328
+        },
+        "E5a_100k": {
+          "msssim": 0.9970642924308777,
+          "psnr": 42.42944050710746,
+          "chroma_psnr": 46.16745380008781
+        },
+        "E5b": {
+          "msssim": 0.9951773881912231,
+          "psnr": 39.58684075276814,
+          "chroma_psnr": 46.05873515960213
+        },
+        "E5c_30k": {
+          "msssim": 0.9954403638839722,
+          "psnr": 40.060341236001946,
+          "chroma_psnr": 45.91177380534436
+        },
+        "E5c_50k": {
+          "msssim": 0.9956430792808533,
+          "psnr": 40.34727109490455,
+          "chroma_psnr": 46.14889395558161
+        },
+        "E5c_60k": {
+          "msssim": 0.9958070516586304,
+          "psnr": 40.56603139650525,
+          "chroma_psnr": 46.13147556322029
+        },
+        "E5c_70k": {
+          "msssim": 0.9961099624633789,
+          "psnr": 41.008617976156984,
+          "chroma_psnr": 46.08902304361867
+        },
+        "E5c_100k": {
+          "msssim": 0.9965245127677917,
+          "psnr": 41.480094681478555,
+          "chroma_psnr": 46.14133251157477
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_MuseeL-bluebirds-A7C/gt/Bayer_TEST_MuseeL-bluebirds-A7C_GT_ISO50_sha1=862fee8e80372d815f0875558939b938c62bb00d.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_MuseeL-bluebirds-A7C",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9961303472518921,
+          "psnr": 40.50568875983967,
+          "chroma_psnr": 44.171262421216326
+        },
+        "opencv_ea": {
+          "msssim": 0.9960259199142456,
+          "psnr": 40.47049700372639,
+          "chroma_psnr": 43.86798780693992
+        },
+        "demosaicnet": {
+          "msssim": 0.9975168108940125,
+          "psnr": 43.79636056456076,
+          "chroma_psnr": 47.004471351648654
+        },
+        "public_bayer": {
+          "msssim": 0.994727611541748,
+          "psnr": 38.97148706093819,
+          "chroma_psnr": 45.43168165569646
+        },
+        "A": {
+          "msssim": 0.9949571490287781,
+          "psnr": 39.27905193141981,
+          "chroma_psnr": 45.72900773468638
+        },
+        "B": {
+          "msssim": 0.9951367378234863,
+          "psnr": 39.39798264076724,
+          "chroma_psnr": 45.750145695032
+        },
+        "E2": {
+          "msssim": 0.9950768947601318,
+          "psnr": 39.490225089755164,
+          "chroma_psnr": 45.80885953816441
+        },
+        "E2b": {
+          "msssim": 0.9950644969940186,
+          "psnr": 39.79010817809424,
+          "chroma_psnr": 45.77042819038891
+        },
+        "E3": {
+          "msssim": 0.9949100017547607,
+          "psnr": 39.377346726277985,
+          "chroma_psnr": 45.890655423321476
+        },
+        "E4a2": {
+          "msssim": 0.9953291416168213,
+          "psnr": 39.903554111643466,
+          "chroma_psnr": 45.998001744908194
+        },
+        "E4b": {
+          "msssim": 0.995147705078125,
+          "psnr": 39.80254561715809,
+          "chroma_psnr": 46.082638702675276
+        },
+        "E5a_30k": {
+          "msssim": 0.9957132339477539,
+          "psnr": 40.311567564207124,
+          "chroma_psnr": 45.9660881935079
+        },
+        "E5a_50k": {
+          "msssim": 0.9959458112716675,
+          "psnr": 41.229540324593515,
+          "chroma_psnr": 46.04956023349124
+        },
+        "E5a_70k": {
+          "msssim": 0.9966953992843628,
+          "psnr": 41.702436533305764,
+          "chroma_psnr": 45.91556596458996
+        },
+        "E5a_90k": {
+          "msssim": 0.9968635439872742,
+          "psnr": 42.23428001367303,
+          "chroma_psnr": 46.024263585541085
+        },
+        "E5a_100k": {
+          "msssim": 0.9970002174377441,
+          "psnr": 42.35903535970718,
+          "chroma_psnr": 46.09203996787416
+        },
+        "E5b": {
+          "msssim": 0.9951114058494568,
+          "psnr": 39.524388036494756,
+          "chroma_psnr": 45.98541547415624
+        },
+        "E5c_30k": {
+          "msssim": 0.9953531622886658,
+          "psnr": 39.99372716833346,
+          "chroma_psnr": 45.83832517922271
+        },
+        "E5c_50k": {
+          "msssim": 0.9955730438232422,
+          "psnr": 40.28507941947906,
+          "chroma_psnr": 46.09170814814262
+        },
+        "E5c_60k": {
+          "msssim": 0.9957200288772583,
+          "psnr": 40.49832920480454,
+          "chroma_psnr": 46.07343974055106
+        },
+        "E5c_70k": {
+          "msssim": 0.9960180521011353,
+          "psnr": 40.941779679392866,
+          "chroma_psnr": 46.03375471646721
+        },
+        "E5c_100k": {
+          "msssim": 0.9964463114738464,
+          "psnr": 41.404067628903164,
+          "chroma_psnr": 46.07589471171593
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_MuseeL-vases-A7C/gt/Bayer_TEST_MuseeL-vases-A7C_GT_ISO50_sha1=128aac6285487ec36b828f31db6d634b094f7ae3.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_MuseeL-vases-A7C",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9962844848632812,
+          "psnr": 40.84739287179602,
+          "chroma_psnr": 45.229467259315896
+        },
+        "opencv_ea": {
+          "msssim": 0.9961563944816589,
+          "psnr": 40.8805815172898,
+          "chroma_psnr": 44.727808687381724
+        },
+        "demosaicnet": {
+          "msssim": 0.9981719851493835,
+          "psnr": 45.85464433638257,
+          "chroma_psnr": 49.47913319078023
+        },
+        "public_bayer": {
+          "msssim": 0.9942888617515564,
+          "psnr": 38.698780840636445,
+          "chroma_psnr": 45.01237216426694
+        },
+        "A": {
+          "msssim": 0.9947056770324707,
+          "psnr": 39.20904907300539,
+          "chroma_psnr": 45.819696867032825
+        },
+        "B": {
+          "msssim": 0.9949641227722168,
+          "psnr": 39.288507856741774,
+          "chroma_psnr": 45.8969483751304
+        },
+        "E2": {
+          "msssim": 0.9948388338088989,
+          "psnr": 39.47697230065955,
+          "chroma_psnr": 46.03811051722417
+        },
+        "E2b": {
+          "msssim": 0.9950692653656006,
+          "psnr": 39.942223598971424,
+          "chroma_psnr": 46.15285145598652
+        },
+        "E3": {
+          "msssim": 0.9944525957107544,
+          "psnr": 39.210299771487406,
+          "chroma_psnr": 45.843831506794565
+        },
+        "E4a2": {
+          "msssim": 0.9951694011688232,
+          "psnr": 39.9423134025844,
+          "chroma_psnr": 46.36877544788092
+        },
+        "E4b": {
+          "msssim": 0.9948899745941162,
+          "psnr": 39.764505384254804,
+          "chroma_psnr": 46.19548787873762
+        },
+        "E5a_30k": {
+          "msssim": 0.995663046836853,
+          "psnr": 40.56524419297389,
+          "chroma_psnr": 46.332209914358565
+        },
+        "E5a_50k": {
+          "msssim": 0.9960044622421265,
+          "psnr": 41.6289766955488,
+          "chroma_psnr": 46.51819058801915
+        },
+        "E5a_70k": {
+          "msssim": 0.9969093203544617,
+          "psnr": 42.39763158065972,
+          "chroma_psnr": 46.8334937041347
+        },
+        "E5a_90k": {
+          "msssim": 0.9972646236419678,
+          "psnr": 43.064378774191766,
+          "chroma_psnr": 47.294154176684614
+        },
+        "E5a_100k": {
+          "msssim": 0.9973641633987427,
+          "psnr": 43.15830617272732,
+          "chroma_psnr": 47.38001954180538
+        },
+        "E5b": {
+          "msssim": 0.9949151873588562,
+          "psnr": 39.487045683234435,
+          "chroma_psnr": 46.0242142496507
+        },
+        "E5c_30k": {
+          "msssim": 0.995140552520752,
+          "psnr": 40.13280309178279,
+          "chroma_psnr": 46.02861842021689
+        },
+        "E5c_50k": {
+          "msssim": 0.9955958127975464,
+          "psnr": 40.544043455408776,
+          "chroma_psnr": 46.34699262401345
+        },
+        "E5c_60k": {
+          "msssim": 0.9956687688827515,
+          "psnr": 40.89367241722178,
+          "chroma_psnr": 46.37221623042908
+        },
+        "E5c_70k": {
+          "msssim": 0.995843768119812,
+          "psnr": 41.34794570508692,
+          "chroma_psnr": 46.34484839461418
+        },
+        "E5c_100k": {
+          "msssim": 0.9964582920074463,
+          "psnr": 42.028219428118135,
+          "chroma_psnr": 46.555812213173915
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_MuseeL-vases-A7C/gt/Bayer_TEST_MuseeL-vases-A7C_GT_ISO50_sha1=3512b789004767165f4330b1e82c6fdce766b221.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_MuseeL-vases-A7C",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9962362051010132,
+          "psnr": 40.820763937377706,
+          "chroma_psnr": 45.208561028091914
+        },
+        "opencv_ea": {
+          "msssim": 0.9961071014404297,
+          "psnr": 40.851189556027705,
+          "chroma_psnr": 44.70597350385855
+        },
+        "demosaicnet": {
+          "msssim": 0.9981260299682617,
+          "psnr": 45.810839365260165,
+          "chroma_psnr": 49.45407212902202
+        },
+        "public_bayer": {
+          "msssim": 0.994206428527832,
+          "psnr": 38.66015208289316,
+          "chroma_psnr": 44.96890282368055
+        },
+        "A": {
+          "msssim": 0.9946393370628357,
+          "psnr": 39.1782678702966,
+          "chroma_psnr": 45.79450759830121
+        },
+        "B": {
+          "msssim": 0.9948927164077759,
+          "psnr": 39.2561104013621,
+          "chroma_psnr": 45.87432804674438
+        },
+        "E2": {
+          "msssim": 0.9947840571403503,
+          "psnr": 39.449131153432184,
+          "chroma_psnr": 46.02049100752278
+        },
+        "E2b": {
+          "msssim": 0.9950222969055176,
+          "psnr": 39.921193729418846,
+          "chroma_psnr": 46.13434047879545
+        },
+        "E3": {
+          "msssim": 0.9943772554397583,
+          "psnr": 39.180643101354924,
+          "chroma_psnr": 45.820595742677696
+        },
+        "E4a2": {
+          "msssim": 0.9951220750808716,
+          "psnr": 39.914695455651874,
+          "chroma_psnr": 46.352304967396606
+        },
+        "E4b": {
+          "msssim": 0.9948219656944275,
+          "psnr": 39.73812791234686,
+          "chroma_psnr": 46.16779440006087
+        },
+        "E5a_30k": {
+          "msssim": 0.9956040382385254,
+          "psnr": 40.52742972097182,
+          "chroma_psnr": 46.298185093162864
+        },
+        "E5a_50k": {
+          "msssim": 0.9959103465080261,
+          "psnr": 41.58819432264151,
+          "chroma_psnr": 46.49436501539877
+        },
+        "E5a_70k": {
+          "msssim": 0.9968671798706055,
+          "psnr": 42.37455625178802,
+          "chroma_psnr": 46.84866551785574
+        },
+        "E5a_90k": {
+          "msssim": 0.9971916079521179,
+          "psnr": 43.035291186322425,
+          "chroma_psnr": 47.27847951354125
+        },
+        "E5a_100k": {
+          "msssim": 0.9973034858703613,
+          "psnr": 43.13166420358776,
+          "chroma_psnr": 47.36412847516121
+        },
+        "E5b": {
+          "msssim": 0.9948589205741882,
+          "psnr": 39.45973326431592,
+          "chroma_psnr": 46.00370876070954
+        },
+        "E5c_30k": {
+          "msssim": 0.9950494170188904,
+          "psnr": 40.10552055582342,
+          "chroma_psnr": 45.99126791431418
+        },
+        "E5c_50k": {
+          "msssim": 0.9955472946166992,
+          "psnr": 40.52182667726348,
+          "chroma_psnr": 46.32574358536829
+        },
+        "E5c_60k": {
+          "msssim": 0.9956080317497253,
+          "psnr": 40.867577419373625,
+          "chroma_psnr": 46.35812105347449
+        },
+        "E5c_70k": {
+          "msssim": 0.9957525134086609,
+          "psnr": 41.3164123006764,
+          "chroma_psnr": 46.330243655538794
+        },
+        "E5c_100k": {
+          "msssim": 0.9963852763175964,
+          "psnr": 42.00208072549776,
+          "chroma_psnr": 46.541098737118915
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_Pen-pile/gt/Bayer_TEST_Pen-pile_GT_ISO100_sha1=dead5469f750d32cd50f8673f1ae3608bdb9a99d.dng",
+      "camera": "DMC-GH1",
+      "scene": "TEST_Pen-pile",
+      "truth_size": [
+        1472,
+        1984
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9926522970199585,
+          "psnr": 42.42768192553524,
+          "chroma_psnr": 45.89534365801391
+        },
+        "opencv_ea": {
+          "msssim": 0.992419421672821,
+          "psnr": 42.33250076221489,
+          "chroma_psnr": 45.550823792300235
+        },
+        "demosaicnet": {
+          "msssim": 0.9936773180961609,
+          "psnr": 43.318410139505374,
+          "chroma_psnr": 46.59328774714629
+        },
+        "public_bayer": {
+          "msssim": 0.99210524559021,
+          "psnr": 41.30510506432684,
+          "chroma_psnr": 45.033510242418245
+        },
+        "A": {
+          "msssim": 0.9924449920654297,
+          "psnr": 41.65546519736348,
+          "chroma_psnr": 45.37835015289306
+        },
+        "B": {
+          "msssim": 0.992372453212738,
+          "psnr": 41.331314583550586,
+          "chroma_psnr": 44.82900789602419
+        },
+        "E2": {
+          "msssim": 0.9921042919158936,
+          "psnr": 41.74005092911439,
+          "chroma_psnr": 45.41050658641011
+        },
+        "E2b": {
+          "msssim": 0.9921669363975525,
+          "psnr": 41.85289751678547,
+          "chroma_psnr": 45.418420254752185
+        },
+        "E3": {
+          "msssim": 0.9923157095909119,
+          "psnr": 41.62380193407694,
+          "chroma_psnr": 45.25365018142432
+        },
+        "E4a2": {
+          "msssim": 0.9921975135803223,
+          "psnr": 41.96376347427935,
+          "chroma_psnr": 45.55802254690515
+        },
+        "E4b": {
+          "msssim": 0.9923895597457886,
+          "psnr": 41.754872945327065,
+          "chroma_psnr": 45.33955229479761
+        },
+        "E5a_30k": {
+          "msssim": 0.992433488368988,
+          "psnr": 41.96168697866248,
+          "chroma_psnr": 45.2876244554093
+        },
+        "E5a_50k": {
+          "msssim": 0.9928774237632751,
+          "psnr": 42.32258017041381,
+          "chroma_psnr": 45.60528145480825
+        },
+        "E5a_70k": {
+          "msssim": 0.9934121966362,
+          "psnr": 42.112493787406606,
+          "chroma_psnr": 45.09409249026858
+        },
+        "E5a_90k": {
+          "msssim": 0.9935096502304077,
+          "psnr": 42.825849296871674,
+          "chroma_psnr": 46.072683020297134
+        },
+        "E5a_100k": {
+          "msssim": 0.9935497641563416,
+          "psnr": 42.97377482318973,
+          "chroma_psnr": 46.255637833718986
+        },
+        "E5b": {
+          "msssim": 0.992387056350708,
+          "psnr": 41.68764296075726,
+          "chroma_psnr": 45.25875182847023
+        },
+        "E5c_30k": {
+          "msssim": 0.9924942255020142,
+          "psnr": 41.48835376996051,
+          "chroma_psnr": 44.66855794154064
+        },
+        "E5c_50k": {
+          "msssim": 0.9926896095275879,
+          "psnr": 41.95731379679892,
+          "chroma_psnr": 45.34479323904591
+        },
+        "E5c_60k": {
+          "msssim": 0.992912232875824,
+          "psnr": 42.08334427792125,
+          "chroma_psnr": 45.4461456944675
+        },
+        "E5c_70k": {
+          "msssim": 0.9930804967880249,
+          "psnr": 42.146532086202306,
+          "chroma_psnr": 45.35377511065658
+        },
+        "E5c_100k": {
+          "msssim": 0.9929975271224976,
+          "psnr": 41.83539513292697,
+          "chroma_psnr": 45.005610740342654
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_TitusToys/gt/Bayer_TEST_TitusToys_GT_ISO50_sha1=85c54ed5174f0ca97385984e6301a1fab08cbdbe.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_TitusToys",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9970681071281433,
+          "psnr": 45.71470715371114,
+          "chroma_psnr": 49.562201102850445
+        },
+        "opencv_ea": {
+          "msssim": 0.9969403147697449,
+          "psnr": 45.50278955130164,
+          "chroma_psnr": 49.00658254264588
+        },
+        "demosaicnet": {
+          "msssim": 0.9982587099075317,
+          "psnr": 47.926519542248215,
+          "chroma_psnr": 51.53043845857076
+        },
+        "public_bayer": {
+          "msssim": 0.9946293234825134,
+          "psnr": 43.46889732262458,
+          "chroma_psnr": 48.7590886748783
+        },
+        "A": {
+          "msssim": 0.9948861002922058,
+          "psnr": 43.66242105061317,
+          "chroma_psnr": 48.60961663211442
+        },
+        "B": {
+          "msssim": 0.9950648546218872,
+          "psnr": 43.45469027563392,
+          "chroma_psnr": 48.13757357357545
+        },
+        "E2": {
+          "msssim": 0.9951425790786743,
+          "psnr": 43.90600073973964,
+          "chroma_psnr": 48.84209245778929
+        },
+        "E2b": {
+          "msssim": 0.995573878288269,
+          "psnr": 44.02803788189506,
+          "chroma_psnr": 48.8639608034622
+        },
+        "E3": {
+          "msssim": 0.9946366548538208,
+          "psnr": 43.60828120423764,
+          "chroma_psnr": 48.639591227250264
+        },
+        "E4a2": {
+          "msssim": 0.9952354431152344,
+          "psnr": 43.97678221164692,
+          "chroma_psnr": 48.92047249218824
+        },
+        "E4b": {
+          "msssim": 0.9948119521141052,
+          "psnr": 43.74734226575154,
+          "chroma_psnr": 48.828476189203755
+        },
+        "E5a_30k": {
+          "msssim": 0.9956228733062744,
+          "psnr": 44.303215491396486,
+          "chroma_psnr": 48.823671636911854
+        },
+        "E5a_50k": {
+          "msssim": 0.9963838458061218,
+          "psnr": 45.04765377611263,
+          "chroma_psnr": 48.774875215996076
+        },
+        "E5a_70k": {
+          "msssim": 0.9972261190414429,
+          "psnr": 44.98916249190023,
+          "chroma_psnr": 48.317698294611645
+        },
+        "E5a_90k": {
+          "msssim": 0.9977211356163025,
+          "psnr": 46.334085019506034,
+          "chroma_psnr": 49.9360093670076
+        },
+        "E5a_100k": {
+          "msssim": 0.9977717399597168,
+          "psnr": 46.725458343808796,
+          "chroma_psnr": 50.50612012115376
+        },
+        "E5b": {
+          "msssim": 0.9949128031730652,
+          "psnr": 43.78587413460431,
+          "chroma_psnr": 48.798994597244445
+        },
+        "E5c_30k": {
+          "msssim": 0.9950402975082397,
+          "psnr": 43.44503335819765,
+          "chroma_psnr": 47.65029810022871
+        },
+        "E5c_50k": {
+          "msssim": 0.9954808950424194,
+          "psnr": 44.066808016463455,
+          "chroma_psnr": 48.637485779130934
+        },
+        "E5c_60k": {
+          "msssim": 0.9957655668258667,
+          "psnr": 44.35821247548227,
+          "chroma_psnr": 48.66093911559819
+        },
+        "E5c_70k": {
+          "msssim": 0.9960412383079529,
+          "psnr": 44.91391486382564,
+          "chroma_psnr": 48.60654460360049
+        },
+        "E5c_100k": {
+          "msssim": 0.9962798953056335,
+          "psnr": 44.93022017282867,
+          "chroma_psnr": 48.88709215341532
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_TitusToys/gt/Bayer_TEST_TitusToys_GT_ISO50_sha1=daecb17e3525d230e7e3441d1335f00ca9446405.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_TitusToys",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9970681667327881,
+          "psnr": 45.703438022197304,
+          "chroma_psnr": 49.55044696493892
+        },
+        "opencv_ea": {
+          "msssim": 0.9969382286071777,
+          "psnr": 45.48923547612479,
+          "chroma_psnr": 48.9885066283579
+        },
+        "demosaicnet": {
+          "msssim": 0.9982590675354004,
+          "psnr": 47.916504564427115,
+          "chroma_psnr": 51.519005336935216
+        },
+        "public_bayer": {
+          "msssim": 0.9946202039718628,
+          "psnr": 43.455568606370285,
+          "chroma_psnr": 48.74586708144547
+        },
+        "A": {
+          "msssim": 0.994879424571991,
+          "psnr": 43.64914700648866,
+          "chroma_psnr": 48.596332754049115
+        },
+        "B": {
+          "msssim": 0.9950593709945679,
+          "psnr": 43.44280251444751,
+          "chroma_psnr": 48.12976096324246
+        },
+        "E2": {
+          "msssim": 0.9951375722885132,
+          "psnr": 43.89486727906511,
+          "chroma_psnr": 48.83237582474771
+        },
+        "E2b": {
+          "msssim": 0.995568037033081,
+          "psnr": 44.01525396185659,
+          "chroma_psnr": 48.85281162515285
+        },
+        "E3": {
+          "msssim": 0.9946318864822388,
+          "psnr": 43.59875285015551,
+          "chroma_psnr": 48.63218611767434
+        },
+        "E4a2": {
+          "msssim": 0.9952301979064941,
+          "psnr": 43.966589880427954,
+          "chroma_psnr": 48.913735266947185
+        },
+        "E4b": {
+          "msssim": 0.9948083162307739,
+          "psnr": 43.737919679191435,
+          "chroma_psnr": 48.82092344469888
+        },
+        "E5a_30k": {
+          "msssim": 0.9956170916557312,
+          "psnr": 44.289338303817836,
+          "chroma_psnr": 48.81068687491062
+        },
+        "E5a_50k": {
+          "msssim": 0.9963786005973816,
+          "psnr": 45.03353894175042,
+          "chroma_psnr": 48.761297578301644
+        },
+        "E5a_70k": {
+          "msssim": 0.9972242712974548,
+          "psnr": 44.97184794187903,
+          "chroma_psnr": 48.299301123393484
+        },
+        "E5a_90k": {
+          "msssim": 0.9977190494537354,
+          "psnr": 46.31882316627237,
+          "chroma_psnr": 49.92213398874756
+        },
+        "E5a_100k": {
+          "msssim": 0.9977695345878601,
+          "psnr": 46.70996386228125,
+          "chroma_psnr": 50.489685483952236
+        },
+        "E5b": {
+          "msssim": 0.994907021522522,
+          "psnr": 43.773568225043896,
+          "chroma_psnr": 48.78951697972618
+        },
+        "E5c_30k": {
+          "msssim": 0.995031476020813,
+          "psnr": 43.42994436279361,
+          "chroma_psnr": 47.63110335083719
+        },
+        "E5c_50k": {
+          "msssim": 0.9954750537872314,
+          "psnr": 44.0530281200448,
+          "chroma_psnr": 48.62287481779772
+        },
+        "E5c_60k": {
+          "msssim": 0.9957606196403503,
+          "psnr": 44.34663562044325,
+          "chroma_psnr": 48.65125968584412
+        },
+        "E5c_70k": {
+          "msssim": 0.9960312247276306,
+          "psnr": 44.89973914024438,
+          "chroma_psnr": 48.59651173262259
+        },
+        "E5c_100k": {
+          "msssim": 0.9962653517723083,
+          "psnr": 44.90498826917218,
+          "chroma_psnr": 48.86993389933069
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_Vaxt-i-trad/gt/Bayer_TEST_Vaxt-i-trad_GT_ISO100_sha1=ca77ec885c0198357c413895c343b965c1ebcafb.cr2",
+      "camera": "Canon EOS 6D",
+      "scene": "TEST_Vaxt-i-trad",
+      "truth_size": [
+        1824,
+        2720
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9955052137374878,
+          "psnr": 39.833889008421195,
+          "chroma_psnr": 42.913880646734064
+        },
+        "opencv_ea": {
+          "msssim": 0.9953250288963318,
+          "psnr": 39.62574311705388,
+          "chroma_psnr": 42.40926780174658
+        },
+        "demosaicnet": {
+          "msssim": 0.9975498914718628,
+          "psnr": 43.744277457648415,
+          "chroma_psnr": 46.6206802507298
+        },
+        "public_bayer": {
+          "msssim": 0.9934818148612976,
+          "psnr": 38.307200991437384,
+          "chroma_psnr": 43.440934641056934
+        },
+        "A": {
+          "msssim": 0.994407057762146,
+          "psnr": 38.90372775849791,
+          "chroma_psnr": 44.34711448993799
+        },
+        "B": {
+          "msssim": 0.9943147897720337,
+          "psnr": 38.89699260167497,
+          "chroma_psnr": 44.27566727518288
+        },
+        "E2": {
+          "msssim": 0.9945144653320312,
+          "psnr": 39.16811246396201,
+          "chroma_psnr": 44.44765132455733
+        },
+        "E2b": {
+          "msssim": 0.9948744773864746,
+          "psnr": 39.49287454679683,
+          "chroma_psnr": 44.506847825822476
+        },
+        "E3": {
+          "msssim": 0.9943353533744812,
+          "psnr": 39.01139154913947,
+          "chroma_psnr": 44.3436771716824
+        },
+        "E4a2": {
+          "msssim": 0.9946129322052002,
+          "psnr": 39.328647556515875,
+          "chroma_psnr": 44.690136496810226
+        },
+        "E4b": {
+          "msssim": 0.9944230914115906,
+          "psnr": 39.16283309025011,
+          "chroma_psnr": 44.56251663846673
+        },
+        "E5a_30k": {
+          "msssim": 0.9951204061508179,
+          "psnr": 39.749616785588564,
+          "chroma_psnr": 44.60054681782931
+        },
+        "E5a_50k": {
+          "msssim": 0.9960923194885254,
+          "psnr": 40.85228602859622,
+          "chroma_psnr": 44.76776609090406
+        },
+        "E5a_70k": {
+          "msssim": 0.9966530203819275,
+          "psnr": 41.428322735647775,
+          "chroma_psnr": 44.989763081491596
+        },
+        "E5a_90k": {
+          "msssim": 0.9967955350875854,
+          "psnr": 41.37285419614612,
+          "chroma_psnr": 44.18717639595181
+        },
+        "E5a_100k": {
+          "msssim": 0.9969331622123718,
+          "psnr": 41.935208769803296,
+          "chroma_psnr": 45.33558187705691
+        },
+        "E5b": {
+          "msssim": 0.9944857358932495,
+          "psnr": 39.129891032490804,
+          "chroma_psnr": 44.50946972530442
+        },
+        "E5c_30k": {
+          "msssim": 0.9949125647544861,
+          "psnr": 39.553257659699824,
+          "chroma_psnr": 44.54429616670894
+        },
+        "E5c_50k": {
+          "msssim": 0.9950763583183289,
+          "psnr": 39.806536758795424,
+          "chroma_psnr": 44.65904622522034
+        },
+        "E5c_60k": {
+          "msssim": 0.9954347014427185,
+          "psnr": 40.09548871500211,
+          "chroma_psnr": 44.647248678362025
+        },
+        "E5c_70k": {
+          "msssim": 0.9958474636077881,
+          "psnr": 40.591564407335945,
+          "chroma_psnr": 44.695357538394845
+        },
+        "E5c_100k": {
+          "msssim": 0.9964207410812378,
+          "psnr": 41.009039315800486,
+          "chroma_psnr": 44.45918556529159
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_boardgames_top/gt/Bayer_TEST_boardgames_top_GT_ISO50_sha1=8c121e3c1038766ee9f96565376eb264cf15b509.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_boardgames_top",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9978432059288025,
+          "psnr": 46.14024034009632,
+          "chroma_psnr": 50.24817414331285
+        },
+        "opencv_ea": {
+          "msssim": 0.997757077217102,
+          "psnr": 46.26158232902631,
+          "chroma_psnr": 49.864985816457406
+        },
+        "demosaicnet": {
+          "msssim": 0.9986015558242798,
+          "psnr": 49.14658582874726,
+          "chroma_psnr": 52.6361486711906
+        },
+        "public_bayer": {
+          "msssim": 0.9966531991958618,
+          "psnr": 43.99397759187987,
+          "chroma_psnr": 49.136276030074185
+        },
+        "A": {
+          "msssim": 0.9968500137329102,
+          "psnr": 44.44642577905097,
+          "chroma_psnr": 49.50176629171246
+        },
+        "B": {
+          "msssim": 0.9970064163208008,
+          "psnr": 44.457351749013185,
+          "chroma_psnr": 49.34503170503692
+        },
+        "E2": {
+          "msssim": 0.9970352053642273,
+          "psnr": 44.86112636445182,
+          "chroma_psnr": 49.750276649330814
+        },
+        "E2b": {
+          "msssim": 0.9972957968711853,
+          "psnr": 45.259552651671164,
+          "chroma_psnr": 49.9703392411151
+        },
+        "E3": {
+          "msssim": 0.9968305826187134,
+          "psnr": 44.56917417825311,
+          "chroma_psnr": 49.490893063758605
+        },
+        "E4a2": {
+          "msssim": 0.9972424507141113,
+          "psnr": 45.41223924220876,
+          "chroma_psnr": 50.199204103943686
+        },
+        "E4b": {
+          "msssim": 0.9970561861991882,
+          "psnr": 45.21317936377767,
+          "chroma_psnr": 49.983814842260514
+        },
+        "E5a_30k": {
+          "msssim": 0.9974385499954224,
+          "psnr": 45.75320794626907,
+          "chroma_psnr": 50.07502230201304
+        },
+        "E5a_50k": {
+          "msssim": 0.9976189136505127,
+          "psnr": 46.24906094513654,
+          "chroma_psnr": 50.17045917407205
+        },
+        "E5a_70k": {
+          "msssim": 0.9980489611625671,
+          "psnr": 46.32366775846371,
+          "chroma_psnr": 49.76558985439253
+        },
+        "E5a_90k": {
+          "msssim": 0.9982352256774902,
+          "psnr": 47.25981566290382,
+          "chroma_psnr": 50.963605378186905
+        },
+        "E5a_100k": {
+          "msssim": 0.9982948303222656,
+          "psnr": 47.56957199877762,
+          "chroma_psnr": 51.30383526184535
+        },
+        "E5b": {
+          "msssim": 0.9969980120658875,
+          "psnr": 44.80776901495047,
+          "chroma_psnr": 49.68270299211542
+        },
+        "E5c_30k": {
+          "msssim": 0.9971209764480591,
+          "psnr": 44.91635141896394,
+          "chroma_psnr": 48.90316646451279
+        },
+        "E5c_50k": {
+          "msssim": 0.9972801208496094,
+          "psnr": 45.58013920401761,
+          "chroma_psnr": 49.92760081833718
+        },
+        "E5c_60k": {
+          "msssim": 0.9973840713500977,
+          "psnr": 45.81498677199035,
+          "chroma_psnr": 50.00393083900546
+        },
+        "E5c_70k": {
+          "msssim": 0.9974686503410339,
+          "psnr": 46.05518033032446,
+          "chroma_psnr": 50.045581580178116
+        },
+        "E5c_100k": {
+          "msssim": 0.997719943523407,
+          "psnr": 46.419557673104144,
+          "chroma_psnr": 50.08920939421916
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/TEST_boardgames_top/gt/Bayer_TEST_boardgames_top_GT_ISO50_sha1=dfd6ae10e652751bc54c997af3547b33de5f824a.arw",
+      "camera": "ILCE-7C",
+      "scene": "TEST_boardgames_top",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9978520274162292,
+          "psnr": 46.086517330782605,
+          "chroma_psnr": 50.19806167642073
+        },
+        "opencv_ea": {
+          "msssim": 0.9977688193321228,
+          "psnr": 46.21407423324963,
+          "chroma_psnr": 49.81771110057366
+        },
+        "demosaicnet": {
+          "msssim": 0.998612105846405,
+          "psnr": 49.143816923205975,
+          "chroma_psnr": 52.63246152718062
+        },
+        "public_bayer": {
+          "msssim": 0.9966574907302856,
+          "psnr": 43.93208683318187,
+          "chroma_psnr": 49.091591330215294
+        },
+        "A": {
+          "msssim": 0.9968602657318115,
+          "psnr": 44.396619972585505,
+          "chroma_psnr": 49.46747006453837
+        },
+        "B": {
+          "msssim": 0.9970108866691589,
+          "psnr": 44.402174831654825,
+          "chroma_psnr": 49.313640523943796
+        },
+        "E2": {
+          "msssim": 0.9970382452011108,
+          "psnr": 44.806843241527815,
+          "chroma_psnr": 49.71098058681883
+        },
+        "E2b": {
+          "msssim": 0.9972984790802002,
+          "psnr": 45.207344782335674,
+          "chroma_psnr": 49.933564251746404
+        },
+        "E3": {
+          "msssim": 0.9968401789665222,
+          "psnr": 44.51545288432463,
+          "chroma_psnr": 49.45146565637211
+        },
+        "E4a2": {
+          "msssim": 0.9972464442253113,
+          "psnr": 45.365968607667185,
+          "chroma_psnr": 50.16682018973812
+        },
+        "E4b": {
+          "msssim": 0.9970642924308777,
+          "psnr": 45.15993180996854,
+          "chroma_psnr": 49.94732913745839
+        },
+        "E5a_30k": {
+          "msssim": 0.9974449872970581,
+          "psnr": 45.71841472295375,
+          "chroma_psnr": 50.045287412181956
+        },
+        "E5a_50k": {
+          "msssim": 0.9976472854614258,
+          "psnr": 46.25087416123769,
+          "chroma_psnr": 50.15417277517735
+        },
+        "E5a_70k": {
+          "msssim": 0.9980665445327759,
+          "psnr": 46.33203405866297,
+          "chroma_psnr": 49.777965056618214
+        },
+        "E5a_90k": {
+          "msssim": 0.9982541799545288,
+          "psnr": 47.26162684575424,
+          "chroma_psnr": 50.96005494860212
+        },
+        "E5a_100k": {
+          "msssim": 0.9983115196228027,
+          "psnr": 47.562054398362534,
+          "chroma_psnr": 51.293745572446525
+        },
+        "E5b": {
+          "msssim": 0.997001588344574,
+          "psnr": 44.75373911985882,
+          "chroma_psnr": 49.64507219718881
+        },
+        "E5c_30k": {
+          "msssim": 0.9971393942832947,
+          "psnr": 44.9006912797994,
+          "chroma_psnr": 48.911134227265265
+        },
+        "E5c_50k": {
+          "msssim": 0.9972922205924988,
+          "psnr": 45.551506740066905,
+          "chroma_psnr": 49.902930878147764
+        },
+        "E5c_60k": {
+          "msssim": 0.9973994493484497,
+          "psnr": 45.79422714353291,
+          "chroma_psnr": 49.975499089803236
+        },
+        "E5c_70k": {
+          "msssim": 0.9974929094314575,
+          "psnr": 46.044021423455334,
+          "chroma_psnr": 50.029847048908415
+        },
+        "E5c_100k": {
+          "msssim": 0.997745156288147,
+          "psnr": 46.40387221956211,
+          "chroma_psnr": 50.06756235060336
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_board/gt/Bayer_UNK_TEST_LucieB_board_GT_ISO100_sha1=3300aa5ce5517dfbe1b2fc7c7e1a0a0cf40b8972.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_board",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9872538447380066,
+          "psnr": 37.463020071629074,
+          "chroma_psnr": 40.97140047212335
+        },
+        "opencv_ea": {
+          "msssim": 0.9865639209747314,
+          "psnr": 37.32702173565852,
+          "chroma_psnr": 40.38813847096932
+        },
+        "demosaicnet": {
+          "msssim": 0.9937940835952759,
+          "psnr": 42.38673179088734,
+          "chroma_psnr": 45.38046103653731
+        },
+        "public_bayer": {
+          "msssim": 0.9847723841667175,
+          "psnr": 36.348931583553,
+          "chroma_psnr": 41.92746049238619
+        },
+        "A": {
+          "msssim": 0.986748218536377,
+          "psnr": 36.73620530592963,
+          "chroma_psnr": 42.40340883594409
+        },
+        "B": {
+          "msssim": 0.9866604804992676,
+          "psnr": 36.67780246045511,
+          "chroma_psnr": 42.08452934597818
+        },
+        "E2": {
+          "msssim": 0.9863064289093018,
+          "psnr": 37.113316098325015,
+          "chroma_psnr": 42.949814417676
+        },
+        "E2b": {
+          "msssim": 0.9867309927940369,
+          "psnr": 37.41189534486567,
+          "chroma_psnr": 42.90218023423244
+        },
+        "E3": {
+          "msssim": 0.9864770174026489,
+          "psnr": 36.91796898391949,
+          "chroma_psnr": 42.990691665205674
+        },
+        "E4a2": {
+          "msssim": 0.9870883822441101,
+          "psnr": 37.4242032892267,
+          "chroma_psnr": 43.34744304155831
+        },
+        "E4b": {
+          "msssim": 0.9871329665184021,
+          "psnr": 37.292873604644996,
+          "chroma_psnr": 43.44355833799622
+        },
+        "E5a_30k": {
+          "msssim": 0.9878499507904053,
+          "psnr": 37.82539752352364,
+          "chroma_psnr": 43.04667526889129
+        },
+        "E5a_50k": {
+          "msssim": 0.9895796775817871,
+          "psnr": 38.47447047042596,
+          "chroma_psnr": 42.15331615665182
+        },
+        "E5a_70k": {
+          "msssim": 0.9908832907676697,
+          "psnr": 39.06580104535197,
+          "chroma_psnr": 42.53830669752982
+        },
+        "E5a_90k": {
+          "msssim": 0.9915505647659302,
+          "psnr": 39.73040958724396,
+          "chroma_psnr": 43.250129487741795
+        },
+        "E5a_100k": {
+          "msssim": 0.9918116331100464,
+          "psnr": 39.96467733552416,
+          "chroma_psnr": 43.518328167222066
+        },
+        "E5b": {
+          "msssim": 0.987072229385376,
+          "psnr": 37.10473798170868,
+          "chroma_psnr": 43.09070101516758
+        },
+        "E5c_30k": {
+          "msssim": 0.987648606300354,
+          "psnr": 37.47302462069727,
+          "chroma_psnr": 42.936874045301124
+        },
+        "E5c_50k": {
+          "msssim": 0.9880251884460449,
+          "psnr": 37.79822633192215,
+          "chroma_psnr": 43.15908273723036
+        },
+        "E5c_60k": {
+          "msssim": 0.9886922240257263,
+          "psnr": 37.91833049398092,
+          "chroma_psnr": 42.79205000751546
+        },
+        "E5c_70k": {
+          "msssim": 0.9897462725639343,
+          "psnr": 38.48909250326233,
+          "chroma_psnr": 42.79580612156512
+        },
+        "E5c_100k": {
+          "msssim": 0.990166187286377,
+          "psnr": 38.861436742413396,
+          "chroma_psnr": 42.97992354443672
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_bw_drawing1/gt/Bayer_UNK_TEST_LucieB_bw_drawing1_GT_ISO100_sha1=8b07bb35e782274c8c3d0fe54a184dd299bbec2e.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_bw_drawing1",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9894518852233887,
+          "psnr": 37.97753901407092,
+          "chroma_psnr": 41.61783937747063
+        },
+        "opencv_ea": {
+          "msssim": 0.988763689994812,
+          "psnr": 37.93158413208013,
+          "chroma_psnr": 41.16316133819798
+        },
+        "demosaicnet": {
+          "msssim": 0.994901180267334,
+          "psnr": 42.82282970824129,
+          "chroma_psnr": 45.87684875141733
+        },
+        "public_bayer": {
+          "msssim": 0.981602668762207,
+          "psnr": 35.828418046705494,
+          "chroma_psnr": 40.38207723327068
+        },
+        "A": {
+          "msssim": 0.9854204058647156,
+          "psnr": 36.69039582482996,
+          "chroma_psnr": 41.513001845415786
+        },
+        "B": {
+          "msssim": 0.9859799742698669,
+          "psnr": 36.63191140599842,
+          "chroma_psnr": 41.53694242031734
+        },
+        "E2": {
+          "msssim": 0.9859719276428223,
+          "psnr": 37.20275151523799,
+          "chroma_psnr": 42.31404835188996
+        },
+        "E2b": {
+          "msssim": 0.9869986772537231,
+          "psnr": 37.73003452635568,
+          "chroma_psnr": 42.352150303659556
+        },
+        "E3": {
+          "msssim": 0.9850009679794312,
+          "psnr": 36.76439849838039,
+          "chroma_psnr": 41.964701748296505
+        },
+        "E4a2": {
+          "msssim": 0.9873141050338745,
+          "psnr": 37.69878272611585,
+          "chroma_psnr": 42.94703534121343
+        },
+        "E4b": {
+          "msssim": 0.9863877296447754,
+          "psnr": 37.39155635529512,
+          "chroma_psnr": 42.75027038102042
+        },
+        "E5a_30k": {
+          "msssim": 0.9883469343185425,
+          "psnr": 38.188246837355976,
+          "chroma_psnr": 42.55495520651361
+        },
+        "E5a_50k": {
+          "msssim": 0.9899692535400391,
+          "psnr": 38.61445825332034,
+          "chroma_psnr": 41.978645246956454
+        },
+        "E5a_70k": {
+          "msssim": 0.9918606281280518,
+          "psnr": 39.364822179516345,
+          "chroma_psnr": 42.855122912498786
+        },
+        "E5a_90k": {
+          "msssim": 0.9927141666412354,
+          "psnr": 40.19514507394874,
+          "chroma_psnr": 43.77872234538738
+        },
+        "E5a_100k": {
+          "msssim": 0.9930194616317749,
+          "psnr": 40.461556393148484,
+          "chroma_psnr": 44.06363540273014
+        },
+        "E5b": {
+          "msssim": 0.9861181974411011,
+          "psnr": 37.081423707283754,
+          "chroma_psnr": 42.20416290234951
+        },
+        "E5c_30k": {
+          "msssim": 0.9870734214782715,
+          "psnr": 37.73257512761138,
+          "chroma_psnr": 42.325893784247384
+        },
+        "E5c_50k": {
+          "msssim": 0.9872450828552246,
+          "psnr": 38.07677517775128,
+          "chroma_psnr": 42.517690564750026
+        },
+        "E5c_60k": {
+          "msssim": 0.9877481460571289,
+          "psnr": 37.882447507918414,
+          "chroma_psnr": 42.00077217560032
+        },
+        "E5c_70k": {
+          "msssim": 0.9893776178359985,
+          "psnr": 38.45210469793063,
+          "chroma_psnr": 42.3405470202518
+        },
+        "E5c_100k": {
+          "msssim": 0.9896881580352783,
+          "psnr": 38.95793766200815,
+          "chroma_psnr": 42.60505482925098
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_bw_drawing1/gt/Bayer_UNK_TEST_LucieB_bw_drawing1_GT_ISO100_sha1=ac88e9ee646fd6b39f6608f970ae2b9a41c05cd5.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_bw_drawing1",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9893158674240112,
+          "psnr": 37.89903687486738,
+          "chroma_psnr": 41.536366251334975
+        },
+        "opencv_ea": {
+          "msssim": 0.9886018633842468,
+          "psnr": 37.8520325196381,
+          "chroma_psnr": 41.07516674566608
+        },
+        "demosaicnet": {
+          "msssim": 0.9949007034301758,
+          "psnr": 42.81055199514049,
+          "chroma_psnr": 45.86316262732109
+        },
+        "public_bayer": {
+          "msssim": 0.9813288450241089,
+          "psnr": 35.75875900375943,
+          "chroma_psnr": 40.33638673164202
+        },
+        "A": {
+          "msssim": 0.9852079153060913,
+          "psnr": 36.62958517908024,
+          "chroma_psnr": 41.46997625995859
+        },
+        "B": {
+          "msssim": 0.9857996702194214,
+          "psnr": 36.572242390625945,
+          "chroma_psnr": 41.507283274520795
+        },
+        "E2": {
+          "msssim": 0.9857958555221558,
+          "psnr": 37.144913533598555,
+          "chroma_psnr": 42.28835979446585
+        },
+        "E2b": {
+          "msssim": 0.9868088960647583,
+          "psnr": 37.66399770446118,
+          "chroma_psnr": 42.309859715267976
+        },
+        "E3": {
+          "msssim": 0.9847623109817505,
+          "psnr": 36.7016091328962,
+          "chroma_psnr": 41.93005485745072
+        },
+        "E4a2": {
+          "msssim": 0.9871577620506287,
+          "psnr": 37.64057949045643,
+          "chroma_psnr": 42.921767411176575
+        },
+        "E4b": {
+          "msssim": 0.9861767292022705,
+          "psnr": 37.32825955344645,
+          "chroma_psnr": 42.72358313019442
+        },
+        "E5a_30k": {
+          "msssim": 0.9881880283355713,
+          "psnr": 38.13550141792582,
+          "chroma_psnr": 42.53296158629777
+        },
+        "E5a_50k": {
+          "msssim": 0.9898450374603271,
+          "psnr": 38.563610444705525,
+          "chroma_psnr": 41.934805190883786
+        },
+        "E5a_70k": {
+          "msssim": 0.9917850494384766,
+          "psnr": 39.31878409499316,
+          "chroma_psnr": 42.808106704843766
+        },
+        "E5a_90k": {
+          "msssim": 0.9926623106002808,
+          "psnr": 40.16390881700268,
+          "chroma_psnr": 43.74389394745508
+        },
+        "E5a_100k": {
+          "msssim": 0.9929705858230591,
+          "psnr": 40.43705974129213,
+          "chroma_psnr": 44.03744882025451
+        },
+        "E5b": {
+          "msssim": 0.9859024286270142,
+          "psnr": 37.019474152417246,
+          "chroma_psnr": 42.17157447708325
+        },
+        "E5c_30k": {
+          "msssim": 0.9868673086166382,
+          "psnr": 37.673133575139765,
+          "chroma_psnr": 42.29661093835144
+        },
+        "E5c_50k": {
+          "msssim": 0.9870302677154541,
+          "psnr": 38.013364462530284,
+          "chroma_psnr": 42.481758724917505
+        },
+        "E5c_60k": {
+          "msssim": 0.9875502586364746,
+          "psnr": 37.81521906206625,
+          "chroma_psnr": 41.9556661891112
+        },
+        "E5c_70k": {
+          "msssim": 0.9892148375511169,
+          "psnr": 38.38955305940312,
+          "chroma_psnr": 42.3005648794752
+        },
+        "E5c_100k": {
+          "msssim": 0.9895322322845459,
+          "psnr": 38.90497801221311,
+          "chroma_psnr": 42.57042087967075
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_bw_drawing2/gt/Bayer_UNK_TEST_LucieB_bw_drawing2_GT_ISO100_sha1=04f3bdc33cab351daed498fc2f4d643f3eb3d689.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_bw_drawing2",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9913234710693359,
+          "psnr": 40.12123134615891,
+          "chroma_psnr": 43.44388514586057
+        },
+        "opencv_ea": {
+          "msssim": 0.9908928871154785,
+          "psnr": 40.07505316581888,
+          "chroma_psnr": 43.090508526069726
+        },
+        "demosaicnet": {
+          "msssim": 0.9942359328269958,
+          "psnr": 43.0270333248598,
+          "chroma_psnr": 45.90723035138588
+        },
+        "public_bayer": {
+          "msssim": 0.9867209196090698,
+          "psnr": 38.36454909694102,
+          "chroma_psnr": 42.81706610908597
+        },
+        "A": {
+          "msssim": 0.9886791706085205,
+          "psnr": 39.002561238032925,
+          "chroma_psnr": 43.27439147285925
+        },
+        "B": {
+          "msssim": 0.9884897470474243,
+          "psnr": 38.90477812423116,
+          "chroma_psnr": 43.11906031675407
+        },
+        "E2": {
+          "msssim": 0.9894092082977295,
+          "psnr": 39.50662729423207,
+          "chroma_psnr": 43.94105543011523
+        },
+        "E2b": {
+          "msssim": 0.9900010824203491,
+          "psnr": 39.864264420016205,
+          "chroma_psnr": 43.89670924874274
+        },
+        "E3": {
+          "msssim": 0.9882692098617554,
+          "psnr": 39.068100751674805,
+          "chroma_psnr": 43.66872102859191
+        },
+        "E4a2": {
+          "msssim": 0.989982545375824,
+          "psnr": 39.77970891010156,
+          "chroma_psnr": 44.23256852298299
+        },
+        "E4b": {
+          "msssim": 0.9888484477996826,
+          "psnr": 39.40072751769535,
+          "chroma_psnr": 44.07095060646025
+        },
+        "E5a_30k": {
+          "msssim": 0.9906611442565918,
+          "psnr": 40.196547007231764,
+          "chroma_psnr": 44.09935616575573
+        },
+        "E5a_50k": {
+          "msssim": 0.9914063215255737,
+          "psnr": 40.41461489621949,
+          "chroma_psnr": 43.45386321781512
+        },
+        "E5a_70k": {
+          "msssim": 0.9926794767379761,
+          "psnr": 41.018879266654466,
+          "chroma_psnr": 44.048983657979186
+        },
+        "E5a_90k": {
+          "msssim": 0.9931566119194031,
+          "psnr": 41.68369399391054,
+          "chroma_psnr": 44.897243084357456
+        },
+        "E5a_100k": {
+          "msssim": 0.9934226274490356,
+          "psnr": 41.88240860501602,
+          "chroma_psnr": 45.044185370037766
+        },
+        "E5b": {
+          "msssim": 0.9887844324111938,
+          "psnr": 39.2656864243293,
+          "chroma_psnr": 43.80292703797429
+        },
+        "E5c_30k": {
+          "msssim": 0.9896945953369141,
+          "psnr": 39.73318448854287,
+          "chroma_psnr": 43.8206895513955
+        },
+        "E5c_50k": {
+          "msssim": 0.9893965721130371,
+          "psnr": 39.93936613224614,
+          "chroma_psnr": 43.97139168749149
+        },
+        "E5c_60k": {
+          "msssim": 0.989778459072113,
+          "psnr": 39.75561592444963,
+          "chroma_psnr": 43.49131847024836
+        },
+        "E5c_70k": {
+          "msssim": 0.9905816316604614,
+          "psnr": 40.19073826269816,
+          "chroma_psnr": 43.857197018517304
+        },
+        "E5c_100k": {
+          "msssim": 0.9905814528465271,
+          "psnr": 40.44550462855427,
+          "chroma_psnr": 44.047377278637015
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_groceries/gt/Bayer_UNK_TEST_LucieB_groceries_GT_ISO100_sha1=9ed597d2ab9e40f3a81317271c31e7400a95552a.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_groceries",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9903954267501831,
+          "psnr": 40.49684057866638,
+          "chroma_psnr": 43.7753010366409
+        },
+        "opencv_ea": {
+          "msssim": 0.9899887442588806,
+          "psnr": 40.3510972509102,
+          "chroma_psnr": 43.32979445080859
+        },
+        "demosaicnet": {
+          "msssim": 0.9934884905815125,
+          "psnr": 43.01638715372179,
+          "chroma_psnr": 45.90711706449188
+        },
+        "public_bayer": {
+          "msssim": 0.9879668951034546,
+          "psnr": 39.276570115954726,
+          "chroma_psnr": 43.51029166796594
+        },
+        "A": {
+          "msssim": 0.9891378283500671,
+          "psnr": 39.59750115115457,
+          "chroma_psnr": 43.747538475147174
+        },
+        "B": {
+          "msssim": 0.9894521236419678,
+          "psnr": 39.5432111760211,
+          "chroma_psnr": 43.69389326368952
+        },
+        "E2": {
+          "msssim": 0.9891128540039062,
+          "psnr": 39.88539737073549,
+          "chroma_psnr": 44.193365732218304
+        },
+        "E2b": {
+          "msssim": 0.989240288734436,
+          "psnr": 40.05232872280761,
+          "chroma_psnr": 44.1299928832623
+        },
+        "E3": {
+          "msssim": 0.9891390204429626,
+          "psnr": 39.732003134077395,
+          "chroma_psnr": 44.11772203590073
+        },
+        "E4a2": {
+          "msssim": 0.9897050261497498,
+          "psnr": 40.10960674129588,
+          "chroma_psnr": 44.441759467666714
+        },
+        "E4b": {
+          "msssim": 0.989602267742157,
+          "psnr": 40.0023283221372,
+          "chroma_psnr": 44.46222510722503
+        },
+        "E5a_30k": {
+          "msssim": 0.9899280071258545,
+          "psnr": 40.361863006261686,
+          "chroma_psnr": 44.230375097223764
+        },
+        "E5a_50k": {
+          "msssim": 0.9906994700431824,
+          "psnr": 40.538581705951415,
+          "chroma_psnr": 43.49142295989455
+        },
+        "E5a_70k": {
+          "msssim": 0.9917430877685547,
+          "psnr": 40.76658227561974,
+          "chroma_psnr": 43.5534069208824
+        },
+        "E5a_90k": {
+          "msssim": 0.9924157857894897,
+          "psnr": 41.50014451771142,
+          "chroma_psnr": 44.65180134634515
+        },
+        "E5a_100k": {
+          "msssim": 0.9926297664642334,
+          "psnr": 41.84890525930064,
+          "chroma_psnr": 45.04246002545823
+        },
+        "E5b": {
+          "msssim": 0.9895195364952087,
+          "psnr": 39.83643017366094,
+          "chroma_psnr": 44.1829301930225
+        },
+        "E5c_30k": {
+          "msssim": 0.989952802658081,
+          "psnr": 40.07429545849529,
+          "chroma_psnr": 43.99804689473768
+        },
+        "E5c_50k": {
+          "msssim": 0.9900738596916199,
+          "psnr": 40.33785448452342,
+          "chroma_psnr": 44.216805534160244
+        },
+        "E5c_60k": {
+          "msssim": 0.9904353022575378,
+          "psnr": 40.27974423356716,
+          "chroma_psnr": 43.79484721584984
+        },
+        "E5c_70k": {
+          "msssim": 0.990864634513855,
+          "psnr": 40.57708529936862,
+          "chroma_psnr": 43.811982964822136
+        },
+        "E5c_100k": {
+          "msssim": 0.9912210702896118,
+          "psnr": 41.00889062647181,
+          "chroma_psnr": 44.15520705961407
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_groceries/gt/Bayer_UNK_TEST_LucieB_groceries_GT_ISO100_sha1=ec49e2743aab20d6b614b5a85af2c15a1ed87717.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_groceries",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9902753829956055,
+          "psnr": 40.33680569752172,
+          "chroma_psnr": 43.633748689400804
+        },
+        "opencv_ea": {
+          "msssim": 0.9898640513420105,
+          "psnr": 40.19217642653332,
+          "chroma_psnr": 43.18531096059626
+        },
+        "demosaicnet": {
+          "msssim": 0.9935051798820496,
+          "psnr": 42.97851360843563,
+          "chroma_psnr": 45.87936052007221
+        },
+        "public_bayer": {
+          "msssim": 0.9877066612243652,
+          "psnr": 39.09193305843218,
+          "chroma_psnr": 43.36299057820972
+        },
+        "A": {
+          "msssim": 0.9889391660690308,
+          "psnr": 39.42341989252354,
+          "chroma_psnr": 43.62104919761478
+        },
+        "B": {
+          "msssim": 0.9892763495445251,
+          "psnr": 39.36117075206526,
+          "chroma_psnr": 43.55373601273768
+        },
+        "E2": {
+          "msssim": 0.9889571070671082,
+          "psnr": 39.72300941516846,
+          "chroma_psnr": 44.08122775931307
+        },
+        "E2b": {
+          "msssim": 0.989079475402832,
+          "psnr": 39.896206158238556,
+          "chroma_psnr": 44.01643298012101
+        },
+        "E3": {
+          "msssim": 0.9889287948608398,
+          "psnr": 39.56207940074376,
+          "chroma_psnr": 44.000959561840425
+        },
+        "E4a2": {
+          "msssim": 0.9895741939544678,
+          "psnr": 39.95182719409291,
+          "chroma_psnr": 44.33713149255944
+        },
+        "E4b": {
+          "msssim": 0.9894044399261475,
+          "psnr": 39.833821187318826,
+          "chroma_psnr": 44.35213634162929
+        },
+        "E5a_30k": {
+          "msssim": 0.9897794723510742,
+          "psnr": 40.21325292703176,
+          "chroma_psnr": 44.12224616771631
+        },
+        "E5a_50k": {
+          "msssim": 0.9905979037284851,
+          "psnr": 40.40839824082099,
+          "chroma_psnr": 43.3698346674123
+        },
+        "E5a_70k": {
+          "msssim": 0.9916512966156006,
+          "psnr": 40.62931016619581,
+          "chroma_psnr": 43.41748161517778
+        },
+        "E5a_90k": {
+          "msssim": 0.9923509359359741,
+          "psnr": 41.3806267774741,
+          "chroma_psnr": 44.54905015309302
+        },
+        "E5a_100k": {
+          "msssim": 0.9925665855407715,
+          "psnr": 41.73496316358925,
+          "chroma_psnr": 44.9484093813538
+        },
+        "E5b": {
+          "msssim": 0.9893295168876648,
+          "psnr": 39.67056581298715,
+          "chroma_psnr": 44.06668832153699
+        },
+        "E5c_30k": {
+          "msssim": 0.9897722601890564,
+          "psnr": 39.90794268635192,
+          "chroma_psnr": 43.870417353665026
+        },
+        "E5c_50k": {
+          "msssim": 0.9899067878723145,
+          "psnr": 40.18181908101111,
+          "chroma_psnr": 44.10031820603229
+        },
+        "E5c_60k": {
+          "msssim": 0.9902849197387695,
+          "psnr": 40.13021308056373,
+          "chroma_psnr": 43.681221974520156
+        },
+        "E5c_70k": {
+          "msssim": 0.9907263517379761,
+          "psnr": 40.43470860422788,
+          "chroma_psnr": 43.69448396543385
+        },
+        "E5c_100k": {
+          "msssim": 0.991084098815918,
+          "psnr": 40.86444611931419,
+          "chroma_psnr": 44.03868273083026
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_painted_plants/gt/Bayer_UNK_TEST_LucieB_painted_plants_GT_ISO100_sha1=52780251b69313b6f276be4a91d2250d7e55a45a.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_painted_plants",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.984484076499939,
+          "psnr": 39.7689569468323,
+          "chroma_psnr": 42.92714130679245
+        },
+        "opencv_ea": {
+          "msssim": 0.9838786125183105,
+          "psnr": 39.572503570389856,
+          "chroma_psnr": 42.48440739280908
+        },
+        "demosaicnet": {
+          "msssim": 0.9909011125564575,
+          "psnr": 41.615369463176904,
+          "chroma_psnr": 44.65117701942962
+        },
+        "public_bayer": {
+          "msssim": 0.9845890998840332,
+          "psnr": 39.230665796226575,
+          "chroma_psnr": 43.235102216757284
+        },
+        "A": {
+          "msssim": 0.985465407371521,
+          "psnr": 39.41456027468394,
+          "chroma_psnr": 43.352229388865126
+        },
+        "B": {
+          "msssim": 0.9855690002441406,
+          "psnr": 39.21381962283039,
+          "chroma_psnr": 42.99214174817798
+        },
+        "E2": {
+          "msssim": 0.9839377403259277,
+          "psnr": 39.42529746268746,
+          "chroma_psnr": 43.38656112554271
+        },
+        "E2b": {
+          "msssim": 0.9833874702453613,
+          "psnr": 39.317608162182964,
+          "chroma_psnr": 43.1724069769347
+        },
+        "E3": {
+          "msssim": 0.9855014681816101,
+          "psnr": 39.458854693992336,
+          "chroma_psnr": 43.569938507265846
+        },
+        "E4a2": {
+          "msssim": 0.9847359657287598,
+          "psnr": 39.538518123918536,
+          "chroma_psnr": 43.52750672870589
+        },
+        "E4b": {
+          "msssim": 0.9858507513999939,
+          "psnr": 39.58268184654081,
+          "chroma_psnr": 43.69564266957714
+        },
+        "E5a_30k": {
+          "msssim": 0.9840733408927917,
+          "psnr": 39.482716681650636,
+          "chroma_psnr": 43.26222294368388
+        },
+        "E5a_50k": {
+          "msssim": 0.984440803527832,
+          "psnr": 39.4466793243556,
+          "chroma_psnr": 42.91876921118711
+        },
+        "E5a_70k": {
+          "msssim": 0.9858483672142029,
+          "psnr": 39.68423446413743,
+          "chroma_psnr": 43.000587265684814
+        },
+        "E5a_90k": {
+          "msssim": 0.9866086840629578,
+          "psnr": 40.07376221724104,
+          "chroma_psnr": 43.405529001586615
+        },
+        "E5a_100k": {
+          "msssim": 0.9866119623184204,
+          "psnr": 40.189392995211584,
+          "chroma_psnr": 43.4295514345855
+        },
+        "E5b": {
+          "msssim": 0.9855867624282837,
+          "psnr": 39.442221105817296,
+          "chroma_psnr": 43.51886313671022
+        },
+        "E5c_30k": {
+          "msssim": 0.9856951236724854,
+          "psnr": 39.42629192944048,
+          "chroma_psnr": 43.29587981216746
+        },
+        "E5c_50k": {
+          "msssim": 0.9856266975402832,
+          "psnr": 39.63095081963867,
+          "chroma_psnr": 43.6121061742749
+        },
+        "E5c_60k": {
+          "msssim": 0.9860483407974243,
+          "psnr": 39.54596261336865,
+          "chroma_psnr": 43.36382621781736
+        },
+        "E5c_70k": {
+          "msssim": 0.9867346286773682,
+          "psnr": 39.70291139884882,
+          "chroma_psnr": 43.401049707022736
+        },
+        "E5c_100k": {
+          "msssim": 0.9864377975463867,
+          "psnr": 39.682824890784126,
+          "chroma_psnr": 43.57422634404312
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_painted_plants/gt/Bayer_UNK_TEST_LucieB_painted_plants_GT_ISO100_sha1=a126b73e171720aa187a33958a8a00f1bc5cea1d.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_painted_plants",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9844774603843689,
+          "psnr": 39.76886706189354,
+          "chroma_psnr": 42.929045730751476
+        },
+        "opencv_ea": {
+          "msssim": 0.9838659167289734,
+          "psnr": 39.57140777744437,
+          "chroma_psnr": 42.484854220874595
+        },
+        "demosaicnet": {
+          "msssim": 0.9909181594848633,
+          "psnr": 41.62471273386008,
+          "chroma_psnr": 44.66244021544534
+        },
+        "public_bayer": {
+          "msssim": 0.984538733959198,
+          "psnr": 39.22959683622406,
+          "chroma_psnr": 43.24088142367374
+        },
+        "A": {
+          "msssim": 0.985411524772644,
+          "psnr": 39.41046648515862,
+          "chroma_psnr": 43.354461380807656
+        },
+        "B": {
+          "msssim": 0.9855241775512695,
+          "psnr": 39.21119534324893,
+          "chroma_psnr": 42.9906469968718
+        },
+        "E2": {
+          "msssim": 0.9839012622833252,
+          "psnr": 39.421360591400585,
+          "chroma_psnr": 43.38409147399945
+        },
+        "E2b": {
+          "msssim": 0.9833640456199646,
+          "psnr": 39.31568857029686,
+          "chroma_psnr": 43.17422518090694
+        },
+        "E3": {
+          "msssim": 0.9854428768157959,
+          "psnr": 39.456272742887606,
+          "chroma_psnr": 43.57362802965933
+        },
+        "E4a2": {
+          "msssim": 0.9847043752670288,
+          "psnr": 39.53443388497109,
+          "chroma_psnr": 43.52529716602589
+        },
+        "E4b": {
+          "msssim": 0.9857935309410095,
+          "psnr": 39.57639476633031,
+          "chroma_psnr": 43.69411185465728
+        },
+        "E5a_30k": {
+          "msssim": 0.9840466380119324,
+          "psnr": 39.48271527910799,
+          "chroma_psnr": 43.26826103011081
+        },
+        "E5a_50k": {
+          "msssim": 0.984410285949707,
+          "psnr": 39.445237145732214,
+          "chroma_psnr": 42.91976219178405
+        },
+        "E5a_70k": {
+          "msssim": 0.9858355522155762,
+          "psnr": 39.686853583620554,
+          "chroma_psnr": 43.006078900944345
+        },
+        "E5a_90k": {
+          "msssim": 0.9866060018539429,
+          "psnr": 40.07550103718566,
+          "chroma_psnr": 43.40940736121147
+        },
+        "E5a_100k": {
+          "msssim": 0.986605167388916,
+          "psnr": 40.19111897476375,
+          "chroma_psnr": 43.432559337042484
+        },
+        "E5b": {
+          "msssim": 0.9855217933654785,
+          "psnr": 39.43949126801769,
+          "chroma_psnr": 43.52227840581692
+        },
+        "E5c_30k": {
+          "msssim": 0.9856346845626831,
+          "psnr": 39.420861404962906,
+          "chroma_psnr": 43.29619029372516
+        },
+        "E5c_50k": {
+          "msssim": 0.9855517148971558,
+          "psnr": 39.62386728696772,
+          "chroma_psnr": 43.60958907162545
+        },
+        "E5c_60k": {
+          "msssim": 0.9859985113143921,
+          "psnr": 39.541559443925685,
+          "chroma_psnr": 43.362114323332136
+        },
+        "E5c_70k": {
+          "msssim": 0.9866856336593628,
+          "psnr": 39.69973170659239,
+          "chroma_psnr": 43.40173328851323
+        },
+        "E5c_100k": {
+          "msssim": 0.986416220664978,
+          "psnr": 39.68398794675194,
+          "chroma_psnr": 43.58033256655477
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_painted_wallpaper/gt/Bayer_UNK_TEST_LucieB_painted_wallpaper_GT_ISO100_sha1=4602545744cd1d2942b45aa5e6ebe81bfa1be39b.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_painted_wallpaper",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9869184494018555,
+          "psnr": 40.35408778614483,
+          "chroma_psnr": 43.49454928071523
+        },
+        "opencv_ea": {
+          "msssim": 0.9864901304244995,
+          "psnr": 40.19700692405735,
+          "chroma_psnr": 43.151316152505686
+        },
+        "demosaicnet": {
+          "msssim": 0.9908635020256042,
+          "psnr": 41.78441845078665,
+          "chroma_psnr": 44.87124976320501
+        },
+        "public_bayer": {
+          "msssim": 0.9851035475730896,
+          "psnr": 39.56652202282629,
+          "chroma_psnr": 43.3583498443327
+        },
+        "A": {
+          "msssim": 0.9853787422180176,
+          "psnr": 39.403161796526035,
+          "chroma_psnr": 42.75885824622208
+        },
+        "B": {
+          "msssim": 0.9851018786430359,
+          "psnr": 39.034344065019056,
+          "chroma_psnr": 42.39065278371723
+        },
+        "E2": {
+          "msssim": 0.9852983355522156,
+          "psnr": 39.65420349952103,
+          "chroma_psnr": 43.32557637107472
+        },
+        "E2b": {
+          "msssim": 0.9848172664642334,
+          "psnr": 39.50617433397981,
+          "chroma_psnr": 43.05992031814023
+        },
+        "E3": {
+          "msssim": 0.9850426912307739,
+          "psnr": 39.528666093642386,
+          "chroma_psnr": 43.293575517890716
+        },
+        "E4a2": {
+          "msssim": 0.9857236742973328,
+          "psnr": 39.691375140629376,
+          "chroma_psnr": 43.35557832029665
+        },
+        "E4b": {
+          "msssim": 0.9855615496635437,
+          "psnr": 39.68348379028559,
+          "chroma_psnr": 43.504436021414
+        },
+        "E5a_30k": {
+          "msssim": 0.9850556254386902,
+          "psnr": 39.43262592206677,
+          "chroma_psnr": 42.74728115711551
+        },
+        "E5a_50k": {
+          "msssim": 0.9860297441482544,
+          "psnr": 39.723379717431875,
+          "chroma_psnr": 42.72955239686671
+        },
+        "E5a_70k": {
+          "msssim": 0.9874205589294434,
+          "psnr": 39.65620662877359,
+          "chroma_psnr": 42.10244119277661
+        },
+        "E5a_90k": {
+          "msssim": 0.988710880279541,
+          "psnr": 40.18822171392352,
+          "chroma_psnr": 43.19872725724138
+        },
+        "E5a_100k": {
+          "msssim": 0.9888904094696045,
+          "psnr": 40.54003640364239,
+          "chroma_psnr": 43.45490345317825
+        },
+        "E5b": {
+          "msssim": 0.9854943156242371,
+          "psnr": 39.521817222964856,
+          "chroma_psnr": 43.24170622445016
+        },
+        "E5c_30k": {
+          "msssim": 0.9851683974266052,
+          "psnr": 39.09832651102097,
+          "chroma_psnr": 42.345048947382615
+        },
+        "E5c_50k": {
+          "msssim": 0.9854618310928345,
+          "psnr": 39.38308603220355,
+          "chroma_psnr": 42.78295698309896
+        },
+        "E5c_60k": {
+          "msssim": 0.9856029748916626,
+          "psnr": 39.45085836577949,
+          "chroma_psnr": 42.66265729767448
+        },
+        "E5c_70k": {
+          "msssim": 0.9853037595748901,
+          "psnr": 39.39046437608764,
+          "chroma_psnr": 42.58151649258047
+        },
+        "E5c_100k": {
+          "msssim": 0.9849667549133301,
+          "psnr": 39.07935121191662,
+          "chroma_psnr": 42.746551048316746
+        }
+      }
+    },
+    {
+      "gt_file": "src/Bayer/UNK_TEST_LucieB_painted_wallpaper/gt/Bayer_UNK_TEST_LucieB_painted_wallpaper_GT_ISO100_sha1=c3d68aaedcc525bb312105e99c679da85a463509.cr2",
+      "camera": "Canon EOS M100",
+      "scene": "UNK_TEST_LucieB_painted_wallpaper",
+      "truth_size": [
+        1984,
+        3008
+      ],
+      "metrics": {
+        "opencv_bilinear": {
+          "msssim": 0.9870896339416504,
+          "psnr": 40.42167643656473,
+          "chroma_psnr": 43.556604715615336
+        },
+        "opencv_ea": {
+          "msssim": 0.9866701364517212,
+          "psnr": 40.265481288343665,
+          "chroma_psnr": 43.21599824277827
+        },
+        "demosaicnet": {
+          "msssim": 0.9909443855285645,
+          "psnr": 41.82943122203015,
+          "chroma_psnr": 44.91022613161008
+        },
+        "public_bayer": {
+          "msssim": 0.9852807521820068,
+          "psnr": 39.62994783764235,
+          "chroma_psnr": 43.41751319688542
+        },
+        "A": {
+          "msssim": 0.9855855703353882,
+          "psnr": 39.4744683106536,
+          "chroma_psnr": 42.82800037640398
+        },
+        "B": {
+          "msssim": 0.985283374786377,
+          "psnr": 39.09514502802404,
+          "chroma_psnr": 42.44850135798408
+        },
+        "E2": {
+          "msssim": 0.9855052828788757,
+          "psnr": 39.72393864012609,
+          "chroma_psnr": 43.39431887592976
+        },
+        "E2b": {
+          "msssim": 0.9850398898124695,
+          "psnr": 39.58073328108658,
+          "chroma_psnr": 43.13050852524054
+        },
+        "E3": {
+          "msssim": 0.9852463603019714,
+          "psnr": 39.595686996007146,
+          "chroma_psnr": 43.35590849677433
+        },
+        "E4a2": {
+          "msssim": 0.9859172701835632,
+          "psnr": 39.760880725023505,
+          "chroma_psnr": 43.42327810111796
+        },
+        "E4b": {
+          "msssim": 0.9857501983642578,
+          "psnr": 39.74908675970763,
+          "chroma_psnr": 43.56624062400215
+        },
+        "E5a_30k": {
+          "msssim": 0.9852720499038696,
+          "psnr": 39.51029389293629,
+          "chroma_psnr": 42.822847564083986
+        },
+        "E5a_50k": {
+          "msssim": 0.9862388372421265,
+          "psnr": 39.79481423532784,
+          "chroma_psnr": 42.79700573195073
+        },
+        "E5a_70k": {
+          "msssim": 0.9876143336296082,
+          "psnr": 39.7360705908288,
+          "chroma_psnr": 42.19222302991328
+        },
+        "E5a_90k": {
+          "msssim": 0.9888702630996704,
+          "psnr": 40.26422013039198,
+          "chroma_psnr": 43.271097159170296
+        },
+        "E5a_100k": {
+          "msssim": 0.9890549182891846,
+          "psnr": 40.618811697056444,
+          "chroma_psnr": 43.52746401431091
+        },
+        "E5b": {
+          "msssim": 0.9856932163238525,
+          "psnr": 39.58887657047052,
+          "chroma_psnr": 43.30529016815738
+        },
+        "E5c_30k": {
+          "msssim": 0.9853700995445251,
+          "psnr": 39.17705564296045,
+          "chroma_psnr": 42.41126640885324
+        },
+        "E5c_50k": {
+          "msssim": 0.9856362342834473,
+          "psnr": 39.45598446729677,
+          "chroma_psnr": 42.850205229035254
+        },
+        "E5c_60k": {
+          "msssim": 0.9857804179191589,
+          "psnr": 39.516576120448754,
+          "chroma_psnr": 42.72198904382775
+        },
+        "E5c_70k": {
+          "msssim": 0.9854893684387207,
+          "psnr": 39.455285882619805,
+          "chroma_psnr": 42.64367734862192
+        },
+        "E5c_100k": {
+          "msssim": 0.9851380586624146,
+          "psnr": 39.15648402755125,
+          "chroma_psnr": 42.81600568048489
+        }
+      }
+    }
+  ]
+}
