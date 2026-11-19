@@ -174,11 +174,22 @@ detail photos, but much softer than DemosaicNet. Does the softness come from the
   stage only; E4b against E3 gives the effect of the stage on the denoising (validation) and on
   the sharpness (binned truth, photos). The stage gets the noisy mosaic, so it can put noise
   back: E4b must not have a lower validation than E3.
+- Synthetic check (added 2026-11-19, after E4b): a slanted edge and a zone plate, rendered with
+  no noise, sampled as an RGGB mosaic (`scripts/loss_check/synthetic_resolution.py`). It gives
+  the MTF and the contrast and false color at each frequency, which the PSNR of a whole image
+  hides.
+- E5a and E5b (added 2026-11-19, after the synthetic check: all UtNet2 runs remove all detail
+  above 0.25 cycles/px, DemosaicNet keeps it to 0.45): binned pairs (`--binned-fraction`): the
+  DemosaicNet target of a clean training image averaged in 2 x 2 cells and sampled again as a
+  mosaic, so that the pairs have detail up to 0.5 cycles/px. E5a: the settings of E2b, half of
+  the pairs binned; E5a against E2b gives the effect of the binned pairs (can UtNet2 learn the
+  detail above 0.25 cycles/px?). E5b: the settings of E3, a quarter of the pairs binned; E5b
+  against E3 gives the effect on the denoising and on the sharpness.
 
 Compute: RunPod, with the network volume of step 2. Runs A and B start on the pod of step 2 when
 step 2 ends with no check failures (`scripts/loss_check/run_rented_machine.sh`). E2 and E3 run
-on the same pod after B. E1 runs on the development machine. E2b, E4a, and E4b run on a second
-pod with the same volume (the first pod stopped during E2b).
+on the same pod after B. E1 runs on the development machine. E2b, E4a, E4b, E5a, and E5b run on
+a second pod with the same volume (the first pod stopped during E2b).
 
 Findings: `training.md`, `quality.md`.
 

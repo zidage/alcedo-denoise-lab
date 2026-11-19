@@ -1,4 +1,4 @@
-"""Fine-tune the public RawNIND Bayer model on the training images of step 2 (runs A to E4b).
+"""Fine-tune the public RawNIND Bayer model on the training images of step 2 (runs A to E5b).
 
 Input:
 - The training images of step 2 (`data/patches/rawnind_bayer_demosaicnet/`,
@@ -48,6 +48,16 @@ unless stated:
   (bayer_head.py, UtNet2WithHead); UtNet2 starts from the public weights, the head starts at 0
   (step 0 gives the output of the public weights). The head parameters use the learning rate
   `--head-lr` (default: `--lr`), with the same warm-up.
+- `--binned-fraction F` (runs E5a and E5b): each pair of a batch is, with the probability F, a
+  binned pair instead of a pair of `--pairs` (`binned_crop`). A binned pair comes from a clean
+  image of a random camera (the clean pairs with itself): a crop of 2 x CROP_SIZE px of its
+  DemosaicNet target is averaged in 2 x 2 cells (all three colors at the same place, sharper per
+  pixel than a camera image, as the training images of DemosaicNet), converted to camera RGB with
+  the inverse of the color conversion of the pair, clipped at 0, and sampled as an RGGB mosaic
+  (the input). The target is that camera RGB image converted back to linear Rec.2020. A cell is
+  valid if its 4 pixels are valid in the mask. The synthetic check (synthetic_resolution.py)
+  showed that all UtNet2 runs remove all detail above 0.25 cycles/px; camera images have little
+  detail there, so the binned pairs add it.
 - Optimizer: Adam with a learning rate of `--lr` (default 3e-5, one tenth of the authors' initial
   rate; the authors' rate at iteration 4,350,000 was 1.65e-6, and their Adam state was not
   published, so the Adam moments start at 0) and a linear warm-up over `--warmup-steps`.
@@ -95,6 +105,10 @@ GAMMA_OFFSET = 1e-4
 DETAIL_WEIGHTS = {"charbonnier": 1.0, "sobel_l1": 0.25, "chroma_l1": 0.20}
 CHARBONNIER_EPS = 1e-3
 DEVELOPED_GAIN_EV = 2.0
+# rawproc.camRGB_to_lin_rec2020_images: lin_rec2020 = XYZ_TO_REC2020 @ inv(M) @ camRGB.
+XYZ_TO_REC2020 = np.array([[1.71666343, -0.35567332, -0.25336809],
+                           [-0.66667384, 1.61645574, 0.0157683],
+                           [0.01764248, -0.04277698, 0.94224328]])
 PUBLIC_BAYER_WEIGHTS = ("models/public/DenoiserTrainingBayerToProfiledRGB_4ch_2024-02-21-bayer_"
                         "ms-ssim_mgout_notrans_valeither_-4/saved_models/iter_4350000.pt")
 
@@ -133,6 +147,38 @@ def detail_loss(output: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
             + DETAIL_WEIGHTS["chroma_l1"] * torch.nn.functional.l1_loss(chroma(output), chroma(target)))
 
 
+def binned_crop(images: "tc.TrainingImages", pair: dict, rng: np.random.Generator,
+                crop_size: int = tc.CROP_SIZE) -> "tc.Crop | None":
+    """A binned pair (`--binned-fraction`) from a clean pair of an image with itself."""
+    if pair["gt_file"] != pair["f_file"] or list(pair["best_alignment"]) != [0, 0]:
+        raise ValueError(f"not a clean pair with itself: {pair['key']}")
+    clean = images._array(images.clean_path(pair))
+    mask_bits = images._array(pair["mask_path"])
+    size = 2 * crop_size
+    height, width = clean.shape[:2]
+    matrix = np.asarray(pair["rgb_xyz_matrix"], dtype=np.float64)[:3]
+    to_camera = matrix @ np.linalg.inv(XYZ_TO_REC2020)
+    to_rec2020 = np.linalg.inv(to_camera)
+    for _ in range(1 + tc.MAX_RANDOM_CROP_ATTEMPTS):
+        row = int(rng.integers(0, height - size))
+        column = int(rng.integers(0, width - size))
+        mask = images.mask_rows(mask_bits, row, column, size)
+        mask = mask.reshape(crop_size, 2, crop_size, 2).all(axis=(1, 3))
+        if mask.mean() < tc.MIN_VALID_FRACTION:
+            continue
+        rec = np.asarray(clean[row:row + size, column:column + size], dtype=np.float64)
+        rec = rec.reshape(crop_size, 2, crop_size, 2, 3).mean(axis=(1, 3))
+        camera = np.clip(rec @ to_camera.T, 0.0, None)
+        target = camera @ to_rec2020.T
+        packed = np.stack([camera[0::2, 0::2, 0], camera[0::2, 1::2, 1],
+                           camera[1::2, 0::2, 1], camera[1::2, 1::2, 2]])
+        return tc.Crop(packed=packed.astype(np.float32),
+                       clean=target.transpose(2, 0, 1).astype(np.float32),
+                       mask=mask, rgb_xyz_matrix=np.asarray(pair["rgb_xyz_matrix"], dtype=np.float32),
+                       raw_gain=1.0, origin=(row, column))
+    return None
+
+
 def select_pairs(images: "tc.TrainingImages", mode: str) -> None:
     if mode == "clean_self":
         images.pairs = [p for p in images.pairs if p["gt_file"] == p["f_file"]]
@@ -158,8 +204,9 @@ class BatchStream(torch.utils.data.IterableDataset):
     """Endless batches with an equal camera share; each worker has its own random generator."""
 
     def __init__(self, root: Path, validation_scenes: tuple[str, ...], pairs_per_batch: int,
-                 crops_per_pair: int, seed: int, pairs: str = "all"):
+                 crops_per_pair: int, seed: int, pairs: str = "all", binned_fraction: float = 0.0):
         self.root, self.validation_scenes, self.pairs = root, validation_scenes, pairs
+        self.binned_fraction = binned_fraction
         self.pairs_per_batch, self.crops_per_pair, self.seed = pairs_per_batch, crops_per_pair, seed
 
     def __iter__(self):
@@ -167,15 +214,25 @@ class BatchStream(torch.utils.data.IterableDataset):
         worker = info.id if info is not None else 0
         rng = np.random.default_rng([self.seed, worker])
         images = tc.TrainingImages(self.root, exclude_scenes=self.validation_scenes)
+        clean_groups: dict[str, list[dict]] = {}
+        for pair in images.pairs:
+            if pair["gt_file"] == pair["f_file"]:
+                clean_groups.setdefault(pair["camera"], []).append(pair)
+        clean_cameras = sorted(clean_groups)
         select_pairs(images, self.pairs)
         groups = images.pairs_of_camera()
         cameras = sorted(groups)
         while True:
             packed, clean, mask, matrix = [], [], [], []
             while len(packed) < self.pairs_per_batch * self.crops_per_pair:
-                group = groups[cameras[int(rng.integers(len(cameras)))]]
-                pair = group[int(rng.integers(len(group)))]
-                crops = [images.random_crop(pair, rng) for _ in range(self.crops_per_pair)]
+                if self.binned_fraction > 0 and rng.random() < self.binned_fraction:
+                    group = clean_groups[clean_cameras[int(rng.integers(len(clean_cameras)))]]
+                    pair = group[int(rng.integers(len(group)))]
+                    crops = [binned_crop(images, pair, rng) for _ in range(self.crops_per_pair)]
+                else:
+                    group = groups[cameras[int(rng.integers(len(cameras)))]]
+                    pair = group[int(rng.integers(len(group)))]
+                    crops = [images.random_crop(pair, rng) for _ in range(self.crops_per_pair)]
                 if any(c is None for c in crops):
                     continue  # the authors also skip a pair without valid crops
                 for crop in crops:
@@ -250,6 +307,8 @@ def main() -> int:
     parser.add_argument("--loss", choices=("linear_msssim", "log_msssim", "gamma_detail"),
                         required=True)
     parser.add_argument("--pairs", choices=("all", "clean_self"), default="all")
+    parser.add_argument("--binned-fraction", type=float, default=0.0,
+                        help="share of binned pairs (binned_crop)")
     parser.add_argument("--iterations", type=int, required=True)
     parser.add_argument("--val-interval", type=int, required=True)
     parser.add_argument("--log-interval", type=int, default=100)
@@ -322,6 +381,7 @@ def main() -> int:
         "loss": args.loss, "log_encoding_offset": LOG_ENCODING_OFFSET, "pairs": args.pairs,
         "gamma": GAMMA, "gamma_offset": GAMMA_OFFSET, "detail_weights": DETAIL_WEIGHTS,
         "charbonnier_eps": CHARBONNIER_EPS, "lr": args.lr, "head": args.head,
+        "binned_fraction": args.binned_fraction,
         "head_lr": args.head_lr if args.head else None,
         "parameters": sum(p.numel() for p in model.parameters()),
         "warmup_steps": args.warmup_steps, "pairs_per_batch": args.pairs_per_batch,
@@ -352,7 +412,7 @@ def main() -> int:
 
     loader = torch.utils.data.DataLoader(
         BatchStream(args.images, validation_scenes, args.pairs_per_batch, args.crops_per_pair,
-                    args.seed * 1000 + start_step, args.pairs),
+                    args.seed * 1000 + start_step, args.pairs, args.binned_fraction),
         batch_size=None, num_workers=args.loader_workers, pin_memory=True,
         persistent_workers=args.loader_workers > 0, prefetch_factor=4 if args.loader_workers else None)
     batches = iter(loader)

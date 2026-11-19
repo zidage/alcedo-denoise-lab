@@ -64,6 +64,21 @@ $P scripts/loss_check/train_bayer.py $COMMON --loss gamma_detail --pairs all --h
 A checkpoint with the head (keys `head.*`) loads in compare_demosaic.py and
 photos_with_checkpoints.py with no other option (bayer_head.model_from_state).
 
+E4a2 (E4a with the learning rates of E4b, because E4a diverged), E5a, and E5b:
+
+```bash
+$P scripts/loss_check/train_bayer.py $COMMON --loss gamma_detail --pairs clean_self --head --head-lr 3e-4   --run-dir models/loss_check_e4a2_head_clean_self_lr3e-5 --results-dir results/loss_check/loss_check_e4a2_head_clean_self_lr3e-5
+$P scripts/loss_check/train_bayer.py $COMMON --loss gamma_detail --pairs clean_self --lr 3e-4 --binned-fraction 0.5   --run-dir models/loss_check_e5a_binned_clean_self --results-dir results/loss_check/loss_check_e5a_binned_clean_self
+$P scripts/loss_check/train_bayer.py $COMMON --loss gamma_detail --pairs all --binned-fraction 0.25   --run-dir models/loss_check_e5b_binned_all --results-dir results/loss_check/loss_check_e5b_binned_all
+```
+
+The synthetic check on the development machine (environment of step 1; the checkpoints as more
+methods; PNG crops of the zone plate are not committed):
+
+```bash
+$P scripts/loss_check/synthetic_resolution.py $COMMON --tmp-dir build/tmp/loss_check/synthetic_tmp   --checkpoint A=models/loss_check_a_linear_msssim/checkpoint_100000.pt ...   --images results/loss_check/images/synthetic
+```
+
 E1 on the development machine, with the environment of step 1 (scripts/reference_measurement/):
 the binned truth of the clean test images with the checkpoints as more methods, and the outputs of
 the checkpoints on the evaluation photos and the detail photos for the comparison sheets.
