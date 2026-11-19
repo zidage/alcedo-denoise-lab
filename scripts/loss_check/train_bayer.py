@@ -1,4 +1,4 @@
-"""Fine-tune the public RawNIND Bayer model on the training images of step 2 (runs A and B).
+"""Fine-tune the public RawNIND Bayer model on the training images of step 2 (runs A to E4b).
 
 Input:
 - The training images of step 2 (`data/patches/rawnind_bayer_demosaicnet/`,
@@ -44,6 +44,10 @@ unless stated:
 - `--pairs clean_self` (run E2): only the pairs of a clean image with itself (the input is the
   mosaic of the clean image, the target its DemosaicNet image): no noise and no misalignment.
   `--pairs all` (default): all admitted pairs.
+- `--head` (runs E4a and E4b): the model is UtNet2 with a stage at the full resolution
+  (bayer_head.py, UtNet2WithHead); UtNet2 starts from the public weights, the head starts at 0
+  (step 0 gives the output of the public weights). The head parameters use the learning rate
+  `--head-lr` (default: `--lr`), with the same warm-up.
 - Optimizer: Adam with a learning rate of `--lr` (default 3e-5, one tenth of the authors' initial
   rate; the authors' rate at iteration 4,350,000 was 1.65e-6, and their Adam state was not
   published, so the Adam moments start at 0) and a linear warm-up over `--warmup-steps`.
@@ -76,10 +80,12 @@ import numpy as np
 import torch
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE.parent / "training_patches"))
 sys.path.insert(0, str(HERE.parent / "reference_measurement"))
 import training_crops as tc  # noqa: E402
 import training_images_common as tic  # noqa: E402
+from bayer_head import UtNet2WithHead  # noqa: E402
 
 VALIDATION_SCENES = ("2pilesofplates", "MuseeL-C500D-mammal", "Bark", "7D-1", "D60-2", "Iain01",
                      "bananapi")
@@ -248,6 +254,8 @@ def main() -> int:
     parser.add_argument("--val-interval", type=int, required=True)
     parser.add_argument("--log-interval", type=int, default=100)
     parser.add_argument("--lr", type=float, default=3e-5)
+    parser.add_argument("--head", action="store_true", help="add the full-resolution stage")
+    parser.add_argument("--head-lr", type=float, default=None, help="default: --lr")
     parser.add_argument("--warmup-steps", type=int, default=1000)
     parser.add_argument("--pairs-per-batch", type=int, default=4)
     parser.add_argument("--crops-per-pair", type=int, default=4)
@@ -271,10 +279,18 @@ def main() -> int:
     device = torch.device("cuda")
     model = raw_denoiser.UtNet2(in_channels=4, funit=32, activation="LeakyReLU")
     model.load_state_dict(torch.load(args.weights, map_location="cpu", weights_only=True))
+    if args.head_lr is None:
+        args.head_lr = args.lr
+    if args.head:
+        model = UtNet2WithHead(model)
+        groups = [{"params": model.backbone.parameters(), "base_lr": args.lr},
+                  {"params": model.head.parameters(), "base_lr": args.head_lr}]
+    else:
+        groups = [{"params": model.parameters(), "base_lr": args.lr}]
     model.to(device).train()
     loss_function = pt_losses.MS_SSIM_loss().to(device)
     msssim = pt_losses.MS_SSIM_metric().to(device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
+    optimizer = torch.optim.Adam(groups, lr=args.lr)
     validation_scenes = tuple(args.validation_scenes)
 
     args.run_dir.mkdir(parents=True, exist_ok=True)
@@ -305,7 +321,9 @@ def main() -> int:
         "images_manifest_sha256": sha256_of(args.images / tic.MANIFEST),
         "loss": args.loss, "log_encoding_offset": LOG_ENCODING_OFFSET, "pairs": args.pairs,
         "gamma": GAMMA, "gamma_offset": GAMMA_OFFSET, "detail_weights": DETAIL_WEIGHTS,
-        "charbonnier_eps": CHARBONNIER_EPS, "lr": args.lr,
+        "charbonnier_eps": CHARBONNIER_EPS, "lr": args.lr, "head": args.head,
+        "head_lr": args.head_lr if args.head else None,
+        "parameters": sum(p.numel() for p in model.parameters()),
         "warmup_steps": args.warmup_steps, "pairs_per_batch": args.pairs_per_batch,
         "crops_per_pair": args.crops_per_pair, "iterations": args.iterations,
         "validation_scenes": list(validation_scenes), "validation_pairs": len(val_pairs),
@@ -341,9 +359,10 @@ def main() -> int:
     torch.cuda.reset_peak_memory_stats(device)
     window_started, window_losses, wait_seconds = time.time(), [], 0.0
     for step in range(start_step + 1, args.iterations + 1):
-        lr = args.lr * min(1.0, step / max(1, args.warmup_steps))
+        warmup = min(1.0, step / max(1, args.warmup_steps))
         for group in optimizer.param_groups:
-            group["lr"] = lr
+            group["lr"] = group["base_lr"] * warmup
+        lr = args.lr * warmup
         waited = time.time()
         packed, clean, mask, matrix = next(batches)
         wait_seconds += time.time() - waited

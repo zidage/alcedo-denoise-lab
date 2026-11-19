@@ -19,7 +19,8 @@ Methods (demosaic_methods.py): `opencv_bilinear`, `opencv_ea` (the method of the
 images), `demosaicnet` (the original Bayer DemosaicNet with the input preparation of Alcedo
 Studio), `public_bayer` (the public RawNIND Bayer model on the clean mosaic, scaled to the mean of
 the EA image). `--checkpoint NAME=PATH` adds a method NAME: a checkpoint of
-scripts/loss_check/train_bayer.py, run as `public_bayer`.
+scripts/loss_check/train_bayer.py (with or without the head of bayer_head.py), run as
+`public_bayer`.
 
 Step: reference measurement (step 1 of docs/plan.md), the demosaic check. GPU, one job at a time;
 PyTorch uses 4 CPU threads. TF32 is off.
@@ -44,6 +45,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import demosaic_methods as dm  # noqa: E402
 import rawnind_eval_common as common  # noqa: E402
 from measure_test_split import BAYER_WEIGHTS, load_model, sha256_of  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "loss_check"))
+from bayer_head import model_from_state  # noqa: E402
 
 METHODS = ("opencv_bilinear", "opencv_ea", "demosaicnet", "public_bayer")
 
@@ -99,8 +102,8 @@ def main() -> int:
     for spec in args.checkpoint:
         name, path = spec.split("=", 1)
         path = Path(path)
-        model = code.raw_denoiser.UtNet2(in_channels=4, funit=32, activation="LeakyReLU")
-        model.load_state_dict(torch.load(path, map_location="cpu", weights_only=True)["model"])
+        state = torch.load(path, map_location="cpu", weights_only=True)["model"]
+        model = model_from_state(code.raw_denoiser, state)
         checkpoints[name] = (model.to(device).eval(), path)
     methods = METHODS + tuple(checkpoints)
 

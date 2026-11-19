@@ -52,6 +52,18 @@ $P scripts/loss_check/train_bayer.py $COMMON --loss gamma_detail --pairs clean_s
 $P scripts/loss_check/train_bayer.py $COMMON --loss gamma_detail --pairs all   --run-dir models/loss_check_e3_detail_all --results-dir results/loss_check/loss_check_e3_detail_all
 ```
 
+E2b, E4a, and E4b (docs/plan.md, step 3, second question) run on a second pod with the same
+volume, after the setup of step 2 (/root/step2):
+
+```bash
+$P scripts/loss_check/train_bayer.py $COMMON --loss gamma_detail --pairs clean_self --lr 3e-4   --run-dir models/loss_check_e2b_detail_clean_self_lr3e-4 --results-dir results/loss_check/loss_check_e2b_detail_clean_self_lr3e-4
+$P scripts/loss_check/train_bayer.py $COMMON --loss gamma_detail --pairs clean_self --lr 3e-4 --head   --run-dir models/loss_check_e4a_head_clean_self --results-dir results/loss_check/loss_check_e4a_head_clean_self
+$P scripts/loss_check/train_bayer.py $COMMON --loss gamma_detail --pairs all --head --head-lr 3e-4   --run-dir models/loss_check_e4b_head_all --results-dir results/loss_check/loss_check_e4b_head_all
+```
+
+A checkpoint with the head (keys `head.*`) loads in compare_demosaic.py and
+photos_with_checkpoints.py with no other option (bayer_head.model_from_state).
+
 E1 on the development machine, with the environment of step 1 (scripts/reference_measurement/):
 the binned truth of the clean test images with the checkpoints as more methods, and the outputs of
 the checkpoints on the evaluation photos and the detail photos for the comparison sheets.

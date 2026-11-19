@@ -165,10 +165,20 @@ detail photos, but much softer than DemosaicNet. Does the softness come from the
   the effect of the noisy, separately captured pairs.
 - E2 and E3 run for 30,000 iterations with a validation every 10,000 (run A had no increase
   after 10,000) and the other settings of A.
+- E2b (added 2026-11-19, after E2): E2 with the learning rate 3e-4 (the authors' initial rate,
+  10 times that of E2). If E2b comes near DemosaicNet, the learning rate of E2 was the limit.
+- E4a and E4b (added 2026-11-19, after E2b: E2b stays far below DemosaicNet): UtNet2 with a
+  stage at the full resolution that also gets the mosaic (`--head`,
+  `scripts/loss_check/bayer_head.py`). E4a: the settings of E2b; E4a against E2b gives the effect
+  of the stage on the sharpness. E4b: the settings of E3, with the learning rate 3e-4 for the new
+  stage only; E4b against E3 gives the effect of the stage on the denoising (validation) and on
+  the sharpness (binned truth, photos). The stage gets the noisy mosaic, so it can put noise
+  back: E4b must not have a lower validation than E3.
 
 Compute: RunPod, with the network volume of step 2. Runs A and B start on the pod of step 2 when
 step 2 ends with no check failures (`scripts/loss_check/run_rented_machine.sh`). E2 and E3 run
-on the same pod after B. E1 runs on the development machine.
+on the same pod after B. E1 runs on the development machine. E2b, E4a, and E4b run on a second
+pod with the same volume (the first pod stopped during E2b).
 
 Findings: `training.md`, `quality.md`.
 

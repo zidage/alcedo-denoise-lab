@@ -39,16 +39,17 @@ import torch
 
 REFERENCE = Path(__file__).resolve().parents[1] / "reference_measurement"
 sys.path.insert(0, str(REFERENCE))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import demosaic_methods as dm  # noqa: E402
 import rawnind_eval_common as common  # noqa: E402
 from denoise_evaluation_photos import RAW_SUFFIXES  # noqa: E402
 from measure_test_split import scale_to_mean, sha256_of  # noqa: E402
+from bayer_head import model_from_state  # noqa: E402
 
 
 def load_checkpoint(code, path: Path, device: torch.device):
-    model = code.raw_denoiser.UtNet2(in_channels=4, funit=32, activation="LeakyReLU")
     state = torch.load(path, map_location="cpu", weights_only=True)
-    model.load_state_dict(state["model"])
+    model = model_from_state(code.raw_denoiser, state["model"])
     return model.to(device).eval(), int(state["step"])
 
 
