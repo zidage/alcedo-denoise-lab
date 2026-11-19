@@ -205,6 +205,20 @@ for the budget?
 - Measure the final checkpoint with all metrics of step 1, and make the comparison sheets of the
   evaluation photos against the public weights and GALOSH.
 
+Decision of the user (2026-11-19, after step 3): E5c (`--loss gamma_detail`, all pairs, half of
+the pairs binned, learning rate 3e-4) is good enough, so step 4 is a short end of E5c and not a
+long run from the public weights:
+
+- Start from E5c at 60,000 iterations (the best validation of E5c, 37.60 dB) with its Adam state
+  (`--init-checkpoint`), and run 50,000 iterations with the settings of E5c and a learning rate
+  that goes from 3e-4 to 3e-6 on a half cosine (`--lr-schedule cosine`). Reason: with the
+  constant rate of E5c, the validation moved between 37.05 and 37.60 dB.
+- A validation and a checkpoint every 5,000 iterations; the final model is the checkpoint with
+  the best developed PSNR, checked with the synthetic check (`synthetic_resolution.py`) and the
+  sheets.
+- Estimated cost: 0.6 to 0.9 hours of an A40, 0.4 to 0.6 USD (the measured 18.5 iterations per
+  second of E5c). `budget_cap` of step 5 is still open.
+
 Compute: RunPod.
 
 Findings: `training.md`, `quality.md`.

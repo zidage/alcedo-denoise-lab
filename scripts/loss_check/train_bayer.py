@@ -58,6 +58,11 @@ unless stated:
   valid if its 4 pixels are valid in the mask. The synthetic check (synthetic_resolution.py)
   showed that all UtNet2 runs remove all detail above 0.25 cycles/px; camera images have little
   detail there, so the binned pairs add it.
+- `--init-checkpoint PATH` (step 4): a new run starts from the model and the Adam state of a
+  checkpoint of this script (for example E5c at 60,000 iterations); the steps of the new run start
+  at 0. `--lr-schedule cosine`: after the warm-up, the learning rate goes from `--lr` (and
+  `--head-lr`) to `--lr-min` (the same fraction for the head) on a half cosine over the
+  remaining iterations. `constant` (default) keeps it.
 - Optimizer: Adam with a learning rate of `--lr` (default 3e-5, one tenth of the authors' initial
   rate; the authors' rate at iteration 4,350,000 was 1.65e-6, and their Adam state was not
   published, so the Adam moments start at 0) and a linear warm-up over `--warmup-steps`.
@@ -307,6 +312,10 @@ def main() -> int:
     parser.add_argument("--loss", choices=("linear_msssim", "log_msssim", "gamma_detail"),
                         required=True)
     parser.add_argument("--pairs", choices=("all", "clean_self"), default="all")
+    parser.add_argument("--init-checkpoint", type=Path, default=None,
+                        help="start from the model and Adam state of this checkpoint")
+    parser.add_argument("--lr-schedule", choices=("constant", "cosine"), default="constant")
+    parser.add_argument("--lr-min", type=float, default=0.0, help="end of the cosine schedule")
     parser.add_argument("--binned-fraction", type=float, default=0.0,
                         help="share of binned pairs (binned_crop)")
     parser.add_argument("--iterations", type=int, required=True)
@@ -326,6 +335,8 @@ def main() -> int:
     args = parser.parse_args()
     for name in ("images", "weights", "authors_repo", "tmp_dir", "run_dir", "results_dir"):
         setattr(args, name, getattr(args, name).resolve())
+    if args.init_checkpoint is not None:
+        args.init_checkpoint = args.init_checkpoint.resolve()
     repo_root = HERE.parents[1]
     command = "python -I " + " ".join(sys.argv)
 
@@ -363,6 +374,13 @@ def main() -> int:
         optimizer.load_state_dict(state["optimizer"])
         start_step = int(state["step"])
         print(f"continue from {checkpoints[-1].name}", flush=True)
+    elif args.init_checkpoint is not None:
+        state = torch.load(args.init_checkpoint, map_location="cpu", weights_only=True)
+        model.load_state_dict(state["model"])
+        optimizer.load_state_dict(state["optimizer"])
+        for group, base in zip(optimizer.param_groups, (args.lr, args.head_lr)):
+            group["base_lr"] = base
+        print(f"start from {args.init_checkpoint} (step {state['step']})", flush=True)
 
     train_images = tc.TrainingImages(args.images, exclude_scenes=validation_scenes)
     select_pairs(train_images, args.pairs)
@@ -382,6 +400,10 @@ def main() -> int:
         "gamma": GAMMA, "gamma_offset": GAMMA_OFFSET, "detail_weights": DETAIL_WEIGHTS,
         "charbonnier_eps": CHARBONNIER_EPS, "lr": args.lr, "head": args.head,
         "binned_fraction": args.binned_fraction,
+        "init_checkpoint": ({"path": tic.posix(args.init_checkpoint),
+                             "sha256": sha256_of(args.init_checkpoint)}
+                            if args.init_checkpoint else None),
+        "lr_schedule": args.lr_schedule, "lr_min": args.lr_min,
         "head_lr": args.head_lr if args.head else None,
         "parameters": sum(p.numel() for p in model.parameters()),
         "warmup_steps": args.warmup_steps, "pairs_per_batch": args.pairs_per_batch,
@@ -419,10 +441,14 @@ def main() -> int:
     torch.cuda.reset_peak_memory_stats(device)
     window_started, window_losses, wait_seconds = time.time(), [], 0.0
     for step in range(start_step + 1, args.iterations + 1):
-        warmup = min(1.0, step / max(1, args.warmup_steps))
+        factor = min(1.0, step / max(1, args.warmup_steps))
+        if args.lr_schedule == "cosine" and step > args.warmup_steps:
+            progress = (step - args.warmup_steps) / max(1, args.iterations - args.warmup_steps)
+            floor = args.lr_min / args.lr
+            factor = floor + (1.0 - floor) * 0.5 * (1.0 + math.cos(math.pi * progress))
         for group in optimizer.param_groups:
-            group["lr"] = group["base_lr"] * warmup
-        lr = args.lr * warmup
+            group["lr"] = group["base_lr"] * factor
+        lr = args.lr * factor
         waited = time.time()
         packed, clean, mask, matrix = next(batches)
         wait_seconds += time.time() - waited

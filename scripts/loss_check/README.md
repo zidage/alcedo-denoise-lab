@@ -103,3 +103,13 @@ less than 1 % of the time after the first 50 steps; GPU peak 0.9 GB during the t
 first validation (27 full 24-megapixel pairs) took 2,149 s, because the full-image model and
 MS-SSIM pass is larger than the 8 GB of the GPU; the next one took 88 s. These numbers are not
 findings: the runs of step 3 are on the RunPod GPU.
+
+## Step 4: the end of E5c with a decreasing learning rate
+
+docs/plan.md, step 4 (decision of the user, 2026-11-19), on the pod of E5c:
+
+```bash
+$P scripts/loss_check/train_bayer.py $COMMON --iterations 50000 --val-interval 5000   --loss gamma_detail --pairs all --binned-fraction 0.5 --lr 3e-4 --warmup-steps 0   --lr-schedule cosine --lr-min 3e-6 --seed 1   --init-checkpoint models/loss_check_e5c_binned_all_lr3e-4/checkpoint_60000.pt   --run-dir models/fine_tune_e5c_cosine --results-dir results/fine_tune/fine_tune_e5c_cosine
+```
+
+`--seed 1`: other random crops than E5c (seed 0).
