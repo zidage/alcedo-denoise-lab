@@ -23,9 +23,10 @@ On RunPod, after step 2 on the same pod (the environment of step 2 is on its con
 bash scripts/loss_check/run_rented_machine.sh
 ```
 
-The script checks that the check of step 2 has no failures and that the public Bayer weights have
-the SHA-256 of `models/public/SOURCE.md`, then runs A and B one after the other with
-`short_run_iterations` (100,000) and a validation every 10,000 iterations.
+The script checks that the check of step 2 has no failures other than those in
+`results/training_patches/accepted_check_failures.txt` (failures that the user accepted) and that
+the public Bayer weights have the SHA-256 of `models/public/SOURCE.md`, then runs A and B one after
+the other with `short_run_iterations` (100,000) and a validation every 10,000 iterations.
 
 On the development machine, a measurement of the iteration rate. Only the Sony ILCE-7C has two
 scenes in the 8 scenes of the check of step 2, so one Sony scene is the validation scene there:

@@ -7,8 +7,9 @@
 # models/public/. The Python environment and the authors' code of step 2 ($WORK on the container
 # disk), or a new one made by scripts/training_patches/run_rented_machine.sh.
 #
-# Preconditions, checked before the runs: the check of step 2 has no failures, and the SHA-256 of the
-# public Bayer weights is the value of models/public/SOURCE.md.
+# Preconditions, checked before the runs: the check of step 2 has no failures other than those in
+# results/training_patches/accepted_check_failures.txt (failures that the user accepted), and the
+# SHA-256 of the public Bayer weights is the value of models/public/SOURCE.md.
 #
 # Output (network volume):
 # - models/loss_check_a_linear_msssim/, models/loss_check_b_log_msssim/: checkpoints, run.json
@@ -31,6 +32,7 @@ LOGS=$REPO/build/tmp/loss_check/rented_run
 WEIGHTS=$REPO/models/public/DenoiserTrainingBayerToProfiledRGB_4ch_2024-02-21-bayer_ms-ssim_mgout_notrans_valeither_-4/saved_models/iter_4350000.pt
 WEIGHTS_SHA256=c1f7de3de24cb12f4803ee65e11cfb467e9a5b80c3cb7126746ef026106c15e0
 STEP2_CHECK=$REPO/results/training_patches/check_rented_machine.json
+STEP2_ACCEPTED=$REPO/results/training_patches/accepted_check_failures.txt
 
 mkdir -p "$LOGS"
 cd "$REPO"
@@ -40,12 +42,20 @@ if [ ! -x "$VENV/bin/python" ] || [ ! -d "$AUTHORS" ]; then
     echo "no environment in $WORK: run scripts/training_patches/run_rented_machine.sh first" >&2
     exit 1
 fi
-"$VENV/bin/python" - "$STEP2_CHECK" <<'EOF'
+"$VENV/bin/python" - "$STEP2_CHECK" "$STEP2_ACCEPTED" <<'EOF'
 import json, sys
+from pathlib import Path
 failures = json.load(open(sys.argv[1]))["failures"]
-if failures:
-    sys.exit(f"the check of step 2 has {len(failures)} failures: {failures[:3]}")
-print("check of step 2: no failures")
+accepted_file = Path(sys.argv[2])
+accepted = set()
+if accepted_file.exists():
+    accepted = {line for line in accepted_file.read_text(encoding="utf-8").splitlines()
+                if line and not line.startswith("#")}
+other = [f for f in failures if f not in accepted]
+if other:
+    sys.exit(f"the check of step 2 has {len(other)} failures that are not accepted: {other[:3]}")
+print(f"check of step 2: {len(failures)} failures, all in {accepted_file}" if failures
+      else "check of step 2: no failures")
 EOF
 echo "$WEIGHTS_SHA256  $WEIGHTS" | sha256sum --check
 

@@ -1,0 +1,9 @@
+# Failures of results/training_patches/check_rented_machine.json that the user accepted.
+# scripts/loss_check/run_rented_machine.sh stops if the check has a failure that is not here.
+# 2026-11-19: the DemosaicNet camera-RGB mean of these 4 clean targets is 1.1-1.2 % below the
+# mosaic mean in red (tolerance 1 %); the 385 other targets are within 1 % (median 0.36 %),
+# and the authors' EA of the same files is within 0.4 %. The 2 scenes stay in the training data.
+color src/Bayer/MuseeL-helmets-A7C/gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw: [0.9881714813589568, 1.0026261112635468, 1.0069307118309596]
+color src/Bayer/MuseeL-helmets-A7C/gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw: [0.9881426306414665, 1.0027016727015308, 1.006941415174285]
+color src/Bayer/MuseeL-pufferfish-A7C/gt/Bayer_MuseeL-pufferfish-A7C_GT_ISO50_sha1=7e5f07dabba4452b96b1363892e3239ca14350ee.arw: [0.9887240352519815, 1.0027260535374423, 1.0047028796272637]
+color src/Bayer/MuseeL-pufferfish-A7C/gt/Bayer_MuseeL-pufferfish-A7C_GT_ISO50_sha1=9d0580e930ceef0b3231ca81ce53d67b289aa6af.arw: [0.9885885316182308, 1.0027168292651374, 1.004747296815112]
