@@ -1,0 +1,1965 @@
+{
+ "source": "results/fine_tune/test_split_dark_scenes_pair_metrics.jsonl",
+ "manproc_source": {
+  "input": "step 1",
+  "bayer_public": "step 1",
+  "A": "this measurement",
+  "E3": "this measurement",
+  "E5b": "this measurement",
+  "E5c_30k": "this measurement",
+  "E5c_60k": "this measurement",
+  "E5c_100k": "this measurement",
+  "s4_25k": "this measurement",
+  "s4_50k": "this measurement"
+ },
+ "weights": {
+  "bayer_public": {
+   "path": "models/public/DenoiserTrainingBayerToProfiledRGB_4ch_2024-02-21-bayer_ms-ssim_mgout_notrans_valeither_-4/saved_models/iter_4350000.pt",
+   "sha256": "c1f7de3de24cb12f4803ee65e11cfb467e9a5b80c3cb7126746ef026106c15e0"
+  },
+  "A": {
+   "path": "models/loss_check_a_linear_msssim/checkpoint_100000.pt",
+   "sha256": "ec610c449e4da02c8df6c4d72c49019c1a14670368a91e5769c67406599e71ba",
+   "step": 100000
+  },
+  "E3": {
+   "path": "models/loss_check_e3_detail_all/checkpoint_30000.pt",
+   "sha256": "13a4bd8bb1724c92b0fc90bef74544c80e17e281f4061051f998fdebf0354631",
+   "step": 30000
+  },
+  "E5b": {
+   "path": "models/loss_check_e5b_binned_all/checkpoint_30000.pt",
+   "sha256": "cb1b42b9ef2cd4d9b580f7e3b72ad71fd802c35fad6f7762efce3a01ea328a3b",
+   "step": 30000
+  },
+  "E5c_30k": {
+   "path": "models/loss_check_e5c_binned_all_lr3e-4/checkpoint_30000.pt",
+   "sha256": "e31161012161ed535bb771262368589ef32ed87d33b743f041c4e6ae65b4528c",
+   "step": 30000
+  },
+  "E5c_60k": {
+   "path": "models/loss_check_e5c_binned_all_lr3e-4/checkpoint_60000.pt",
+   "sha256": "be34d37279811679965cc294a3f021d356be4e4f91f6f114c7c790c304c9473c",
+   "step": 60000
+  },
+  "E5c_100k": {
+   "path": "models/loss_check_e5c_binned_all_lr3e-4/checkpoint_100000.pt",
+   "sha256": "1e90e13d721b200a136da12f9557ee401c711bfd8b4dc4a2c66d3b679fcba49a",
+   "step": 100000
+  },
+  "s4_25k": {
+   "path": "models/fine_tune_e5c_cosine/checkpoint_25000.pt",
+   "sha256": "0e925bc96e4551b1769cdb239a29ee7257c3a85bf82b31d225e5b4c7256813d9",
+   "step": 25000
+  },
+  "s4_50k": {
+   "path": "models/fine_tune_e5c_cosine/checkpoint_50000.pt",
+   "sha256": "d6dd9c012f0bb3364f85776cc08debac4ff9f8ab74bdfdb88589f0cfcba1a98b",
+   "step": 50000
+  }
+ },
+ "pairs": 54,
+ "main_test_set": {
+  "pairs": 54,
+  "identity_pairs": 4,
+  "demosaicnet": {
+   "input": {
+    "developed_msssim": 0.6136187085950816,
+    "developed_psnr": 24.864644657988816
+   },
+   "bayer_public": {
+    "developed_msssim": 0.9668944665679226,
+    "developed_psnr": 34.6897344476549
+   },
+   "A": {
+    "developed_msssim": 0.9628967962883137,
+    "developed_psnr": 34.903377832026436
+   },
+   "E3": {
+    "developed_msssim": 0.9666478137175242,
+    "developed_psnr": 34.35105443943391
+   },
+   "E5b": {
+    "developed_msssim": 0.9663285668249484,
+    "developed_psnr": 34.471169849351206
+   },
+   "E5c_30k": {
+    "developed_msssim": 0.9602424380955873,
+    "developed_psnr": 33.472809450235566
+   },
+   "E5c_60k": {
+    "developed_msssim": 0.9553165998723772,
+    "developed_psnr": 32.41568666946566
+   },
+   "E5c_100k": {
+    "developed_msssim": 0.9463023410903083,
+    "developed_psnr": 30.447987558549894
+   },
+   "s4_25k": {
+    "developed_msssim": 0.9507744212945303,
+    "developed_psnr": 30.837350608879444
+   },
+   "s4_50k": {
+    "developed_msssim": 0.9438765777481927,
+    "developed_psnr": 28.559616190419558
+   }
+  },
+  "authors_ea": {
+   "input": {
+    "developed_msssim": 0.6134951254007993,
+    "developed_psnr": 24.918703287600607,
+    "manproc_msssim": 0.7609514169119023,
+    "manproc_psnr": 26.900858532114142
+   },
+   "bayer_public": {
+    "developed_msssim": 0.9674525912161227,
+    "developed_psnr": 35.11565984236711,
+    "manproc_msssim": 0.9764603972434998,
+    "manproc_psnr": 33.38625899704669
+   },
+   "A": {
+    "developed_msssim": 0.9629887077543471,
+    "developed_psnr": 34.97190884979701,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E3": {
+    "developed_msssim": 0.9668555701220477,
+    "developed_psnr": 34.474980627261154,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5b": {
+    "developed_msssim": 0.9664388961262174,
+    "developed_psnr": 34.53103424933593,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5c_30k": {
+    "developed_msssim": 0.9602468609809875,
+    "developed_psnr": 33.414544449647124,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5c_60k": {
+    "developed_msssim": 0.9552971764847085,
+    "developed_psnr": 32.31838132811427,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5c_100k": {
+    "developed_msssim": 0.9461321334044138,
+    "developed_psnr": 30.28036064474401,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "s4_25k": {
+    "developed_msssim": 0.9505963755978478,
+    "developed_psnr": 30.639452882128147,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "s4_50k": {
+    "developed_msssim": 0.9436318730866468,
+    "developed_psnr": 28.388574055175678,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   }
+  }
+ },
+ "held_out_camera": {
+  "pairs": 0,
+  "identity_pairs": 0,
+  "demosaicnet": {
+   "input": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "bayer_public": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "A": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "E3": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "E5b": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "E5c_30k": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "E5c_60k": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "E5c_100k": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "s4_25k": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "s4_50k": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   }
+  },
+  "authors_ea": {
+   "input": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "bayer_public": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "A": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E3": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5b": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5c_30k": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5c_60k": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5c_100k": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "s4_25k": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "s4_50k": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   }
+  }
+ },
+ "identity_main_test_set": {
+  "pairs": 4,
+  "identity_pairs": 4,
+  "demosaicnet": {
+   "input": {
+    "developed_msssim": 0.9977377206087112,
+    "developed_psnr": null
+   },
+   "bayer_public": {
+    "developed_msssim": 0.9901108294725418,
+    "developed_psnr": null
+   },
+   "A": {
+    "developed_msssim": 0.9895258247852325,
+    "developed_psnr": null
+   },
+   "E3": {
+    "developed_msssim": 0.9894115477800369,
+    "developed_psnr": null
+   },
+   "E5b": {
+    "developed_msssim": 0.9924265891313553,
+    "developed_psnr": null
+   },
+   "E5c_30k": {
+    "developed_msssim": 0.992412269115448,
+    "developed_psnr": null
+   },
+   "E5c_60k": {
+    "developed_msssim": 0.9904663562774658,
+    "developed_psnr": null
+   },
+   "E5c_100k": {
+    "developed_msssim": 0.9944389015436172,
+    "developed_psnr": null
+   },
+   "s4_25k": {
+    "developed_msssim": 0.9938373118638992,
+    "developed_psnr": null
+   },
+   "s4_50k": {
+    "developed_msssim": 0.9934910386800766,
+    "developed_psnr": null
+   }
+  },
+  "authors_ea": {
+   "input": {
+    "developed_msssim": 1.0,
+    "developed_psnr": null,
+    "manproc_msssim": 1.0,
+    "manproc_psnr": null
+   },
+   "bayer_public": {
+    "developed_msssim": 0.9905731678009033,
+    "developed_psnr": null,
+    "manproc_msssim": 0.9925801604986191,
+    "manproc_psnr": null
+   },
+   "A": {
+    "developed_msssim": 0.9892443120479584,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E3": {
+    "developed_msssim": 0.9891953766345978,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5b": {
+    "developed_msssim": 0.9920204132795334,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5c_30k": {
+    "developed_msssim": 0.991644561290741,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5c_60k": {
+    "developed_msssim": 0.9896996021270752,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5c_100k": {
+    "developed_msssim": 0.9930031299591064,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "s4_25k": {
+    "developed_msssim": 0.9926116913557053,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "s4_50k": {
+    "developed_msssim": 0.9922005534172058,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   }
+  }
+ },
+ "identity_held_out_camera": {
+  "pairs": 0,
+  "identity_pairs": 0,
+  "demosaicnet": {
+   "input": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "bayer_public": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "A": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "E3": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "E5b": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "E5c_30k": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "E5c_60k": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "E5c_100k": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "s4_25k": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   },
+   "s4_50k": {
+    "developed_msssim": null,
+    "developed_psnr": null
+   }
+  },
+  "authors_ea": {
+   "input": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "bayer_public": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "A": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E3": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5b": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5c_30k": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5c_60k": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "E5c_100k": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "s4_25k": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   },
+   "s4_50k": {
+    "developed_msssim": null,
+    "developed_psnr": null,
+    "manproc_msssim": null,
+    "manproc_psnr": null
+   }
+  }
+ },
+ "noise_bins_main_test_set": {
+  "0 <= score < 0.85": {
+   "pairs": 10,
+   "identity_pairs": 0,
+   "demosaicnet": {
+    "input": {
+     "developed_msssim": 0.14672305285930634,
+     "developed_psnr": 12.535858709114112
+    },
+    "bayer_public": {
+     "developed_msssim": 0.9212064027786255,
+     "developed_psnr": 27.772919622727862
+    },
+    "A": {
+     "developed_msssim": 0.9031818687915802,
+     "developed_psnr": 28.3026208137411
+    },
+    "E3": {
+     "developed_msssim": 0.9214969754219056,
+     "developed_psnr": 25.88616306211667
+    },
+    "E5b": {
+     "developed_msssim": 0.9201076865196228,
+     "developed_psnr": 26.097684166369607
+    },
+    "E5c_30k": {
+     "developed_msssim": 0.9018245697021484,
+     "developed_psnr": 23.746440491122293
+    },
+    "E5c_60k": {
+     "developed_msssim": 0.886940735578537,
+     "developed_psnr": 21.76568529446279
+    },
+    "E5c_100k": {
+     "developed_msssim": 0.8613105595111847,
+     "developed_psnr": 18.705548240604166
+    },
+    "s4_25k": {
+     "developed_msssim": 0.8756364285945892,
+     "developed_psnr": 19.33504131333085
+    },
+    "s4_50k": {
+     "developed_msssim": 0.8622770726680755,
+     "developed_psnr": 16.637880982778768
+    }
+   },
+   "authors_ea": {
+    "input": {
+     "developed_msssim": 0.14633791521191597,
+     "developed_psnr": 12.538296205136056,
+     "manproc_msssim": 0.2787054985761642,
+     "manproc_psnr": 16.604044765947954
+    },
+    "bayer_public": {
+     "developed_msssim": 0.9218172311782837,
+     "developed_psnr": 27.866296147539337,
+     "manproc_msssim": 0.9484274744987488,
+     "manproc_psnr": 30.332488601993116
+    },
+    "A": {
+     "developed_msssim": 0.9036991953849792,
+     "developed_psnr": 28.376128909175996,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E3": {
+     "developed_msssim": 0.9220430195331574,
+     "developed_psnr": 25.964013475686585,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": 0.9206132233142853,
+     "developed_psnr": 26.168385328758553,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": 0.9024511396884918,
+     "developed_psnr": 23.80973538342898,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": 0.8875203788280487,
+     "developed_psnr": 21.81549356802303,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": 0.8619277596473693,
+     "developed_psnr": 18.731306862804075,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": 0.8762555122375488,
+     "developed_psnr": 19.363259030048475,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": 0.8628749191761017,
+     "developed_psnr": 16.653640527135668,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    }
+   }
+  },
+  "0.85 <= score < 0.97": {
+   "pairs": 8,
+   "identity_pairs": 0,
+   "demosaicnet": {
+    "input": {
+     "developed_msssim": 0.2703720461577177,
+     "developed_psnr": 16.368921632400962
+    },
+    "bayer_public": {
+     "developed_msssim": 0.9507779479026794,
+     "developed_psnr": 31.54914622531353
+    },
+    "A": {
+     "developed_msssim": 0.9489767178893089,
+     "developed_psnr": 31.813889133714646
+    },
+    "E3": {
+     "developed_msssim": 0.9487266018986702,
+     "developed_psnr": 30.615855275369988
+    },
+    "E5b": {
+     "developed_msssim": 0.947956919670105,
+     "developed_psnr": 30.764151171066526
+    },
+    "E5c_30k": {
+     "developed_msssim": 0.9366032406687737,
+     "developed_psnr": 28.722667906463023
+    },
+    "E5c_60k": {
+     "developed_msssim": 0.9261614233255386,
+     "developed_psnr": 26.446900337597885
+    },
+    "E5c_100k": {
+     "developed_msssim": 0.9088615998625755,
+     "developed_psnr": 22.57806294658166
+    },
+    "s4_25k": {
+     "developed_msssim": 0.9152378141880035,
+     "developed_psnr": 23.351375173779793
+    },
+    "s4_50k": {
+     "developed_msssim": 0.9004870504140854,
+     "developed_psnr": 19.689225098188356
+    }
+   },
+   "authors_ea": {
+    "input": {
+     "developed_msssim": 0.2698242701590061,
+     "developed_psnr": 16.37144776445737,
+     "manproc_msssim": 0.523103192448616,
+     "manproc_psnr": 20.46699692316558
+    },
+    "bayer_public": {
+     "developed_msssim": 0.9517577812075615,
+     "developed_psnr": 31.81158136344535,
+     "manproc_msssim": 0.9654439687728882,
+     "manproc_psnr": 31.83637347908149
+    },
+    "A": {
+     "developed_msssim": 0.9497122317552567,
+     "developed_psnr": 31.983966114754008,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E3": {
+     "developed_msssim": 0.9495358541607857,
+     "developed_psnr": 30.8104114084606,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": 0.9487060755491257,
+     "developed_psnr": 30.946572978459084,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": 0.9373959973454475,
+     "developed_psnr": 28.854070446012418,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": 0.927000917494297,
+     "developed_psnr": 26.55151614438423,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": 0.9096768721938133,
+     "developed_psnr": 22.628950526856876,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": 0.9159947037696838,
+     "developed_psnr": 23.40282519586969,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": 0.9012492075562477,
+     "developed_psnr": 19.713903902873266,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    }
+   }
+  },
+  "0.97 <= score < 0.99": {
+   "pairs": 6,
+   "identity_pairs": 0,
+   "demosaicnet": {
+    "input": {
+     "developed_msssim": 0.4800950388113658,
+     "developed_psnr": 21.342778377321654
+    },
+    "bayer_public": {
+     "developed_msssim": 0.972050795952479,
+     "developed_psnr": 35.69018305157359
+    },
+    "A": {
+     "developed_msssim": 0.9706007540225983,
+     "developed_psnr": 35.49944379082496
+    },
+    "E3": {
+     "developed_msssim": 0.9716968238353729,
+     "developed_psnr": 35.69607792433972
+    },
+    "E5b": {
+     "developed_msssim": 0.9712453285853068,
+     "developed_psnr": 35.719350877928875
+    },
+    "E5c_30k": {
+     "developed_msssim": 0.9662410517533621,
+     "developed_psnr": 34.506906130311954
+    },
+    "E5c_60k": {
+     "developed_msssim": 0.962441086769104,
+     "developed_psnr": 33.075817161959804
+    },
+    "E5c_100k": {
+     "developed_msssim": 0.9525619447231293,
+     "developed_psnr": 29.39667050165374
+    },
+    "s4_25k": {
+     "developed_msssim": 0.9554752012093862,
+     "developed_psnr": 29.90771397450328
+    },
+    "s4_50k": {
+     "developed_msssim": 0.944010337193807,
+     "developed_psnr": 25.781511791405922
+    }
+   },
+   "authors_ea": {
+    "input": {
+     "developed_msssim": 0.47969276706377667,
+     "developed_psnr": 21.351033931424027,
+     "manproc_msssim": 0.8210706412792206,
+     "manproc_psnr": 24.98234247422872
+    },
+    "bayer_public": {
+     "developed_msssim": 0.9730857908725739,
+     "developed_psnr": 36.22960061323851,
+     "manproc_msssim": 0.9786382615566254,
+     "manproc_psnr": 33.667674068729475
+    },
+    "A": {
+     "developed_msssim": 0.9710415601730347,
+     "developed_psnr": 35.69367337521997,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E3": {
+     "developed_msssim": 0.9723982214927673,
+     "developed_psnr": 35.973852584535045,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": 0.971871425708135,
+     "developed_psnr": 35.9556742063176,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": 0.9667997856934866,
+     "developed_psnr": 34.66735527247477,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": 0.9630403816699982,
+     "developed_psnr": 33.250890876655795,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": 0.9530501862366995,
+     "developed_psnr": 29.508001670784754,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": 0.9558274447917938,
+     "developed_psnr": 29.99695903807496,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": 0.9443188707033793,
+     "developed_psnr": 25.82680792209643,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    }
+   }
+  },
+  "0.99 <= score < 0.9975": {
+   "pairs": 8,
+   "identity_pairs": 0,
+   "demosaicnet": {
+    "input": {
+     "developed_msssim": 0.7233705073595047,
+     "developed_psnr": 27.435939932772712
+    },
+    "bayer_public": {
+     "developed_msssim": 0.9820451065897942,
+     "developed_psnr": 37.42050019592911
+    },
+    "A": {
+     "developed_msssim": 0.9814434573054314,
+     "developed_psnr": 37.44104758499959
+    },
+    "E3": {
+     "developed_msssim": 0.9821508303284645,
+     "developed_psnr": 37.66903684027777
+    },
+    "E5b": {
+     "developed_msssim": 0.9820824861526489,
+     "developed_psnr": 37.7727604263892
+    },
+    "E5c_30k": {
+     "developed_msssim": 0.9807301387190819,
+     "developed_psnr": 37.56573214563315
+    },
+    "E5c_60k": {
+     "developed_msssim": 0.9792646765708923,
+     "developed_psnr": 36.619553704494244
+    },
+    "E5c_100k": {
+     "developed_msssim": 0.9766191765666008,
+     "developed_psnr": 34.97837862079124
+    },
+    "s4_25k": {
+     "developed_msssim": 0.9773118793964386,
+     "developed_psnr": 34.974793861277135
+    },
+    "s4_50k": {
+     "developed_msssim": 0.972085177898407,
+     "developed_psnr": 32.27013171474291
+    }
+   },
+   "authors_ea": {
+    "input": {
+     "developed_msssim": 0.7225634977221489,
+     "developed_psnr": 27.38836340963294,
+     "manproc_msssim": 0.9385509863495827,
+     "manproc_psnr": 29.18338833665335
+    },
+    "bayer_public": {
+     "developed_msssim": 0.9822885394096375,
+     "developed_psnr": 37.819074923444155,
+     "manproc_msssim": 0.9837526828050613,
+     "manproc_psnr": 33.735800909819204
+    },
+    "A": {
+     "developed_msssim": 0.9811155274510384,
+     "developed_psnr": 37.500175212748985,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E3": {
+     "developed_msssim": 0.9820285737514496,
+     "developed_psnr": 37.81453442810247,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": 0.9818509146571159,
+     "developed_psnr": 37.83137099408894,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": 0.9803511202335358,
+     "developed_psnr": 37.47489400955447,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": 0.9788739085197449,
+     "developed_psnr": 36.58318660139719,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": 0.976093627512455,
+     "developed_psnr": 34.94556829773731,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": 0.9766385406255722,
+     "developed_psnr": 34.89415557234919,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": 0.9712751135230064,
+     "developed_psnr": 32.2418288535161,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    }
+   }
+  },
+  "0.9975 <= score <= 1": {
+   "pairs": 22,
+   "identity_pairs": 4,
+   "demosaicnet": {
+    "input": {
+     "developed_msssim": 0.9471667761152441,
+     "developed_psnr": 35.5210046123878
+    },
+    "bayer_public": {
+     "developed_msssim": 0.9866067252375863,
+     "developed_psnr": 38.38106980422688
+    },
+    "A": {
+     "developed_msssim": 0.9862564720890739,
+     "developed_psnr": 38.617029276069275
+    },
+    "E3": {
+     "developed_msssim": 0.9866732629862699,
+     "developed_psnr": 38.79086038218381
+    },
+    "E5b": {
+     "developed_msssim": 0.9869490238753232,
+     "developed_psnr": 38.88723626425806
+    },
+    "E5c_30k": {
+     "developed_msssim": 0.9863060279326006,
+     "developed_psnr": 38.82374613343967
+    },
+    "E5c_60k": {
+     "developed_msssim": 0.9863469871607694,
+     "developed_psnr": 38.89671917889771
+    },
+    "E5c_100k": {
+     "developed_msssim": 0.985818315636028,
+     "developed_psnr": 38.80624110958596
+    },
+    "s4_25k": {
+     "developed_msssim": 0.9869184412739493,
+     "developed_psnr": 39.025637843510474
+    },
+    "s4_50k": {
+     "developed_msssim": 0.986451119184494,
+     "developed_psnr": 38.40211524673914
+    }
+   },
+   "authors_ea": {
+    "input": {
+     "developed_msssim": 0.9476408579132773,
+     "developed_psnr": 35.687083852633506,
+     "manproc_msssim": 0.9856665567918257,
+     "manproc_psnr": 35.10585233457243
+    },
+    "bayer_public": {
+     "developed_msssim": 0.9869719228961251,
+     "developed_psnr": 39.03873203713417,
+     "manproc_msssim": 0.9899629056453705,
+     "manproc_psnr": 35.52247912826782
+    },
+    "A": {
+     "developed_msssim": 0.9859784922816537,
+     "developed_psnr": 38.59994347370815,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E3": {
+     "developed_msssim": 0.9864939017729326,
+     "developed_psnr": 38.84812302258207,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": 0.986631076444279,
+     "developed_psnr": 38.828347897828955,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": 0.9857292473316193,
+     "developed_psnr": 38.55522340937126,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": 0.9857092201709747,
+     "developed_psnr": 38.51006463884983,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": 0.9848814769224687,
+     "developed_psnr": 38.28115572153877,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": 0.9860735698179766,
+     "developed_psnr": 38.44346963509567,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": 0.9855120073665272,
+     "developed_psnr": 37.90475488354076,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    }
+   }
+  }
+ },
+ "noise_bins_held_out_camera": {
+  "0 <= score < 0.85": {
+   "pairs": 0,
+   "identity_pairs": 0,
+   "demosaicnet": {
+    "input": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "bayer_public": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "A": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E3": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    }
+   },
+   "authors_ea": {
+    "input": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "bayer_public": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "A": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E3": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    }
+   }
+  },
+  "0.85 <= score < 0.97": {
+   "pairs": 0,
+   "identity_pairs": 0,
+   "demosaicnet": {
+    "input": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "bayer_public": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "A": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E3": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    }
+   },
+   "authors_ea": {
+    "input": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "bayer_public": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "A": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E3": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    }
+   }
+  },
+  "0.97 <= score < 0.99": {
+   "pairs": 0,
+   "identity_pairs": 0,
+   "demosaicnet": {
+    "input": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "bayer_public": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "A": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E3": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    }
+   },
+   "authors_ea": {
+    "input": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "bayer_public": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "A": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E3": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    }
+   }
+  },
+  "0.99 <= score < 0.9975": {
+   "pairs": 0,
+   "identity_pairs": 0,
+   "demosaicnet": {
+    "input": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "bayer_public": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "A": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E3": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    }
+   },
+   "authors_ea": {
+    "input": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "bayer_public": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "A": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E3": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    }
+   }
+  },
+  "0.9975 <= score <= 1": {
+   "pairs": 0,
+   "identity_pairs": 0,
+   "demosaicnet": {
+    "input": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "bayer_public": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "A": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E3": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": null,
+     "developed_psnr": null
+    }
+   },
+   "authors_ea": {
+    "input": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "bayer_public": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "A": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E3": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": null,
+     "developed_psnr": null,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    }
+   }
+  }
+ },
+ "cameras": {
+  "ILCE-7C": {
+   "pairs": 54,
+   "identity_pairs": 4,
+   "demosaicnet": {
+    "input": {
+     "developed_msssim": 0.6136187085950816,
+     "developed_psnr": 24.864644657988816
+    },
+    "bayer_public": {
+     "developed_msssim": 0.9668944665679226,
+     "developed_psnr": 34.6897344476549
+    },
+    "A": {
+     "developed_msssim": 0.9628967962883137,
+     "developed_psnr": 34.903377832026436
+    },
+    "E3": {
+     "developed_msssim": 0.9666478137175242,
+     "developed_psnr": 34.35105443943391
+    },
+    "E5b": {
+     "developed_msssim": 0.9663285668249484,
+     "developed_psnr": 34.471169849351206
+    },
+    "E5c_30k": {
+     "developed_msssim": 0.9602424380955873,
+     "developed_psnr": 33.472809450235566
+    },
+    "E5c_60k": {
+     "developed_msssim": 0.9553165998723772,
+     "developed_psnr": 32.41568666946566
+    },
+    "E5c_100k": {
+     "developed_msssim": 0.9463023410903083,
+     "developed_psnr": 30.447987558549894
+    },
+    "s4_25k": {
+     "developed_msssim": 0.9507744212945303,
+     "developed_psnr": 30.837350608879444
+    },
+    "s4_50k": {
+     "developed_msssim": 0.9438765777481927,
+     "developed_psnr": 28.559616190419558
+    }
+   },
+   "authors_ea": {
+    "input": {
+     "developed_msssim": 0.6134951254007993,
+     "developed_psnr": 24.918703287600607,
+     "manproc_msssim": 0.7609514169119023,
+     "manproc_psnr": 26.900858532114142
+    },
+    "bayer_public": {
+     "developed_msssim": 0.9674525912161227,
+     "developed_psnr": 35.11565984236711,
+     "manproc_msssim": 0.9764603972434998,
+     "manproc_psnr": 33.38625899704669
+    },
+    "A": {
+     "developed_msssim": 0.9629887077543471,
+     "developed_psnr": 34.97190884979701,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E3": {
+     "developed_msssim": 0.9668555701220477,
+     "developed_psnr": 34.474980627261154,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5b": {
+     "developed_msssim": 0.9664388961262174,
+     "developed_psnr": 34.53103424933593,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_30k": {
+     "developed_msssim": 0.9602468609809875,
+     "developed_psnr": 33.414544449647124,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_60k": {
+     "developed_msssim": 0.9552971764847085,
+     "developed_psnr": 32.31838132811427,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "E5c_100k": {
+     "developed_msssim": 0.9461321334044138,
+     "developed_psnr": 30.28036064474401,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_25k": {
+     "developed_msssim": 0.9505963755978478,
+     "developed_psnr": 30.639452882128147,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    },
+    "s4_50k": {
+     "developed_msssim": 0.9436318730866468,
+     "developed_psnr": 28.388574055175678,
+     "manproc_msssim": null,
+     "manproc_psnr": null
+    }
+   }
+  }
+ },
+ "better_than_public_main_test_set": {
+  "A.demosaicnet.developed_msssim": {
+   "better": 4,
+   "pairs": 50
+  },
+  "A.demosaicnet.developed_psnr": {
+   "better": 34,
+   "pairs": 50
+  },
+  "A.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 50
+  },
+  "A.authors_ea.developed_psnr": {
+   "better": 12,
+   "pairs": 50
+  },
+  "E3.demosaicnet.developed_msssim": {
+   "better": 23,
+   "pairs": 50
+  },
+  "E3.demosaicnet.developed_psnr": {
+   "better": 28,
+   "pairs": 50
+  },
+  "E3.authors_ea.developed_msssim": {
+   "better": 5,
+   "pairs": 50
+  },
+  "E3.authors_ea.developed_psnr": {
+   "better": 11,
+   "pairs": 50
+  },
+  "E5b.demosaicnet.developed_msssim": {
+   "better": 15,
+   "pairs": 50
+  },
+  "E5b.demosaicnet.developed_psnr": {
+   "better": 30,
+   "pairs": 50
+  },
+  "E5b.authors_ea.developed_msssim": {
+   "better": 2,
+   "pairs": 50
+  },
+  "E5b.authors_ea.developed_psnr": {
+   "better": 12,
+   "pairs": 50
+  },
+  "E5c_30k.demosaicnet.developed_msssim": {
+   "better": 2,
+   "pairs": 50
+  },
+  "E5c_30k.demosaicnet.developed_psnr": {
+   "better": 25,
+   "pairs": 50
+  },
+  "E5c_30k.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 50
+  },
+  "E5c_30k.authors_ea.developed_psnr": {
+   "better": 2,
+   "pairs": 50
+  },
+  "E5c_60k.demosaicnet.developed_msssim": {
+   "better": 4,
+   "pairs": 50
+  },
+  "E5c_60k.demosaicnet.developed_psnr": {
+   "better": 17,
+   "pairs": 50
+  },
+  "E5c_60k.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 50
+  },
+  "E5c_60k.authors_ea.developed_psnr": {
+   "better": 0,
+   "pairs": 50
+  },
+  "E5c_100k.demosaicnet.developed_msssim": {
+   "better": 0,
+   "pairs": 50
+  },
+  "E5c_100k.demosaicnet.developed_psnr": {
+   "better": 15,
+   "pairs": 50
+  },
+  "E5c_100k.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 50
+  },
+  "E5c_100k.authors_ea.developed_psnr": {
+   "better": 0,
+   "pairs": 50
+  },
+  "s4_25k.demosaicnet.developed_msssim": {
+   "better": 5,
+   "pairs": 50
+  },
+  "s4_25k.demosaicnet.developed_psnr": {
+   "better": 15,
+   "pairs": 50
+  },
+  "s4_25k.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 50
+  },
+  "s4_25k.authors_ea.developed_psnr": {
+   "better": 3,
+   "pairs": 50
+  },
+  "s4_50k.demosaicnet.developed_msssim": {
+   "better": 7,
+   "pairs": 50
+  },
+  "s4_50k.demosaicnet.developed_psnr": {
+   "better": 10,
+   "pairs": 50
+  },
+  "s4_50k.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 50
+  },
+  "s4_50k.authors_ea.developed_psnr": {
+   "better": 3,
+   "pairs": 50
+  }
+ },
+ "better_than_public_held_out_camera": {
+  "A.demosaicnet.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "A.demosaicnet.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "A.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "A.authors_ea.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E3.demosaicnet.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E3.demosaicnet.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E3.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E3.authors_ea.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5b.demosaicnet.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5b.demosaicnet.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5b.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5b.authors_ea.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5c_30k.demosaicnet.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5c_30k.demosaicnet.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5c_30k.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5c_30k.authors_ea.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5c_60k.demosaicnet.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5c_60k.demosaicnet.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5c_60k.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5c_60k.authors_ea.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5c_100k.demosaicnet.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5c_100k.demosaicnet.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5c_100k.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "E5c_100k.authors_ea.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "s4_25k.demosaicnet.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "s4_25k.demosaicnet.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "s4_25k.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "s4_25k.authors_ea.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "s4_50k.demosaicnet.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "s4_50k.demosaicnet.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  },
+  "s4_50k.authors_ea.developed_msssim": {
+   "better": 0,
+   "pairs": 0
+  },
+  "s4_50k.authors_ea.developed_psnr": {
+   "better": 0,
+   "pairs": 0
+  }
+ },
+ "reproduction_check": {
+  "values_compared": 218,
+  "largest_absolute_difference": {
+   "input.developed_msssim": 0.0,
+   "input.developed_psnr": 0.0,
+   "bayer_public.developed_msssim": 0.0,
+   "bayer_public.developed_psnr": 0.0,
+   "bayer_public.manproc_msssim": 0.0,
+   "bayer_public.manproc_psnr": 0.0
+  },
+  "tolerance": {
+   "msssim": 0.0001,
+   "psnr": 0.01
+  },
+  "failures": {}
+ },
+ "seconds_of_measurement": 1975
+}

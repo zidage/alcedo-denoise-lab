@@ -1,0 +1,22 @@
+{
+ "command": "python -I scripts/loss_check/detail_energy.py --outputs build/tmp/reference_measurement/demosaic_outputs --methods demosaicnet opencv_ea public_bayer loss_check_a s4_25k m2_45k --out results/fine_tune/detail_energy_msssim.json",
+ "gain_ev": 1.5,
+ "relative_laplacian_rms": {
+  "_DSC0729": {
+   "demosaicnet": 1.0,
+   "opencv_ea": 0.651652545330188,
+   "public_bayer": 0.46277877592041267,
+   "loss_check_a": 0.54175111219234,
+   "s4_25k": 0.7995635380378754,
+   "m2_45k": 0.6094189480485037
+  },
+  "P1832629": {
+   "demosaicnet": 1.0,
+   "opencv_ea": 0.6955942114914607,
+   "public_bayer": 0.4578544863088083,
+   "loss_check_a": 0.5313950373184353,
+   "s4_25k": 0.7721469651349728,
+   "m2_45k": 0.5917957111720517
+  }
+ }
+}

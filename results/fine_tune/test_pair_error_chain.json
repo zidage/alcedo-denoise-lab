@@ -1,0 +1,485 @@
+{
+ "description": "Split the error of the public weights and of checkpoints on one test pair by brightness and scale.",
+ "command": "python -I scripts/loss_check/test_pair_error.py --authors-repo build/tmp/reference_measurement/rawnind_jddc --darktable-cli build/tmp/reference_measurement/darktable-5.0.1/bin/darktable-cli.exe --darktable-configdir build/tmp/reference_measurement/darktable_config --tmp-dir build/tmp/fine_tune_test_split/work --checkpoint A=models/loss_check_a_linear_msssim/checkpoint_100000.pt --checkpoint E3=models/loss_check_e3_detail_all/checkpoint_30000.pt --checkpoint E5b=models/loss_check_e5b_binned_all/checkpoint_30000.pt --checkpoint E5c_30k=models/loss_check_e5c_binned_all_lr3e-4/checkpoint_30000.pt --checkpoint E5c_60k=models/loss_check_e5c_binned_all_lr3e-4/checkpoint_60000.pt --checkpoint E5c_100k=models/loss_check_e5c_binned_all_lr3e-4/checkpoint_100000.pt --checkpoint s4_25k=models/fine_tune_e5c_cosine/checkpoint_25000.pt --checkpoint s4_50k=models/fine_tune_e5c_cosine/checkpoint_50000.pt --out results/fine_tune/test_pair_error_chain.json --sheet-dir results/fine_tune/images/test_split/chain --f-file src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=221c23e21a205b6bfec5803c567a008b7246c9a5.arw",
+ "blur_px": 16,
+ "pairs": [
+  {
+   "scene": "TEST_MuseeL-bluebirds-A7C",
+   "camera": "ILCE-7C",
+   "f_file": "src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=221c23e21a205b6bfec5803c567a008b7246c9a5.arw",
+   "rgb_msssim_score": 0.8096990585327148,
+   "raw_gain": 2.1345601081848145,
+   "reference": "demosaicnet",
+   "methods": {
+    "bayer_public": {
+     "developed_psnr": 30.064296983537126,
+     "channel_mean_ratio": [
+      0.9974444508552551,
+      1.0039492845535278,
+      0.9984272718429565
+     ],
+     "developed_psnr_after_channel_gain": 30.06464335750458,
+     "lowpass_share": 0.6978411078453064,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.023158909752964973,
+        0.017618004232645035,
+        0.009071109816432
+       ],
+       "rms_error": 0.030246028676629066
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        -0.016290811821818352,
+        -0.01182919554412365,
+        -0.00330947432667017
+       ],
+       "rms_error": 0.024632254615426064
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.005061756353825331,
+        0.0018532290123403072,
+        -0.0025789388455450535
+       ],
+       "rms_error": 0.042580440640449524
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.00603821873664856,
+        -0.0036841470282524824,
+        -0.005830493289977312
+       ],
+       "rms_error": 0.04587774723768234
+      }
+     },
+     "weights": {
+      "path": "models/public/DenoiserTrainingBayerToProfiledRGB_4ch_2024-02-21-bayer_ms-ssim_mgout_notrans_valeither_-4/saved_models/iter_4350000.pt",
+      "sha256": "c1f7de3de24cb12f4803ee65e11cfb467e9a5b80c3cb7126746ef026106c15e0"
+     }
+    },
+    "A": {
+     "developed_psnr": 30.73037144881897,
+     "channel_mean_ratio": [
+      0.99625164270401,
+      1.0071942806243896,
+      0.9940764307975769
+     ],
+     "developed_psnr_after_channel_gain": 30.728991667683555,
+     "lowpass_share": 0.6369915008544922,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.013561089523136616,
+        0.008222861215472221,
+        0.0028466111980378628
+       ],
+       "rms_error": 0.02569548413157463
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        -0.01690085418522358,
+        -0.015907209366559982,
+        -0.006691308226436377
+       ],
+       "rms_error": 0.027256760746240616
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.004174310714006424,
+        0.0020294981077313423,
+        0.0008201530436053872
+       ],
+       "rms_error": 0.04314962401986122
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.004830501973628998,
+        0.0003024183970410377,
+        -0.0035182363353669643
+       ],
+       "rms_error": 0.04584020748734474
+      }
+     },
+     "weights": {
+      "path": "models/loss_check_a_linear_msssim/checkpoint_100000.pt",
+      "sha256": "ec610c449e4da02c8df6c4d72c49019c1a14670368a91e5769c67406599e71ba"
+     }
+    },
+    "E3": {
+     "developed_psnr": 28.21586701763886,
+     "channel_mean_ratio": [
+      1.0032154321670532,
+      1.0065175294876099,
+      0.9723560214042664
+     ],
+     "developed_psnr_after_channel_gain": 28.230484431972293,
+     "lowpass_share": 0.8124712109565735,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.04263020679354668,
+        0.03532461076974869,
+        0.014661567285656929
+       ],
+       "rms_error": 0.0412682443857193
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        -0.013624347746372223,
+        -0.011294334195554256,
+        -0.007661178708076477
+       ],
+       "rms_error": 0.02333763614296913
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.010159492492675781,
+        -0.0037562816869467497,
+        -0.00760179478675127
+       ],
+       "rms_error": 0.042824845761060715
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.01171453669667244,
+        -0.009104926139116287,
+        -0.013307517394423485
+       ],
+       "rms_error": 0.046857088804244995
+      }
+     },
+     "weights": {
+      "path": "models/loss_check_e3_detail_all/checkpoint_30000.pt",
+      "sha256": "13a4bd8bb1724c92b0fc90bef74544c80e17e281f4061051f998fdebf0354631"
+     }
+    },
+    "E5b": {
+     "developed_psnr": 28.423490281016864,
+     "channel_mean_ratio": [
+      0.9989116191864014,
+      1.0001832246780396,
+      1.0031977891921997
+     ],
+     "developed_psnr_after_channel_gain": 28.4233021381067,
+     "lowpass_share": 0.8022376298904419,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.03920338675379753,
+        0.03259184956550598,
+        0.018395287916064262
+       ],
+       "rms_error": 0.03995126858353615
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        -0.01590975560247898,
+        -0.012915889732539654,
+        -0.001046854304149747
+       ],
+       "rms_error": 0.02373133972287178
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.00947550218552351,
+        -0.0055126016959548,
+        -0.002746672136709094
+       ],
+       "rms_error": 0.04275374487042427
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.011097273789346218,
+        -0.009089130908250809,
+        -0.009042024612426758
+       ],
+       "rms_error": 0.046502791345119476
+      }
+     },
+     "weights": {
+      "path": "models/loss_check_e5b_binned_all/checkpoint_30000.pt",
+      "sha256": "cb1b42b9ef2cd4d9b580f7e3b72ad71fd802c35fad6f7762efce3a01ea328a3b"
+     }
+    },
+    "E5c_30k": {
+     "developed_psnr": 26.044592481491694,
+     "channel_mean_ratio": [
+      1.0088272094726562,
+      0.9832442998886108,
+      1.0134751796722412
+     ],
+     "developed_psnr_after_channel_gain": 26.048841820947878,
+     "lowpass_share": 0.8784508109092712,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.066677525639534,
+        0.05186950042843819,
+        0.027596067637205124
+       ],
+       "rms_error": 0.055543746799230576
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        -0.014944562688469887,
+        -0.014914073050022125,
+        -0.001305654994212091
+       ],
+       "rms_error": 0.0257958322763443
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.014667550101876259,
+        -0.015147958882153034,
+        -0.003346041077747941
+       ],
+       "rms_error": 0.04442372918128967
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.016682682558894157,
+        -0.02215595729649067,
+        -0.01012471318244934
+       ],
+       "rms_error": 0.04991120845079422
+      }
+     },
+     "weights": {
+      "path": "models/loss_check_e5c_binned_all_lr3e-4/checkpoint_30000.pt",
+      "sha256": "e31161012161ed535bb771262368589ef32ed87d33b743f041c4e6ae65b4528c"
+     }
+    },
+    "E5c_60k": {
+     "developed_psnr": 23.76981092333341,
+     "channel_mean_ratio": [
+      1.0210212469100952,
+      1.0004653930664062,
+      0.9279634952545166
+     ],
+     "developed_psnr_after_channel_gain": 23.818327301162675,
+     "lowpass_share": 0.9173451662063599,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.09590088576078415,
+        0.07599768042564392,
+        0.029155658558011055
+       ],
+       "rms_error": 0.0743190124630928
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        0.004703552462160587,
+        0.0014309764374047518,
+        -0.011232541874051094
+       ],
+       "rms_error": 0.025954121723771095
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.025683872401714325,
+        -0.02135532721877098,
+        -0.022675825282931328
+       ],
+       "rms_error": 0.04807986691594124
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.03077271580696106,
+        -0.03233618661761284,
+        -0.033777035772800446
+       ],
+       "rms_error": 0.05790575593709946
+      }
+     },
+     "weights": {
+      "path": "models/loss_check_e5c_binned_all_lr3e-4/checkpoint_60000.pt",
+      "sha256": "be34d37279811679965cc294a3f021d356be4e4f91f6f114c7c790c304c9473c"
+     }
+    },
+    "E5c_100k": {
+     "developed_psnr": 19.992388207437813,
+     "channel_mean_ratio": [
+      1.036495327949524,
+      0.9678922295570374,
+      0.9598379135131836
+     ],
+     "developed_psnr_after_channel_gain": 20.00277523135982,
+     "lowpass_share": 0.9620746374130249,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.13248871266841888,
+        0.11012019962072372,
+        0.07028207182884216
+       ],
+       "rms_error": 0.11534950137138367
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        0.026332128793001175,
+        0.015845967456698418,
+        0.018183372914791107
+       ],
+       "rms_error": 0.04016413167119026
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.045074671506881714,
+        -0.043719518929719925,
+        -0.027966666966676712
+       ],
+       "rms_error": 0.059665415436029434
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.07096271216869354,
+        -0.07783084362745285,
+        -0.07191391289234161
+       ],
+       "rms_error": 0.09319459646940231
+      }
+     },
+     "weights": {
+      "path": "models/loss_check_e5c_binned_all_lr3e-4/checkpoint_100000.pt",
+      "sha256": "1e90e13d721b200a136da12f9557ee401c711bfd8b4dc4a2c66d3b679fcba49a"
+     }
+    },
+    "s4_25k": {
+     "developed_psnr": 20.754772981320254,
+     "channel_mean_ratio": [
+      1.0168269872665405,
+      0.9881320595741272,
+      0.9739103317260742
+     ],
+     "developed_psnr_after_channel_gain": 20.76029776073438,
+     "lowpass_share": 0.9556052088737488,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.12123625725507736,
+        0.10783687233924866,
+        0.0589018277823925
+       ],
+       "rms_error": 0.10575651377439499
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        0.0253308042883873,
+        0.022818585857748985,
+        0.01783084124326706
+       ],
+       "rms_error": 0.037326060235500336
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.039944689720869064,
+        -0.03161618113517761,
+        -0.015576436184346676
+       ],
+       "rms_error": 0.05336553230881691
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.06762275099754333,
+        -0.06787021458148956,
+        -0.0555272102355957
+       ],
+       "rms_error": 0.08411936461925507
+      }
+     },
+     "weights": {
+      "path": "models/fine_tune_e5c_cosine/checkpoint_25000.pt",
+      "sha256": "0e925bc96e4551b1769cdb239a29ee7257c3a85bf82b31d225e5b4c7256813d9"
+     }
+    },
+    "s4_50k": {
+     "developed_psnr": 17.539101100574126,
+     "channel_mean_ratio": [
+      1.035244107246399,
+      0.9791670441627502,
+      0.9349722862243652
+     ],
+     "developed_psnr_after_channel_gain": 17.545556858605746,
+     "lowpass_share": 0.9791913628578186,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.1918419450521469,
+        0.14780853688716888,
+        0.09635424613952637
+       ],
+       "rms_error": 0.1497582048177719
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        0.04780258238315582,
+        0.040411967784166336,
+        0.02940170280635357
+       ],
+       "rms_error": 0.06473902612924576
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.08399531990289688,
+        -0.07072298228740692,
+        -0.04407944902777672
+       ],
+       "rms_error": 0.08455359935760498
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.1345670372247696,
+        -0.1316285878419876,
+        -0.11110825091600418
+       ],
+       "rms_error": 0.14315205812454224
+      }
+     },
+     "weights": {
+      "path": "models/fine_tune_e5c_cosine/checkpoint_50000.pt",
+      "sha256": "d6dd9c012f0bb3364f85776cc08debac4ff9f8ab74bdfdb88589f0cfcba1a98b"
+     }
+    }
+   }
+  }
+ ]
+}

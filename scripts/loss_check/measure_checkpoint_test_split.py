@@ -12,8 +12,10 @@ Input:
 Output:
 - `--out` (`results/fine_tune/test_split_pair_metrics.jsonl`): one line for each pair. A pair
   that is already in the file is not measured again, so the script can continue after a stop.
-- One line for each run in `test_split_runs.jsonl` next to `--out` (command, hashes, time, peak
-  working set, GPU peak).
+- One line for each run in the file of `--out` with `_runs.jsonl` in place of
+  `_pair_metrics.jsonl` (`test_split_runs.jsonl`): command, hashes, time, peak working set.
+- `--scenes S [S ...]` measures only the pairs of these scenes (for example the scenes where a
+  checkpoint has the largest error); the default is all scenes.
 
 Methods, all on the same aligned pair, with the preparation of the method `bayer_public` of
 scripts/reference_measurement/measure_test_split.py (packed Bayer image of the noisy file, aligned,
@@ -112,7 +114,10 @@ def main() -> int:
     parser.add_argument("--tmp-dir", type=Path, required=True)
     parser.add_argument("--out", type=Path, default=Path("results/fine_tune/test_split_pair_metrics.jsonl"))
     parser.add_argument("--limit", type=int, default=0, help="measure at most this many new pairs")
+    parser.add_argument("--scenes", nargs="+", default=None, help="measure only these scenes")
     args = parser.parse_args()
+    if not args.out.name.endswith("_pair_metrics.jsonl"):
+        raise ValueError("--out must end with _pair_metrics.jsonl")
     # load_authors_code changes the working directory, so all paths are absolute before it.
     for name in ("pairs", "rawnind", "bayer_weights", "authors_repo", "darktable_cli",
                  "darktable_configdir", "tmp_dir", "out"):
@@ -160,7 +165,10 @@ def main() -> int:
         for line in args.out.read_text(encoding="utf-8").splitlines():
             record = json.loads(line)
             done.add(f"{record['gt_file']}|{record['f_file']}")
-    todo = [p for p in pairs if p["admitted"] and f"{p['gt_file']}|{p['f_file']}" not in done]
+    todo = [p for p in pairs if p["admitted"] and f"{p['gt_file']}|{p['f_file']}" not in done
+            and (args.scenes is None or p["scene"] in args.scenes)]
+    if args.scenes is not None and not todo and not done:
+        raise RuntimeError(f"no admitted pairs in the scenes {args.scenes}")
     if args.limit:
         todo = todo[:args.limit]
     print(f"{len(todo)} pairs to measure ({len(done)} already in {args.out})", flush=True)
@@ -279,7 +287,8 @@ def main() -> int:
     run_record = dict(run_info, command="python -I " + " ".join(sys.argv), pairs_measured=len(todo),
                       seconds=round(time.time() - run_started),
                       peak_working_set_bytes=getattr(memory, "peak_wset", memory.rss))
-    with args.out.with_name("test_split_runs.jsonl").open("a", encoding="utf-8", newline="\n") as stream:
+    runs_path = args.out.with_name(args.out.name.replace("_pair_metrics.jsonl", "_runs.jsonl"))
+    with runs_path.open("a", encoding="utf-8", newline="\n") as stream:
         stream.write(json.dumps(run_record) + "\n")
     print(f"peak working set {run_record['peak_working_set_bytes'] / 1e9:.2f} GB", flush=True)
     return 0

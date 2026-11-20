@@ -114,6 +114,22 @@ $P scripts/loss_check/train_bayer.py $COMMON --iterations 50000 --val-interval 5
 
 `--seed 1`: other random crops than E5c (seed 0).
 
+## Step 4 with the authors' loss
+
+docs/plan.md, step 4 (decision of the user, 2026-11-20): the same two runs as E5c and step 4 with
+`--loss linear_msssim` in place of `gamma_detail`, on a new pod with the network volume (the
+environment is made again as in step 2):
+
+```bash
+COMMON="--images data/patches/rawnind_bayer_demosaicnet --authors-repo $WORK/rawnind_jddc \
+  --tmp-dir $WORK/loss_check_tmp --loader-workers 16 --loss linear_msssim --pairs all --binned-fraction 0.5 --lr 3e-4"
+$P scripts/loss_check/train_bayer.py $COMMON --iterations 60000 --val-interval 10000 \
+  --run-dir models/fine_tune_msssim_binned_lr3e-4 --results-dir results/fine_tune/fine_tune_msssim_binned_lr3e-4
+$P scripts/loss_check/train_bayer.py $COMMON --iterations 50000 --val-interval 5000 --warmup-steps 0 \
+  --lr-schedule cosine --lr-min 3e-6 --seed 1 --init-checkpoint models/fine_tune_msssim_binned_lr3e-4/checkpoint_60000.pt \
+  --run-dir models/fine_tune_msssim_cosine --results-dir results/fine_tune/fine_tune_msssim_cosine
+```
+
 ## Checks of the softness and of the model of step 4
 
 On the development machine, with the environment of step 1 (`E`, `P`, and `COMMON` as above). The
@@ -144,6 +160,10 @@ time; about 2 hours for the 228 pairs. A stopped run continues from the pairs in
 ```bash
 $P scripts/loss_check/measure_checkpoint_test_split.py $COMMON --tmp-dir build/tmp/fine_tune_test_split/work \
   --checkpoint s4_25k=models/fine_tune_e5c_cosine/checkpoint_25000.pt
+# The same for the checkpoints of steps 3 and 4 on the two dark Sony ILCE-7C scenes only, without
+# darktable (the command with all 8 checkpoints is in results/fine_tune/test_split_dark_scenes_runs.jsonl):
+#   --scenes TEST_MuseeL-bluebirds-A7C TEST_MuseeL-vases-A7C --manproc-methods --checkpoint A=... \
+#   --out results/fine_tune/test_split_dark_scenes_pair_metrics.jsonl
 # Tables, and the reproduction check of the step 1 values of the public weights.
 $P scripts/loss_check/summarize_checkpoint_test_split.py
 # Error by brightness and scale on one pair (run for each pair of results/fine_tune/test_pair_error.json).

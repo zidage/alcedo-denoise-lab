@@ -60,6 +60,22 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   dark areas into a gray haze with large blotches, which is not a color cast. With the darktable
   test of the authors (OpenCV EA reference), the MS-SSIM is 0.9457 (public weights 0.9563)
   (2026-11-19, model of step 4 on the test split).
+- The lift of the dark areas at the highest noise comes from the training of steps 3 and 4 after
+  run A. Run A (the authors' loss) is better than the public weights on the two dark scenes. The
+  gamma detail loss starts the lift (E3: -2.4 dB against A for the pairs with an input MS-SSIM
+  below 0.85), and it grows with each iteration at the learning rate 3e-4: E5c 23.75 dB at
+  30,000, 18.71 dB at 100,000, step 4 16.64 dB at 50,000 (public weights 27.77 dB). The binned
+  pairs alone (E5b against E3, the same learning rate) do not change it (2026-11-19, dark-area
+  error along the runs).
+- The authors' loss with the settings and the schedule of E5c and step 4
+  (`fine_tune_msssim_cosine`, checkpoint 45,000) removes most of the lift: on the 10 noisiest
+  pairs of the two dark scenes it gives 26.58 dB (public weights 27.77, step 4 with the gamma
+  detail loss 19.34). It does not give the sharpness: MTF50 0.249 cycles/px, contrast 0.08 at
+  0.25 cycles/px, binned truth 39.94 dB, fine-detail energy 0.61 and 0.59 of DemosaicNet on the
+  two detail photos (public weights 0.197, 0.01, 38.90, 0.46; step 4 with the gamma detail loss
+  0.340, 0.53, 40.97, 0.80 and 0.77; OpenCV bilinear 0.257, 0.52, 40.58). So the binned pairs give
+  detail above 0.25 cycles/px only with the gamma detail loss (2026-11-20, step 4 with the
+  authors' loss).
 - All UtNet2 runs that train only on camera images remove all detail above 0.25 cycles/px, the
   Nyquist frequency of the packed grid: on a synthetic zone plate they keep at most 0.08 of the
   contrast at 0.25 cycles/px, where DemosaicNet keeps 1.00 and OpenCV EA 0.58. The loss, a 10
@@ -83,6 +99,116 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   does not test the faintest stars of a darker sky (2026-11-19, star photo).
 
 ## Entries
+
+### 2026-11-20 Step 4 with the authors' loss
+
+- **Source**: the checkpoints of training.md, 2026-11-20, step 4 with the authors' loss: phase 1
+  at 60,000 (`M1_60k`) and phase 2 at 25,000, 45,000, and 50,000 (`M2_25k`, `M2_45k`, `M2_50k`).
+  Dark scenes: `measure_checkpoint_test_split.py --scenes TEST_MuseeL-bluebirds-A7C
+  TEST_MuseeL-vases-A7C --manproc-methods` (result
+  `results/fine_tune/test_split_dark_scenes_msssim_pair_metrics.jsonl`); error of the worst pair:
+  `test_pair_error.py` (result `results/fine_tune/test_pair_error_msssim.json`); synthetic check:
+  `synthetic_resolution.py` (result `results/fine_tune/synthetic_resolution_msssim.json`); binned
+  truth: `compare_demosaic.py --checkpoint` (result `results/fine_tune/demosaic_check_msssim.json`).
+  Full commands in the `command` field of the result files. RTX 3080 Laptop GPU.
+- **Result, dark scenes** (developed PSNR in dB against the DemosaicNet reference, the 50 noisy
+  pairs of `MuseeL-bluebirds-A7C` and `MuseeL-vases-A7C`; the values of the public weights, A, and
+  step 4 with the gamma detail loss are from the entry of 2026-11-19, dark-area error along the
+  runs; the public weights were measured again and are equal):
+
+  | Input MS-SSIM (pairs) | Public | A | Step 4 gamma 25k | M1 60k | M2 25k | M2 45k | M2 50k |
+  | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+  | below 0.85 (10) | 27.77 | 28.30 | 19.34 | 25.53 | 25.49 | 26.58 | 26.53 |
+  | 0.85 to 0.97 (8) | 31.55 | 31.81 | 23.35 | 29.97 | 29.74 | 30.70 | 30.66 |
+  | 0.97 to 0.99 (6) | 35.69 | 35.50 | 29.91 | 34.37 | 34.63 | 35.35 | 35.32 |
+  | 0.99 and higher (26) | 38.09 | 38.26 | 37.78 | 37.93 | 37.92 | 38.42 | 38.47 |
+  | All 50, PSNR | 34.69 | 34.90 | 30.84 | 33.75 | 33.73 | 34.45 | 34.45 |
+  | All 50, MS-SSIM | 0.9650 | 0.9608 | 0.9473 | 0.9335 | 0.9490 | 0.9499 | 0.9529 |
+
+  - Worst pair (bluebirds, ISO 65,535), mean developed error R, G, B in the darkest 67 % of the
+    pixels and low-pass share: M2 45k +0.035 +0.029 +0.016, 0.74; M2 50k +0.036 +0.030 +0.016,
+    0.75; public weights +0.023 +0.018 +0.009, 0.70; A +0.014 +0.008 +0.003, 0.64; step 4 with the
+    gamma detail loss +0.121 +0.108 +0.059, 0.96. A small lift stays, near that of E3.
+- **Result, sharpness** (high contrast, no blur; contrast is the part of the truth contrast kept
+  in a ring of local frequency in cycles/px):
+
+  | Method | MTF50 | Contrast 0.05 | 0.20 | 0.25 | 0.30 | False color 0.30 | 0.40 | Binned truth PSNR (dB) |
+  | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+  | Public Bayer weights | 0.197 | 0.94 | 0.17 | 0.01 | 0.01 | 0.15 | 0.37 | 38.90 |
+  | M1 60k | 0.240 | 0.99 | 0.43 | 0.06 | 0.02 | 0.08 | 0.32 | 39.50 |
+  | M2 25k | 0.246 | 0.98 | 0.44 | 0.07 | 0.03 | 0.08 | 0.37 | 39.85 |
+  | M2 45k | 0.249 | 0.98 | 0.46 | 0.08 | 0.03 | 0.09 | 0.37 | 39.94 |
+  | M2 50k | 0.248 | 0.98 | 0.46 | 0.08 | 0.03 | 0.09 | 0.36 | 39.95 |
+  | Step 4 gamma 25k | 0.340 | 0.91 | 0.72 | 0.53 | 0.23 | 0.14 | 0.35 | 40.97 |
+  | OpenCV bilinear | 0.257 | 0.95 | 0.65 | 0.52 | 0.40 | 0.82 | 1.12 | 40.58 |
+  | DemosaicNet | 0.576 | 1.00 | 1.00 | 1.00 | 1.00 | 0.05 | 0.06 | 43.86 |
+
+  - With the authors' loss, the binned pairs at 3e-4 raise the MTF50 from 0.197 to 0.249, but the
+    contrast at 0.25 cycles/px stays at 0.08: the limit at the Nyquist frequency of the packed grid
+    stays. The model keeps the contrast of large brightness differences (0.98 at 0.05 cycles/px;
+    step 4 with the gamma detail loss 0.91).
+  - Detail photos (`photos_with_checkpoints.py --checkpoint m2_45k=...`, record
+    `results/fine_tune/photo_runs.jsonl`; `detail_energy.py`, result
+    `results/fine_tune/detail_energy_msssim.json`): fine-detail energy relative to DemosaicNet
+    0.61 (`_DSC0729`) and 0.59 (`P1832629`); public weights 0.46 and 0.46, A 0.54 and 0.53, OpenCV
+    EA 0.65 and 0.70, step 4 with the gamma detail loss 0.80 and 0.77. By eye (sheets
+    `results/fine_tune/images/msssim_detail/_DSC0729/`, not committed; railing and buildings,
+    foliage, +1.5 EV, 2 times): M2 45k is sharper than the public weights and clearly softer than
+    step 4 with the gamma detail loss; the leaf texture and the thin lines of the railing are
+    softer.
+- **Interpretation**: the authors' loss removes most of the lift of the dark areas, but the
+  binned pairs do not teach it the detail above 0.25 cycles/px. With the training of step 4, the
+  gamma detail loss gives the sharpness and the lift of the dark areas together.
+- Not measured: the full test split and the held-out camera for these checkpoints; the high-ISO
+  evaluation photos by eye.
+- **Effect**: Current state states the result of the authors' loss with the training of step 4.
+
+### 2026-11-19 Dark-area error along the runs
+
+- **Source**: `scripts/loss_check/measure_checkpoint_test_split.py --scenes
+  TEST_MuseeL-bluebirds-A7C TEST_MuseeL-vases-A7C --manproc-methods` with 8 checkpoints (result
+  `results/fine_tune/test_split_dark_scenes_pair_metrics.jsonl`, tables
+  `test_split_dark_scenes_summary.md`), `test_pair_error.py` on the pair
+  `MuseeL-bluebirds-A7C` ISO 65,535 with input MS-SSIM 0.810 (result
+  `results/fine_tune/test_pair_error_chain.json`, sheet in
+  `results/fine_tune/images/test_split/chain/`, not committed). Full commands in the `command`
+  field of the result files. RTX 3080 Laptop GPU; 54 pairs in 1,980 s, peak working set 16.1 GB
+  (10 outputs of each pair in memory).
+- **Question**: which change after the public weights makes the model of step 4 lift the dark
+  areas at the highest noise (quality.md, 2026-11-19, model of step 4 on the test split)?
+- **Checkpoints**, each with one change against the one before: A (100,000; the authors' loss,
+  equal camera share, learning rate 3e-5), E3 (30,000; gamma detail loss), E5b (30,000; a quarter
+  of the pairs binned), E5c at 30,000, 60,000, and 100,000 (half of the pairs binned, learning
+  rate 3e-4), step 4 at 25,000 and 50,000 (cosine learning rate from E5c at 60,000).
+- **Result**, developed PSNR (dB) against the DemosaicNet reference, the 50 noisy pairs of the two
+  scenes, by input MS-SSIM:
+
+  | Input MS-SSIM (pairs) | Input | Public | A | E3 | E5b | E5c 30k | E5c 60k | E5c 100k | Step 4 25k | Step 4 50k |
+  | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+  | below 0.85 (10) | 12.54 | 27.77 | 28.30 | 25.89 | 26.10 | 23.75 | 21.77 | 18.71 | 19.34 | 16.64 |
+  | 0.85 to 0.97 (8) | 16.37 | 31.55 | 31.81 | 30.62 | 30.76 | 28.72 | 26.45 | 22.58 | 23.35 | 19.69 |
+  | 0.97 to 0.99 (6) | 21.34 | 35.69 | 35.50 | 35.70 | 35.72 | 34.51 | 33.08 | 29.40 | 29.91 | 25.78 |
+  | 0.99 and higher (26) | 33.03 | 38.09 | 38.26 | 38.45 | 38.54 | 38.44 | 38.20 | 37.63 | 37.78 | 36.52 |
+  | All 50 | 24.86 | 34.69 | 34.90 | 34.35 | 34.47 | 33.47 | 32.42 | 30.45 | 30.84 | 28.56 |
+
+  - The values of the public weights and of step 4 at 25,000 are equal to those of the full test
+    split measurement (largest difference 0).
+  - Error of the worst pair (bluebirds, ISO 65,535; mean developed error R, G, B in the darkest
+    67 % of the pixels; low-pass share as in the entry below): public weights +0.023 +0.018 +0.009,
+    0.70; A +0.014 +0.008 +0.003, 0.64; E3 +0.043 +0.035 +0.015, 0.81; E5b +0.039 +0.033 +0.018,
+    0.80; E5c 30k +0.067 +0.052 +0.028, 0.88; E5c 60k +0.096 +0.076 +0.029, 0.92; E5c 100k +0.132
+    +0.110 +0.070, 0.96; step 4 25k +0.121 +0.108 +0.059, 0.96; step 4 50k +0.192 +0.148 +0.096,
+    0.98. The error is the same type at each step and grows.
+  - By eye: from A to step 4 at 50,000 the black background becomes lighter and more blotched at
+    each step of the list.
+- **Interpretation**: the authors' loss at 3e-5 (A) does not lift the dark areas. The gamma detail
+  loss does (E3), and the lift grows with the iterations at 3e-4 (E5c) and does not stop at the
+  lower learning rate of the cosine end (step 4 from 25,000 to 50,000). A quarter of binned pairs
+  at 3e-5 does not change it (E5b against E3). The effect of the half binned share alone, without
+  the higher learning rate, was not measured. The mechanism in the loss was not examined.
+- Not measured: the other scenes for these checkpoints; run B; the checkpoints with the
+  full-resolution stage.
+- **Effect**: Current state states the source of the lift of the dark areas.
 
 ### 2026-11-19 Model of step 4 on the test split
 

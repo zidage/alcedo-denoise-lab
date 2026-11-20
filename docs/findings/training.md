@@ -18,17 +18,64 @@ Training runs: data, loss, settings, time, and cost. The rules of this file are 
   pairs binned (`--binned-fraction 0.5`), learning rate 3e-4. The detail above 0.25 cycles/px
   comes only after about 40,000 iterations at 3e-4; at 3e-5 it does not come in 30,000 iterations,
   and 3e-4 for all parameters with the full-resolution stage diverged (2026-11-19, step 3 runs).
+  These settings also lift the dark areas at the highest noise on the test split: the gamma
+  detail loss starts the lift, and it grows with each iteration at 3e-4; the authors' loss at
+  3e-5 (run A) does not lift them (quality.md, 2026-11-19, dark-area error along the runs). The
+  same settings and schedule with the authors' loss in place of the gamma detail loss
+  (`fine_tune_msssim_cosine`) do not give the sharpness (2026-11-20, step 4 with the authors'
+  loss).
 - The model of step 4 is `models/fine_tune_e5c_cosine/checkpoint_25000.pt`: E5c at 60,000
   iterations, then 25,000 iterations with a cosine learning rate from 3e-4 toward 3e-6 (the user
   selected it from the checkpoints at 25,000 and 50,000) (2026-11-19, step 4).
-- Total cost of rented compute: about 10.5 USD for about 17.7 GPU pod hours (3 pods), plus the
+- Total cost of rented compute: about 11.7 USD for about 19.7 GPU pod hours (4 pods), plus the
   network volume. The values come from the pod times and the listed price; the RunPod bill was not
-  read (2026-11-19, rented machines of steps 2 to 4).
+  read (2026-11-19, rented machines of steps 2 to 4; 2026-11-20, step 4 with the authors' loss).
 
 Each entry of this file states the service (Colab or RunPod), the GPU, the hours, and the cost of
 the run. Current state keeps the sum.
 
 ## Entries
+
+### 2026-11-20 Step 4 with the authors' loss
+
+- **Source**: `scripts/loss_check/train_bayer.py` (commit 0dfde7a, unchanged since step 4), two
+  runs one after the other (commands in `scripts/loss_check/README.md` and in the `run.json` of
+  each run). Logs: `results/fine_tune/fine_tune_msssim_binned_lr3e-4/` and
+  `results/fine_tune/fine_tune_msssim_cosine/` (`train_log.jsonl`, `validation.jsonl`). RunPod,
+  A40, pod `2on27g92fsbhhr` (made by the user), network volume `wild_rose_bug`.
+- **Reason**: the gamma detail loss lifts the dark areas at the highest noise (quality.md,
+  2026-11-19, dark-area error along the runs). The user decided to remove it and to keep the
+  training of step 4 (E5c, then the cosine end), so the runs differ from E5c and step 4 only in
+  the loss (`--loss linear_msssim`, the authors' MS-SSIM on linear values, as run A).
+- **Settings**: phase 1 `fine_tune_msssim_binned_lr3e-4`: from the public weights, all pairs, half
+  of the pairs binned, learning rate 3e-4 after a warm-up of 1,000 steps, 60,000 iterations, a
+  validation every 10,000, seed 0 (the settings of E5c). Phase 2 `fine_tune_msssim_cosine`: from
+  phase 1 at 60,000 with its Adam state, 50,000 iterations, cosine learning rate from 3e-4 to
+  3e-6, no warm-up, a validation every 5,000, seed 1 (the settings of step 4).
+- **Result**:
+  - Time: phase 1 2026-11-20 02:03:30 to 02:59:57 UTC, phase 2 to 03:50:00 UTC. Median rate 21.9
+    and 22.6 iterations per second; GPU peak 5.2 GB. The environment was made again on the
+    container disk in less than 1 minute with the packages of step 2 (same `pip freeze`).
+  - Cost: the first connection to the pod was at 01:59:57 UTC and the copy of the results ended
+    at 03:57 UTC: about 2.0 hours, about 1.2 USD at 0.59 USD per hour. The real time ends when the
+    user deletes the pod; it was not read. `runpodctl` in the pod answered "Unauthorized", so the
+    pod cannot delete itself.
+  - Validation (79 noisy pairs, developed PSNR / MS-SSIM; public weights 37.27 / 0.9728): phase 1
+    36.55 / 0.9720 at 10,000, 36.88 / 0.9711 at 30,000, 37.24 / 0.9720 at 50,000, 36.94 / 0.9718
+    at 60,000. Phase 2: 37.25 / 0.9721 at 10,000, 37.49 / 0.9734 at 30,000, 37.54 / 0.9737 at
+    45,000, 37.52 / 0.9737 at 50,000. Step 4 with the gamma detail loss had 37.53 / 0.9727 at
+    25,000.
+  - Sony ILCE-7C in the validation at 50,000: 44.10 dB (public weights 44.38, step 4 with the gamma
+    detail loss 43.84).
+  - The 11 checkpoints of phase 2 and the checkpoint 60,000 of phase 1 were copied to
+    `models/` of the development machine; the SHA-256 of each copy is that of the file on the
+    volume. The checkpoint 45,000 has the SHA-256
+    `46d1249072b6bf2589d1e4dd4c2620eba1e1578c4c0032b6eff1017dbb4fc209`, 50,000
+    `baccb607a3ccfb13ad26a05c9014ceb583ec921af8d5e666e27b4ca0473b6500`.
+  - Quality on the dark scenes and the sharpness: quality.md, 2026-11-20, step 4 with the authors'
+    loss.
+- **Effect**: Current state states the result of the authors' loss with the settings of E5c and
+  the total cost.
 
 ### 2026-11-19 Step 4: the end of E5c with a cosine learning rate
 

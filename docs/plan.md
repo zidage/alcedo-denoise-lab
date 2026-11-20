@@ -68,7 +68,11 @@ The public weights have three weak points that a fine-tune can reach without new
    the most noise after development. Step 3 measured a logarithmic encoding before MS-SSIM (run
    B) and the loss of the user's DemosaicNet student in a gamma 1/2.2 domain (`gamma_detail`);
    the gamma loss gives the better validation and trained without instability, so the fine-tune
-   uses it ([findings/training.md](findings/training.md)).
+   uses it ([findings/training.md](findings/training.md)). On the test split, the gamma loss lifts
+   the dark areas of dark scenes at the highest noise, and the lift grows with the training at
+   3e-4; the authors' loss does not ([findings/quality.md](findings/quality.md)). With the
+   training of step 4, the authors' loss removes most of the lift but gives no detail above 0.25
+   cycles/px ([findings/quality.md](findings/quality.md), 2026-11-20).
 2. **One camera has 148 of the 310 scenes.** The fine-tune samples the training patches with an
    equal share for each camera.
 3. **The quality on a camera that the training did not see is lower.** The report of each run
@@ -231,6 +235,15 @@ weights on both (developed PSNR 35.26 against 36.64 dB on the main test set, 34.
 34.77 dB on the Canon EOS M100), because it lifts the dark areas of two dark Sony ILCE-7C scenes
 at ISO 16,000 to 65,535 ([findings/quality.md](findings/quality.md)).
 
+Decision of the user (2026-11-20, after the test split): remove the gamma detail loss and keep
+the training of step 4. The same two runs (E5c settings for 60,000 iterations, then the cosine
+end of 50,000) ran with the authors' loss (`fine_tune_msssim_binned_lr3e-4`,
+`fine_tune_msssim_cosine`; about 2.0 pod hours, about 1.2 USD). The validation is 37.54 / 0.9737
+at 45,000, and the dark scenes lose much less, but the model is almost as soft as the public
+weights (MTF50 0.249 against 0.197; step 4 with the gamma detail loss 0.340)
+([findings/training.md](findings/training.md), [findings/quality.md](findings/quality.md)). The
+full test split of this run is not measured.
+
 Compute: RunPod.
 
 Findings: `training.md`, `quality.md`.
@@ -276,10 +289,11 @@ Findings: `inference_cost.md`.
 
 ## Items that need the user
 
-- Whether the checkpoint at 25,000 stays the model of step 4 (and the teacher of step 5). On the
-  test split it lifts the dark areas of dark scenes at the highest noise and is below the public
-  weights ([findings/quality.md](findings/quality.md), 2026-11-19, model of step 4 on the test
-  split).
+- The model of step 4 (and the teacher of step 5). The run with the gamma detail loss
+  (`fine_tune_e5c_cosine`, 25,000) is sharp but lifts the dark areas of dark scenes at the highest
+  noise; the run with the authors' loss (`fine_tune_msssim_cosine`, 45,000) has almost no lift but
+  is almost as soft as the public weights. No run has both properties
+  ([findings/quality.md](findings/quality.md), 2026-11-19 and 2026-11-20).
 - `budget_cap`: the amount that step 5 can spend. Step 5 does not start without it. Step 4 ran
   as the short end of E5c that the user selected (about 0.56 USD).
 - `target_time`: the largest time for one 45 megapixel photo in Alcedo Studio on the RTX 3080

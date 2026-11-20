@@ -1,0 +1,329 @@
+{
+ "description": "Split the error of the public weights and of checkpoints on one test pair by brightness and scale.",
+ "command": "python -I scripts/loss_check/test_pair_error.py --authors-repo build/tmp/reference_measurement/rawnind_jddc --darktable-cli build/tmp/reference_measurement/darktable-5.0.1/bin/darktable-cli.exe --darktable-configdir build/tmp/reference_measurement/darktable_config --tmp-dir build/tmp/fine_tune_test_split/work --checkpoint A=models/loss_check_a_linear_msssim/checkpoint_100000.pt --checkpoint s4_25k=models/fine_tune_e5c_cosine/checkpoint_25000.pt --checkpoint M1_60k=models/fine_tune_msssim_binned_lr3e-4/checkpoint_60000.pt --checkpoint M2_45k=models/fine_tune_msssim_cosine/checkpoint_45000.pt --checkpoint M2_50k=models/fine_tune_msssim_cosine/checkpoint_50000.pt --out results/fine_tune/test_pair_error_msssim.json --sheet-dir results/fine_tune/images/test_split/msssim --f-file src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=221c23e21a205b6bfec5803c567a008b7246c9a5.arw",
+ "blur_px": 16,
+ "pairs": [
+  {
+   "scene": "TEST_MuseeL-bluebirds-A7C",
+   "camera": "ILCE-7C",
+   "f_file": "src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=221c23e21a205b6bfec5803c567a008b7246c9a5.arw",
+   "rgb_msssim_score": 0.8096990585327148,
+   "raw_gain": 2.1345601081848145,
+   "reference": "demosaicnet",
+   "methods": {
+    "bayer_public": {
+     "developed_psnr": 30.064296983537126,
+     "channel_mean_ratio": [
+      0.9974444508552551,
+      1.0039492845535278,
+      0.9984272718429565
+     ],
+     "developed_psnr_after_channel_gain": 30.06464335750458,
+     "lowpass_share": 0.6978411078453064,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.023158909752964973,
+        0.017618004232645035,
+        0.009071109816432
+       ],
+       "rms_error": 0.030246028676629066
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        -0.016290811821818352,
+        -0.01182919554412365,
+        -0.00330947432667017
+       ],
+       "rms_error": 0.024632254615426064
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.005061756353825331,
+        0.0018532290123403072,
+        -0.0025789388455450535
+       ],
+       "rms_error": 0.042580440640449524
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.00603821873664856,
+        -0.0036841470282524824,
+        -0.005830493289977312
+       ],
+       "rms_error": 0.04587774723768234
+      }
+     },
+     "weights": {
+      "path": "models/public/DenoiserTrainingBayerToProfiledRGB_4ch_2024-02-21-bayer_ms-ssim_mgout_notrans_valeither_-4/saved_models/iter_4350000.pt",
+      "sha256": "c1f7de3de24cb12f4803ee65e11cfb467e9a5b80c3cb7126746ef026106c15e0"
+     }
+    },
+    "A": {
+     "developed_psnr": 30.73037144881897,
+     "channel_mean_ratio": [
+      0.99625164270401,
+      1.0071942806243896,
+      0.9940764307975769
+     ],
+     "developed_psnr_after_channel_gain": 30.728991667683555,
+     "lowpass_share": 0.6369915008544922,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.013561089523136616,
+        0.008222861215472221,
+        0.0028466111980378628
+       ],
+       "rms_error": 0.02569548413157463
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        -0.01690085418522358,
+        -0.015907209366559982,
+        -0.006691308226436377
+       ],
+       "rms_error": 0.027256760746240616
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.004174310714006424,
+        0.0020294981077313423,
+        0.0008201530436053872
+       ],
+       "rms_error": 0.04314962401986122
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.004830501973628998,
+        0.0003024183970410377,
+        -0.0035182363353669643
+       ],
+       "rms_error": 0.04584020748734474
+      }
+     },
+     "weights": {
+      "path": "models/loss_check_a_linear_msssim/checkpoint_100000.pt",
+      "sha256": "ec610c449e4da02c8df6c4d72c49019c1a14670368a91e5769c67406599e71ba"
+     }
+    },
+    "s4_25k": {
+     "developed_psnr": 20.754772981320254,
+     "channel_mean_ratio": [
+      1.0168269872665405,
+      0.9881320595741272,
+      0.9739103317260742
+     ],
+     "developed_psnr_after_channel_gain": 20.76029776073438,
+     "lowpass_share": 0.9556052088737488,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.12123625725507736,
+        0.10783687233924866,
+        0.0589018277823925
+       ],
+       "rms_error": 0.10575651377439499
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        0.0253308042883873,
+        0.022818585857748985,
+        0.01783084124326706
+       ],
+       "rms_error": 0.037326060235500336
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.039944689720869064,
+        -0.03161618113517761,
+        -0.015576436184346676
+       ],
+       "rms_error": 0.05336553230881691
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.06762275099754333,
+        -0.06787021458148956,
+        -0.0555272102355957
+       ],
+       "rms_error": 0.08411936461925507
+      }
+     },
+     "weights": {
+      "path": "models/fine_tune_e5c_cosine/checkpoint_25000.pt",
+      "sha256": "0e925bc96e4551b1769cdb239a29ee7257c3a85bf82b31d225e5b4c7256813d9"
+     }
+    },
+    "M1_60k": {
+     "developed_psnr": 27.994945746134512,
+     "channel_mean_ratio": [
+      0.9977970719337463,
+      0.9848594665527344,
+      1.046478271484375
+     ],
+     "developed_psnr_after_channel_gain": 28.042265790113504,
+     "lowpass_share": 0.7440016865730286,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.03338847681879997,
+        0.027944358065724373,
+        0.02881970815360546
+       ],
+       "rms_error": 0.0406622588634491
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        -0.01920759491622448,
+        -0.015937259420752525,
+        0.005470349453389645
+       ],
+       "rms_error": 0.031585127115249634
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.010550531558692455,
+        -0.009459106251597404,
+        -0.0002512979262974113
+       ],
+       "rms_error": 0.04456006735563278
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.008808495476841927,
+        -0.01397409662604332,
+        -0.005935878958553076
+       ],
+       "rms_error": 0.04861467331647873
+      }
+     },
+     "weights": {
+      "path": "models/fine_tune_msssim_binned_lr3e-4/checkpoint_60000.pt",
+      "sha256": "331348b41b9b25c7cc2b469105e57799d2a4472ca692dc808f57764ec89e773b"
+     }
+    },
+    "M2_45k": {
+     "developed_psnr": 28.890688843363897,
+     "channel_mean_ratio": [
+      0.9976826906204224,
+      1.0041509866714478,
+      0.9971046447753906
+     ],
+     "developed_psnr_after_channel_gain": 28.89030154981282,
+     "lowpass_share": 0.7378277778625488,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.034677088260650635,
+        0.028786076232790947,
+        0.015656599774956703
+       ],
+       "rms_error": 0.036729149520397186
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        -0.014207696542143822,
+        -0.010605061426758766,
+        -0.0022519107442349195
+       ],
+       "rms_error": 0.025025509297847748
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.008658094331622124,
+        -0.005290698260068893,
+        -0.0025949766859412193
+       ],
+       "rms_error": 0.0429701954126358
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.010322527959942818,
+        -0.008325734175741673,
+        -0.011647585779428482
+       ],
+       "rms_error": 0.0473533570766449
+      }
+     },
+     "weights": {
+      "path": "models/fine_tune_msssim_cosine/checkpoint_45000.pt",
+      "sha256": "46d1249072b6bf2589d1e4dd4c2620eba1e1578c4c0032b6eff1017dbb4fc209"
+     }
+    },
+    "M2_50k": {
+     "developed_psnr": 28.79082125926518,
+     "channel_mean_ratio": [
+      0.9986943602561951,
+      1.001062035560608,
+      1.0016623735427856
+     ],
+     "developed_psnr_after_channel_gain": 28.790559489433658,
+     "lowpass_share": 0.7489827275276184,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.036394789814949036,
+        0.030307693406939507,
+        0.01586395502090454
+       ],
+       "rms_error": 0.0373811349272728
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        -0.014247640036046505,
+        -0.011328238993883133,
+        -0.0017448316793888807
+       ],
+       "rms_error": 0.025041647255420685
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.008755302987992764,
+        -0.005910108331590891,
+        -0.0010657904203981161
+       ],
+       "rms_error": 0.04270515590906143
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.010558714158833027,
+        -0.009494481608271599,
+        -0.010629134252667427
+       ],
+       "rms_error": 0.04717785120010376
+      }
+     },
+     "weights": {
+      "path": "models/fine_tune_msssim_cosine/checkpoint_50000.pt",
+      "sha256": "baccb607a3ccfb13ad26a05c9014ceb583ec921af8d5e666e27b4ca0473b6500"
+     }
+    }
+   }
+  }
+ ]
+}
