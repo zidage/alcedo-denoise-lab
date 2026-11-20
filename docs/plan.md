@@ -31,8 +31,9 @@ list of decisions.
   full dataset for the training.
 - The clean targets of the training data are made on the GPU with the PyTorch default, which
   runs the convolutions in TF32. The difference against IEEE FP32 is accepted.
-- The training data is made on RunPod and stored on a RunPod network volume, and the runs of steps
-  3 to 5 read it there. It is deleted after step 5; the scripts and the hash lists make it again.
+- The training data is made on RunPod and stored on a RunPod network volume. The runs of steps
+  3 to 6 read it there. The lab deletes it after distillation. The scripts and the hash lists can
+  make it again.
 - The integration in Alcedo Studio is the design of Alcedo Studio. The lab does not copy the
   darktable integration (a separate DNG file, fixed tiles in ONNX Runtime).
 - The model of this lab runs only when the user turns on the noise reduction. When the noise
@@ -51,8 +52,8 @@ list of decisions.
   that the model did not see, in the same way as for the public weights.
 - **Validation scenes**: the first training scene (by name) of each training camera:
   `2pilesofplates`, `MuseeL-C500D-mammal`, `Bark`, `7D-1`, `D60-2`, `Iain01`, `bananapi`. They are
-  removed from the training of steps 3 and 4 and select between runs and checkpoints, so the test
-  split is used only for the final measurement. The authors validate on their test scenes.
+  excluded from training and used to select runs and checkpoints. The test split is used for the
+  final measurement. The authors validate on their test scenes.
 - **Developed metric**: a metric on the output and the clean image after the same fixed
   development: an exposure gain of `developed_gain_ev` and the sRGB transfer curve. It measures the
   noise that a user sees after the shadows are made brighter.
@@ -66,13 +67,10 @@ The public weights have three weak points that a fine-tune can reach without new
 
 1. **The loss is MS-SSIM on linear values.** Dark areas have a small weight, and dark areas show
    the most noise after development. Step 3 measured a logarithmic encoding before MS-SSIM (run
-   B) and the loss of the user's DemosaicNet student in a gamma 1/2.2 domain (`gamma_detail`);
-   the gamma loss gives the better validation and trained without instability, so the fine-tune
-   uses it ([findings/training.md](findings/training.md)). On the test split, the gamma loss lifts
-   the dark areas of dark scenes at the highest noise, and the lift grows with the training at
-   3e-4; the authors' loss does not ([findings/quality.md](findings/quality.md)). With the
-   training of step 4, the authors' loss removes most of the lift but gives no detail above 0.25
-   cycles/px ([findings/quality.md](findings/quality.md), 2026-11-20).
+   B) and the loss of the user's DemosaicNet student in a gamma 1/2.2 domain (`gamma_detail`).
+   Step 4 compared `gamma_detail` and linear MS-SSIM on the same training schedule. Step 5
+   examines whether a loss on linear dark-area means can correct the brightness error of the
+   sharper checkpoint. See [the step 4 comparison](findings/quality.md#2026-11-20-step-4-with-the-authors-loss).
 2. **One camera has 148 of the 310 scenes.** The fine-tune samples the training patches with an
    equal share for each camera.
 3. **The quality on a camera that the training did not see is lower.** The report of each run
@@ -226,7 +224,7 @@ long run from the public weights:
   the best developed PSNR, checked with the synthetic check (`synthetic_resolution.py`) and the
   sheets.
 - Estimated cost: 0.6 to 0.9 hours of an A40, 0.4 to 0.6 USD (the measured 18.5 iterations per
-  second of E5c). `budget_cap` of step 5 is still open.
+  second of E5c).
 
 Status (2026-11-19): the run took 0.95 hours (about 0.56 USD). The user selected the checkpoint
 at 25,000 iterations (`models/fine_tune_e5c_cosine/checkpoint_25000.pt`). Its measurement on the
@@ -248,18 +246,66 @@ Compute: RunPod.
 
 Findings: `training.md`, `quality.md`.
 
-### Step 5: smaller model
+### Step 5: dark-area brightness and fine detail
 
-Question: how much quality does a smaller model lose against the fine-tuned model of step 4, for
+Can a loss on dark-area brightness reduce the low-frequency error at the highest noise while
+keeping the detail of the step 4 gamma checkpoint? See the
+[step 4 comparison](findings/quality.md#2026-11-20-step-4-with-the-authors-loss) for the results of
+both checkpoints. Step 5 selects the teacher for distillation.
+
+- Measure where the brightness error appears in the existing checkpoints. Compare the camera RGB
+  output, the linear Rec.2020 output before output gain matching, and the gain-matched output.
+  Use the same valid image area and put the reference in the color space of each measurement.
+  On the low-pass images, also estimate the gain from valid midtones. Examine the signed error
+  after this gain adjustment by brightness and position. Check the effect of zero clipping on
+  the loss near zero. These comparisons identify whether to examine a common offset, a change
+  with brightness, or a change with position. An output offset alone does not identify an error
+  in the sensor black level.
+- Start two runs from `models/fine_tune_e5c_cosine/checkpoint_25000.pt`. Use the same Adam
+  initialization, crop sequence, learning-rate schedule, and iteration count in both runs.
+  Keep the step 4 mix of real RawNIND pairs and binned pairs. The control uses `gamma_detail`.
+  The other run adds a loss on local mean errors in gain-matched linear Rec.2020 before gamma
+  encoding and clipping.
+- For the added loss, use the clean reference to select dark regions. In each valid window,
+  compute the signed mean of `output - reference` over the selected pixels for each RGB channel.
+  Apply a symmetric robust penalty to each window mean, then average the penalties. Start with
+  windows of 16 and 64 full-resolution pixels per side. Apply the same loss to both types of
+  pairs. Record the dark-region definition, valid coverage, penalty, and weight with the run.
+- If the added loss cannot meet the brightness and detail targets together, test a loss with
+  three terms: linear Charbonnier reconstruction, the dark-area loss, and a detail term. The detail
+  term compares the output and reference coefficients at the same locations in bands from
+  0.20 to 0.40 cycles/px. Weight the comparison by reference texture strength and local
+  alignment confidence. Use valid filter support when computing the coefficients.
+- Group the validation pairs by the fraction of dark pixels in the clean reference and by the
+  noise level of the input. Check that this includes dark scenes at high noise. If the existing
+  validation scenes lack this case, use separate RawNIND scenes that all candidate runs exclude
+  from training. Keep the test split and Canon EOS M100 for the final measurement.
+- Compare signed dark-area error and low-pass RMS error with the public weights. Compare residual
+  luma and chroma noise in flat regions with the public weights. Compare fine detail with the
+  step 4 gamma checkpoint using reference-correlated contrast, residuals, and false color on
+  the zone plate and using paired textures. Set and record the tolerances from measurements of
+  the reference checkpoints before training. Select a teacher only if it reaches the dark-area
+  and noise performance of the public weights and keeps the gamma checkpoint's detail. Then
+  run the metrics of step 1 on the full test split and Canon EOS M100 and check the local high-ISO
+  photos by eye.
+
+Compute: the development machine for checkpoint measurements. RunPod for training. Estimate the
+time and cost before each rented run and record the measured time and cost after it.
+
+Findings: `training.md`, `quality.md`.
+
+### Step 6: smaller model
+
+Question: how much quality does a smaller model lose against the fine-tuned model of step 5, for
 each decrease of the cost?
 
 - On the development machine, measure the cost of UtNet2 variants with fewer channels or fewer
   levels before any training: MAC per megapixel, and the FP32 time and peak memory for one
   24 megapixel photo. Select the variants (`student_variants`) whose time is at most
   `target_time` and one variant between that and the full model.
-- Train each selected variant on the full training data by distillation: the fine-tuned model of
-  step 4 is the teacher, and the loss is the loss of step 3 against the teacher output plus the
-  same loss against the clean image.
+- Train each selected variant on the full training data by distillation. Use the model selected
+  in step 5 as the teacher. Apply the loss of step 3 against the teacher output
+  and the clean image.
 - Measure each variant with all metrics of step 1 and with the comparison sheets of the
   evaluation photos. Report the quality and the cost of each variant in one table with the
   fine-tuned model and the public weights.
@@ -268,7 +314,7 @@ Compute: the development machine for the cost of the variants; RunPod for the di
 
 Findings: `methods.md`, `training.md`, `quality.md`, `inference_cost.md`.
 
-### Step 6: export and cost
+### Step 7: export and cost
 
 Question: what does the selected model cost to run, and what must the integration handle?
 
@@ -281,7 +327,7 @@ Compute: the development machine.
 
 Findings: `inference_cost.md`.
 
-### Step 7: specification for Alcedo Studio
+### Step 8: specification for Alcedo Studio
 
 - Write `docs/alcedo_integration.md`: tensor layout, value range, gain match, color matrix of the
   Bayer output, tile size and overlap, FP32, and the weights file with its hash and license.
@@ -289,15 +335,9 @@ Findings: `inference_cost.md`.
 
 ## Items that need the user
 
-- The model of step 4 (and the teacher of step 5). The run with the gamma detail loss
-  (`fine_tune_e5c_cosine`, 25,000) is sharp but lifts the dark areas of dark scenes at the highest
-  noise; the run with the authors' loss (`fine_tune_msssim_cosine`, 45,000) has almost no lift but
-  is almost as soft as the public weights. No run has both properties
-  ([findings/quality.md](findings/quality.md), 2026-11-19 and 2026-11-20).
-- `budget_cap`: the amount that step 5 can spend. Step 5 does not start without it. Step 4 ran
-  as the short end of E5c that the user selected (about 0.56 USD).
+- `budget_cap`: the amount available for the remaining rented runs in steps 5 and 6.
 - `target_time`: the largest time for one 45 megapixel photo in Alcedo Studio on the RTX 3080
-  Laptop GPU. Step 5 selects the variants with it.
+  Laptop GPU. Step 6 selects the variants with it.
 - More evaluation photos, if the user wants the check by eye on other cameras, ISO values, or
   scenes. `data/evaluation_photos/` has a Canon EOS R3 photo at ISO 25600, two Panasonic DC-GH6
   photos at ISO 1600 and 6400 (`high_iso_gh6/`), a Sony ILCE-7RM3 star photo at ISO 3200
@@ -318,8 +358,8 @@ Findings: `inference_cost.md`.
 | `fine_tune_lr` | 3e-5 after a linear warm-up of 1,000 iterations: one tenth of the authors' initial rate; their rate at iteration 4,350,000 was 1.65e-6, and their Adam state is not published | Learning rate of runs A and B |
 | `checkpoint_interval` | Set in step 4 from the measured iteration rate, one checkpoint for each hour | Iterations between two checkpoints |
 | `stop_patience` | 3 checkpoints | Checkpoints without an increase before the run stops |
-| `budget_cap` | From the user | Largest cost of steps 4 and 5 |
+| `budget_cap` | From the user | Largest cost of the remaining rented runs |
 | `target_time` | From the user | Largest time for one 45 megapixel photo in Alcedo Studio |
-| `student_variants` | Set in step 5 from the measured cost of each variant | The smaller models that step 5 trains |
+| `student_variants` | Set in step 6 from the measured cost of each variant | The smaller models that step 6 trains |
 | `tile_size` | 512 x 512 packed Bayer, the tile of the public export | Tile of the border measurement |
-| `tile_overlap` | Measured in step 6: the smallest overlap with a border difference below the output difference between ONNX and PyTorch | Overlap between two tiles |
+| `tile_overlap` | Measured in step 7: the smallest overlap with a border difference below the output difference between ONNX and PyTorch | Overlap between two tiles |

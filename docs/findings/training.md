@@ -24,9 +24,9 @@ Training runs: data, loss, settings, time, and cost. The rules of this file are 
   same settings and schedule with the authors' loss in place of the gamma detail loss
   (`fine_tune_msssim_cosine`) do not give the sharpness (2026-11-20, step 4 with the authors'
   loss).
-- The model of step 4 is `models/fine_tune_e5c_cosine/checkpoint_25000.pt`: E5c at 60,000
-  iterations, then 25,000 iterations with a cosine learning rate from 3e-4 toward 3e-6 (the user
-  selected it from the checkpoints at 25,000 and 50,000) (2026-11-19, step 4).
+- The selected gamma checkpoint of step 4 is `models/fine_tune_e5c_cosine/checkpoint_25000.pt`.
+  This is E5c at 60,000 iterations, then 25,000 iterations with a cosine learning rate from 3e-4
+  toward 3e-6. The user selected it from the checkpoints at 25,000 and 50,000 (2026-11-19, step 4).
 - Total cost of rented compute: about 11.7 USD for about 19.7 GPU pod hours (4 pods), plus the
   network volume. The values come from the pod times and the listed price; the RunPod bill was not
   read (2026-11-19, rented machines of steps 2 to 4; 2026-11-20, step 4 with the authors' loss).

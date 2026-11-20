@@ -5,7 +5,7 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
 
 ## Current state
 
-- The lab has no cost measurement of a fine-tuned or smaller model. Steps 5 and 6 of
+- The lab has no cost measurement of a fine-tuned or smaller model. Steps 6 and 7 of
   [the plan](../plan.md) make it.
 - In PyTorch FP32 (with the TF32 convolutions of cuDNN, the PyTorch default) on the RTX 3080
   Laptop GPU, the public Bayer model runs a 24 megapixel photo
