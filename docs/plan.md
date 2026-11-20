@@ -289,8 +289,28 @@ both checkpoints. Step 5 selects the teacher for distillation.
   run the metrics of step 1 on the full test split and Canon EOS M100 and check the local high-ISO
   photos by eye.
 
-Compute: the development machine for checkpoint measurements. RunPod for training. Estimate the
-time and cost before each rented run and record the measured time and cost after it.
+Settings of the two runs (2026-11-20, `scripts/dark_area/`):
+
+- 25,000 iterations from the gamma checkpoint with its Adam state, a cosine learning rate from
+  1.515e-4 (the rate of step 4 at its iteration 25,000) to 3e-6, no warm-up, a validation every
+  5,000, seed 2 in both runs. The train logs record a hash of the batches, which shows that both
+  runs used the same crops.
+- Dark pixels: the mean of the developed reference R, G, B is below 0.1. The penalty is
+  `sqrt(1 + (m / s)^2) - 1` with s = 2^-11, and its sum is divided by the count of all windows of
+  the batch. The weight makes the mean gradient norm of the dark-area loss equal to that of
+  `gamma_detail` at the start checkpoint, on the batches with dark windows
+  (`dark_loss_weight.py`).
+- The 7 validation scenes have no dark scene (dark fraction of the clean images 0.000 to 0.019).
+  `select_dark_scenes.py` selects up to 6 dark training scenes (dark fraction 0.4 or more), and
+  both runs exclude them from training. The start checkpoint and the public weights trained on
+  these scenes.
+- The tolerances are the differences between the step 4 checkpoints at 45,000 and 50,000 of
+  the authors' loss (`summarize_validation.py`).
+- Estimated cost on one A40: about 1.5 hours, about 0.9 USD (`scripts/dark_area/README.md`).
+
+Compute: the development machine for checkpoint measurements on local data. RunPod for training,
+and for the validation measurements that need the training scenes on the network volume. Estimate
+the time and cost before each rented run and record the measured time and cost after it.
 
 Findings: `training.md`, `quality.md`.
 

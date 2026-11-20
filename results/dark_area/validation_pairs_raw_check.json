@@ -1,0 +1,927 @@
+{
+ "description": "Give each noisy validation pair its input MS-SSIM (noise level) and the dark fraction (step 5).",
+ "command": "python -I scripts/dark_area/validation_pairs.py --images build/tmp/dark_area_check/images --rawnind data/rawnind --authors-repo build/tmp/reference_measurement/rawnind_jddc --tmp-dir build/tmp/dark_area_check/tmp --out results/dark_area/validation_pairs_raw_check.json",
+ "repository_commit": "e31ee72ae0fc621630a097d59f57aef71b2165ea",
+ "authors_commit": "e80fb7b14dc440bba38c01f312fd3cc02deb566c",
+ "validation_scenes": [
+  "2pilesofplates",
+  "MuseeL-C500D-mammal",
+  "Bark",
+  "7D-1",
+  "D60-2",
+  "Iain01",
+  "bananapi"
+ ],
+ "dark_area": {
+  "dark_definition": "mean of the developed (+2.0 EV, sRGB) reference R, G, B below 0.1",
+  "dark_developed_limit": 0.1,
+  "dark_windows": [
+   16,
+   64
+  ],
+  "dark_min_coverage": 0.5,
+  "dark_penalty": "sqrt(1 + (m / s)^2) - 1",
+  "dark_penalty_scale": 0.00048828125,
+  "lowpass_windows": [
+   16,
+   64
+  ],
+  "band_cycles_per_px": [
+   0.2,
+   0.4
+  ],
+  "band_taps": 33,
+  "block_px": 16,
+  "clip_limit": 0.98,
+  "texture_quantiles": [
+   0.25,
+   0.75
+  ]
+ },
+ "noise_bins": [
+  [
+   0.0,
+   0.85
+  ],
+  [
+   0.85,
+   0.97
+  ],
+  [
+   0.97,
+   0.99
+  ],
+  [
+   0.99,
+   1.01
+  ]
+ ],
+ "dark_fraction_bins": [
+  [
+   0.0,
+   0.1
+  ],
+  [
+   0.1,
+   0.4
+  ],
+  [
+   0.4,
+   1.01
+  ]
+ ],
+ "largest_input_msssim_difference_packed_against_raw": 1.621246337890625e-05,
+ "pairs_with_raw_check": 25,
+ "pair_count": 79,
+ "groups_dark_bin_noise_bin": {
+  "0.0-0.1": {
+   "0.99-1.0": 41,
+   "0.85-0.97": 21,
+   "0.0-0.85": 3,
+   "0.97-0.99": 14
+  }
+ },
+ "dark_high_noise_pairs": [],
+ "pairs": [
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO1250_sha1=9121efbd50e2f2392665cb17b435b2526df8e9ae.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "1250",
+   "input_msssim": 0.996733546257019,
+   "dark_fraction": 0.005082676562405516,
+   "input_msssim_raw": 0.9967336058616638,
+   "input_msssim_difference": -5.960464477539063e-08,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO125_sha1=58c56d2ccf6cfcc49292f8b09ccba1609111380a.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "125",
+   "input_msssim": 0.9994533061981201,
+   "dark_fraction": 0.005106252179053136,
+   "input_msssim_raw": 0.9994534850120544,
+   "input_msssim_difference": -1.7881393432617188e-07,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO12800_sha1=7c5f212c12b86bd8c4ecde91ba37de415b3744de.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "12800",
+   "input_msssim": 0.9699867963790894,
+   "dark_fraction": 0.005106398895334158,
+   "input_msssim_raw": 0.9699832797050476,
+   "input_msssim_difference": 3.516674041748047e-06,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO16000_sha1=3b38449e04f75c3b68443e888c9c02fa99eddde6.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "16000",
+   "input_msssim": 0.9622740149497986,
+   "dark_fraction": 0.005106023157329258,
+   "input_msssim_raw": 0.9622695446014404,
+   "input_msssim_difference": 4.470348358154297e-06,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO160_sha1=17018efcc6228c02fd3a024abc70ef08c64a7622.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "160",
+   "input_msssim": 0.9993576407432556,
+   "dark_fraction": 0.005106614123618023,
+   "input_msssim_raw": 0.9993577599525452,
+   "input_msssim_difference": -1.1920928955078125e-07,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO2000_sha1=31fac4e2aeaa235193744d7e49c503734b6346b2.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "2000",
+   "input_msssim": 0.9949555397033691,
+   "dark_fraction": 0.005083760294445239,
+   "input_msssim_raw": 0.9949552416801453,
+   "input_msssim_difference": 2.980232238769531e-07,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO2500_sha1=c08ac26ca1d57b6c258f4c4706ad312de0936ec9.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "2500",
+   "input_msssim": 0.9936758875846863,
+   "dark_fraction": 0.005086747127553649,
+   "input_msssim_raw": 0.9936758875846863,
+   "input_msssim_difference": 0.0,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO320_sha1=080e42669f295009fcd3fb9dda0ac72b1148f93a.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "320",
+   "input_msssim": 0.9989594221115112,
+   "dark_fraction": 0.005101862914120892,
+   "input_msssim_raw": 0.9989595413208008,
+   "input_msssim_difference": -1.1920928955078125e-07,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO400_sha1=6637f1f7485046ba8e6e09978bd26b91042568e6.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "400",
+   "input_msssim": 0.9987781047821045,
+   "dark_fraction": 0.005086962750341219,
+   "input_msssim_raw": 0.9987781643867493,
+   "input_msssim_difference": -5.960464477539063e-08,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO640_sha1=e11074913f99cdc64f7f41368a5bc99421a4ad23.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "640",
+   "input_msssim": 0.9982471466064453,
+   "dark_fraction": 0.00510234552043197,
+   "input_msssim_raw": 0.9982473254203796,
+   "input_msssim_difference": -1.7881393432617188e-07,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO65535_sha1=b5c1ca049cd080144d2853ef5a78b0247a50cf3f.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.8564772605895996,
+   "dark_fraction": 0.0051070655539599726,
+   "input_msssim_raw": 0.8564610481262207,
+   "input_msssim_difference": 1.621246337890625e-05,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO800_sha1=1353e69380a30ec67df3cd21be3cf8ce3c6db222.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "800",
+   "input_msssim": 0.997763991355896,
+   "dark_fraction": 0.005107065766209897,
+   "input_msssim_raw": 0.9977639317512512,
+   "input_msssim_difference": 5.960464477539063e-08,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO1250_sha1=9121efbd50e2f2392665cb17b435b2526df8e9ae.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "1250",
+   "input_msssim": 0.9966472387313843,
+   "dark_fraction": 0.004392753635536021,
+   "input_msssim_raw": 0.996647298336029,
+   "input_msssim_difference": -5.960464477539063e-08,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO125_sha1=58c56d2ccf6cfcc49292f8b09ccba1609111380a.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "125",
+   "input_msssim": 0.9994236826896667,
+   "dark_fraction": 0.0044054205445430775,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO12800_sha1=7c5f212c12b86bd8c4ecde91ba37de415b3744de.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "12800",
+   "input_msssim": 0.9693953990936279,
+   "dark_fraction": 0.004405031857018165,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO16000_sha1=3b38449e04f75c3b68443e888c9c02fa99eddde6.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "16000",
+   "input_msssim": 0.9615515470504761,
+   "dark_fraction": 0.004404490295130649,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO160_sha1=17018efcc6228c02fd3a024abc70ef08c64a7622.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "160",
+   "input_msssim": 0.9993587732315063,
+   "dark_fraction": 0.004405001830516795,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO2000_sha1=31fac4e2aeaa235193744d7e49c503734b6346b2.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "2000",
+   "input_msssim": 0.9948573112487793,
+   "dark_fraction": 0.004384882162136282,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO2500_sha1=c08ac26ca1d57b6c258f4c4706ad312de0936ec9.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "2500",
+   "input_msssim": 0.9935426712036133,
+   "dark_fraction": 0.004388868649132138,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO320_sha1=080e42669f295009fcd3fb9dda0ac72b1148f93a.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "320",
+   "input_msssim": 0.9989652037620544,
+   "dark_fraction": 0.004390875029315515,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO400_sha1=6637f1f7485046ba8e6e09978bd26b91042568e6.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "400",
+   "input_msssim": 0.9987349510192871,
+   "dark_fraction": 0.004394740674392207,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO640_sha1=e11074913f99cdc64f7f41368a5bc99421a4ad23.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "640",
+   "input_msssim": 0.9981829524040222,
+   "dark_fraction": 0.00440517374658583,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO65535_sha1=b5c1ca049cd080144d2853ef5a78b0247a50cf3f.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.8542404174804688,
+   "dark_fraction": 0.004405448922152448,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO800_sha1=1353e69380a30ec67df3cd21be3cf8ce3c6db222.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "800",
+   "input_msssim": 0.9977904558181763,
+   "dark_fraction": 0.004403790546442073,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO12800_sha1=5322313f9650a7b94028d69567c1f6c66bac8765.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "12800",
+   "input_msssim": 0.7765448093414307,
+   "dark_fraction": 0.0020568526571718296,
+   "input_msssim_raw": 0.7765476107597351,
+   "input_msssim_difference": -2.8014183044433594e-06,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO1600_sha1=9b21ad6490fbd55426bad0791a6f3990d8b0e395.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "1600",
+   "input_msssim": 0.9657397270202637,
+   "dark_fraction": 0.0020557528983564805,
+   "input_msssim_raw": 0.9657394289970398,
+   "input_msssim_difference": 2.980232238769531e-07,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO200_sha1=c16e05e17a5bade967e5edef6e3b580a449e170a.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "200",
+   "input_msssim": 0.9930726289749146,
+   "dark_fraction": 0.0020253187733519137,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO3200_sha1=61536b7de6506deb768693f6e495af67fc8d2562.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "3200",
+   "input_msssim": 0.936427116394043,
+   "dark_fraction": 0.002056144225505332,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO400_sha1=ce125be3071119883a0e7118069bdf59d14af465.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "400",
+   "input_msssim": 0.9888209104537964,
+   "dark_fraction": 0.0020489966190941743,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO6400_sha1=733cb095be69607aa14eca55b1f9f471bd0f00a3.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "6400",
+   "input_msssim": 0.8805314302444458,
+   "dark_fraction": 0.0020570915903409637,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO800_sha1=11d2f7ac51732304c1ed32e352f3dd080f546c4b.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "800",
+   "input_msssim": 0.9809427261352539,
+   "dark_fraction": 0.0020535757298475016,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO12800_sha1=1b272e3c62cb33ea2031e1480b46182bbc1e3a3c.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "12800",
+   "input_msssim": 0.9535931944847107,
+   "dark_fraction": 2.2745616333556948e-05,
+   "input_msssim_raw": 0.9535923600196838,
+   "input_msssim_difference": 8.344650268554688e-07,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO1600_sha1=db6334331fcca3e28c71fa33cea02002b7d98767.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "1600",
+   "input_msssim": 0.9877004623413086,
+   "dark_fraction": 2.2745553657587733e-05,
+   "input_msssim_raw": 0.987700879573822,
+   "input_msssim_difference": -4.172325134277344e-07,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO200_sha1=99fab2fa41b309d7eb3308a8ca7e22853afa2150.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "200",
+   "input_msssim": 0.995893120765686,
+   "dark_fraction": 2.2745497819287922e-05,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO25600_sha1=ba3f6ea87665d32bd75999757b9f6406dafe9142.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "25600",
+   "input_msssim": 0.9172204732894897,
+   "dark_fraction": 2.1543237277215373e-05,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO3200_sha1=d41dde59ad1b1f6dd4ab8673488c6eff4dac3452.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "3200",
+   "input_msssim": 0.9843305349349976,
+   "dark_fraction": 2.1543088330970776e-05,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO400_sha1=0bba64bdba1bdc5252f951bdad60cdc3a47aceda.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "400",
+   "input_msssim": 0.9958022832870483,
+   "dark_fraction": 2.1543081855093816e-05,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO51200_sha1=bb57eda9b65eb7d18bcd38a58145437af2b82d23.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "51200",
+   "input_msssim": 0.852198600769043,
+   "dark_fraction": 2.274857161267881e-05,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO6400_sha1=7347aef21040f72ba4cda39685af93dc3f0846c2.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "6400",
+   "input_msssim": 0.9738142490386963,
+   "dark_fraction": 2.1543096965479442e-05,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO65535_sha1=6ba8ed5f7fff42c4c900812c02701649f4f2d49e.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "65535",
+   "input_msssim": 0.7390660643577576,
+   "dark_fraction": 2.2631929024657612e-05,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO800_sha1=ba86f1da64a4bb534d9216e96c1c72177ed1e625.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "800",
+   "input_msssim": 0.9939658045768738,
+   "dark_fraction": 2.274553656420153e-05,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "D60-2|gt/Bayer_D60-2_GT_ISO100_sha1=29f5b93638b1cf60d4afbd83fb2c1caca5c1ac38.crw|Bayer_D60-2_ISO1037_sha1=aaa5a0772e45a487b03bd39beec503f2dc439c87.crw",
+   "scene": "D60-2",
+   "camera": "Canon EOS D60",
+   "f_iso": "1037",
+   "input_msssim": 0.9792909026145935,
+   "dark_fraction": 0.0006924890689742005,
+   "input_msssim_raw": 0.979287326335907,
+   "input_msssim_difference": 3.5762786865234375e-06,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "D60-2|gt/Bayer_D60-2_GT_ISO100_sha1=29f5b93638b1cf60d4afbd83fb2c1caca5c1ac38.crw|Bayer_D60-2_ISO200_sha1=168089b71f4106cfc85febf1d689869e41e64687.crw",
+   "scene": "D60-2",
+   "camera": "Canon EOS D60",
+   "f_iso": "200",
+   "input_msssim": 0.996543824672699,
+   "dark_fraction": 0.0006925008485361063,
+   "input_msssim_raw": 0.996544361114502,
+   "input_msssim_difference": -5.364418029785156e-07,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "D60-2|gt/Bayer_D60-2_GT_ISO100_sha1=29f5b93638b1cf60d4afbd83fb2c1caca5c1ac38.crw|Bayer_D60-2_ISO400_sha1=9f411646fa1d0f9a69cebb8546b0377efde699b0.crw",
+   "scene": "D60-2",
+   "camera": "Canon EOS D60",
+   "f_iso": "400",
+   "input_msssim": 0.993567705154419,
+   "dark_fraction": 0.0006925012889013314,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "D60-2|gt/Bayer_D60-2_GT_ISO100_sha1=29f5b93638b1cf60d4afbd83fb2c1caca5c1ac38.crw|Bayer_D60-2_ISO800_sha1=67a5e80d99f1c3c44f17e04cf2b4292154d073cf.crw",
+   "scene": "D60-2",
+   "camera": "Canon EOS D60",
+   "f_iso": "800",
+   "input_msssim": 0.9859710931777954,
+   "dark_fraction": 0.0006925004081714412,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=4dd7a49d600fb1d1d60c741be0e89911f7e05308.nef|Bayer_Iain01_ISO1600_sha1=e6747c75607d311078c660bff37499a1878e6d07.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "1600",
+   "input_msssim": 0.9868339896202087,
+   "dark_fraction": 0.012248976095802475,
+   "input_msssim_raw": 0.9868292808532715,
+   "input_msssim_difference": 4.708766937255859e-06,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=4dd7a49d600fb1d1d60c741be0e89911f7e05308.nef|Bayer_Iain01_ISO400_sha1=b8635e7e2bc37f1ce7431a5a617fe191400990ff.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "400",
+   "input_msssim": 0.996768593788147,
+   "dark_fraction": 0.012189704017958517,
+   "input_msssim_raw": 0.996767520904541,
+   "input_msssim_difference": 1.0728836059570312e-06,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=4dd7a49d600fb1d1d60c741be0e89911f7e05308.nef|Bayer_Iain01_ISO800_sha1=6a32967acd99ba10e13f9c9ffdc8f16249b4df53.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "800",
+   "input_msssim": 0.9940697550773621,
+   "dark_fraction": 0.012222381242703724,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=4dd7a49d600fb1d1d60c741be0e89911f7e05308.nef|Bayer_Iain01_ISOHi 3200_sha1=77c2cb900395f6b4b1a05a0205e2a12bada70bf1.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "Hi 3200",
+   "input_msssim": 0.9597694277763367,
+   "dark_fraction": 0.012242585286508303,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=7b25507a3b470b770d31852317a1c3c948dd3cc5.nef|Bayer_Iain01_ISO1600_sha1=e6747c75607d311078c660bff37499a1878e6d07.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "1600",
+   "input_msssim": 0.986931562423706,
+   "dark_fraction": 0.012376678157432996,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=7b25507a3b470b770d31852317a1c3c948dd3cc5.nef|Bayer_Iain01_ISO400_sha1=b8635e7e2bc37f1ce7431a5a617fe191400990ff.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "400",
+   "input_msssim": 0.9967862963676453,
+   "dark_fraction": 0.012319082486521055,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=7b25507a3b470b770d31852317a1c3c948dd3cc5.nef|Bayer_Iain01_ISO800_sha1=6a32967acd99ba10e13f9c9ffdc8f16249b4df53.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "800",
+   "input_msssim": 0.9941205978393555,
+   "dark_fraction": 0.012351581759283001,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=7b25507a3b470b770d31852317a1c3c948dd3cc5.nef|Bayer_Iain01_ISOHi 3200_sha1=77c2cb900395f6b4b1a05a0205e2a12bada70bf1.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "Hi 3200",
+   "input_msssim": 0.9599975347518921,
+   "dark_fraction": 0.012371288475199858,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=9320c486b6b51f6f26a1f2feaecd443f36f1fbef.nef|Bayer_Iain01_ISO1600_sha1=e6747c75607d311078c660bff37499a1878e6d07.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "1600",
+   "input_msssim": 0.9868590831756592,
+   "dark_fraction": 0.012365776822765578,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=9320c486b6b51f6f26a1f2feaecd443f36f1fbef.nef|Bayer_Iain01_ISO400_sha1=b8635e7e2bc37f1ce7431a5a617fe191400990ff.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "400",
+   "input_msssim": 0.9967789649963379,
+   "dark_fraction": 0.012306014899744968,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=9320c486b6b51f6f26a1f2feaecd443f36f1fbef.nef|Bayer_Iain01_ISO800_sha1=6a32967acd99ba10e13f9c9ffdc8f16249b4df53.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "800",
+   "input_msssim": 0.9940771460533142,
+   "dark_fraction": 0.01234119143502109,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=9320c486b6b51f6f26a1f2feaecd443f36f1fbef.nef|Bayer_Iain01_ISOHi 3200_sha1=77c2cb900395f6b4b1a05a0205e2a12bada70bf1.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "Hi 3200",
+   "input_msssim": 0.9597918391227722,
+   "dark_fraction": 0.012362253390079897,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=ad69abfa4a723e0dedfc235d6b4c3ad488cead1f.nef|Bayer_Iain01_ISO1600_sha1=e6747c75607d311078c660bff37499a1878e6d07.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "1600",
+   "input_msssim": 0.9869092702865601,
+   "dark_fraction": 0.012615828742471016,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=ad69abfa4a723e0dedfc235d6b4c3ad488cead1f.nef|Bayer_Iain01_ISO400_sha1=b8635e7e2bc37f1ce7431a5a617fe191400990ff.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "400",
+   "input_msssim": 0.9967867136001587,
+   "dark_fraction": 0.012551855294192173,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=ad69abfa4a723e0dedfc235d6b4c3ad488cead1f.nef|Bayer_Iain01_ISO800_sha1=6a32967acd99ba10e13f9c9ffdc8f16249b4df53.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "800",
+   "input_msssim": 0.9941149950027466,
+   "dark_fraction": 0.012588225672707138,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=ad69abfa4a723e0dedfc235d6b4c3ad488cead1f.nef|Bayer_Iain01_ISOHi 3200_sha1=77c2cb900395f6b4b1a05a0205e2a12bada70bf1.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "Hi 3200",
+   "input_msssim": 0.9599327445030212,
+   "dark_fraction": 0.012610945518422796,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "MuseeL-C500D-mammal|gt/Bayer_MuseeL-C500D-mammal_GT_ISO100_sha1=53e8a797952880f32bddefcc62f031b1a0f515ca.cr2|Bayer_MuseeL-C500D-mammal_ISO1600_sha1=61428e0817b9456d84bf30b4a4e61a9e84844ca0.cr2",
+   "scene": "MuseeL-C500D-mammal",
+   "camera": "Canon EOS 500D",
+   "f_iso": "1600",
+   "input_msssim": 0.982526421546936,
+   "dark_fraction": 0.019693756805730198,
+   "input_msssim_raw": 0.9825266003608704,
+   "input_msssim_difference": -1.7881393432617188e-07,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "MuseeL-C500D-mammal|gt/Bayer_MuseeL-C500D-mammal_GT_ISO100_sha1=53e8a797952880f32bddefcc62f031b1a0f515ca.cr2|Bayer_MuseeL-C500D-mammal_ISO200_sha1=0f5daff16e841bcca6849e4f7f8eeda0731e5212.cr2",
+   "scene": "MuseeL-C500D-mammal",
+   "camera": "Canon EOS 500D",
+   "f_iso": "200",
+   "input_msssim": 0.994220495223999,
+   "dark_fraction": 0.019694251270098,
+   "input_msssim_raw": 0.9942205548286438,
+   "input_msssim_difference": -5.960464477539063e-08,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "MuseeL-C500D-mammal|gt/Bayer_MuseeL-C500D-mammal_GT_ISO100_sha1=53e8a797952880f32bddefcc62f031b1a0f515ca.cr2|Bayer_MuseeL-C500D-mammal_ISO3200_sha1=03c0012a5590aa688faf9c1e5560bcb5a6af7b45.cr2",
+   "scene": "MuseeL-C500D-mammal",
+   "camera": "Canon EOS 500D",
+   "f_iso": "3200",
+   "input_msssim": 0.924951434135437,
+   "dark_fraction": 0.019690060456255185,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "MuseeL-C500D-mammal|gt/Bayer_MuseeL-C500D-mammal_GT_ISO100_sha1=53e8a797952880f32bddefcc62f031b1a0f515ca.cr2|Bayer_MuseeL-C500D-mammal_ISO3200_sha1=b8f6b00c1983be101691c2264d355593d0945a36.cr2",
+   "scene": "MuseeL-C500D-mammal",
+   "camera": "Canon EOS 500D",
+   "f_iso": "3200",
+   "input_msssim": 0.9649164080619812,
+   "dark_fraction": 0.019554088499728037,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "MuseeL-C500D-mammal|gt/Bayer_MuseeL-C500D-mammal_GT_ISO100_sha1=53e8a797952880f32bddefcc62f031b1a0f515ca.cr2|Bayer_MuseeL-C500D-mammal_ISO400_sha1=7f48f0ed775f4d737aa26d11a2a084c7593643ef.cr2",
+   "scene": "MuseeL-C500D-mammal",
+   "camera": "Canon EOS 500D",
+   "f_iso": "400",
+   "input_msssim": 0.9935311079025269,
+   "dark_fraction": 0.019609863797819062,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "MuseeL-C500D-mammal|gt/Bayer_MuseeL-C500D-mammal_GT_ISO100_sha1=53e8a797952880f32bddefcc62f031b1a0f515ca.cr2|Bayer_MuseeL-C500D-mammal_ISO800_sha1=fcdf3d105fa11ec6e351905514426bb38e247037.cr2",
+   "scene": "MuseeL-C500D-mammal",
+   "camera": "Canon EOS 500D",
+   "f_iso": "800",
+   "input_msssim": 0.9896417856216431,
+   "dark_fraction": 0.0196931771589381,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO100_sha1=6f0d7783ca6c6d3ce1b7d17df19e47ccfbbe7c00.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "100",
+   "input_msssim": 0.9989409446716309,
+   "dark_fraction": 0.006263687860190658,
+   "input_msssim_raw": 0.9989411234855652,
+   "input_msssim_difference": -1.7881393432617188e-07,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO125_sha1=216d897b3e67abcc7cfe78626f1a2ae67aae50c7.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "125",
+   "input_msssim": 0.9988560080528259,
+   "dark_fraction": 0.006263648902969424,
+   "input_msssim_raw": 0.998856246471405,
+   "input_msssim_difference": -2.384185791015625e-07,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO12800_sha1=6f58c20387d64acbfe1dfa7c2e3e9708c667d999.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "12800",
+   "input_msssim": 0.9385455846786499,
+   "dark_fraction": 0.00626253558049132,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO1600_sha1=6e34b932272957147529bb0d1d106f4b3923f6a0.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "1600",
+   "input_msssim": 0.9908175468444824,
+   "dark_fraction": 0.006252296421927027,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO200_sha1=ddd416d6ebcc6b1f0b1b6bb8f612ec20194e3a27.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "200",
+   "input_msssim": 0.9985712766647339,
+   "dark_fraction": 0.006256258986302801,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO25600_sha1=435611a9eb0a453fe6e69796332c7651a7a775de.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "25600",
+   "input_msssim": 0.8901652097702026,
+   "dark_fraction": 0.006262741411138506,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO3200_sha1=d32e5fc3e05312522b2e766315ee14672627f323.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "3200",
+   "input_msssim": 0.9820706844329834,
+   "dark_fraction": 0.006260858195964504,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO400_sha1=5c5c999b15fec5c681417dc2576766888dbdb268.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "400",
+   "input_msssim": 0.9973893165588379,
+   "dark_fraction": 0.006252178257477683,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO51200_sha1=1eb6e9df8fe7ff9c5a8283cd354d8579dd25c579.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "51200",
+   "input_msssim": 0.8150109052658081,
+   "dark_fraction": 0.006268679385203674,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO63_sha1=20c7b440df36db62a2a986f2babe5f43efe2ec07.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "63",
+   "input_msssim": 0.9993923902511597,
+   "dark_fraction": 0.006259053152470765,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO6400_sha1=b216b89a4246cadcd120ce15c241a3ff5c7b4e99.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "6400",
+   "input_msssim": 0.966767430305481,
+   "dark_fraction": 0.006262864704068898,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO800_sha1=d32402bc4291d5f77c612f5304721ebd028766fe.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "800",
+   "input_msssim": 0.9952677488327026,
+   "dark_fraction": 0.0062578051338248505,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  }
+ ]
+}

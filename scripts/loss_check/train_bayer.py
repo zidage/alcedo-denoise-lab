@@ -66,6 +66,14 @@ unless stated:
 - Optimizer: Adam with a learning rate of `--lr` (default 3e-5, one tenth of the authors' initial
   rate; the authors' rate at iteration 4,350,000 was 1.65e-6, and their Adam state was not
   published, so the Adam moments start at 0) and a linear warm-up over `--warmup-steps`.
+- `--dark-area-weight W` (step 5): the loss is the loss of `--loss` plus W times the dark-area
+  loss of scripts/dark_area/dark_area_common.py, on the gain-matched linear Rec.2020 output and
+  the clean crop, before any encoding and clip, with the mask of the crop as the valid pixels. The
+  same loss is applied to the binned pairs. The train log then also has the two parts of the loss
+  and the share of the windows that the dark-area loss used.
+- The train log has `batch_sha256`, the SHA-256 of the packed input of the batch of each logged
+  step, so two runs can show that they trained on the same crops (same `--seed`,
+  `--loader-workers`, and start step).
 - PyTorch defaults for precision: FP32 weights and activations; cuDNN may run convolutions in TF32.
 
 Validation (every `--val-interval` steps and at step 0): all admitted noisy pairs of the
@@ -74,8 +82,11 @@ scripts/reference_measurement/measure_test_split.py measures the public weights:
 times `raw_gain`, the output converted to linear Rec.2020 and scaled to the mean of the clean
 target, then MS-SSIM on linear values (clipped to [0, 1]), and the developed MS-SSIM and PSNR
 (+2 EV, sRGB transfer curve). The clean reference is the DemosaicNet target of step 2. No mask.
+Each pair also has the image metrics of scripts/dark_area/dark_area_common.py (`dark_area`: dark
+area error, low-pass error, fine detail, flat-region noise) on the same gain-matched output, with
+the loss mask of the pair as the valid pixels.
 
-Step: loss check on short runs (step 3 of docs/plan.md).
+Step: loss check on short runs (step 3 of docs/plan.md); also the runs of steps 4 and 5.
 """
 
 from __future__ import annotations
@@ -98,6 +109,8 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE.parent / "training_patches"))
 sys.path.insert(0, str(HERE.parent / "reference_measurement"))
+sys.path.insert(0, str(HERE.parent / "dark_area"))
+import dark_area_common as dac  # noqa: E402
 import training_crops as tc  # noqa: E402
 import training_images_common as tic  # noqa: E402
 from bayer_head import UtNet2WithHead  # noqa: E402
@@ -262,7 +275,7 @@ def validate(model, code, msssim, pairs: list[dict], root: Path, device) -> dict
     started = time.time()
     with torch.no_grad():
         for pair in pairs:
-            clean_view, packed_view, _ = images.aligned(pair)
+            clean_view, packed_view, mask_bits = images.aligned(pair)
             height = (clean_view.shape[0] // 32) * 32
             width = (clean_view.shape[1] // 32) * 32
             clean = torch.from_numpy(np.asarray(clean_view[:height, :width], dtype=np.float32)
@@ -280,8 +293,13 @@ def validate(model, code, msssim, pairs: list[dict], root: Path, device) -> dict
                 "developed_msssim": float(msssim(developed(output), developed(clean))),
                 "developed_psnr": psnr(developed(output), developed(clean)),
             }
+            del cam_rgb
+            valid = np.unpackbits(np.asarray(mask_bits[:height]), axis=1)[:, :width].astype(bool)
+            valid = torch.from_numpy(valid)[None, None].to(device)
+            record["dark_area"] = dac.image_metrics(output, clean, valid)
             records.append(record)
-            del clean, packed, cam_rgb, output
+            del clean, packed, output, valid
+            torch.cuda.empty_cache()
     model.train()
     summary = {name: float(np.mean([r[name] for r in records]))
                for name in ("linear_msssim", "developed_msssim", "developed_psnr")}
@@ -318,6 +336,8 @@ def main() -> int:
     parser.add_argument("--lr-min", type=float, default=0.0, help="end of the cosine schedule")
     parser.add_argument("--binned-fraction", type=float, default=0.0,
                         help="share of binned pairs (binned_crop)")
+    parser.add_argument("--dark-area-weight", type=float, default=0.0,
+                        help="weight of the dark-area loss (scripts/dark_area/dark_area_common.py)")
     parser.add_argument("--iterations", type=int, required=True)
     parser.add_argument("--val-interval", type=int, required=True)
     parser.add_argument("--log-interval", type=int, default=100)
@@ -400,6 +420,8 @@ def main() -> int:
         "gamma": GAMMA, "gamma_offset": GAMMA_OFFSET, "detail_weights": DETAIL_WEIGHTS,
         "charbonnier_eps": CHARBONNIER_EPS, "lr": args.lr, "head": args.head,
         "binned_fraction": args.binned_fraction,
+        "dark_area_weight": args.dark_area_weight,
+        "dark_area": dac.settings() if args.dark_area_weight > 0 else None,
         "init_checkpoint": ({"path": tic.posix(args.init_checkpoint),
                              "sha256": sha256_of(args.init_checkpoint)}
                             if args.init_checkpoint else None),
@@ -440,6 +462,7 @@ def main() -> int:
     batches = iter(loader)
     torch.cuda.reset_peak_memory_stats(device)
     window_started, window_losses, wait_seconds = time.time(), [], 0.0
+    window_parts: dict[str, list[torch.Tensor]] = {}
     for step in range(start_step + 1, args.iterations + 1):
         factor = min(1.0, step / max(1, args.warmup_steps))
         if args.lr_schedule == "cosine" and step > args.warmup_steps:
@@ -452,6 +475,8 @@ def main() -> int:
         waited = time.time()
         packed, clean, mask, matrix = next(batches)
         wait_seconds += time.time() - waited
+        if step % args.log_interval == 0:
+            batch_sha256 = hashlib.sha256(packed.numpy().tobytes()).hexdigest()
         packed, clean = packed.to(device, non_blocking=True), clean.to(device, non_blocking=True)
         mask = mask.to(device, non_blocking=True)[:, None].expand_as(clean)
         matrix = matrix.to(device, non_blocking=True)
@@ -460,12 +485,19 @@ def main() -> int:
         output = code.rawproc.camRGB_to_lin_rec2020_images(output, matrix)
         output = code.rawproc.match_gain(clean, output)
         target = clean
+        linear_output = output
         if args.loss == "log_msssim":
             output, target = log_encoding(output), log_encoding(target)
         if args.loss == "gamma_detail":
             loss = detail_loss(gamma_encoding(output) * mask, gamma_encoding(target) * mask)
         else:
             loss = loss_function(output * mask, target * mask)
+        if args.dark_area_weight > 0:
+            dark_loss, coverage = dac.dark_area_loss(linear_output, clean, mask[:, :1])
+            parts = {"loss_main": loss.detach(), "loss_dark_area": dark_loss.detach(), **coverage}
+            for name, value in parts.items():
+                window_parts.setdefault(name, []).append(value)
+            loss = loss + args.dark_area_weight * dark_loss
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
         optimizer.step()
@@ -479,12 +511,15 @@ def main() -> int:
                      "iterations_per_second": len(window_losses) / seconds,
                      "loader_wait_fraction": wait_seconds / seconds,
                      "gpu_peak_allocated_bytes": torch.cuda.max_memory_allocated(device),
-                     "process_peak_memory_bytes": tic.peak_memory_bytes()}
+                     "process_peak_memory_bytes": tic.peak_memory_bytes(),
+                     "batch_sha256": batch_sha256,
+                     **{name: float(torch.stack(values).mean()) for name, values in window_parts.items()}}
             with train_log.open("a", encoding="utf-8", newline="\n") as stream:
                 stream.write(json.dumps(entry) + "\n")
             print(f"step {step}: loss {entry['loss']:.5f}, {entry['iterations_per_second']:.2f} it/s, "
                   f"loader wait {entry['loader_wait_fraction']:.0%}", flush=True)
             window_started, window_losses, wait_seconds = time.time(), [], 0.0
+            window_parts = {}
         if step % args.val_interval == 0 or step == args.iterations:
             torch.save({"model": model.state_dict(), "optimizer": optimizer.state_dict(),
                         "step": step}, args.run_dir / f"checkpoint_{step}.pt")
