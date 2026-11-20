@@ -41,14 +41,25 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   images, 1.0 to 5.1 dB above EA, and also first in false color. On two detail photos at ISO 100
   and 200, DemosaicNet shows the most leaf and building detail, and the public Bayer model makes
   distant foliage soft (2026-11-18, demosaic of the public Bayer model against DemosaicNet).
-- The model of step 4 (`fine_tune_e5c_cosine`, checkpoint 25,000) denoises as well as the public
-  Bayer weights and is much sharper. On the 79 noisy pairs of the validation scenes, the developed
-  PSNR / MS-SSIM is 37.53 dB / 0.9727 (public weights 37.27 dB / 0.9728). On the binned truth, the
-  PSNR is 40.97 dB (public weights 38.90, OpenCV bilinear 40.58, DemosaicNet 43.86). On a
-  synthetic slanted edge, the MTF50 is 0.340 cycles/px (public weights 0.197, OpenCV EA 0.290,
-  DemosaicNet 0.576). On the two detail photos, its fine-detail energy is 0.80 and 0.77 of
-  DemosaicNet (public weights 0.46, OpenCV EA 0.65 and 0.70). The test split and the held-out
-  camera are not measured for this model (2026-11-19, model of step 4).
+- The model of step 4 (`fine_tune_e5c_cosine`, checkpoint 25,000) is much sharper than the public
+  Bayer weights. On the binned truth, the PSNR is 40.97 dB (public weights 38.90, OpenCV bilinear
+  40.58, DemosaicNet 43.86). On a synthetic slanted edge, the MTF50 is 0.340 cycles/px (public
+  weights 0.197, OpenCV EA 0.290, DemosaicNet 0.576). On the two detail photos, its fine-detail
+  energy is 0.80 and 0.77 of DemosaicNet (public weights 0.46, OpenCV EA 0.65 and 0.70)
+  (2026-11-19, model of step 4).
+- The model of step 4 denoises as well as the public weights at low and medium noise, and much
+  worse at the highest noise. On the 79 noisy pairs of the validation scenes, the developed PSNR /
+  MS-SSIM is 37.53 dB / 0.9727 (public weights 37.27 / 0.9728) (2026-11-19, model of step 4). On
+  the test split, against the DemosaicNet reference, it is 35.26 dB / 0.9672 on the main test set
+  (public weights 36.64 / 0.9739) and 34.35 dB / 0.9472 on the Canon EOS M100, the held-out camera
+  (34.77 / 0.9511). It is better on 5 of the 10 scenes of the main test set (+0.35 to +0.70 dB
+  per scene) and on the pairs with an input MS-SSIM of 0.9975 or higher (40.39 against
+  39.91 dB). For the 16 pairs with an input MS-SSIM below 0.85 it
+  is 23.91 dB against 29.95 dB. The loss comes from two dark Sony ILCE-7C scenes at ISO 16,000 to
+  65,535 (`MuseeL-bluebirds-A7C` -5.13 dB, `MuseeL-vases-A7C` -2.47 dB mean): the model lifts the
+  dark areas into a gray haze with large blotches, which is not a color cast. With the darktable
+  test of the authors (OpenCV EA reference), the MS-SSIM is 0.9457 (public weights 0.9563)
+  (2026-11-19, model of step 4 on the test split).
 - All UtNet2 runs that train only on camera images remove all detail above 0.25 cycles/px, the
   Nyquist frequency of the packed grid: on a synthetic zone plate they keep at most 0.08 of the
   contrast at 0.25 cycles/px, where DemosaicNet keeps 1.00 and OpenCV EA 0.58. The loss, a 10
@@ -72,6 +83,87 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   does not test the faintest stars of a darker sky (2026-11-19, star photo).
 
 ## Entries
+
+### 2026-11-19 Model of step 4 on the test split
+
+- **Source**: `scripts/loss_check/measure_checkpoint_test_split.py --checkpoint
+  s4_25k=models/fine_tune_e5c_cosine/checkpoint_25000.pt` (result
+  `results/fine_tune/test_split_pair_metrics.jsonl`, run record `test_split_runs.jsonl`),
+  `summarize_checkpoint_test_split.py` (tables `results/fine_tune/test_split_summary.md` and
+  `.json`), `test_pair_error.py` (result `results/fine_tune/test_pair_error.json`, sheets in
+  `results/fine_tune/images/test_split/`, not committed). Commands: `scripts/loss_check/README.md`.
+  RTX 3080 Laptop GPU, TF32 at the PyTorch default as in step 1. Weights SHA-256: checkpoint
+  `0e925bc96e4551b1...`, public Bayer weights `c1f7de3de24cb12f...` (full values in the result
+  file).
+- **Procedure**: the 228 admitted pairs of step 1 (163 of the main test set, 65 of the Canon EOS
+  M100) with the input preparation of the method `bayer_public` of step 1 (one pass, output scaled
+  to the mean of the reference). Two clean references: `demosaicnet` (the clean raw file demosaiced
+  with `demosaic_target`, as the training targets and the validation; the reference of this
+  report) and `authors_ea` (the authors' clean image, the reference of step 1 and of the paper).
+  The developed metric against the two references; the darktable test of the authors against
+  `authors_ea` only, for the checkpoint (the values of the input and the public weights are those
+  of step 1). PSNR means do not include the 25 identity pairs.
+- **Reproduction of step 1**: this run measured the public weights and the input again against
+  `authors_ea`. All 914 values (developed metric on 228 pairs, darktable metric of the public
+  weights on the first pair) are equal to the values of step 1 (largest difference 0; tolerance
+  1e-4 MS-SSIM, 0.01 dB).
+- **Result**, developed metric, reference `demosaicnet`, PSNR (dB) / MS-SSIM:
+
+  | Set | Input | Public Bayer weights | Model of step 4 |
+  | --- | --- | --- | --- |
+  | Main test set (148 / 163 pairs) | 28.18 / 0.7481 | 36.64 / 0.9739 | 35.26 / 0.9672 |
+  | Canon EOS M100 (55 / 65 pairs) | 26.61 / 0.7378 | 34.77 / 0.9511 | 34.35 / 0.9472 |
+
+  - Reference `authors_ea`: main test set 37.00 / 0.9741 (public weights) and 35.06 / 0.9665
+    (step 4); Canon EOS M100 34.77 / 0.9494 and 33.97 / 0.9443. Darktable test, main test set:
+    MS-SSIM 0.9563 (public weights, step 1) and 0.9457 (step 4), PSNR 32.98 and 32.26 dB.
+  - Developed PSNR by input MS-SSIM, main test set (pairs; public weights / step 4): below 0.85
+    (16) 29.95 / 23.91; 0.85 to 0.97 (35) 35.06 / 32.56; 0.97 to 0.99 (32) 37.14 / 36.16; 0.99 to
+    0.9975 (32) 37.86 / 37.72; 0.9975 and higher (33) 39.91 / 40.39. Canon EOS M100: below 0.85
+    (10) 30.63 / 29.03; 0.85 to 0.97 (12) 33.27 / 32.56; 0.97 to 0.99 (9) 35.61 / 35.22; 0.99 to
+    0.9975 (18) 36.64 / 36.89; 0.9975 and higher (6) 37.80 / 37.83.
+  - Developed PSNR by camera (public weights / step 4): Canon EOS 500D 34.65 / 35.29, Canon EOS 6D
+    35.73 / 36.36, Canon EOS 7D 35.11 / 35.68, Canon EOS D60 36.56 / 37.26, Panasonic DMC-GH1
+    37.57 / 37.18, Sony ILCE-7C 36.88 / 34.99, Canon EOS M100 34.77 / 34.35.
+  - Mean change of the developed PSNR by scene, main test set: `MuseeL-bluebirds-A7C` -5.13 dB
+    (26 pairs, down to -9.31 dB at ISO 65,535), `MuseeL-vases-A7C` -2.47 dB (24 pairs, down to
+    -7.87 dB), `TitusToys` -0.86 dB, `Pen-pile` -0.39 dB, `boardgames_top` -0.34 dB; the other 5
+    scenes +0.35 to +0.70 dB. Without the two MuseeL scenes, the main test set is 37.64 / 0.9757
+    (public weights) and 37.52 / 0.9732 (step 4), 98 pairs. Canon EOS M100 by scene: -0.81 to
+    +0.12 dB.
+  - Pairs where the model of step 4 has the higher developed PSNR: 59 of 148 (main test set) and
+    19 of 55 (Canon EOS M100).
+  - Identity pairs (a clean image against itself), developed MS-SSIM: 0.9944 (step 4) against
+    0.9918 (public weights) on the main test set, 0.9875 against 0.9830 on the Canon EOS M100.
+- **Result, error of three high-noise pairs** (`test_pair_error.py`, reference `demosaicnet`; mean
+  developed error R, G, B in the darkest pixels, developed brightness below 0.1):
+
+  | Pair (input MS-SSIM) | Dark pixels | Public weights: PSNR, dark error | Step 4: PSNR, dark error | Step 4: low-pass share |
+  | --- | ---: | --- | --- | ---: |
+  | `MuseeL-bluebirds-A7C` ISO 65,535 (0.810) | 67 % | 30.06, +0.023 +0.018 +0.009 | 20.75, +0.121 +0.108 +0.059 | 0.96 |
+  | `MuseeL-vases-A7C` ISO 64,000 (0.897) | 53 % | 31.89, +0.008 +0.003 +0.001 | 24.09, +0.089 +0.073 +0.040 | 0.88 |
+  | `TitusToys` ISO 51,200 (0.781) | 1 % | 33.92, +0.022 +0.018 +0.005 | 31.06, +0.076 +0.062 +0.028 | 0.59 |
+
+  - The model of step 4 makes the dark areas brighter than the reference, and, because the output
+    is scaled to the mean of the reference, the bright areas darker (bluebirds: -0.068 -0.068
+    -0.056 above a brightness of 0.6). A gain for each channel changes the PSNR by at most
+    0.06 dB, so the error is not a color cast. The low-pass share (error after a box blur of
+    16 px) is 0.88 to 0.96 on the dark scenes: the error is a large-scale change, not residual
+    noise.
+  - By eye (sheets at +2 EV): the black background of `MuseeL-bluebirds-A7C` is a gray-brown haze
+    with large blotches; the public weights keep it dark and smooth.
+  - The validation did not show the error: its only Sony ILCE-7C scene (`bananapi`) gave 43.84
+    against 44.38 dB (model of step 4 entry). The cause was not examined: the run had binned pairs
+    without noise in half of each batch, the learning rate 3e-4, and the loss in the gamma domain;
+    E3 and E5c were not measured on the test split.
+- **Time**: 7,757 s for the 228 pairs in two runs (the first stopped at the 2-hour limit of the
+  background job after 164 pairs; the second measured the other 64 and recorded a peak working
+  set of 10.6 GB). GPU peak 4.7 GB for one pass of the model.
+- Not measured: the darktable test against the DemosaicNet reference; the darktable test on the
+  Canon EOS M100 (no XMP files); the checkpoints at 0 and 50,000 of step 4, E3, and E5c on the
+  test split; the linear model.
+- **Effect**: Current state gives the quality of the model of step 4 on the test split and the
+  held-out camera, and its error on dark scenes at the highest noise.
 
 ### 2026-11-19 Star photo
 

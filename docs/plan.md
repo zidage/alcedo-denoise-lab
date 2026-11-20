@@ -226,8 +226,10 @@ long run from the public weights:
 
 Status (2026-11-19): the run took 0.95 hours (about 0.56 USD). The user selected the checkpoint
 at 25,000 iterations (`models/fine_tune_e5c_cosine/checkpoint_25000.pt`). Its measurement on the
-test split and on the held-out camera with the metrics of step 1 is not done
-([findings/quality.md](findings/quality.md)).
+test split and on the held-out camera with the metrics of step 1 is done: it is below the public
+weights on both (developed PSNR 35.26 against 36.64 dB on the main test set, 34.35 against
+34.77 dB on the Canon EOS M100), because it lifts the dark areas of two dark Sony ILCE-7C scenes
+at ISO 16,000 to 65,535 ([findings/quality.md](findings/quality.md)).
 
 Compute: RunPod.
 
@@ -274,6 +276,10 @@ Findings: `inference_cost.md`.
 
 ## Items that need the user
 
+- Whether the checkpoint at 25,000 stays the model of step 4 (and the teacher of step 5). On the
+  test split it lifts the dark areas of dark scenes at the highest noise and is below the public
+  weights ([findings/quality.md](findings/quality.md), 2026-11-19, model of step 4 on the test
+  split).
 - `budget_cap`: the amount that step 5 can spend. Step 5 does not start without it. Step 4 ran
   as the short end of E5c that the user selected (about 0.56 USD).
 - `target_time`: the largest time for one 45 megapixel photo in Alcedo Studio on the RTX 3080

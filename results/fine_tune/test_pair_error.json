@@ -1,0 +1,349 @@
+{
+ "description": "Split the error of the public weights and of checkpoints on one test pair by brightness and scale.",
+ "command": "python -I scripts/loss_check/test_pair_error.py --authors-repo build/tmp/reference_measurement/rawnind_jddc --darktable-cli build/tmp/reference_measurement/darktable-5.0.1/bin/darktable-cli.exe --darktable-configdir build/tmp/reference_measurement/darktable_config --tmp-dir build/tmp/fine_tune_test_split/work --checkpoint s4_25k=models/fine_tune_e5c_cosine/checkpoint_25000.pt --f-file src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO64000_sha1=736eda054de38c5f51f4e4825cf4554fc5f0a24d.arw --sheet-dir results/fine_tune/images/test_split",
+ "blur_px": 16,
+ "pairs": [
+  {
+   "scene": "TEST_TitusToys",
+   "camera": "ILCE-7C",
+   "f_file": "src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO51200_sha1=f53dcfac22bc336c274c4dc4f3c8248db64f1adc.arw",
+   "rgb_msssim_score": 0.7807232737541199,
+   "raw_gain": 2.0711138248443604,
+   "reference": "demosaicnet",
+   "methods": {
+    "bayer_public": {
+     "developed_psnr": 33.92149334902911,
+     "channel_mean_ratio": [
+      1.0051249265670776,
+      0.9987413883209229,
+      0.9784361124038696
+     ],
+     "developed_psnr_after_channel_gain": 33.97302660063656,
+     "lowpass_share": 0.3713473677635193,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.008484416555851065,
+       "mean_error_rgb": [
+        0.021537432447075844,
+        0.01771559566259384,
+        0.0045102788135409355
+       ],
+       "rms_error": 0.024762041866779327
+      },
+      "0.1-0.3": {
+       "fraction": 0.20873175698138297,
+       "mean_error_rgb": [
+        0.005718526896089315,
+        0.009716786444187164,
+        -0.0027908713091164827
+       ],
+       "rms_error": 0.02112559974193573
+      },
+      "0.3-0.6": {
+       "fraction": 0.4195687333776596,
+       "mean_error_rgb": [
+        -0.0011260301107540727,
+        0.0029308320954442024,
+        -0.006623292341828346
+       ],
+       "rms_error": 0.023786207661032677
+      },
+      "0.6-1.0": {
+       "fraction": 0.36321509308510636,
+       "mean_error_rgb": [
+        0.0019728366751223803,
+        -0.00259700627066195,
+        -0.003283523255959153
+       ],
+       "rms_error": 0.013845405541360378
+      }
+     },
+     "weights": {
+      "path": "models/public/DenoiserTrainingBayerToProfiledRGB_4ch_2024-02-21-bayer_ms-ssim_mgout_notrans_valeither_-4/saved_models/iter_4350000.pt",
+      "sha256": "c1f7de3de24cb12f4803ee65e11cfb467e9a5b80c3cb7126746ef026106c15e0"
+     }
+    },
+    "s4_25k": {
+     "developed_psnr": 31.05821880840121,
+     "channel_mean_ratio": [
+      0.9999390244483948,
+      0.989543616771698,
+      1.0338846445083618
+     ],
+     "developed_psnr_after_channel_gain": 31.117423821654246,
+     "lowpass_share": 0.5902239084243774,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.008484416555851065,
+       "mean_error_rgb": [
+        0.07603053748607635,
+        0.061726972460746765,
+        0.027966849505901337
+       ],
+       "rms_error": 0.0640820637345314
+      },
+      "0.1-0.3": {
+       "fraction": 0.20873175698138297,
+       "mean_error_rgb": [
+        0.038071636110544205,
+        0.03380737826228142,
+        0.017543628811836243
+       ],
+       "rms_error": 0.03932446613907814
+      },
+      "0.3-0.6": {
+       "fraction": 0.4195687333776596,
+       "mean_error_rgb": [
+        0.009543638676404953,
+        0.009117286652326584,
+        0.012058056890964508
+       ],
+       "rms_error": 0.02793455310165882
+      },
+      "0.6-1.0": {
+       "fraction": 0.36321509308510636,
+       "mean_error_rgb": [
+        -0.0014988790499046445,
+        -0.007590926717966795,
+        0.004060089588165283
+       ],
+       "rms_error": 0.016486043110489845
+      }
+     },
+     "weights": {
+      "path": "models/fine_tune_e5c_cosine/checkpoint_25000.pt",
+      "sha256": "0e925bc96e4551b1769cdb239a29ee7257c3a85bf82b31d225e5b4c7256813d9"
+     }
+    }
+   }
+  },
+  {
+   "scene": "TEST_MuseeL-bluebirds-A7C",
+   "camera": "ILCE-7C",
+   "f_file": "src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=221c23e21a205b6bfec5803c567a008b7246c9a5.arw",
+   "rgb_msssim_score": 0.8096990585327148,
+   "raw_gain": 2.1345601081848145,
+   "reference": "demosaicnet",
+   "methods": {
+    "bayer_public": {
+     "developed_psnr": 30.064296983537126,
+     "channel_mean_ratio": [
+      0.9974444508552551,
+      1.0039492845535278,
+      0.9984272718429565
+     ],
+     "developed_psnr_after_channel_gain": 30.06464335750458,
+     "lowpass_share": 0.6978411078453064,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.023158909752964973,
+        0.017618004232645035,
+        0.009071109816432
+       ],
+       "rms_error": 0.030246028676629066
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        -0.016290811821818352,
+        -0.01182919554412365,
+        -0.00330947432667017
+       ],
+       "rms_error": 0.024632254615426064
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.005061756353825331,
+        0.0018532290123403072,
+        -0.0025789388455450535
+       ],
+       "rms_error": 0.042580440640449524
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.00603821873664856,
+        -0.0036841470282524824,
+        -0.005830493289977312
+       ],
+       "rms_error": 0.04587774723768234
+      }
+     },
+     "weights": {
+      "path": "models/public/DenoiserTrainingBayerToProfiledRGB_4ch_2024-02-21-bayer_ms-ssim_mgout_notrans_valeither_-4/saved_models/iter_4350000.pt",
+      "sha256": "c1f7de3de24cb12f4803ee65e11cfb467e9a5b80c3cb7126746ef026106c15e0"
+     }
+    },
+    "s4_25k": {
+     "developed_psnr": 20.754772981320254,
+     "channel_mean_ratio": [
+      1.0168269872665405,
+      0.9881320595741272,
+      0.9739103317260742
+     ],
+     "developed_psnr_after_channel_gain": 20.76029776073438,
+     "lowpass_share": 0.9556052088737488,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.6701817237367022,
+       "mean_error_rgb": [
+        0.12123625725507736,
+        0.10783687233924866,
+        0.0589018277823925
+       ],
+       "rms_error": 0.10575651377439499
+      },
+      "0.1-0.3": {
+       "fraction": 0.20226267453457447,
+       "mean_error_rgb": [
+        0.0253308042883873,
+        0.022818585857748985,
+        0.01783084124326706
+       ],
+       "rms_error": 0.037326060235500336
+      },
+      "0.3-0.6": {
+       "fraction": 0.06510829454787234,
+       "mean_error_rgb": [
+        -0.039944689720869064,
+        -0.03161618113517761,
+        -0.015576436184346676
+       ],
+       "rms_error": 0.05336553230881691
+      },
+      "0.6-1.0": {
+       "fraction": 0.062447307180851064,
+       "mean_error_rgb": [
+        -0.06762275099754333,
+        -0.06787021458148956,
+        -0.0555272102355957
+       ],
+       "rms_error": 0.08411936461925507
+      }
+     },
+     "weights": {
+      "path": "models/fine_tune_e5c_cosine/checkpoint_25000.pt",
+      "sha256": "0e925bc96e4551b1769cdb239a29ee7257c3a85bf82b31d225e5b4c7256813d9"
+     }
+    }
+   }
+  },
+  {
+   "scene": "TEST_MuseeL-vases-A7C",
+   "camera": "ILCE-7C",
+   "f_file": "src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO64000_sha1=736eda054de38c5f51f4e4825cf4554fc5f0a24d.arw",
+   "rgb_msssim_score": 0.8969041705131531,
+   "raw_gain": 2.057995557785034,
+   "reference": "demosaicnet",
+   "methods": {
+    "bayer_public": {
+     "developed_psnr": 31.886819289637558,
+     "channel_mean_ratio": [
+      1.011949896812439,
+      0.9896265864372253,
+      0.9728255271911621
+     ],
+     "developed_psnr_after_channel_gain": 31.91127547913828,
+     "lowpass_share": 0.3849003314971924,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.5282918467420212,
+       "mean_error_rgb": [
+        0.008363981731235981,
+        0.0031426120549440384,
+        0.0005162297748029232
+       ],
+       "rms_error": 0.018245553597807884
+      },
+      "0.1-0.3": {
+       "fraction": 0.3276548786569149,
+       "mean_error_rgb": [
+        0.002211947226896882,
+        -0.0032995499204844236,
+        -0.004133588634431362
+       ],
+       "rms_error": 0.02685299888253212
+      },
+      "0.3-0.6": {
+       "fraction": 0.09764482214095745,
+       "mean_error_rgb": [
+        -0.0018778207013383508,
+        -0.00757176848128438,
+        -0.006001782137900591
+       ],
+       "rms_error": 0.0434110164642334
+      },
+      "0.6-1.0": {
+       "fraction": 0.046408452460106386,
+       "mean_error_rgb": [
+        -0.00047877521137706935,
+        -0.0031302529387176037,
+        -0.003340810537338257
+       ],
+       "rms_error": 0.033302150666713715
+      }
+     },
+     "weights": {
+      "path": "models/public/DenoiserTrainingBayerToProfiledRGB_4ch_2024-02-21-bayer_ms-ssim_mgout_notrans_valeither_-4/saved_models/iter_4350000.pt",
+      "sha256": "c1f7de3de24cb12f4803ee65e11cfb467e9a5b80c3cb7126746ef026106c15e0"
+     }
+    },
+    "s4_25k": {
+     "developed_psnr": 24.093612125703782,
+     "channel_mean_ratio": [
+      1.0005786418914795,
+      0.9921313524246216,
+      1.0223416090011597
+     ],
+     "developed_psnr_after_channel_gain": 24.0953707897798,
+     "lowpass_share": 0.8789336681365967,
+     "by_brightness": {
+      "0.0-0.1": {
+       "fraction": 0.5282918467420212,
+       "mean_error_rgb": [
+        0.08895827829837799,
+        0.07340279966592789,
+        0.04037851467728615
+       ],
+       "rms_error": 0.07624510675668716
+      },
+      "0.1-0.3": {
+       "fraction": 0.3276548786569149,
+       "mean_error_rgb": [
+        0.02125350385904312,
+        0.01456459704786539,
+        0.012349904514849186
+       ],
+       "rms_error": 0.03535284101963043
+      },
+      "0.3-0.6": {
+       "fraction": 0.09764482214095745,
+       "mean_error_rgb": [
+        -0.03242195397615433,
+        -0.03163490444421768,
+        -0.010562144219875336
+       ],
+       "rms_error": 0.05026435852050781
+      },
+      "0.6-1.0": {
+       "fraction": 0.046408452460106386,
+       "mean_error_rgb": [
+        -0.0456341914832592,
+        -0.057127971202135086,
+        -0.032838135957717896
+       ],
+       "rms_error": 0.06031675264239311
+      }
+     },
+     "weights": {
+      "path": "models/fine_tune_e5c_cosine/checkpoint_25000.pt",
+      "sha256": "0e925bc96e4551b1769cdb239a29ee7257c3a85bf82b31d225e5b4c7256813d9"
+     }
+    }
+   }
+  }
+ ]
+}

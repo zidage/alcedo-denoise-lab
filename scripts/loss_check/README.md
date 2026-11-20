@@ -134,3 +134,20 @@ $P scripts/loss_check/star_photometry.py --outputs $E/evaluation_outputs/_DSC853
 
 The step 4 checkpoints run on the photos with `photos_with_checkpoints.py --checkpoint
 s4_25k=models/fine_tune_e5c_cosine/checkpoint_25000.pt --log results/fine_tune/photo_runs.jsonl`.
+
+## Model of step 4 on the test split and the held-out camera
+
+On the development machine, with the environment, the test split, and the pairs of step 1
+(scripts/reference_measurement/README.md, commands 1 to 3). GPU and darktable-cli, one job at a
+time; about 2 hours for the 228 pairs. A stopped run continues from the pairs in the result file.
+
+```bash
+$P scripts/loss_check/measure_checkpoint_test_split.py $COMMON --tmp-dir build/tmp/fine_tune_test_split/work \
+  --checkpoint s4_25k=models/fine_tune_e5c_cosine/checkpoint_25000.pt
+# Tables, and the reproduction check of the step 1 values of the public weights.
+$P scripts/loss_check/summarize_checkpoint_test_split.py
+# Error by brightness and scale on one pair (run for each pair of results/fine_tune/test_pair_error.json).
+$P scripts/loss_check/test_pair_error.py $COMMON --tmp-dir build/tmp/fine_tune_test_split/work \
+  --checkpoint s4_25k=models/fine_tune_e5c_cosine/checkpoint_25000.pt --sheet-dir results/fine_tune/images/test_split \
+  --f-file "src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=221c23e21a205b6bfec5803c567a008b7246c9a5.arw"
+```
