@@ -361,7 +361,9 @@ Findings: `inference_cost.md`.
 - More evaluation photos, if the user wants the check by eye on other cameras, ISO values, or
   scenes. `data/evaluation_photos/` has a Canon EOS R3 photo at ISO 25600, two Panasonic DC-GH6
   photos at ISO 1600 and 6400 (`high_iso_gh6/`), a Sony ILCE-7RM3 star photo at ISO 3200
-  (`astro/`), and two low-ISO detail photos (`demosaic/`). The scripts of step 1 and
+  (`astro/`), two Nikon D7000 wildlife photos at ISO 3200 in dim light (`high_iso_nikon/`, given
+  by the user on 2026-11-20 as photos near the limit of the denoiser and typical of its use), and
+  two low-ISO detail photos (`demosaic/`). The scripts of step 1 and
   `scripts/loss_check/photos_with_checkpoints.py` make the outputs for each photo in a folder.
 - The request to the SID authors for a written permission to use the Fuji part of SID
   ([findings/datasets.md](findings/datasets.md)). The plan does not depend on the answer; a

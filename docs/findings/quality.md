@@ -209,6 +209,27 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
     On the night photo, the star photo, and the detail photos, the four checkpoints of the gamma
     detail loss show the same texture and fine detail; the differences are smaller than the
     differences to the public weights.
+  - Two Nikon D7000 photos at ISO 3200 in dim light (`data/evaluation_photos/high_iso_nikon/`, not
+    committed; a camera that is not in RawNIND): an owl in a tree against a bright sky
+    (`_DSC2403`, 1/800 s, input mean 0.037) and a cougar in dark brush at dusk (`_DSC2546`,
+    1/160 s, input mean 0.017). Step 1 methods by `denoise_evaluation_photos.py` (record
+    `results/reference_measurement/evaluation_photo_runs.jsonl`); the checkpoints with
+    `m2_45k` (step 4 with the authors' loss) in addition. Sheets at +2 EV and strips at 1:1.
+    - Detail: the owl's face feathers, the cougar's face, and the leaflets and twigs against the
+      sky are sharper with the four checkpoints of the gamma detail loss than with the public
+      weights, which make the feathers of the cheeks smooth; `m2_45k` is between. Among the
+      checkpoints of the gamma detail loss, no difference in detail is visible.
+    - Brightness: the crops that lift most are dark mid-gray areas, not the darkest areas. Crop
+      mean relative to the input in the out-of-focus bush of the cougar photo (input Y 0.012):
+      public weights 1.014, `m2_45k` 1.037, start checkpoint 1.061, control 25,000 1.099,
+      dark-area loss 10,000 1.041, 25,000 1.088; in the dark foliage of the owl photo (input Y
+      0.022): 1.013, 1.018, 1.049, 1.067, 1.037, 1.062. In the three darkest crops of the cougar
+      photo (input Y 0.006 to 0.007) all methods are within 0.98 to 1.05 of the input, and the
+      checkpoints of step 5 are within 0.98 to 1.02. By eye the differences of brightness are
+      small at +2 EV, and no method makes blotches in the out-of-focus areas.
+    - Color in the darkest crops: the input is red (R/G 1.17 in the darkest cougar crop); the
+      public weights keep R/G 1.12, and all checkpoints of the gamma detail loss give 1.00, with
+      `m2_45k` at 1.03. The photos have no clean reference, so which value is right is not known.
 - **Not measured**: the test split and the Canon EOS M100 for these checkpoints;
   `scripts/dark_area/brightness_error.py` (the brightness error by domain, brightness, and
   position on the dark test pairs); a second seed of each run, so the change between two
