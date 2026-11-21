@@ -5,9 +5,11 @@ Training runs: data, loss, settings, time, and cost. The rules of this file are 
 
 ## Current state
 
-- All runs of steps 2 to 4 ran on RunPod, on one NVIDIA A40 (48 GB) at 0.59 USD per hour, with a
+- All runs of steps 2 to 5 ran on RunPod, on one NVIDIA A40 (48 GB) at 0.59 USD per hour, with a
   network volume of 200 GB in CA-MTL-1 that holds the training images. A pod with a network volume
-  cannot be stopped, only deleted (2026-11-19, rented machines of steps 2 to 4).
+  cannot be stopped, only deleted (2026-11-19, rented machines of steps 2 to 4). `runpodctl` in
+  the pods has no API key, so a pod cannot delete itself; the user deletes it (2026-11-20, step 4
+  with the authors' loss; 2026-11-20, step 5 runs).
 - The training reads random crops from the network volume. With 16 loader processes, the loader
   waits less than 5 % of the time, and UtNet2 trains at 24 to 29 iterations per second (17 to
   18 for the MS-SSIM loss of runs A and B, 17 with the full-resolution stage, 21 to 24 with binned
@@ -27,14 +29,72 @@ Training runs: data, loss, settings, time, and cost. The rules of this file are 
 - The selected gamma checkpoint of step 4 is `models/fine_tune_e5c_cosine/checkpoint_25000.pt`.
   This is E5c at 60,000 iterations, then 25,000 iterations with a cosine learning rate from 3e-4
   toward 3e-6. The user selected it from the checkpoints at 25,000 and 50,000 (2026-11-19, step 4).
-- Total cost of rented compute: about 11.7 USD for about 19.7 GPU pod hours (4 pods), plus the
+- The step 5 control run (`gamma_detail` only, 25,000 more iterations of the cosine schedule of
+  step 4) and the run with the dark-area loss (weight 0.039) used the same crops at all 250 logged
+  steps. On the training crops, the dark-area loss decreased from 0.00214 to 0.00104 (means of the
+  first and the last 5,000 iterations); the main loss of the two runs differed by less than 0.0001
+  (2026-11-20, step 5 runs). The validation results are in quality.md, 2026-11-20, step 5 runs.
+- Total cost of rented compute: about 13.5 USD for about 22.8 GPU pod hours (5 pods), plus the
   network volume. The values come from the pod times and the listed price; the RunPod bill was not
-  read (2026-11-19, rented machines of steps 2 to 4; 2026-11-20, step 4 with the authors' loss).
+  read (2026-11-19, rented machines of steps 2 to 4; 2026-11-20, step 4 with the authors' loss;
+  2026-11-20, step 5 runs).
 
 Each entry of this file states the service (Colab or RunPod), the GPU, the hours, and the cost of
 the run. Current state keeps the sum.
 
 ## Entries
+
+### 2026-11-20 Step 5 runs
+
+- **Source**: `scripts/dark_area/run_rented_machine.sh` (commit d2bcf37; each phase and its command
+  in `scripts/dark_area/README.md` and in the `command` field of each result file). Results:
+  `results/dark_area/` (`dark_validation_scenes.json`, `validation_pairs.json`,
+  `validation_reference_checkpoints.jsonl`, `dark_loss_weight.json`, `dark_area_control/` and
+  `dark_area_loss/` with `train_log.jsonl` and `validation.jsonl`, `validation_summary.md` and
+  `.json`, `rented_run.json`). RunPod, A40, pod `xhj8kj5u90lyxo` (made by the user), network volume
+  `wild_rose_bug`.
+- **Reason**: step 5 of the plan: can a loss on the brightness of dark areas remove the lift of the
+  step 4 gamma checkpoint at the highest noise and keep its detail?
+- **Settings**: both runs from `models/fine_tune_e5c_cosine/checkpoint_25000.pt` with its Adam
+  state, `--loss gamma_detail`, all pairs, half of the pairs binned, 25,000 iterations, cosine
+  learning rate from 1.515e-4 to 3e-6 with no warm-up, a validation every 5,000, seed 2, 16 loader
+  processes. `dark_area_loss` adds `--dark-area-weight 0.039` (below). The 7 validation scenes and
+  the 6 dark validation scenes (below) are excluded from the training of both runs.
+- **Result**:
+  - Dark validation scenes (`select_dark_scenes.py`): `MuseeL-AraBleu-cropped-alt3-A7C`,
+    `MuseeL-AraBleu-cropped-alt2-A7C`, `MuseeL-AraBleu-A7C`, `MuseeL-helmets-A7C`,
+    `MuseeL-horseface-A7C`, `MuseeL-colorfulchemicalsandbird-A7C`, dark fraction 0.62 to 0.73, 134
+    noisy pairs at ISO 100 to 65,535. All 6 are Sony ILCE-7C scenes of the MuseeL series, the
+    series of the two dark test scenes, and 3 of them are crops of one scene. The training keeps
+    3,998 ILCE-7C pairs. The validation has 213 noisy pairs (79 + 134).
+  - Input MS-SSIM from the packed inputs against the raw-file method of the authors, on 25 pairs
+    of the 7 validation scenes on the development machine: largest difference 1.6e-5
+    (`results/dark_area/validation_pairs_raw_check.json`).
+  - Weight (`dark_loss_weight.py`, 200 batches, seed 100): 149 batches have dark windows, and the
+    loss uses 2.2 % of the 16 px windows and 2.0 % of the 64 px windows. The mean gradient norm is
+    0.0987 for `gamma_detail` and 2.53 for the dark-area loss, so the weight is 0.039.
+  - Same crops: the `batch_sha256` of the two runs are equal at all 250 logged steps.
+  - Losses on the training crops (means of 5,000 iterations, first to last): control 0.01436 to
+    0.01378; dark-area run, main loss 0.01442 to 0.01382, dark-area loss 0.00214, 0.00169, 0.00135,
+    0.00125, 0.00104.
+  - Time: setup 0.75 minutes (packages of step 2), `select_dark_scenes` 3.9 minutes,
+    `validation_pairs` 11.5 minutes, the 4 reference methods on the validation 12.9 minutes (3.2
+    minutes for each validation of 213 pairs), weight 0.4 minutes, control 48.3 minutes,
+    dark-area run 44.1 minutes; the script ran from 2026-11-20 22:22:43 to 2026-11-21 00:24:44 UTC
+    (2.03 hours). Median rate 19.0 and 19.6 iterations per second; GPU peak 5.2 GB. The estimate
+    was about 1.5 hours; the difference comes from the 213 validation pairs in place of 79.
+  - Cost: the first connection to the pod was at 22:21 UTC, and the pod stopped answering at
+    about 01:24 UTC after the user stopped it: about 3.05 hours, about 1.80 USD at 0.59 USD per
+    hour. The pod was idle for about 1 hour (0.59 USD) after the script ended, because the check
+    of the end of the script found its own command line and did not see the end.
+  - The checkpoints of both runs (5,000 to 25,000) were copied to `models/dark_area_control/` and
+    `models/dark_area_loss/` of the development machine; the SHA-256 of each copy at 25,000 is that
+    of the file on the volume: control
+    `5b83a7ed3ee348720d6e2c8caa45398dea1e692be68c051349712936e5a47342`, dark-area run
+    `9092b606c678c96b454ddfff270e5cc43cd8bd0a478fcd2ec4c3d045b8824298`.
+  - Validation and sharpness: quality.md, 2026-11-20, step 5 runs.
+- **Effect**: Current state states the rented machines of step 5, the same crops of the two runs,
+  the dark-area loss on the training crops, and the total cost.
 
 ### 2026-11-20 Step 4 with the authors' loss
 

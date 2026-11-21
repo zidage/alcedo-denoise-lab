@@ -1,0 +1,56 @@
+{
+ "description": "Rented runs of step 5: machine, times, crop comparison",
+ "machine": {
+  "date_utc": "2026-11-20T22:23:28Z",
+  "repository_commit": "d2bcf372bc972c3c0921e42f0b1b671133f77a96",
+  "gpu": "NVIDIA A40, 46068 MiB, 595.112.07",
+  "cpu_quota": "765000 100000",
+  "runpod_pod_id": "",
+  "loader_workers": "16",
+  "iterations": "25000",
+  "val_interval": "5000"
+ },
+ "phases": [
+  {
+   "phase": "select_dark_scenes",
+   "start_utc": "2026-11-20T22:23:28Z",
+   "end_utc": "2026-11-20T22:27:24Z",
+   "seconds": 236.0
+  },
+  {
+   "phase": "validation_pairs",
+   "start_utc": "2026-11-20T22:27:26Z",
+   "end_utc": "2026-11-20T22:38:55Z",
+   "seconds": 689.0
+  },
+  {
+   "phase": "reference_checkpoints",
+   "start_utc": "2026-11-20T22:38:55Z",
+   "end_utc": "2026-11-20T22:51:49Z",
+   "seconds": 774.0
+  },
+  {
+   "phase": "dark_loss_weight",
+   "start_utc": "2026-11-20T22:51:49Z",
+   "end_utc": "2026-11-20T22:52:15Z",
+   "seconds": 26.0
+  },
+  {
+   "phase": "dark_area_control",
+   "start_utc": "2026-11-20T22:52:15Z",
+   "end_utc": "2026-11-20T23:40:35Z",
+   "seconds": 2900.0
+  },
+  {
+   "phase": "dark_area_loss",
+   "start_utc": "2026-11-20T23:40:35Z",
+   "end_utc": "2026-11-21T00:24:41Z",
+   "seconds": 2646.0
+  }
+ ],
+ "crops": {
+  "logged_steps_compared": 250,
+  "steps_with_different_batches": [],
+  "same_crops": true
+ }
+}

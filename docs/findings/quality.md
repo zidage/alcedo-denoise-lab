@@ -76,6 +76,19 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   0.340, 0.53, 40.97, 0.80 and 0.77; OpenCV bilinear 0.257, 0.52, 40.58). So the binned pairs give
   detail above 0.25 cycles/px only with the gamma detail loss (2026-11-20, step 4 with the
   authors' loss).
+- A dark-area loss (local signed mean errors of dark windows, weight 0.039) added to the gamma
+  detail loss for 25,000 more iterations of the step 4 schedule does not reach the dark-area and
+  noise values of the public weights. On the 16 dark validation pairs at the highest noise, the
+  mean developed dark-area error is +0.054 at 5,000 iterations and +0.094 at 25,000 (start
+  checkpoint +0.107, control run with the gamma detail loss only +0.142 at 25,000, public weights
+  +0.028), and the flat-region luma noise is higher than that of the start checkpoint at
+  5,000 iterations. On the training crops the dark-area loss continues to decrease. The loss keeps
+  the detail on the zone plate (contrast 0.52 at 0.25 cycles/px, start checkpoint 0.53). With the
+  gamma detail loss alone, the lift of the start checkpoint continues to grow at learning rates
+  below 1.5e-4. The high-ISO photos show the same order: in the darkest crop of the DC-GH6 photo
+  at ISO 6400 the crop mean is 1.02 of the input for the public weights, 1.08 for the start
+  checkpoint, 1.13 for the control, and 1.07 and 1.11 for the dark-area loss at 10,000 and 25,000
+  (2026-11-20, step 5 runs).
 - All UtNet2 runs that train only on camera images remove all detail above 0.25 cycles/px, the
   Nyquist frequency of the packed grid: on a synthetic zone plate they keep at most 0.08 of the
   contrast at 0.25 cycles/px, where DemosaicNet keeps 1.00 and OpenCV EA 0.58. The loss, a 10
@@ -99,6 +112,109 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   does not test the faintest stars of a darker sky (2026-11-19, star photo).
 
 ## Entries
+
+### 2026-11-20 Step 5 runs
+
+- **Source**: the runs of training.md, 2026-11-20, step 5 runs (`dark_area_control`, and
+  `dark_area_loss` with the dark-area loss at weight 0.039). Validation:
+  `results/dark_area/validation_summary.md` and `.json` (`summarize_validation.py`; the metrics
+  of `scripts/dark_area/dark_area_common.py`), on RunPod. Synthetic check:
+  `synthetic_resolution.py` (result `results/dark_area/synthetic_resolution.json`), RTX 3080
+  Laptop GPU. Full commands in the `command` field of the result files.
+- **Validation groups**: 213 noisy pairs: the 79 pairs of the 7 validation scenes (dark fraction
+  below 0.1) and the 134 pairs of 6 dark training scenes that both runs exclude (dark fraction
+  0.4 and higher; training.md, 2026-11-20, step 5 runs). Of the dark pairs, 16 have an input
+  MS-SSIM below 0.85 (`dark_high_noise`); of the others, 3. The dark pairs are all of the Sony
+  ILCE-7C, and 3 of the 6 dark scenes are crops of one scene. The public weights and the start
+  checkpoint trained on the dark scenes.
+- **Result, reference methods** (before the runs): the validation shows the lift of the start
+  checkpoint. On `dark_high_noise`, the developed PSNR is 28.18 dB for the public weights, 20.01
+  dB for the start checkpoint `s4_25k`, and 27.01 and 26.95 dB for the step 4 checkpoints of the
+  authors' loss at 45,000 and 50,000; the mean developed dark-area error is +0.028, +0.107,
+  +0.037, and +0.038. The tolerances of the comparison rule (the differences between the two
+  checkpoints of the authors' loss) are 0.0000 to 0.0014 for the dark-area and noise metrics, so
+  the rule asks for values at or below those of the public weights.
+- **Result, `dark_high_noise`** (16 pairs; dark-area error: mean developed signed error of the
+  dark pixels, mean of R, G, B; RMS of the linear means of 16 px dark windows; low-pass RMS error,
+  developed, 64 px; flat-region noise; detail kept in the band 0.20 to 0.40 cycles/px in textured
+  blocks):
+
+  | Method | PSNR (dB) | Dark-area error | Dark window RMS 16 | Low-pass RMS 64 | Flat luma noise | Flat chroma noise | Detail kept |
+  | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+  | Public weights | 28.18 | +0.0284 | 0.0014 | 0.0301 | 0.0084 | 0.0070 | 0.0032 |
+  | Start `s4_25k` | 20.01 | +0.1069 | 0.0059 | 0.0556 | 0.0111 | 0.0081 | 0.0096 |
+  | Control 5,000 | 19.27 | +0.1156 | 0.0068 | 0.0641 | 0.0109 | 0.0080 | 0.0091 |
+  | Control 10,000 | 17.81 | +0.1376 | 0.0087 | 0.0782 | 0.0105 | 0.0075 | 0.0083 |
+  | Control 25,000 | 17.44 | +0.1419 | 0.0095 | 0.0861 | 0.0102 | 0.0073 | 0.0074 |
+  | Dark-area loss 5,000 | 24.87 | +0.0542 | 0.0023 | 0.0366 | 0.0142 | 0.0093 | 0.0114 |
+  | Dark-area loss 10,000 | 23.77 | +0.0653 | 0.0029 | 0.0407 | 0.0136 | 0.0095 | 0.0110 |
+  | Dark-area loss 15,000 | 21.26 | +0.0910 | 0.0047 | 0.0503 | 0.0115 | 0.0080 | 0.0096 |
+  | Dark-area loss 20,000 | 22.74 | +0.0710 | 0.0035 | 0.0525 | 0.0133 | 0.0090 | 0.0098 |
+  | Dark-area loss 25,000 | 20.82 | +0.0941 | 0.0050 | 0.0595 | 0.0116 | 0.0080 | 0.0089 |
+
+- **Result, all groups** (developed PSNR in dB / dark-area error):
+
+  | Method | All 213 | Dark 134 | Dark, highest noise 16 |
+  | --- | --- | --- | --- |
+  | Public weights | 37.07 / +0.0086 | 36.96 / +0.0059 | 28.18 / +0.0284 |
+  | Start `s4_25k` | 34.82 / +0.0227 | 33.23 / +0.0280 | 20.01 / +0.1069 |
+  | Control 25,000 | 33.30 / +0.0317 | 30.95 / +0.0424 | 17.44 / +0.1419 |
+  | Dark-area loss 10,000 | 36.37 / +0.0111 | 35.65 / +0.0128 | 23.77 / +0.0653 |
+  | Dark-area loss 25,000 | 35.17 / +0.0194 | 33.88 / +0.0247 | 20.82 / +0.0941 |
+
+  - The control and the dark-area run fail the comparison rule at all validations, on the
+    dark-area error, the dark window RMS, the low-pass RMS, and the flat-region noise in all
+    groups.
+  - With the gamma detail loss alone, the lift grows in each group from the start checkpoint to
+    25,000 iterations, while the learning rate goes from 1.5e-4 to 3e-6.
+  - The dark-area loss halves the lift at 5,000 iterations, but the lift grows again, with ups and
+    downs between validations, to near the start checkpoint at 25,000. On the training crops,
+    the dark-area loss decreases at each 5,000 iterations (training.md, 2026-11-20, step 5 runs).
+  - At 5,000 and 10,000 iterations, the flat-region luma noise on `dark_high_noise` is 0.0136 to
+    0.0142, higher than the start checkpoint (0.0111) and the public weights (0.0084). Where the
+    dark-area loss reduces the lift most, the model keeps more noise in the flat regions.
+- **Result, sharpness** (zone plate and slanted edge, high contrast, no blur; contrast is the part
+  of the truth contrast kept in a ring of local frequency in cycles/px):
+
+  | Method | MTF50 | Contrast 0.05 | 0.20 | 0.25 | 0.30 | 0.35 | False color 0.30 | 0.40 |
+  | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+  | Public Bayer weights | 0.197 | 0.94 | 0.17 | 0.01 | 0.01 | 0.01 | 0.15 | 0.37 |
+  | Start `s4_25k` | 0.340 | 0.91 | 0.72 | 0.53 | 0.23 | 0.07 | 0.14 | 0.35 |
+  | Control 25,000 | 0.353 | 0.82 | 0.69 | 0.51 | 0.22 | 0.09 | 0.14 | 0.25 |
+  | Dark-area loss 5,000 | 0.344 | 0.92 | 0.72 | 0.46 | 0.19 | 0.06 | 0.14 | 0.34 |
+  | Dark-area loss 10,000 | 0.347 | 0.90 | 0.74 | 0.54 | 0.23 | 0.08 | 0.13 | 0.34 |
+  | Dark-area loss 25,000 | 0.351 | 0.83 | 0.70 | 0.52 | 0.22 | 0.09 | 0.15 | 0.27 |
+  | OpenCV EA | 0.290 | 0.96 | 0.69 | 0.58 | 0.47 | 0.34 | 0.86 | 1.27 |
+  | DemosaicNet | 0.576 | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 0.05 | 0.06 |
+
+  - The dark-area loss does not remove the detail: at 10,000 and 25,000 iterations, the contrast
+    from 0.20 to 0.35 cycles/px is within 0.02 of the start checkpoint. At 5,000 it is 0.07 lower
+    at 0.25 cycles/px.
+  - At 25,000 iterations, both runs keep less contrast at 0.05 cycles/px (0.82 and 0.83) than the
+    start checkpoint (0.91).
+- **Result, photos** (`photos_with_checkpoints.py` with `control_25k`, `dark_loss_10k`, and
+  `dark_loss_25k` on the 4 high-ISO evaluation photos and the 2 detail photos, record
+  `results/dark_area/photo_runs.jsonl`; sheets `results/dark_area/images/`, not committed, with
+  the crops of the step 4 sheets). Each output is scaled to the mean of the linear input image, so
+  a crop mean above the input in a dark crop and below the input in a bright crop shows a
+  compressed brightness range:
+  - Crop mean luminance relative to the input, Panasonic DC-GH6 at ISO 6400 (`5721990840`), the
+    two darkest crops (input Y 0.021 and 0.026): public weights 1.022 and 1.014, start checkpoint
+    1.082 and 1.068, control 25,000 1.128 and 1.094, dark-area loss 10,000 1.069 and 1.059, 25,000
+    1.114 and 1.086. Its brightest crop (input Y 0.121): 0.985, 0.958, 0.935, 0.960, 0.942. The
+    Canon EOS R3 photo at ISO 25600 has the same order (bright crops 0.989 public, 0.925 control,
+    0.964 dark-area loss 10,000, 0.931 at 25,000).
+  - By eye, the shadow of the person in the darkest GH6 crop is a deep black with the public
+    weights and gray with the control and the dark-area loss at 25,000; at 10,000 it is between.
+    On the night photo, the star photo, and the detail photos, the four checkpoints of the gamma
+    detail loss show the same texture and fine detail; the differences are smaller than the
+    differences to the public weights.
+- **Not measured**: the test split and the Canon EOS M100 for these checkpoints;
+  `scripts/dark_area/brightness_error.py` (the brightness error by domain, brightness, and
+  position on the dark test pairs); a second seed of each run, so the change between two
+  validations of one run is not known.
+- **Effect**: Current state states the result of the dark-area loss at weight 0.039 and of the
+  control run.
 
 ### 2026-11-20 Step 4 with the authors' loss
 

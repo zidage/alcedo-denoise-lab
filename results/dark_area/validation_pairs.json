@@ -1,0 +1,2246 @@
+{
+ "description": "Give each noisy validation pair its input MS-SSIM (noise level) and the dark fraction (step 5).",
+ "command": "python -I scripts/dark_area/validation_pairs.py --images data/patches/rawnind_bayer_demosaicnet --authors-repo /root/step5/rawnind_jddc --tmp-dir /root/step5/tmp --validation-scenes 2pilesofplates MuseeL-C500D-mammal Bark 7D-1 D60-2 Iain01 bananapi MuseeL-AraBleu-cropped-alt3-A7C MuseeL-AraBleu-cropped-alt2-A7C MuseeL-AraBleu-A7C MuseeL-helmets-A7C MuseeL-horseface-A7C MuseeL-colorfulchemicalsandbird-A7C --out results/dark_area/validation_pairs.json",
+ "repository_commit": "d2bcf372bc972c3c0921e42f0b1b671133f77a96",
+ "authors_commit": "e80fb7b14dc440bba38c01f312fd3cc02deb566c",
+ "validation_scenes": [
+  "2pilesofplates",
+  "MuseeL-C500D-mammal",
+  "Bark",
+  "7D-1",
+  "D60-2",
+  "Iain01",
+  "bananapi",
+  "MuseeL-AraBleu-cropped-alt3-A7C",
+  "MuseeL-AraBleu-cropped-alt2-A7C",
+  "MuseeL-AraBleu-A7C",
+  "MuseeL-helmets-A7C",
+  "MuseeL-horseface-A7C",
+  "MuseeL-colorfulchemicalsandbird-A7C"
+ ],
+ "dark_area": {
+  "dark_definition": "mean of the developed (+2.0 EV, sRGB) reference R, G, B below 0.1",
+  "dark_developed_limit": 0.1,
+  "dark_windows": [
+   16,
+   64
+  ],
+  "dark_min_coverage": 0.5,
+  "dark_penalty": "sqrt(1 + (m / s)^2) - 1",
+  "dark_penalty_scale": 0.00048828125,
+  "lowpass_windows": [
+   16,
+   64
+  ],
+  "band_cycles_per_px": [
+   0.2,
+   0.4
+  ],
+  "band_taps": 33,
+  "block_px": 16,
+  "clip_limit": 0.98,
+  "texture_quantiles": [
+   0.25,
+   0.75
+  ]
+ },
+ "noise_bins": [
+  [
+   0.0,
+   0.85
+  ],
+  [
+   0.85,
+   0.97
+  ],
+  [
+   0.97,
+   0.99
+  ],
+  [
+   0.99,
+   1.01
+  ]
+ ],
+ "dark_fraction_bins": [
+  [
+   0.0,
+   0.1
+  ],
+  [
+   0.1,
+   0.4
+  ],
+  [
+   0.4,
+   1.01
+  ]
+ ],
+ "largest_input_msssim_difference_packed_against_raw": null,
+ "pairs_with_raw_check": 0,
+ "pair_count": 213,
+ "groups_dark_bin_noise_bin": {
+  "0.0-0.1": {
+   "0.99-1.0": 41,
+   "0.85-0.97": 21,
+   "0.0-0.85": 3,
+   "0.97-0.99": 14
+  },
+  "0.4-1.0": {
+   "0.97-0.99": 17,
+   "0.99-1.0": 79,
+   "0.85-0.97": 22,
+   "0.0-0.85": 16
+  }
+ },
+ "dark_high_noise_pairs": [
+  "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=5b81e1009197568e498a7f0b9f265051c941aba0.arw|Bayer_MuseeL-AraBleu-A7C_ISO65535_sha1=c2538692defd14b9f931108c40461693c7e12829.arw",
+  "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=ca7be183ea8722183d74f4216a90741377a691ed.arw|Bayer_MuseeL-AraBleu-A7C_ISO65535_sha1=c2538692defd14b9f931108c40461693c7e12829.arw",
+  "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=d383b530cdd14e59ed98591482bc2981a6f35178.arw|Bayer_MuseeL-AraBleu-A7C_ISO65535_sha1=c2538692defd14b9f931108c40461693c7e12829.arw",
+  "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=3ad9cd010e43228135669999a300f72511fafd4e.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO65535_sha1=4daf6042383b9137efab8cd9ab3fc08909ea4713.arw",
+  "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=3ad9cd010e43228135669999a300f72511fafd4e.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO65535_sha1=c7e3b758d6cc064d60047b92f58cbc7cbdc05f06.arw",
+  "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=de9555137424f197d95661f947c61df580597924.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO65535_sha1=4daf6042383b9137efab8cd9ab3fc08909ea4713.arw",
+  "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=de9555137424f197d95661f947c61df580597924.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO65535_sha1=c7e3b758d6cc064d60047b92f58cbc7cbdc05f06.arw",
+  "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO65535_sha1=90fc85f783a18d60f03e2bea8309a0d2765caa79.arw",
+  "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO65535_sha1=982c92254f16bf85d379f8dc3bdafe367b560d8b.arw",
+  "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO65535_sha1=fbae45af0dc8260874a00e626f4a0c6b0419ed53.arw",
+  "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO65535_sha1=ff260725d7b84400e4ac084916e55505c004f37a.arw",
+  "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO65535_sha1=38179121f3d52ca479729aff70389f2b7a8b98f2.arw",
+  "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO65535_sha1=38179121f3d52ca479729aff70389f2b7a8b98f2.arw",
+  "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=2329e7a0c6c4c18c560084cd28ef176b5b04ec65.arw|Bayer_MuseeL-horseface-A7C_ISO65535_sha1=5f16131ebb259595574d81c9f52d8489276c19ea.arw",
+  "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=3a8590029ce27d480a0887f65ca1a787b8d5d46a.arw|Bayer_MuseeL-horseface-A7C_ISO65535_sha1=5f16131ebb259595574d81c9f52d8489276c19ea.arw",
+  "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=41ae125a7d11ffe4a339b4df8d1654813c471ba9.arw|Bayer_MuseeL-horseface-A7C_ISO65535_sha1=5f16131ebb259595574d81c9f52d8489276c19ea.arw"
+ ],
+ "pairs": [
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO1250_sha1=9121efbd50e2f2392665cb17b435b2526df8e9ae.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "1250",
+   "input_msssim": 0.996733546257019,
+   "dark_fraction": 0.005082676562405516,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO125_sha1=58c56d2ccf6cfcc49292f8b09ccba1609111380a.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "125",
+   "input_msssim": 0.9994533061981201,
+   "dark_fraction": 0.005106252179053136,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO12800_sha1=7c5f212c12b86bd8c4ecde91ba37de415b3744de.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "12800",
+   "input_msssim": 0.9699867963790894,
+   "dark_fraction": 0.005106398895334158,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO16000_sha1=3b38449e04f75c3b68443e888c9c02fa99eddde6.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "16000",
+   "input_msssim": 0.9622740149497986,
+   "dark_fraction": 0.005106023157329258,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO160_sha1=17018efcc6228c02fd3a024abc70ef08c64a7622.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "160",
+   "input_msssim": 0.9993576407432556,
+   "dark_fraction": 0.005106614123618023,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO2000_sha1=31fac4e2aeaa235193744d7e49c503734b6346b2.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "2000",
+   "input_msssim": 0.9949555397033691,
+   "dark_fraction": 0.005083760294445239,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO2500_sha1=c08ac26ca1d57b6c258f4c4706ad312de0936ec9.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "2500",
+   "input_msssim": 0.9936758875846863,
+   "dark_fraction": 0.005086747127553649,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO320_sha1=080e42669f295009fcd3fb9dda0ac72b1148f93a.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "320",
+   "input_msssim": 0.9989594221115112,
+   "dark_fraction": 0.005101862914120892,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO400_sha1=6637f1f7485046ba8e6e09978bd26b91042568e6.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "400",
+   "input_msssim": 0.9987781047821045,
+   "dark_fraction": 0.005086962750341219,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO640_sha1=e11074913f99cdc64f7f41368a5bc99421a4ad23.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "640",
+   "input_msssim": 0.9982471466064453,
+   "dark_fraction": 0.00510234552043197,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO65535_sha1=b5c1ca049cd080144d2853ef5a78b0247a50cf3f.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.8564772605895996,
+   "dark_fraction": 0.0051070655539599726,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw|Bayer_2pilesofplates_ISO800_sha1=1353e69380a30ec67df3cd21be3cf8ce3c6db222.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "800",
+   "input_msssim": 0.997763991355896,
+   "dark_fraction": 0.005107065766209897,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO1250_sha1=9121efbd50e2f2392665cb17b435b2526df8e9ae.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "1250",
+   "input_msssim": 0.9966472387313843,
+   "dark_fraction": 0.004392753635536021,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO125_sha1=58c56d2ccf6cfcc49292f8b09ccba1609111380a.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "125",
+   "input_msssim": 0.999423623085022,
+   "dark_fraction": 0.0044054205445430775,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO12800_sha1=7c5f212c12b86bd8c4ecde91ba37de415b3744de.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "12800",
+   "input_msssim": 0.9693953990936279,
+   "dark_fraction": 0.004405031857018165,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO16000_sha1=3b38449e04f75c3b68443e888c9c02fa99eddde6.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "16000",
+   "input_msssim": 0.9615515470504761,
+   "dark_fraction": 0.004404490295130649,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO160_sha1=17018efcc6228c02fd3a024abc70ef08c64a7622.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "160",
+   "input_msssim": 0.9993587732315063,
+   "dark_fraction": 0.004405001830516795,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO2000_sha1=31fac4e2aeaa235193744d7e49c503734b6346b2.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "2000",
+   "input_msssim": 0.9948573112487793,
+   "dark_fraction": 0.004384882162136282,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO2500_sha1=c08ac26ca1d57b6c258f4c4706ad312de0936ec9.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "2500",
+   "input_msssim": 0.9935426115989685,
+   "dark_fraction": 0.004388868649132138,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO320_sha1=080e42669f295009fcd3fb9dda0ac72b1148f93a.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "320",
+   "input_msssim": 0.9989652037620544,
+   "dark_fraction": 0.004390875029315515,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO400_sha1=6637f1f7485046ba8e6e09978bd26b91042568e6.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "400",
+   "input_msssim": 0.9987349510192871,
+   "dark_fraction": 0.004394740674392207,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO640_sha1=e11074913f99cdc64f7f41368a5bc99421a4ad23.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "640",
+   "input_msssim": 0.9981829524040222,
+   "dark_fraction": 0.00440517374658583,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO65535_sha1=b5c1ca049cd080144d2853ef5a78b0247a50cf3f.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.8542404174804688,
+   "dark_fraction": 0.004405448922152448,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "2pilesofplates|gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw|Bayer_2pilesofplates_ISO800_sha1=1353e69380a30ec67df3cd21be3cf8ce3c6db222.arw",
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "f_iso": "800",
+   "input_msssim": 0.9977904558181763,
+   "dark_fraction": 0.004403790546442073,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO12800_sha1=5322313f9650a7b94028d69567c1f6c66bac8765.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "12800",
+   "input_msssim": 0.7765448093414307,
+   "dark_fraction": 0.0020568526571718296,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO1600_sha1=9b21ad6490fbd55426bad0791a6f3990d8b0e395.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "1600",
+   "input_msssim": 0.9657398462295532,
+   "dark_fraction": 0.0020557528983564805,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO200_sha1=c16e05e17a5bade967e5edef6e3b580a449e170a.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "200",
+   "input_msssim": 0.9930726289749146,
+   "dark_fraction": 0.0020253187733519137,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO3200_sha1=61536b7de6506deb768693f6e495af67fc8d2562.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "3200",
+   "input_msssim": 0.9364272356033325,
+   "dark_fraction": 0.002056144225505332,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO400_sha1=ce125be3071119883a0e7118069bdf59d14af465.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "400",
+   "input_msssim": 0.9888209104537964,
+   "dark_fraction": 0.0020489966190941743,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO6400_sha1=733cb095be69607aa14eca55b1f9f471bd0f00a3.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "6400",
+   "input_msssim": 0.8805314302444458,
+   "dark_fraction": 0.0020570915903409637,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "7D-1|gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2|Bayer_7D-1_ISO800_sha1=11d2f7ac51732304c1ed32e352f3dd080f546c4b.cr2",
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "f_iso": "800",
+   "input_msssim": 0.9809427261352539,
+   "dark_fraction": 0.0020535757298475016,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO12800_sha1=1b272e3c62cb33ea2031e1480b46182bbc1e3a3c.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "12800",
+   "input_msssim": 0.9535931944847107,
+   "dark_fraction": 2.2745616333556948e-05,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO1600_sha1=db6334331fcca3e28c71fa33cea02002b7d98767.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "1600",
+   "input_msssim": 0.9877004623413086,
+   "dark_fraction": 2.2745553657587733e-05,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO200_sha1=99fab2fa41b309d7eb3308a8ca7e22853afa2150.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "200",
+   "input_msssim": 0.995893120765686,
+   "dark_fraction": 2.2745497819287922e-05,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO25600_sha1=ba3f6ea87665d32bd75999757b9f6406dafe9142.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "25600",
+   "input_msssim": 0.9172204732894897,
+   "dark_fraction": 2.1543237277215373e-05,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO3200_sha1=d41dde59ad1b1f6dd4ab8673488c6eff4dac3452.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "3200",
+   "input_msssim": 0.9843305349349976,
+   "dark_fraction": 2.1543088330970776e-05,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO400_sha1=0bba64bdba1bdc5252f951bdad60cdc3a47aceda.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "400",
+   "input_msssim": 0.9958023428916931,
+   "dark_fraction": 2.1543081855093816e-05,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO51200_sha1=bb57eda9b65eb7d18bcd38a58145437af2b82d23.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "51200",
+   "input_msssim": 0.852198600769043,
+   "dark_fraction": 2.274857161267881e-05,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO6400_sha1=7347aef21040f72ba4cda39685af93dc3f0846c2.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "6400",
+   "input_msssim": 0.9738142490386963,
+   "dark_fraction": 2.1543096965479442e-05,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO65535_sha1=6ba8ed5f7fff42c4c900812c02701649f4f2d49e.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "65535",
+   "input_msssim": 0.7390660047531128,
+   "dark_fraction": 2.2631929024657612e-05,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Bark|gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2|Bayer_Bark_ISO800_sha1=ba86f1da64a4bb534d9216e96c1c72177ed1e625.cr2",
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "f_iso": "800",
+   "input_msssim": 0.9939658045768738,
+   "dark_fraction": 2.274553656420153e-05,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "D60-2|gt/Bayer_D60-2_GT_ISO100_sha1=29f5b93638b1cf60d4afbd83fb2c1caca5c1ac38.crw|Bayer_D60-2_ISO1037_sha1=aaa5a0772e45a487b03bd39beec503f2dc439c87.crw",
+   "scene": "D60-2",
+   "camera": "Canon EOS D60",
+   "f_iso": "1037",
+   "input_msssim": 0.9792908430099487,
+   "dark_fraction": 0.0006924890689742005,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "D60-2|gt/Bayer_D60-2_GT_ISO100_sha1=29f5b93638b1cf60d4afbd83fb2c1caca5c1ac38.crw|Bayer_D60-2_ISO200_sha1=168089b71f4106cfc85febf1d689869e41e64687.crw",
+   "scene": "D60-2",
+   "camera": "Canon EOS D60",
+   "f_iso": "200",
+   "input_msssim": 0.996543824672699,
+   "dark_fraction": 0.0006925008485361063,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "D60-2|gt/Bayer_D60-2_GT_ISO100_sha1=29f5b93638b1cf60d4afbd83fb2c1caca5c1ac38.crw|Bayer_D60-2_ISO400_sha1=9f411646fa1d0f9a69cebb8546b0377efde699b0.crw",
+   "scene": "D60-2",
+   "camera": "Canon EOS D60",
+   "f_iso": "400",
+   "input_msssim": 0.993567705154419,
+   "dark_fraction": 0.0006925012889013314,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "D60-2|gt/Bayer_D60-2_GT_ISO100_sha1=29f5b93638b1cf60d4afbd83fb2c1caca5c1ac38.crw|Bayer_D60-2_ISO800_sha1=67a5e80d99f1c3c44f17e04cf2b4292154d073cf.crw",
+   "scene": "D60-2",
+   "camera": "Canon EOS D60",
+   "f_iso": "800",
+   "input_msssim": 0.9859710931777954,
+   "dark_fraction": 0.0006925004081714412,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=4dd7a49d600fb1d1d60c741be0e89911f7e05308.nef|Bayer_Iain01_ISO1600_sha1=e6747c75607d311078c660bff37499a1878e6d07.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "1600",
+   "input_msssim": 0.9868339896202087,
+   "dark_fraction": 0.012248976095802475,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=4dd7a49d600fb1d1d60c741be0e89911f7e05308.nef|Bayer_Iain01_ISO400_sha1=b8635e7e2bc37f1ce7431a5a617fe191400990ff.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "400",
+   "input_msssim": 0.996768593788147,
+   "dark_fraction": 0.012189704017958517,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=4dd7a49d600fb1d1d60c741be0e89911f7e05308.nef|Bayer_Iain01_ISO800_sha1=6a32967acd99ba10e13f9c9ffdc8f16249b4df53.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "800",
+   "input_msssim": 0.9940697550773621,
+   "dark_fraction": 0.012222381242703724,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=4dd7a49d600fb1d1d60c741be0e89911f7e05308.nef|Bayer_Iain01_ISOHi 3200_sha1=77c2cb900395f6b4b1a05a0205e2a12bada70bf1.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "Hi 3200",
+   "input_msssim": 0.9597694277763367,
+   "dark_fraction": 0.012242585286508303,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=7b25507a3b470b770d31852317a1c3c948dd3cc5.nef|Bayer_Iain01_ISO1600_sha1=e6747c75607d311078c660bff37499a1878e6d07.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "1600",
+   "input_msssim": 0.986931562423706,
+   "dark_fraction": 0.012376678157432996,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=7b25507a3b470b770d31852317a1c3c948dd3cc5.nef|Bayer_Iain01_ISO400_sha1=b8635e7e2bc37f1ce7431a5a617fe191400990ff.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "400",
+   "input_msssim": 0.9967862963676453,
+   "dark_fraction": 0.012319082486521055,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=7b25507a3b470b770d31852317a1c3c948dd3cc5.nef|Bayer_Iain01_ISO800_sha1=6a32967acd99ba10e13f9c9ffdc8f16249b4df53.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "800",
+   "input_msssim": 0.9941205978393555,
+   "dark_fraction": 0.012351581759283001,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=7b25507a3b470b770d31852317a1c3c948dd3cc5.nef|Bayer_Iain01_ISOHi 3200_sha1=77c2cb900395f6b4b1a05a0205e2a12bada70bf1.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "Hi 3200",
+   "input_msssim": 0.9599975347518921,
+   "dark_fraction": 0.012371288475199858,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=9320c486b6b51f6f26a1f2feaecd443f36f1fbef.nef|Bayer_Iain01_ISO1600_sha1=e6747c75607d311078c660bff37499a1878e6d07.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "1600",
+   "input_msssim": 0.9868590831756592,
+   "dark_fraction": 0.012365776822765578,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=9320c486b6b51f6f26a1f2feaecd443f36f1fbef.nef|Bayer_Iain01_ISO400_sha1=b8635e7e2bc37f1ce7431a5a617fe191400990ff.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "400",
+   "input_msssim": 0.9967789649963379,
+   "dark_fraction": 0.012306014899744968,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=9320c486b6b51f6f26a1f2feaecd443f36f1fbef.nef|Bayer_Iain01_ISO800_sha1=6a32967acd99ba10e13f9c9ffdc8f16249b4df53.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "800",
+   "input_msssim": 0.9940771460533142,
+   "dark_fraction": 0.01234119143502109,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=9320c486b6b51f6f26a1f2feaecd443f36f1fbef.nef|Bayer_Iain01_ISOHi 3200_sha1=77c2cb900395f6b4b1a05a0205e2a12bada70bf1.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "Hi 3200",
+   "input_msssim": 0.9597918391227722,
+   "dark_fraction": 0.012362253390079897,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=ad69abfa4a723e0dedfc235d6b4c3ad488cead1f.nef|Bayer_Iain01_ISO1600_sha1=e6747c75607d311078c660bff37499a1878e6d07.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "1600",
+   "input_msssim": 0.9869092702865601,
+   "dark_fraction": 0.012615828742471016,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=ad69abfa4a723e0dedfc235d6b4c3ad488cead1f.nef|Bayer_Iain01_ISO400_sha1=b8635e7e2bc37f1ce7431a5a617fe191400990ff.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "400",
+   "input_msssim": 0.9967867136001587,
+   "dark_fraction": 0.012551855294192173,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=ad69abfa4a723e0dedfc235d6b4c3ad488cead1f.nef|Bayer_Iain01_ISO800_sha1=6a32967acd99ba10e13f9c9ffdc8f16249b4df53.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "800",
+   "input_msssim": 0.9941149950027466,
+   "dark_fraction": 0.012588225672707138,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "Iain01|gt/Bayer_Iain01_GT_ISO200_sha1=ad69abfa4a723e0dedfc235d6b4c3ad488cead1f.nef|Bayer_Iain01_ISOHi 3200_sha1=77c2cb900395f6b4b1a05a0205e2a12bada70bf1.nef",
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "f_iso": "Hi 3200",
+   "input_msssim": 0.9599327445030212,
+   "dark_fraction": 0.012610945518422796,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=5b81e1009197568e498a7f0b9f265051c941aba0.arw|Bayer_MuseeL-AraBleu-A7C_ISO16000_sha1=87361c81df3d4dbc20bcae80fd06a7406d3dd02f.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "16000",
+   "input_msssim": 0.9833449125289917,
+   "dark_fraction": 0.6688096249593021,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=5b81e1009197568e498a7f0b9f265051c941aba0.arw|Bayer_MuseeL-AraBleu-A7C_ISO160_sha1=07c17862351bd04b1b470750f3a5be3da29741ac.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "160",
+   "input_msssim": 0.999610424041748,
+   "dark_fraction": 0.6688586253362383,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=5b81e1009197568e498a7f0b9f265051c941aba0.arw|Bayer_MuseeL-AraBleu-A7C_ISO160_sha1=19a9c53630581d234b61c3be97804d44ad797331.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "160",
+   "input_msssim": 0.9997040629386902,
+   "dark_fraction": 0.6688565024853637,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=5b81e1009197568e498a7f0b9f265051c941aba0.arw|Bayer_MuseeL-AraBleu-A7C_ISO250_sha1=2acd7e43869dc8a8b30ad41df1fa0879e7333f2f.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "250",
+   "input_msssim": 0.9995698928833008,
+   "dark_fraction": 0.668858650127912,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=5b81e1009197568e498a7f0b9f265051c941aba0.arw|Bayer_MuseeL-AraBleu-A7C_ISO250_sha1=8bcb652a95e93b088676afd2e3e7ee88e9891a68.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "250",
+   "input_msssim": 0.99955815076828,
+   "dark_fraction": 0.6688514880058836,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=5b81e1009197568e498a7f0b9f265051c941aba0.arw|Bayer_MuseeL-AraBleu-A7C_ISO250_sha1=900f8efe26b7b40c81d4434bd3b552a719880c46.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "250",
+   "input_msssim": 0.9995647668838501,
+   "dark_fraction": 0.6688585116849083,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=5b81e1009197568e498a7f0b9f265051c941aba0.arw|Bayer_MuseeL-AraBleu-A7C_ISO25600_sha1=52b3572849876a3e7dcaf264952cda592822399a.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "25600",
+   "input_msssim": 0.9677585363388062,
+   "dark_fraction": 0.6688066525211736,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=5b81e1009197568e498a7f0b9f265051c941aba0.arw|Bayer_MuseeL-AraBleu-A7C_ISO400_sha1=b33de3486e2486c91cd5e9777f7774c60960bbaf.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "400",
+   "input_msssim": 0.9994845390319824,
+   "dark_fraction": 0.6688476501580182,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=5b81e1009197568e498a7f0b9f265051c941aba0.arw|Bayer_MuseeL-AraBleu-A7C_ISO65535_sha1=c2538692defd14b9f931108c40461693c7e12829.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.5743755102157593,
+   "dark_fraction": 0.6690994727632233,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=ca7be183ea8722183d74f4216a90741377a691ed.arw|Bayer_MuseeL-AraBleu-A7C_ISO16000_sha1=87361c81df3d4dbc20bcae80fd06a7406d3dd02f.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "16000",
+   "input_msssim": 0.983352541923523,
+   "dark_fraction": 0.6688122977782056,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=ca7be183ea8722183d74f4216a90741377a691ed.arw|Bayer_MuseeL-AraBleu-A7C_ISO160_sha1=07c17862351bd04b1b470750f3a5be3da29741ac.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "160",
+   "input_msssim": 0.9995037317276001,
+   "dark_fraction": 0.6688661928731146,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=ca7be183ea8722183d74f4216a90741377a691ed.arw|Bayer_MuseeL-AraBleu-A7C_ISO160_sha1=19a9c53630581d234b61c3be97804d44ad797331.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "160",
+   "input_msssim": 0.9995675086975098,
+   "dark_fraction": 0.6688605770283762,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=ca7be183ea8722183d74f4216a90741377a691ed.arw|Bayer_MuseeL-AraBleu-A7C_ISO250_sha1=2acd7e43869dc8a8b30ad41df1fa0879e7333f2f.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "250",
+   "input_msssim": 0.9994131922721863,
+   "dark_fraction": 0.6688658422411193,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=ca7be183ea8722183d74f4216a90741377a691ed.arw|Bayer_MuseeL-AraBleu-A7C_ISO250_sha1=8bcb652a95e93b088676afd2e3e7ee88e9891a68.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "250",
+   "input_msssim": 0.9993972182273865,
+   "dark_fraction": 0.6688582920342014,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=ca7be183ea8722183d74f4216a90741377a691ed.arw|Bayer_MuseeL-AraBleu-A7C_ISO250_sha1=900f8efe26b7b40c81d4434bd3b552a719880c46.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "250",
+   "input_msssim": 0.9993982315063477,
+   "dark_fraction": 0.6688649972736461,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=ca7be183ea8722183d74f4216a90741377a691ed.arw|Bayer_MuseeL-AraBleu-A7C_ISO25600_sha1=52b3572849876a3e7dcaf264952cda592822399a.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "25600",
+   "input_msssim": 0.9678782224655151,
+   "dark_fraction": 0.6688091132730587,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=ca7be183ea8722183d74f4216a90741377a691ed.arw|Bayer_MuseeL-AraBleu-A7C_ISO400_sha1=b33de3486e2486c91cd5e9777f7774c60960bbaf.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "400",
+   "input_msssim": 0.9993658065795898,
+   "dark_fraction": 0.6688517233322359,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=ca7be183ea8722183d74f4216a90741377a691ed.arw|Bayer_MuseeL-AraBleu-A7C_ISO65535_sha1=c2538692defd14b9f931108c40461693c7e12829.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.5760917663574219,
+   "dark_fraction": 0.6694190307394994,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=d383b530cdd14e59ed98591482bc2981a6f35178.arw|Bayer_MuseeL-AraBleu-A7C_ISO16000_sha1=87361c81df3d4dbc20bcae80fd06a7406d3dd02f.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "16000",
+   "input_msssim": 0.9836423397064209,
+   "dark_fraction": 0.6744018771275739,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=d383b530cdd14e59ed98591482bc2981a6f35178.arw|Bayer_MuseeL-AraBleu-A7C_ISO160_sha1=07c17862351bd04b1b470750f3a5be3da29741ac.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "160",
+   "input_msssim": 0.9996248483657837,
+   "dark_fraction": 0.6744444048698476,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=d383b530cdd14e59ed98591482bc2981a6f35178.arw|Bayer_MuseeL-AraBleu-A7C_ISO160_sha1=19a9c53630581d234b61c3be97804d44ad797331.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "160",
+   "input_msssim": 0.9995888471603394,
+   "dark_fraction": 0.6744469990158527,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=d383b530cdd14e59ed98591482bc2981a6f35178.arw|Bayer_MuseeL-AraBleu-A7C_ISO250_sha1=2acd7e43869dc8a8b30ad41df1fa0879e7333f2f.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "250",
+   "input_msssim": 0.9994109869003296,
+   "dark_fraction": 0.6744571900245426,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=d383b530cdd14e59ed98591482bc2981a6f35178.arw|Bayer_MuseeL-AraBleu-A7C_ISO250_sha1=8bcb652a95e93b088676afd2e3e7ee88e9891a68.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "250",
+   "input_msssim": 0.999391496181488,
+   "dark_fraction": 0.6744470753968033,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=d383b530cdd14e59ed98591482bc2981a6f35178.arw|Bayer_MuseeL-AraBleu-A7C_ISO250_sha1=900f8efe26b7b40c81d4434bd3b552a719880c46.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "250",
+   "input_msssim": 0.9994093775749207,
+   "dark_fraction": 0.6744563433460156,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=d383b530cdd14e59ed98591482bc2981a6f35178.arw|Bayer_MuseeL-AraBleu-A7C_ISO25600_sha1=52b3572849876a3e7dcaf264952cda592822399a.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "25600",
+   "input_msssim": 0.9683804512023926,
+   "dark_fraction": 0.674399073238327,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=d383b530cdd14e59ed98591482bc2981a6f35178.arw|Bayer_MuseeL-AraBleu-A7C_ISO400_sha1=b33de3486e2486c91cd5e9777f7774c60960bbaf.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "400",
+   "input_msssim": 0.9994024038314819,
+   "dark_fraction": 0.6744377523225938,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-A7C|gt/Bayer_MuseeL-AraBleu-A7C_GT_ISO50_sha1=d383b530cdd14e59ed98591482bc2981a6f35178.arw|Bayer_MuseeL-AraBleu-A7C_ISO65535_sha1=c2538692defd14b9f931108c40461693c7e12829.arw",
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.5797562599182129,
+   "dark_fraction": 0.6746672459886931,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=b7b69d855702ce54af0e5bd25f35e49f072adf6c.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO1250_sha1=e226ad739522517d54303ac479c5cb10e97fcf60.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1250",
+   "input_msssim": 0.998417854309082,
+   "dark_fraction": 0.6995335751764685,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=b7b69d855702ce54af0e5bd25f35e49f072adf6c.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO125_sha1=60001f9068f80471a6294ae325cf4ffeb240e63a.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "125",
+   "input_msssim": 0.9994258284568787,
+   "dark_fraction": 0.6995405744824423,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=b7b69d855702ce54af0e5bd25f35e49f072adf6c.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO125_sha1=d269bcfc50ab725a0665755a346ba14bcb7efc7c.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "125",
+   "input_msssim": 0.9991283416748047,
+   "dark_fraction": 0.6995408126133322,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=b7b69d855702ce54af0e5bd25f35e49f072adf6c.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO1600_sha1=50c957b1c4f68dc507b46146ed73bc45b5d02342.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1600",
+   "input_msssim": 0.9974672794342041,
+   "dark_fraction": 0.6995444596568318,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=b7b69d855702ce54af0e5bd25f35e49f072adf6c.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO1600_sha1=8644331f45b33803607a89a13cb77cb5a95ef145.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1600",
+   "input_msssim": 0.9982313513755798,
+   "dark_fraction": 0.6995169781281851,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=b7b69d855702ce54af0e5bd25f35e49f072adf6c.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO2000_sha1=41563b2414d3621df3c4fec98da47e6e22817023.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "2000",
+   "input_msssim": 0.9978532195091248,
+   "dark_fraction": 0.6995231711425812,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=b7b69d855702ce54af0e5bd25f35e49f072adf6c.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO25600_sha1=68c00b69244ea03dccc4c364cfb7646514572bcf.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "25600",
+   "input_msssim": 0.9636911153793335,
+   "dark_fraction": 0.6995029184638978,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=b7b69d855702ce54af0e5bd25f35e49f072adf6c.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO5000_sha1=b3e9efeda535963359763aed9a430f09411a0dc6.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "5000",
+   "input_msssim": 0.9943691492080688,
+   "dark_fraction": 0.6995128092532783,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=b7b69d855702ce54af0e5bd25f35e49f072adf6c.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO640_sha1=8ac18b8ac78ab6c89a624346712713497149c54d.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "640",
+   "input_msssim": 0.9989184141159058,
+   "dark_fraction": 0.6995282466186906,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=b7b69d855702ce54af0e5bd25f35e49f072adf6c.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO640_sha1=b25a6cba7f0afe76ce87ec626c1e2dd6f6539f1b.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "640",
+   "input_msssim": 0.999165415763855,
+   "dark_fraction": 0.6995288948574537,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=d01910c7ce1a432ba5a8189f5e66d9206c35c04a.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO1250_sha1=e226ad739522517d54303ac479c5cb10e97fcf60.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1250",
+   "input_msssim": 0.997633159160614,
+   "dark_fraction": 0.7004423678791152,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=d01910c7ce1a432ba5a8189f5e66d9206c35c04a.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO125_sha1=60001f9068f80471a6294ae325cf4ffeb240e63a.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "125",
+   "input_msssim": 0.9997391700744629,
+   "dark_fraction": 0.700446718329791,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=d01910c7ce1a432ba5a8189f5e66d9206c35c04a.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO125_sha1=d269bcfc50ab725a0665755a346ba14bcb7efc7c.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "125",
+   "input_msssim": 0.9985055327415466,
+   "dark_fraction": 0.7004692558450201,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=d01910c7ce1a432ba5a8189f5e66d9206c35c04a.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO1600_sha1=50c957b1c4f68dc507b46146ed73bc45b5d02342.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1600",
+   "input_msssim": 0.9982511401176453,
+   "dark_fraction": 0.7004308748564284,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=d01910c7ce1a432ba5a8189f5e66d9206c35c04a.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO1600_sha1=8644331f45b33803607a89a13cb77cb5a95ef145.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1600",
+   "input_msssim": 0.9981319904327393,
+   "dark_fraction": 0.7004284227727594,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=d01910c7ce1a432ba5a8189f5e66d9206c35c04a.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO2000_sha1=41563b2414d3621df3c4fec98da47e6e22817023.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "2000",
+   "input_msssim": 0.9976734519004822,
+   "dark_fraction": 0.700425675531045,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=d01910c7ce1a432ba5a8189f5e66d9206c35c04a.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO25600_sha1=68c00b69244ea03dccc4c364cfb7646514572bcf.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "25600",
+   "input_msssim": 0.9635943174362183,
+   "dark_fraction": 0.70040811291347,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=d01910c7ce1a432ba5a8189f5e66d9206c35c04a.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO5000_sha1=b3e9efeda535963359763aed9a430f09411a0dc6.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "5000",
+   "input_msssim": 0.9947139620780945,
+   "dark_fraction": 0.7004199937438189,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=d01910c7ce1a432ba5a8189f5e66d9206c35c04a.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO640_sha1=8ac18b8ac78ab6c89a624346712713497149c54d.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "640",
+   "input_msssim": 0.998053252696991,
+   "dark_fraction": 0.7004487941677914,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt2-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt2-A7C_GT_ISO50_sha1=d01910c7ce1a432ba5a8189f5e66d9206c35c04a.arw|Bayer_MuseeL-AraBleu-cropped-alt2-A7C_ISO640_sha1=b25a6cba7f0afe76ce87ec626c1e2dd6f6539f1b.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "640",
+   "input_msssim": 0.9988211393356323,
+   "dark_fraction": 0.7004397817687558,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=3ad9cd010e43228135669999a300f72511fafd4e.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO10000_sha1=f49884dd79d3feafa51002acc5f4fce792787a83.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "10000",
+   "input_msssim": 0.9882974028587341,
+   "dark_fraction": 0.7352710612812192,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=3ad9cd010e43228135669999a300f72511fafd4e.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO100_sha1=4443dd43478d3033e1491d03fa47b400c5322acd.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "100",
+   "input_msssim": 0.9993720054626465,
+   "dark_fraction": 0.7353365046335567,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=3ad9cd010e43228135669999a300f72511fafd4e.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO1250_sha1=08282d6b3a5fd839417fe5e46f02f308c64bcbcd.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1250",
+   "input_msssim": 0.9984098672866821,
+   "dark_fraction": 0.7352875046402283,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=3ad9cd010e43228135669999a300f72511fafd4e.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO12800_sha1=e0f85ddd0ff553f796ab521c4d0e4b5da63fb20f.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "12800",
+   "input_msssim": 0.9843554496765137,
+   "dark_fraction": 0.7352687363353895,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=3ad9cd010e43228135669999a300f72511fafd4e.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO1600_sha1=e265989fd071eca9c75fff6f9cad2a067e04ca22.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1600",
+   "input_msssim": 0.9975461959838867,
+   "dark_fraction": 0.7352925004549835,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=3ad9cd010e43228135669999a300f72511fafd4e.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO160_sha1=5b07d5a0547aaf694facdc9647bfeeccd3c52377.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "160",
+   "input_msssim": 0.9994745254516602,
+   "dark_fraction": 0.7353162033455144,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=3ad9cd010e43228135669999a300f72511fafd4e.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO40000_sha1=28ad27757fb616088e16bc426906632234690513.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "40000",
+   "input_msssim": 0.9339998960494995,
+   "dark_fraction": 0.7352681767033241,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=3ad9cd010e43228135669999a300f72511fafd4e.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO5000_sha1=1e47646a117a93fa61c05bfe66650bd078a865df.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "5000",
+   "input_msssim": 0.9943782687187195,
+   "dark_fraction": 0.7352830075367961,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=3ad9cd010e43228135669999a300f72511fafd4e.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO65535_sha1=4daf6042383b9137efab8cd9ab3fc08909ea4713.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.6042127013206482,
+   "dark_fraction": 0.7436443673673809,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=3ad9cd010e43228135669999a300f72511fafd4e.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO65535_sha1=c7e3b758d6cc064d60047b92f58cbc7cbdc05f06.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.7220520377159119,
+   "dark_fraction": 0.7399219620843936,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=de9555137424f197d95661f947c61df580597924.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO10000_sha1=f49884dd79d3feafa51002acc5f4fce792787a83.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "10000",
+   "input_msssim": 0.9877216815948486,
+   "dark_fraction": 0.7359987255870158,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=de9555137424f197d95661f947c61df580597924.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO100_sha1=4443dd43478d3033e1491d03fa47b400c5322acd.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "100",
+   "input_msssim": 0.9992634654045105,
+   "dark_fraction": 0.7360604847293248,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=de9555137424f197d95661f947c61df580597924.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO1250_sha1=08282d6b3a5fd839417fe5e46f02f308c64bcbcd.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1250",
+   "input_msssim": 0.9983651638031006,
+   "dark_fraction": 0.7360009788314809,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=de9555137424f197d95661f947c61df580597924.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO12800_sha1=e0f85ddd0ff553f796ab521c4d0e4b5da63fb20f.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "12800",
+   "input_msssim": 0.9836241602897644,
+   "dark_fraction": 0.7359972969002253,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=de9555137424f197d95661f947c61df580597924.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO1600_sha1=e265989fd071eca9c75fff6f9cad2a067e04ca22.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1600",
+   "input_msssim": 0.9982461333274841,
+   "dark_fraction": 0.7359967546270192,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=de9555137424f197d95661f947c61df580597924.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO160_sha1=5b07d5a0547aaf694facdc9647bfeeccd3c52377.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "160",
+   "input_msssim": 0.9992263317108154,
+   "dark_fraction": 0.7360429036073575,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=de9555137424f197d95661f947c61df580597924.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO40000_sha1=28ad27757fb616088e16bc426906632234690513.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "40000",
+   "input_msssim": 0.9344555139541626,
+   "dark_fraction": 0.7359936700775347,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=de9555137424f197d95661f947c61df580597924.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO5000_sha1=1e47646a117a93fa61c05bfe66650bd078a865df.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "5000",
+   "input_msssim": 0.9944977760314941,
+   "dark_fraction": 0.7359986162031901,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=de9555137424f197d95661f947c61df580597924.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO65535_sha1=4daf6042383b9137efab8cd9ab3fc08909ea4713.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.6054331660270691,
+   "dark_fraction": 0.7443937271056946,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-AraBleu-cropped-alt3-A7C|gt/Bayer_MuseeL-AraBleu-cropped-alt3-A7C_GT_ISO50_sha1=de9555137424f197d95661f947c61df580597924.arw|Bayer_MuseeL-AraBleu-cropped-alt3-A7C_ISO65535_sha1=c7e3b758d6cc064d60047b92f58cbc7cbdc05f06.arw",
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.7228095531463623,
+   "dark_fraction": 0.7406900814490934,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-C500D-mammal|gt/Bayer_MuseeL-C500D-mammal_GT_ISO100_sha1=53e8a797952880f32bddefcc62f031b1a0f515ca.cr2|Bayer_MuseeL-C500D-mammal_ISO1600_sha1=61428e0817b9456d84bf30b4a4e61a9e84844ca0.cr2",
+   "scene": "MuseeL-C500D-mammal",
+   "camera": "Canon EOS 500D",
+   "f_iso": "1600",
+   "input_msssim": 0.982526421546936,
+   "dark_fraction": 0.019693690148235604,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "MuseeL-C500D-mammal|gt/Bayer_MuseeL-C500D-mammal_GT_ISO100_sha1=53e8a797952880f32bddefcc62f031b1a0f515ca.cr2|Bayer_MuseeL-C500D-mammal_ISO200_sha1=0f5daff16e841bcca6849e4f7f8eeda0731e5212.cr2",
+   "scene": "MuseeL-C500D-mammal",
+   "camera": "Canon EOS 500D",
+   "f_iso": "200",
+   "input_msssim": 0.994220495223999,
+   "dark_fraction": 0.019694184612283488,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "MuseeL-C500D-mammal|gt/Bayer_MuseeL-C500D-mammal_GT_ISO100_sha1=53e8a797952880f32bddefcc62f031b1a0f515ca.cr2|Bayer_MuseeL-C500D-mammal_ISO3200_sha1=03c0012a5590aa688faf9c1e5560bcb5a6af7b45.cr2",
+   "scene": "MuseeL-C500D-mammal",
+   "camera": "Canon EOS 500D",
+   "f_iso": "3200",
+   "input_msssim": 0.924951434135437,
+   "dark_fraction": 0.019689993798862784,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "MuseeL-C500D-mammal|gt/Bayer_MuseeL-C500D-mammal_GT_ISO100_sha1=53e8a797952880f32bddefcc62f031b1a0f515ca.cr2|Bayer_MuseeL-C500D-mammal_ISO3200_sha1=b8f6b00c1983be101691c2264d355593d0945a36.cr2",
+   "scene": "MuseeL-C500D-mammal",
+   "camera": "Canon EOS 500D",
+   "f_iso": "3200",
+   "input_msssim": 0.9649164080619812,
+   "dark_fraction": 0.019554021842304533,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "MuseeL-C500D-mammal|gt/Bayer_MuseeL-C500D-mammal_GT_ISO100_sha1=53e8a797952880f32bddefcc62f031b1a0f515ca.cr2|Bayer_MuseeL-C500D-mammal_ISO400_sha1=7f48f0ed775f4d737aa26d11a2a084c7593643ef.cr2",
+   "scene": "MuseeL-C500D-mammal",
+   "camera": "Canon EOS 500D",
+   "f_iso": "400",
+   "input_msssim": 0.9935311079025269,
+   "dark_fraction": 0.019609797139546893,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "MuseeL-C500D-mammal|gt/Bayer_MuseeL-C500D-mammal_GT_ISO100_sha1=53e8a797952880f32bddefcc62f031b1a0f515ca.cr2|Bayer_MuseeL-C500D-mammal_ISO800_sha1=fcdf3d105fa11ec6e351905514426bb38e247037.cr2",
+   "scene": "MuseeL-C500D-mammal",
+   "camera": "Canon EOS 500D",
+   "f_iso": "800",
+   "input_msssim": 0.9896417856216431,
+   "dark_fraction": 0.019693110500923646,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO100_sha1=73defa6bb5c7e2ed6f28c0bbaf9aa00732291631.arw",
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "100",
+   "input_msssim": 0.9992116689682007,
+   "dark_fraction": 0.6242209697188733,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO1250_sha1=070fa2fb791734a7a5f4962bef2ea5a3ea69270a.arw",
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1250",
+   "input_msssim": 0.9972133040428162,
+   "dark_fraction": 0.6242238753392805,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO125_sha1=4b4186153f79207538cf33e96932497b0de1c547.arw",
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "125",
+   "input_msssim": 0.9988032579421997,
+   "dark_fraction": 0.6242239791119382,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO12800_sha1=406175ba2c0d012cafaa74388e344c5b2b3b0ce3.arw",
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "12800",
+   "input_msssim": 0.9787263870239258,
+   "dark_fraction": 0.6242211307815366,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO16000_sha1=82cea311fe148340164be0aa12cd5caf219b8ab2.arw",
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "16000",
+   "input_msssim": 0.9734668731689453,
+   "dark_fraction": 0.6242004809156724,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO2500_sha1=d741342fa6ddc607a814c07386bb5e6c0b4bac10.arw",
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "2500",
+   "input_msssim": 0.9947716593742371,
+   "dark_fraction": 0.6241919487651639,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO250_sha1=1c473c6d42a121d689fdf22c80e1b31e93dce63f.arw",
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "250",
+   "input_msssim": 0.9987677931785583,
+   "dark_fraction": 0.6242228116715285,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO500_sha1=250fd275eedd93fff1b4c6679c888fa98b0fea19.arw",
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "500",
+   "input_msssim": 0.997586727142334,
+   "dark_fraction": 0.6242276630636399,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO64000_sha1=baf6aa981105fd222f92e962ec814292335106bf.arw",
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "64000",
+   "input_msssim": 0.8816003799438477,
+   "dark_fraction": 0.6245945072972148,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO65535_sha1=90fc85f783a18d60f03e2bea8309a0d2765caa79.arw",
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.6480480432510376,
+   "dark_fraction": 0.631537700663062,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO65535_sha1=982c92254f16bf85d379f8dc3bdafe367b560d8b.arw",
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.6010841131210327,
+   "dark_fraction": 0.6322052575361775,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO65535_sha1=fbae45af0dc8260874a00e626f4a0c6b0419ed53.arw",
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.6864511370658875,
+   "dark_fraction": 0.6277098808012453,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-colorfulchemicalsandbird-A7C|gt/Bayer_MuseeL-colorfulchemicalsandbird-A7C_GT_ISO50_sha1=6b65dc29e80c10207a5f4406a7f315d9bd92610e.arw|Bayer_MuseeL-colorfulchemicalsandbird-A7C_ISO65535_sha1=ff260725d7b84400e4ac084916e55505c004f37a.arw",
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.8488511443138123,
+   "dark_fraction": 0.6250663770078928,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO1000_sha1=3f2aff4467c6c2a547de7d80daffdabe7f203fbe.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1000",
+   "input_msssim": 0.9990824460983276,
+   "dark_fraction": 0.662501714870547,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO100_sha1=fcc670eb73086b9e7021d93923b11f459d1cb4db.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "100",
+   "input_msssim": 0.9996640086174011,
+   "dark_fraction": 0.6625659278853478,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO12800_sha1=451fb9b87cde97ae9d6161d4e89e805e884b529d.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "12800",
+   "input_msssim": 0.9867293238639832,
+   "dark_fraction": 0.6624332514794746,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO16000_sha1=d724eb50de7cceed243e5795a8328d400dcb29a3.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "16000",
+   "input_msssim": 0.9807912707328796,
+   "dark_fraction": 0.6624144388172631,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO16000_sha1=d7a9d040676c97d7eb4ef49dc1ca51e30ed74066.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "16000",
+   "input_msssim": 0.9818081259727478,
+   "dark_fraction": 0.6624124719963377,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO20000_sha1=77981370c2334dcce21763af4484ddd546cdbac1.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "20000",
+   "input_msssim": 0.974873960018158,
+   "dark_fraction": 0.6624282097436051,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO250_sha1=1a1597c9fc599c94eec897ad06714e43a89e963b.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "250",
+   "input_msssim": 0.9996735453605652,
+   "dark_fraction": 0.6624836679646404,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO40000_sha1=a1da2c7ac0d228578693846922847214b2735b74.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "40000",
+   "input_msssim": 0.9395483732223511,
+   "dark_fraction": 0.6624756067110635,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO5000_sha1=38bde96dd74a54cec8fe2563a95f2f0d6f2806c1.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "5000",
+   "input_msssim": 0.9953469634056091,
+   "dark_fraction": 0.6624281141794631,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO51200_sha1=d4ce62834d41cfa75dc227cd5b0f5246cd5f6ab5.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "51200",
+   "input_msssim": 0.91867995262146,
+   "dark_fraction": 0.6625323155111207,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO64000_sha1=1ced44f4bcdd5a6b52472e1e7864d9b44acc300b.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "64000",
+   "input_msssim": 0.9056428670883179,
+   "dark_fraction": 0.6627518037249203,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO640_sha1=a6d5bccbf257ff2165020ee9b07bc4126d2659c5.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "640",
+   "input_msssim": 0.9992915391921997,
+   "dark_fraction": 0.6625528203659746,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO65535_sha1=38179121f3d52ca479729aff70389f2b7a8b98f2.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.8073098659515381,
+   "dark_fraction": 0.6642966524606918,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO65535_sha1=693d3a11f6efef60b28ec0d7bb1b98ccd1c0f66d.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.8575633764266968,
+   "dark_fraction": 0.6631249519149475,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=3b6cdcfa187ec001fcfdabe2c10be2845837c2cd.arw|Bayer_MuseeL-helmets-A7C_ISO8000_sha1=b0c4baa34b46316d3e306f5be41983fa17c9859f.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "8000",
+   "input_msssim": 0.9922908544540405,
+   "dark_fraction": 0.6624384761225077,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO1000_sha1=3f2aff4467c6c2a547de7d80daffdabe7f203fbe.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1000",
+   "input_msssim": 0.9990913271903992,
+   "dark_fraction": 0.6620919402193076,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO100_sha1=fcc670eb73086b9e7021d93923b11f459d1cb4db.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "100",
+   "input_msssim": 0.999721884727478,
+   "dark_fraction": 0.662147959790962,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO12800_sha1=451fb9b87cde97ae9d6161d4e89e805e884b529d.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "12800",
+   "input_msssim": 0.9867517352104187,
+   "dark_fraction": 0.6620133441727394,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO16000_sha1=d724eb50de7cceed243e5795a8328d400dcb29a3.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "16000",
+   "input_msssim": 0.9807793498039246,
+   "dark_fraction": 0.6620720122967793,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO16000_sha1=d7a9d040676c97d7eb4ef49dc1ca51e30ed74066.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "16000",
+   "input_msssim": 0.9819172620773315,
+   "dark_fraction": 0.6620879163124195,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO20000_sha1=77981370c2334dcce21763af4484ddd546cdbac1.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "20000",
+   "input_msssim": 0.9747786521911621,
+   "dark_fraction": 0.6620094105988743,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO250_sha1=1a1597c9fc599c94eec897ad06714e43a89e963b.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "250",
+   "input_msssim": 0.9995894432067871,
+   "dark_fraction": 0.6620413354388283,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO40000_sha1=a1da2c7ac0d228578693846922847214b2735b74.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "40000",
+   "input_msssim": 0.9395711421966553,
+   "dark_fraction": 0.6620560229024224,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO5000_sha1=38bde96dd74a54cec8fe2563a95f2f0d6f2806c1.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "5000",
+   "input_msssim": 0.9955357313156128,
+   "dark_fraction": 0.6620402475480631,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO51200_sha1=d4ce62834d41cfa75dc227cd5b0f5246cd5f6ab5.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "51200",
+   "input_msssim": 0.9187189936637878,
+   "dark_fraction": 0.6621348524248424,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO64000_sha1=1ced44f4bcdd5a6b52472e1e7864d9b44acc300b.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "64000",
+   "input_msssim": 0.9056209325790405,
+   "dark_fraction": 0.6623539708306782,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO640_sha1=a6d5bccbf257ff2165020ee9b07bc4126d2659c5.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "640",
+   "input_msssim": 0.9993661642074585,
+   "dark_fraction": 0.6621196534265578,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO65535_sha1=38179121f3d52ca479729aff70389f2b7a8b98f2.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.8073770999908447,
+   "dark_fraction": 0.6638601983697757,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO65535_sha1=693d3a11f6efef60b28ec0d7bb1b98ccd1c0f66d.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.8577346801757812,
+   "dark_fraction": 0.6627791298186645,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-helmets-A7C|gt/Bayer_MuseeL-helmets-A7C_GT_ISO50_sha1=cd5721d99688ee946a92130153af80aa22a6da64.arw|Bayer_MuseeL-helmets-A7C_ISO8000_sha1=b0c4baa34b46316d3e306f5be41983fa17c9859f.arw",
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "8000",
+   "input_msssim": 0.9923746585845947,
+   "dark_fraction": 0.6620941093252773,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=2329e7a0c6c4c18c560084cd28ef176b5b04ec65.arw|Bayer_MuseeL-horseface-A7C_ISO1000_sha1=8268e4ad15eac03ae8daaf14445298933d9cfde7.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1000",
+   "input_msssim": 0.9967571496963501,
+   "dark_fraction": 0.6571536238090496,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=2329e7a0c6c4c18c560084cd28ef176b5b04ec65.arw|Bayer_MuseeL-horseface-A7C_ISO1000_sha1=9ed3f4f52cb38c01b5f53ca71887b3580533810e.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1000",
+   "input_msssim": 0.9967492818832397,
+   "dark_fraction": 0.6571531108283579,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=2329e7a0c6c4c18c560084cd28ef176b5b04ec65.arw|Bayer_MuseeL-horseface-A7C_ISO100_sha1=fa58901c114b65e667d89bdf2fde2df30324111a.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "100",
+   "input_msssim": 0.9992863535881042,
+   "dark_fraction": 0.6572393291083832,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=2329e7a0c6c4c18c560084cd28ef176b5b04ec65.arw|Bayer_MuseeL-horseface-A7C_ISO12800_sha1=e46044025e9b9f0b441ffa3d85d40fc960cc9edf.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "12800",
+   "input_msssim": 0.9639583826065063,
+   "dark_fraction": 0.657159112346201,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=2329e7a0c6c4c18c560084cd28ef176b5b04ec65.arw|Bayer_MuseeL-horseface-A7C_ISO2500_sha1=8dae780d50a6991cf26c7c57a66c2f12c5184217.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "2500",
+   "input_msssim": 0.9921655058860779,
+   "dark_fraction": 0.6571521050743613,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=2329e7a0c6c4c18c560084cd28ef176b5b04ec65.arw|Bayer_MuseeL-horseface-A7C_ISO32000_sha1=67a3979ec6247a75d4d4aef2e511f7efcaf3f4cb.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "32000",
+   "input_msssim": 0.9129201173782349,
+   "dark_fraction": 0.6571521326167109,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=2329e7a0c6c4c18c560084cd28ef176b5b04ec65.arw|Bayer_MuseeL-horseface-A7C_ISO640_sha1=d0c103dc2c946a563c0478c83c1b94fdcfa89d5b.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "640",
+   "input_msssim": 0.9978731870651245,
+   "dark_fraction": 0.6571630640445739,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=2329e7a0c6c4c18c560084cd28ef176b5b04ec65.arw|Bayer_MuseeL-horseface-A7C_ISO65535_sha1=5f16131ebb259595574d81c9f52d8489276c19ea.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.8176529407501221,
+   "dark_fraction": 0.6576896055529632,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=3a8590029ce27d480a0887f65ca1a787b8d5d46a.arw|Bayer_MuseeL-horseface-A7C_ISO1000_sha1=8268e4ad15eac03ae8daaf14445298933d9cfde7.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1000",
+   "input_msssim": 0.9962760210037231,
+   "dark_fraction": 0.6571942304316254,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=3a8590029ce27d480a0887f65ca1a787b8d5d46a.arw|Bayer_MuseeL-horseface-A7C_ISO1000_sha1=9ed3f4f52cb38c01b5f53ca71887b3580533810e.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1000",
+   "input_msssim": 0.9962560534477234,
+   "dark_fraction": 0.657195440508501,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=3a8590029ce27d480a0887f65ca1a787b8d5d46a.arw|Bayer_MuseeL-horseface-A7C_ISO100_sha1=fa58901c114b65e667d89bdf2fde2df30324111a.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "100",
+   "input_msssim": 0.9993489980697632,
+   "dark_fraction": 0.6571880886212801,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=3a8590029ce27d480a0887f65ca1a787b8d5d46a.arw|Bayer_MuseeL-horseface-A7C_ISO12800_sha1=e46044025e9b9f0b441ffa3d85d40fc960cc9edf.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "12800",
+   "input_msssim": 0.9638435244560242,
+   "dark_fraction": 0.6571158625138716,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=3a8590029ce27d480a0887f65ca1a787b8d5d46a.arw|Bayer_MuseeL-horseface-A7C_ISO2500_sha1=8dae780d50a6991cf26c7c57a66c2f12c5184217.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "2500",
+   "input_msssim": 0.991814136505127,
+   "dark_fraction": 0.6571480273498965,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=3a8590029ce27d480a0887f65ca1a787b8d5d46a.arw|Bayer_MuseeL-horseface-A7C_ISO32000_sha1=67a3979ec6247a75d4d4aef2e511f7efcaf3f4cb.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "32000",
+   "input_msssim": 0.9128772616386414,
+   "dark_fraction": 0.657107511748935,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=3a8590029ce27d480a0887f65ca1a787b8d5d46a.arw|Bayer_MuseeL-horseface-A7C_ISO640_sha1=d0c103dc2c946a563c0478c83c1b94fdcfa89d5b.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "640",
+   "input_msssim": 0.9974852800369263,
+   "dark_fraction": 0.6571960009570731,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=3a8590029ce27d480a0887f65ca1a787b8d5d46a.arw|Bayer_MuseeL-horseface-A7C_ISO65535_sha1=5f16131ebb259595574d81c9f52d8489276c19ea.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.8171808123588562,
+   "dark_fraction": 0.6576500577872799,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=41ae125a7d11ffe4a339b4df8d1654813c471ba9.arw|Bayer_MuseeL-horseface-A7C_ISO1000_sha1=8268e4ad15eac03ae8daaf14445298933d9cfde7.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1000",
+   "input_msssim": 0.9964728355407715,
+   "dark_fraction": 0.6572225382488635,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=41ae125a7d11ffe4a339b4df8d1654813c471ba9.arw|Bayer_MuseeL-horseface-A7C_ISO1000_sha1=9ed3f4f52cb38c01b5f53ca71887b3580533810e.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "1000",
+   "input_msssim": 0.9964300394058228,
+   "dark_fraction": 0.6572264581910033,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=41ae125a7d11ffe4a339b4df8d1654813c471ba9.arw|Bayer_MuseeL-horseface-A7C_ISO100_sha1=fa58901c114b65e667d89bdf2fde2df30324111a.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "100",
+   "input_msssim": 0.9994642734527588,
+   "dark_fraction": 0.6571973980572291,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=41ae125a7d11ffe4a339b4df8d1654813c471ba9.arw|Bayer_MuseeL-horseface-A7C_ISO12800_sha1=e46044025e9b9f0b441ffa3d85d40fc960cc9edf.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "12800",
+   "input_msssim": 0.9639447927474976,
+   "dark_fraction": 0.657159074364857,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=41ae125a7d11ffe4a339b4df8d1654813c471ba9.arw|Bayer_MuseeL-horseface-A7C_ISO2500_sha1=8dae780d50a6991cf26c7c57a66c2f12c5184217.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "2500",
+   "input_msssim": 0.9919569492340088,
+   "dark_fraction": 0.6571756322370107,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=41ae125a7d11ffe4a339b4df8d1654813c471ba9.arw|Bayer_MuseeL-horseface-A7C_ISO32000_sha1=67a3979ec6247a75d4d4aef2e511f7efcaf3f4cb.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "32000",
+   "input_msssim": 0.9129080176353455,
+   "dark_fraction": 0.657151420037631,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=41ae125a7d11ffe4a339b4df8d1654813c471ba9.arw|Bayer_MuseeL-horseface-A7C_ISO640_sha1=d0c103dc2c946a563c0478c83c1b94fdcfa89d5b.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "640",
+   "input_msssim": 0.997650146484375,
+   "dark_fraction": 0.6572301985764545,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "MuseeL-horseface-A7C|gt/Bayer_MuseeL-horseface-A7C_GT_ISO50_sha1=41ae125a7d11ffe4a339b4df8d1654813c471ba9.arw|Bayer_MuseeL-horseface-A7C_ISO65535_sha1=5f16131ebb259595574d81c9f52d8489276c19ea.arw",
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "f_iso": "65535",
+   "input_msssim": 0.817227840423584,
+   "dark_fraction": 0.6576907398501437,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.4-1.0"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO100_sha1=6f0d7783ca6c6d3ce1b7d17df19e47ccfbbe7c00.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "100",
+   "input_msssim": 0.9989409446716309,
+   "dark_fraction": 0.006263728872505836,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO125_sha1=216d897b3e67abcc7cfe78626f1a2ae67aae50c7.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "125",
+   "input_msssim": 0.9988560080528259,
+   "dark_fraction": 0.006263689915298058,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO12800_sha1=6f58c20387d64acbfe1dfa7c2e3e9708c667d999.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "12800",
+   "input_msssim": 0.9385455846786499,
+   "dark_fraction": 0.0062625765925121485,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO1600_sha1=6e34b932272957147529bb0d1d106f4b3923f6a0.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "1600",
+   "input_msssim": 0.9908175468444824,
+   "dark_fraction": 0.006252337434038683,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO200_sha1=ddd416d6ebcc6b1f0b1b6bb8f612ec20194e3a27.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "200",
+   "input_msssim": 0.9985712766647339,
+   "dark_fraction": 0.006256299998580975,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO25600_sha1=435611a9eb0a453fe6e69796332c7651a7a775de.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "25600",
+   "input_msssim": 0.8901652097702026,
+   "dark_fraction": 0.00626278242316438,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO3200_sha1=d32e5fc3e05312522b2e766315ee14672627f323.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "3200",
+   "input_msssim": 0.9820706844329834,
+   "dark_fraction": 0.006260899208012245,
+   "noise_bin": "0.97-0.99",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO400_sha1=5c5c999b15fec5c681417dc2576766888dbdb268.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "400",
+   "input_msssim": 0.9973893165588379,
+   "dark_fraction": 0.0062522192696212965,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO51200_sha1=1eb6e9df8fe7ff9c5a8283cd354d8579dd25c579.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "51200",
+   "input_msssim": 0.8150109052658081,
+   "dark_fraction": 0.006268720456286589,
+   "noise_bin": "0.0-0.85",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO63_sha1=20c7b440df36db62a2a986f2babe5f43efe2ec07.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "63",
+   "input_msssim": 0.9993923902511597,
+   "dark_fraction": 0.006259094164515141,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO6400_sha1=b216b89a4246cadcd120ce15c241a3ff5c7b4e99.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "6400",
+   "input_msssim": 0.966767430305481,
+   "dark_fraction": 0.006262905716096454,
+   "noise_bin": "0.85-0.97",
+   "dark_bin": "0.0-0.1"
+  },
+  {
+   "key": "bananapi|gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef|Bayer_bananapi_ISO800_sha1=d32402bc4291d5f77c612f5304721ebd028766fe.nef",
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "f_iso": "800",
+   "input_msssim": 0.9952677488327026,
+   "dark_fraction": 0.006257846146022288,
+   "noise_bin": "0.99-1.0",
+   "dark_bin": "0.0-0.1"
+  }
+ ]
+}

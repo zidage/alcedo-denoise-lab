@@ -1,0 +1,3269 @@
+{
+ "description": "Select dark training scenes as more validation scenes of the step 5 runs.",
+ "command": "python -I scripts/dark_area/select_dark_scenes.py --images data/patches/rawnind_bayer_demosaicnet --out results/dark_area/dark_validation_scenes.json",
+ "repository_commit": "d2bcf372bc972c3c0921e42f0b1b671133f77a96",
+ "images_manifest_sha256": "2a5bb3c2a267eaafd16ed2fca8b2479d66800ea361251409cf403b419705a904",
+ "dark_area": {
+  "dark_definition": "mean of the developed (+2.0 EV, sRGB) reference R, G, B below 0.1",
+  "dark_developed_limit": 0.1,
+  "dark_windows": [
+   16,
+   64
+  ],
+  "dark_min_coverage": 0.5,
+  "dark_penalty": "sqrt(1 + (m / s)^2) - 1",
+  "dark_penalty_scale": 0.00048828125,
+  "lowpass_windows": [
+   16,
+   64
+  ],
+  "band_cycles_per_px": [
+   0.2,
+   0.4
+  ],
+  "band_taps": 33,
+  "block_px": 16,
+  "clip_limit": 0.98,
+  "texture_quantiles": [
+   0.25,
+   0.75
+  ]
+ },
+ "stride": 8,
+ "min_dark_fraction": 0.4,
+ "max_scenes": 6,
+ "min_camera_scenes": 2,
+ "selected": [
+  "MuseeL-AraBleu-cropped-alt3-A7C",
+  "MuseeL-AraBleu-cropped-alt2-A7C",
+  "MuseeL-AraBleu-A7C",
+  "MuseeL-helmets-A7C",
+  "MuseeL-horseface-A7C",
+  "MuseeL-colorfulchemicalsandbird-A7C"
+ ],
+ "selected_rows": [
+  {
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.6638803680737814,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "160",
+    "16000",
+    "250",
+    "25600",
+    "400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.6864034831523895,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "125",
+    "1250",
+    "1600",
+    "2000",
+    "25600",
+    "5000",
+    "640"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.7341277897357941,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "100",
+    "10000",
+    "1250",
+    "12800",
+    "160",
+    "1600",
+    "40000",
+    "5000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.6226650476455688,
+   "clean_images": 1,
+   "noisy_pairs": 13,
+   "isos": [
+    "100",
+    "125",
+    "1250",
+    "12800",
+    "16000",
+    "250",
+    "2500",
+    "500",
+    "64000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.6607011556625366,
+   "clean_images": 2,
+   "noisy_pairs": 30,
+   "isos": [
+    "100",
+    "1000",
+    "12800",
+    "16000",
+    "20000",
+    "250",
+    "40000",
+    "5000",
+    "51200",
+    "640",
+    "64000",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.6567676862080892,
+   "clean_images": 3,
+   "noisy_pairs": 24,
+   "isos": [
+    "100",
+    "1000",
+    "12800",
+    "2500",
+    "32000",
+    "640",
+    "65535"
+   ],
+   "validation_scene": false
+  }
+ ],
+ "scenes": [
+  {
+   "scene": "MuseeL-AraBleu-cropped-alt3-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.7341277897357941,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "100",
+    "10000",
+    "1250",
+    "12800",
+    "160",
+    "1600",
+    "40000",
+    "5000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-AraBleu-cropped-alt2-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.6864034831523895,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "125",
+    "1250",
+    "1600",
+    "2000",
+    "25600",
+    "5000",
+    "640"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-AraBleu-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.6638803680737814,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "160",
+    "16000",
+    "250",
+    "25600",
+    "400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-helmets-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.6607011556625366,
+   "clean_images": 2,
+   "noisy_pairs": 30,
+   "isos": [
+    "100",
+    "1000",
+    "12800",
+    "16000",
+    "20000",
+    "250",
+    "40000",
+    "5000",
+    "51200",
+    "640",
+    "64000",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-horseface-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.6567676862080892,
+   "clean_images": 3,
+   "noisy_pairs": 24,
+   "isos": [
+    "100",
+    "1000",
+    "12800",
+    "2500",
+    "32000",
+    "640",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-colorfulchemicalsandbird-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.6226650476455688,
+   "clean_images": 1,
+   "noisy_pairs": 13,
+   "isos": [
+    "100",
+    "125",
+    "1250",
+    "12800",
+    "16000",
+    "250",
+    "2500",
+    "500",
+    "64000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-AraBleu-cropped-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.5791967809200287,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "100",
+    "10000",
+    "125",
+    "2000",
+    "20000",
+    "320",
+    "40000",
+    "6400"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-fercarbonyle-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.5764641761779785,
+   "clean_images": 4,
+   "noisy_pairs": 40,
+   "isos": [
+    "100",
+    "1250",
+    "1600",
+    "200",
+    "2000",
+    "40000",
+    "500",
+    "5000",
+    "64000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-inspiredlotus-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.5613239407539368,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "1000",
+    "10000",
+    "1600",
+    "2500",
+    "320",
+    "400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-inspiredlotus-alt-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.55747190117836,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "1000",
+    "160",
+    "2000",
+    "250",
+    "320",
+    "32000",
+    "51200",
+    "640",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-skull-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.5549854934215546,
+   "clean_images": 4,
+   "noisy_pairs": 40,
+   "isos": [
+    "1250",
+    "12800",
+    "2500",
+    "320",
+    "3200",
+    "51200",
+    "640",
+    "64000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-birdsandfaces-MuseeL",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.5509405987603324,
+   "clean_images": 7,
+   "noisy_pairs": 49,
+   "isos": [
+    "10000",
+    "125",
+    "3200",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-pufferfish-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.47615765035152435,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "1000",
+    "1250",
+    "25600",
+    "3200",
+    "400",
+    "40000",
+    "500",
+    "5000",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-coral2-dark-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.38583989938100177,
+   "clean_images": 3,
+   "noisy_pairs": 33,
+   "isos": [
+    "250",
+    "320",
+    "32000",
+    "500",
+    "5000",
+    "6400",
+    "64000",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-mask-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.35982246696949005,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "12800",
+    "16000",
+    "200",
+    "20000",
+    "25600",
+    "3200",
+    "400",
+    "40000",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-Armlessness-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.34974879026412964,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "125",
+    "12800",
+    "25600",
+    "320",
+    "4000",
+    "40000",
+    "5000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-seastuff-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.3134385347366333,
+   "clean_images": 3,
+   "noisy_pairs": 42,
+   "isos": [
+    "125",
+    "1600",
+    "200",
+    "20000",
+    "250",
+    "25600",
+    "32000",
+    "400",
+    "4000",
+    "64000",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-skeleton-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.27593931555747986,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "1000",
+    "1250",
+    "200",
+    "250",
+    "25600",
+    "320",
+    "4000",
+    "640",
+    "6400",
+    "64000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-pinklotus-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.26660312215487164,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "125",
+    "12800",
+    "160",
+    "1600",
+    "400",
+    "640",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-mammal-closeup-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.239030621945858,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "125",
+    "1250",
+    "200",
+    "20000",
+    "32000",
+    "4000",
+    "500",
+    "64000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-fruitbearer-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.2320050448179245,
+   "clean_images": 1,
+   "noisy_pairs": 13,
+   "isos": [
+    "1000",
+    "10000",
+    "125",
+    "160",
+    "200",
+    "2500",
+    "32000",
+    "40000",
+    "6400",
+    "64000",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-sticks-dark-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.21978619694709778,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "160",
+    "2000",
+    "20000",
+    "2500",
+    "32000",
+    "4000",
+    "40000",
+    "51200",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-birdsandfaces-closeup-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.21283454596996307,
+   "clean_images": 5,
+   "noisy_pairs": 45,
+   "isos": [
+    "1000",
+    "12800",
+    "1600",
+    "20000",
+    "2500",
+    "400",
+    "800",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-hanging-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.19199807941913605,
+   "clean_images": 3,
+   "noisy_pairs": 6,
+   "isos": [
+    "100",
+    "320"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-DeutschesLandschwein-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.1769779734313488,
+   "clean_images": 4,
+   "noisy_pairs": 32,
+   "isos": [
+    "1250",
+    "640",
+    "65535",
+    "800",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-fossil2-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.17208436131477356,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "100",
+    "1000",
+    "10000",
+    "125",
+    "1600",
+    "4000",
+    "500",
+    "5000",
+    "640",
+    "64000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-Vanillekipferl-C500D",
+   "camera": "Canon EOS 500D",
+   "dark_fraction": 0.16548188030719757,
+   "clean_images": 1,
+   "noisy_pairs": 6,
+   "isos": [
+    "1600",
+    "200",
+    "3200",
+    "400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "fireplace",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.15827742218971252,
+   "clean_images": 1,
+   "noisy_pairs": 9,
+   "isos": [
+    "100",
+    "1250",
+    "1600",
+    "16000",
+    "200",
+    "320",
+    "3200",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-coral2close-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.15803320705890656,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "125",
+    "12800",
+    "20000",
+    "2500",
+    "3200",
+    "32000",
+    "4000",
+    "5000",
+    "51200",
+    "64000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-HansVredemanDeVries-Thuscana1Visus-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.14365334808826447,
+   "clean_images": 2,
+   "noisy_pairs": 10,
+   "isos": [
+    "100",
+    "160",
+    "200",
+    "250"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-skull-C500D",
+   "camera": "Canon EOS 500D",
+   "dark_fraction": 0.1428203135728836,
+   "clean_images": 1,
+   "noisy_pairs": 6,
+   "isos": [
+    "1600",
+    "200",
+    "3200",
+    "400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-mushroomcandies-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.13900131732225418,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "1000",
+    "200",
+    "2500",
+    "320",
+    "3200",
+    "40000",
+    "5000",
+    "640",
+    "64000",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-coral-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.13355986028909683,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "100",
+    "51200",
+    "64000",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-coral2-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.12552309036254883,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "10000",
+    "125",
+    "12800",
+    "160",
+    "1600",
+    "3200",
+    "40000",
+    "64000",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-fossilizedleaf-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.12476667761802673,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "20000",
+    "250",
+    "400",
+    "4000",
+    "40000",
+    "500",
+    "51200",
+    "6400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "clothes",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.11997206509113312,
+   "clean_images": 2,
+   "noisy_pairs": 8,
+   "isos": [
+    "125",
+    "2500",
+    "320",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-inspiredlotus-closeup-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.11896086856722832,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "160",
+    "1600",
+    "200",
+    "320",
+    "32000",
+    "500",
+    "64000",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-mineral-C500D",
+   "camera": "Canon EOS 500D",
+   "dark_fraction": 0.10288573801517487,
+   "clean_images": 1,
+   "noisy_pairs": 5,
+   "isos": [
+    "1600",
+    "200",
+    "3200",
+    "400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-KoenraadTinel-JeuneFilleAVelo-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.10154478251934052,
+   "clean_images": 2,
+   "noisy_pairs": 14,
+   "isos": [
+    "100",
+    "200",
+    "2500",
+    "4000",
+    "64000",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "fire_starters",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.08161522075533867,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "1600",
+    "320",
+    "32000",
+    "400",
+    "51200",
+    "6400",
+    "65535",
+    "800",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "LeslieMountains",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.07882849127054214,
+   "clean_images": 2,
+   "noisy_pairs": 16,
+   "isos": [
+    "1000",
+    "125",
+    "1250",
+    "1600",
+    "2000",
+    "2500",
+    "4000",
+    "500"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-grassscene-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0769420638680458,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "12800",
+    "250",
+    "2500",
+    "25600",
+    "320",
+    "400",
+    "4000",
+    "64000",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Leslie_pretty_flowers",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.07674933224916458,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "12800",
+    "16000",
+    "200",
+    "2000",
+    "25600",
+    "3200",
+    "32000",
+    "4000",
+    "6400",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Iain02",
+   "camera": "NIKON D40",
+   "dark_fraction": 0.07462667115032673,
+   "clean_images": 4,
+   "noisy_pairs": 16,
+   "isos": [
+    "1600",
+    "400",
+    "800",
+    "Hi 3200"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-mammal-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.07449328154325485,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "160",
+    "2000",
+    "400",
+    "5000",
+    "640",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-goat-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.06703075021505356,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "125",
+    "1250",
+    "12800",
+    "16000",
+    "2500",
+    "320",
+    "3200",
+    "32000",
+    "5000",
+    "64000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Leslie_circus_plant",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.06540306285023689,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "1000",
+    "12800",
+    "160",
+    "1600",
+    "250",
+    "25600",
+    "320",
+    "3200",
+    "400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-skull2-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.06511000295480092,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "10000",
+    "125",
+    "16000",
+    "250",
+    "32000",
+    "640",
+    "6400",
+    "64000",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-sol-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.06232195347547531,
+   "clean_images": 2,
+   "noisy_pairs": 10,
+   "isos": [
+    "1000",
+    "160",
+    "1600",
+    "400",
+    "500"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "cones_at_night",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.060193948447704315,
+   "clean_images": 2,
+   "noisy_pairs": 8,
+   "isos": [
+    "160",
+    "2000",
+    "400",
+    "500"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-headless-statue-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.05736981456478437,
+   "clean_images": 3,
+   "noisy_pairs": 6,
+   "isos": [
+    "400"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "steamdeck1603",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.05530165694653988,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "10000",
+    "160",
+    "16000",
+    "25600",
+    "3200",
+    "32000",
+    "400",
+    "4000",
+    "40000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "hatted_penguin",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.04984084020058314,
+   "clean_images": 3,
+   "noisy_pairs": 33,
+   "isos": [
+    "1000",
+    "10000",
+    "125",
+    "1250",
+    "200",
+    "320",
+    "3200",
+    "5000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "stapled",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.04685301147401333,
+   "clean_images": 2,
+   "noisy_pairs": 18,
+   "isos": [
+    "160",
+    "1600",
+    "16000",
+    "20000",
+    "40000",
+    "5000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-CopteArch-C500D",
+   "camera": "Canon EOS 500D",
+   "dark_fraction": 0.04236894100904465,
+   "clean_images": 1,
+   "noisy_pairs": 5,
+   "isos": [
+    "1600",
+    "200",
+    "3200",
+    "400"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-yombe-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.04118582047522068,
+   "clean_images": 4,
+   "noisy_pairs": 8,
+   "isos": [
+    "2000",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-ambon-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.03265004977583885,
+   "clean_images": 2,
+   "noisy_pairs": 16,
+   "isos": [
+    "1000",
+    "200",
+    "2000",
+    "250",
+    "400",
+    "4000",
+    "5000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-fossil-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.023460828699171543,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "10000",
+    "16000",
+    "2000",
+    "250",
+    "3200",
+    "5000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-sol-A7C-brighter",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.023314298130571842,
+   "clean_images": 2,
+   "noisy_pairs": 16,
+   "isos": [
+    "100",
+    "125",
+    "1600",
+    "2500",
+    "320",
+    "4000",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "wool_remotes",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0224377503618598,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "125",
+    "1250",
+    "16000",
+    "2000",
+    "20000",
+    "25600",
+    "32000",
+    "4000",
+    "6400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "mjbookshelf1",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.021322266198694706,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "10000",
+    "125",
+    "12800",
+    "1600",
+    "200",
+    "250",
+    "4000",
+    "5000",
+    "51200",
+    "6400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-C500D-mammal",
+   "camera": "Canon EOS 500D",
+   "dark_fraction": 0.019407300278544426,
+   "clean_images": 1,
+   "noisy_pairs": 6,
+   "isos": [
+    "1600",
+    "200",
+    "3200",
+    "400",
+    "800"
+   ],
+   "validation_scene": true
+  },
+  {
+   "scene": "cactus",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.01486037252470851,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "1250",
+    "160",
+    "250",
+    "32000",
+    "40000",
+    "5000",
+    "640",
+    "6400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-redstele-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.013743567746132612,
+   "clean_images": 2,
+   "noisy_pairs": 14,
+   "isos": [
+    "125",
+    "1250",
+    "160",
+    "250",
+    "320",
+    "6400",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Vani_elephant",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.011686850804835558,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "1000",
+    "12800",
+    "160",
+    "25600",
+    "32000",
+    "400",
+    "40000",
+    "500",
+    "51200",
+    "6400",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Iain01",
+   "camera": "NIKON D40",
+   "dark_fraction": 0.011643692385405302,
+   "clean_images": 4,
+   "noisy_pairs": 16,
+   "isos": [
+    "1600",
+    "400",
+    "800",
+    "Hi 3200"
+   ],
+   "validation_scene": true
+  },
+  {
+   "scene": "copeaux",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.010395792312920094,
+   "clean_images": 2,
+   "noisy_pairs": 18,
+   "isos": [
+    "100",
+    "10000",
+    "125",
+    "16000",
+    "200",
+    "250",
+    "4000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-idole-C500D",
+   "camera": "Canon EOS 500D",
+   "dark_fraction": 0.00900630559772253,
+   "clean_images": 1,
+   "noisy_pairs": 5,
+   "isos": [
+    "200",
+    "3200",
+    "400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Kyckling-i-kruka",
+   "camera": "Canon EOS 6D",
+   "dark_fraction": 0.00897463969886303,
+   "clean_images": 1,
+   "noisy_pairs": 10,
+   "isos": [
+    "12800",
+    "1600",
+    "200",
+    "25600",
+    "3200",
+    "400",
+    "51200",
+    "6400",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-cross-C500D",
+   "camera": "Canon EOS 500D",
+   "dark_fraction": 0.0088964207097888,
+   "clean_images": 1,
+   "noisy_pairs": 6,
+   "isos": [
+    "1600",
+    "200",
+    "3200",
+    "400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "boardgames_bot",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.008444683626294136,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "10000",
+    "125",
+    "160",
+    "16000",
+    "250",
+    "4000",
+    "40000",
+    "5000",
+    "51200",
+    "64000",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-ram-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.008367929408060653,
+   "clean_images": 7,
+   "noisy_pairs": 49,
+   "isos": [
+    "200",
+    "5000",
+    "640",
+    "6400",
+    "64000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "sewingmachine",
+   "camera": "NIKON Z 6",
+   "dark_fraction": 0.00798087753355503,
+   "clean_images": 1,
+   "noisy_pairs": 15,
+   "isos": [
+    "100",
+    "125",
+    "12800",
+    "160",
+    "1600",
+    "200",
+    "25600",
+    "3200",
+    "32000",
+    "400",
+    "51200",
+    "63",
+    "6400",
+    "79",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "droids_and_rocks",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.007846678296724955,
+   "clean_images": 3,
+   "noisy_pairs": 18,
+   "isos": [
+    "12800",
+    "2500",
+    "320",
+    "3200",
+    "640",
+    "6400"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-redcoral-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.007751630851998925,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "1250",
+    "160",
+    "250",
+    "2500",
+    "320",
+    "32000",
+    "4000",
+    "51200",
+    "6400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "redbox",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0064799341683586436,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "125",
+    "160",
+    "1600",
+    "2500",
+    "5000",
+    "6400",
+    "64000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-foot-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.006387967150658369,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "1600",
+    "4000",
+    "5000",
+    "640",
+    "64000",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "icteam_mug_logo",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.005781160822759072,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "1000",
+    "10000",
+    "12800",
+    "160",
+    "16000",
+    "2500",
+    "51200",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "bananapi",
+   "camera": "NIKON Z 6",
+   "dark_fraction": 0.005752501543611288,
+   "clean_images": 1,
+   "noisy_pairs": 12,
+   "isos": [
+    "100",
+    "125",
+    "12800",
+    "1600",
+    "200",
+    "25600",
+    "3200",
+    "400",
+    "51200",
+    "63",
+    "6400",
+    "800"
+   ],
+   "validation_scene": true
+  },
+  {
+   "scene": "MuseeL-Ghysels-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.005672472529113293,
+   "clean_images": 2,
+   "noisy_pairs": 16,
+   "isos": [
+    "100",
+    "1000",
+    "125",
+    "1250",
+    "16000",
+    "2500",
+    "3200"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "buches2",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.005515380529686809,
+   "clean_images": 2,
+   "noisy_pairs": 18,
+   "isos": [
+    "125",
+    "1250",
+    "12800",
+    "20000",
+    "250",
+    "32000",
+    "40000",
+    "51200",
+    "640"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-feathers-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.005077987133214871,
+   "clean_images": 3,
+   "noisy_pairs": 33,
+   "isos": [
+    "1000",
+    "16000",
+    "200",
+    "2000",
+    "400",
+    "5000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "damaged_root",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.005010221929599841,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "160",
+    "1600",
+    "250",
+    "32000",
+    "51200",
+    "6400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "2pilesofplates",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.004428937798365951,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "125",
+    "1250",
+    "12800",
+    "160",
+    "16000",
+    "2000",
+    "2500",
+    "320",
+    "400",
+    "640",
+    "65535",
+    "800"
+   ],
+   "validation_scene": true
+  },
+  {
+   "scene": "steamdeck",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0043660129110018415,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "1000",
+    "1600",
+    "2000",
+    "2500",
+    "5000",
+    "640",
+    "64000",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-sol-C500D",
+   "camera": "Canon EOS 500D",
+   "dark_fraction": 0.0035374367143958807,
+   "clean_images": 1,
+   "noisy_pairs": 5,
+   "isos": [
+    "200",
+    "3200",
+    "400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "copeaux_",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0034467827063053846,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "100",
+    "1250",
+    "200",
+    "320",
+    "500",
+    "6400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "penne",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.003296291339211166,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "1000",
+    "10000",
+    "125",
+    "200",
+    "2500",
+    "320",
+    "5000",
+    "51200",
+    "6400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-foot-alt-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.00300850928761065,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "12800",
+    "200",
+    "20000",
+    "250",
+    "2500",
+    "3200",
+    "51200",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-foot-alt2-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.002856697809572021,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "160",
+    "2000",
+    "250",
+    "25600",
+    "640",
+    "64000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "bananas_et_al",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0028487772215157747,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "10000",
+    "1250",
+    "250",
+    "2500",
+    "320",
+    "3200",
+    "32000",
+    "6400",
+    "64000",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "apples_butternut",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0027629707474261522,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "125",
+    "1600",
+    "200",
+    "2000",
+    "20000",
+    "25600",
+    "320",
+    "500",
+    "51200",
+    "64000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Blombukett",
+   "camera": "Canon EOS 6D",
+   "dark_fraction": 0.0026162818539887667,
+   "clean_images": 1,
+   "noisy_pairs": 10,
+   "isos": [
+    "12800",
+    "1600",
+    "200",
+    "25600",
+    "3200",
+    "400",
+    "51200",
+    "6400",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-AmeriqueDuSud-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.00243822589982301,
+   "clean_images": 2,
+   "noisy_pairs": 18,
+   "isos": [
+    "10000",
+    "20000",
+    "2500",
+    "25600",
+    "320",
+    "5000",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "wide_desk_angle",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0022666127188131213,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "100",
+    "1250",
+    "200",
+    "20000",
+    "2500",
+    "25600",
+    "40000",
+    "640"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-head-alt-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0022336102556437254,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "10000",
+    "1250",
+    "1600",
+    "2500",
+    "25600",
+    "500",
+    "6400",
+    "800",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "7D-1",
+   "camera": "Canon EOS 7D",
+   "dark_fraction": 0.0019364007748663425,
+   "clean_images": 1,
+   "noisy_pairs": 7,
+   "isos": [
+    "12800",
+    "1600",
+    "200",
+    "3200",
+    "400",
+    "6400",
+    "800"
+   ],
+   "validation_scene": true
+  },
+  {
+   "scene": "oranges_apple",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0018983047339133918,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "1000",
+    "10000",
+    "12800",
+    "1600",
+    "16000",
+    "2000",
+    "40000",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "7D-6",
+   "camera": "Canon EOS 7D",
+   "dark_fraction": 0.0018617871683090925,
+   "clean_images": 1,
+   "noisy_pairs": 7,
+   "isos": [
+    "12800",
+    "1600",
+    "200",
+    "3200",
+    "400",
+    "6400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "door_to_the_outside_world",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.001621083589270711,
+   "clean_images": 1,
+   "noisy_pairs": 5,
+   "isos": [
+    "125",
+    "160",
+    "200",
+    "640"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "mjbookshelf2",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.001395346422214061,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "100",
+    "125",
+    "1250",
+    "12800",
+    "2500",
+    "25600",
+    "400",
+    "6400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "D60-3",
+   "camera": "Canon EOS D60",
+   "dark_fraction": 0.0013608596054837108,
+   "clean_images": 1,
+   "noisy_pairs": 4,
+   "isos": [
+    "1037",
+    "200",
+    "400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "wool_basket",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0010956835467368364,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "10000",
+    "200",
+    "2000",
+    "20000",
+    "32000",
+    "400",
+    "5000",
+    "51200",
+    "64000",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Metalldel",
+   "camera": "Canon EOS 6D",
+   "dark_fraction": 0.0010845677461475134,
+   "clean_images": 1,
+   "noisy_pairs": 10,
+   "isos": [
+    "12800",
+    "1600",
+    "200",
+    "25600",
+    "3200",
+    "400",
+    "51200",
+    "6400",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-head-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0009834749507717788,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "160",
+    "20000",
+    "320",
+    "40000",
+    "640",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-yombe-C500D",
+   "camera": "Canon EOS 500D",
+   "dark_fraction": 0.0009128869278356433,
+   "clean_images": 1,
+   "noisy_pairs": 5,
+   "isos": [
+    "1600",
+    "3200",
+    "400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Spydercheckr",
+   "camera": "Canon EOS 6D",
+   "dark_fraction": 0.0009006352047435939,
+   "clean_images": 1,
+   "noisy_pairs": 10,
+   "isos": [
+    "12800",
+    "1600",
+    "200",
+    "25600",
+    "3200",
+    "400",
+    "51200",
+    "6400",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-pedestal-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0008343035879079252,
+   "clean_images": 2,
+   "noisy_pairs": 14,
+   "isos": [
+    "10000",
+    "200",
+    "4000",
+    "500",
+    "5000",
+    "6400"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "wet_charred_wood",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0008026211871765554,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "16000",
+    "2500",
+    "32000",
+    "4000",
+    "500",
+    "5000",
+    "51200",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "D60-2",
+   "camera": "Canon EOS D60",
+   "dark_fraction": 0.0007661135750822723,
+   "clean_images": 1,
+   "noisy_pairs": 4,
+   "isos": [
+    "1037",
+    "200",
+    "400",
+    "800"
+   ],
+   "validation_scene": true
+  },
+  {
+   "scene": "bits",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0007405764772556722,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "10000",
+    "125",
+    "1250",
+    "160",
+    "1600",
+    "16000",
+    "25600",
+    "4000",
+    "51200",
+    "6400"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "in_piano_dark",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0006952530044751862,
+   "clean_images": 3,
+   "noisy_pairs": 33,
+   "isos": [
+    "1000",
+    "12800",
+    "16000",
+    "250",
+    "3200",
+    "5000",
+    "640",
+    "6400",
+    "64000",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-vasebleu-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0006943729531485587,
+   "clean_images": 2,
+   "noisy_pairs": 16,
+   "isos": [
+    "10000",
+    "125",
+    "1250",
+    "160",
+    "16000",
+    "5000",
+    "51200"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "logpile",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.000641568893721948,
+   "clean_images": 3,
+   "noisy_pairs": 24,
+   "isos": [
+    "100",
+    "10000",
+    "125",
+    "1250",
+    "250",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-sticks-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0006046060880180448,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "10000",
+    "125",
+    "160",
+    "2500",
+    "500",
+    "51200",
+    "640",
+    "64000",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "rad_control",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0005742437788285315,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "100",
+    "1000",
+    "1250",
+    "2000",
+    "2500",
+    "25600",
+    "320",
+    "32000",
+    "5000",
+    "51200",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "holed_wall",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0005121990689076483,
+   "clean_images": 1,
+   "noisy_pairs": 4,
+   "isos": [
+    "10000",
+    "1250",
+    "2000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "in_piano_lit",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0004963578394381329,
+   "clean_images": 2,
+   "noisy_pairs": 22,
+   "isos": [
+    "1000",
+    "10000",
+    "1600",
+    "2000",
+    "250",
+    "2500",
+    "32000",
+    "640",
+    "6400",
+    "64000",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "couch",
+   "camera": "NIKON Z 6",
+   "dark_fraction": 0.00043365813326090574,
+   "clean_images": 1,
+   "noisy_pairs": 14,
+   "isos": [
+    "100",
+    "10000",
+    "160",
+    "1600",
+    "16000",
+    "250",
+    "25600",
+    "3200",
+    "400",
+    "40000",
+    "5000",
+    "63",
+    "79",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "portemanteau",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.00042639250750653446,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "12800",
+    "250",
+    "51200",
+    "640",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "stove3",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0003564271707242976,
+   "clean_images": 3,
+   "noisy_pairs": 21,
+   "isos": [
+    "10000",
+    "16000",
+    "320",
+    "500",
+    "64000",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-fuite-C500D",
+   "camera": "Canon EOS 500D",
+   "dark_fraction": 0.00035078523796983063,
+   "clean_images": 1,
+   "noisy_pairs": 6,
+   "isos": [
+    "1600",
+    "200",
+    "3200",
+    "400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "multiprise",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.00033266536775045097,
+   "clean_images": 4,
+   "noisy_pairs": 24,
+   "isos": [
+    "125",
+    "2000",
+    "20000",
+    "2500",
+    "320"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "foodstuff2",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0001179289926464359,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "1600",
+    "400",
+    "4000",
+    "51200",
+    "640",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-Bobo-alt-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.000110888455916817,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "125",
+    "160",
+    "320",
+    "400",
+    "640",
+    "6400"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "tapedduct",
+   "camera": "ILCE-7C",
+   "dark_fraction": 9.504724948783405e-05,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "1250",
+    "250",
+    "2500",
+    "320",
+    "4000",
+    "640",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Lophophora_williamsii3",
+   "camera": "ILCE-7C",
+   "dark_fraction": 8.624657736315082e-05,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "1250",
+    "200",
+    "20000",
+    "25600",
+    "51200",
+    "6400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Leslie_squares_and_heart_universe",
+   "camera": "ILCE-7C",
+   "dark_fraction": 8.580654321121983e-05,
+   "clean_images": 2,
+   "noisy_pairs": 14,
+   "isos": [
+    "1000",
+    "125",
+    "2000",
+    "250",
+    "4000",
+    "640",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "serrure",
+   "camera": "ILCE-7C",
+   "dark_fraction": 6.24847646880274e-05,
+   "clean_images": 3,
+   "noisy_pairs": 15,
+   "isos": [
+    "2000",
+    "400"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "helmet",
+   "camera": "ILCE-7C",
+   "dark_fraction": 6.072462929296307e-05,
+   "clean_images": 1,
+   "noisy_pairs": 11,
+   "isos": [
+    "100",
+    "125",
+    "12800",
+    "16000",
+    "4000",
+    "40000",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-Bobo-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 5.940453047514893e-05,
+   "clean_images": 2,
+   "noisy_pairs": 14,
+   "isos": [
+    "100",
+    "10000",
+    "12800",
+    "320",
+    "640",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-Sepik-C500D",
+   "camera": "Canon EOS 500D",
+   "dark_fraction": 4.226328383083455e-05,
+   "clean_images": 1,
+   "noisy_pairs": 5,
+   "isos": [
+    "1600",
+    "200",
+    "3200",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-portrait-C500D",
+   "camera": "Canon EOS 500D",
+   "dark_fraction": 4.226328383083455e-05,
+   "clean_images": 1,
+   "noisy_pairs": 5,
+   "isos": [
+    "1600",
+    "3200",
+    "400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "logpile_closeup",
+   "camera": "ILCE-7C",
+   "dark_fraction": 3.0362314646481536e-05,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "1000",
+    "20000",
+    "32000",
+    "400",
+    "500",
+    "6400",
+    "64000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Leslie_colorful_herbs",
+   "camera": "ILCE-7C",
+   "dark_fraction": 2.8162146918475628e-05,
+   "clean_images": 3,
+   "noisy_pairs": 21,
+   "isos": [
+    "100",
+    "1000",
+    "125",
+    "1250",
+    "4000",
+    "6400",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Bark",
+   "camera": "Canon EOS 6D",
+   "dark_fraction": 2.219875568698626e-05,
+   "clean_images": 1,
+   "noisy_pairs": 10,
+   "isos": [
+    "12800",
+    "1600",
+    "200",
+    "25600",
+    "3200",
+    "400",
+    "51200",
+    "6400",
+    "65535",
+    "800"
+   ],
+   "validation_scene": true
+  },
+  {
+   "scene": "7D-3",
+   "camera": "Canon EOS 7D",
+   "dark_fraction": 2.1318173821782693e-05,
+   "clean_images": 1,
+   "noisy_pairs": 7,
+   "isos": [
+    "12800",
+    "1600",
+    "200",
+    "3200",
+    "400",
+    "6400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-Sepik-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 1.848140891524963e-05,
+   "clean_images": 3,
+   "noisy_pairs": 24,
+   "isos": [
+    "200",
+    "3200",
+    "500",
+    "640",
+    "6400",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "RB1850X",
+   "camera": "ILCE-7C",
+   "dark_fraction": 1.848140891524963e-05,
+   "clean_images": 2,
+   "noisy_pairs": 22,
+   "isos": [
+    "125",
+    "1250",
+    "16000",
+    "200",
+    "2000",
+    "250",
+    "25600",
+    "320",
+    "500",
+    "5000",
+    "64000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "ground_duct",
+   "camera": "ILCE-7C",
+   "dark_fraction": 1.804137536964845e-05,
+   "clean_images": 6,
+   "noisy_pairs": 36,
+   "isos": [
+    "2500",
+    "320",
+    "5000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "European_hornbeam_bark",
+   "camera": "ILCE-7C",
+   "dark_fraction": 1.320100636803545e-05,
+   "clean_images": 3,
+   "noisy_pairs": 27,
+   "isos": [
+    "12800",
+    "16000",
+    "2000",
+    "20000",
+    "400",
+    "6400",
+    "64000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "another_hole_in_the_wall",
+   "camera": "ILCE-7C",
+   "dark_fraction": 9.680738003225997e-06,
+   "clean_images": 3,
+   "noisy_pairs": 15,
+   "isos": [
+    "100",
+    "1000",
+    "160",
+    "2000",
+    "400"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "bark_beetled_log",
+   "camera": "ILCE-7C",
+   "dark_fraction": 5.28040254721418e-06,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "100",
+    "1000",
+    "125",
+    "2000",
+    "20000",
+    "25600",
+    "4000",
+    "51200",
+    "640",
+    "64000",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Elplint",
+   "camera": "Canon EOS 6D",
+   "dark_fraction": 3.171250682498794e-06,
+   "clean_images": 1,
+   "noisy_pairs": 10,
+   "isos": [
+    "12800",
+    "1600",
+    "200",
+    "25600",
+    "3200",
+    "400",
+    "51200",
+    "6400",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "7D-4",
+   "camera": "Canon EOS 7D",
+   "dark_fraction": 0.0,
+   "clean_images": 1,
+   "noisy_pairs": 7,
+   "isos": [
+    "12800",
+    "1600",
+    "200",
+    "3200",
+    "400",
+    "6400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "7D-5",
+   "camera": "Canon EOS 7D",
+   "dark_fraction": 0.0,
+   "clean_images": 1,
+   "noisy_pairs": 7,
+   "isos": [
+    "12800",
+    "1600",
+    "200",
+    "3200",
+    "400",
+    "6400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "7D-7",
+   "camera": "Canon EOS 7D",
+   "dark_fraction": 0.0,
+   "clean_images": 1,
+   "noisy_pairs": 7,
+   "isos": [
+    "12800",
+    "1600",
+    "200",
+    "3200",
+    "400",
+    "6400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Kortlek",
+   "camera": "Canon EOS 6D",
+   "dark_fraction": 0.0,
+   "clean_images": 1,
+   "noisy_pairs": 10,
+   "isos": [
+    "12800",
+    "1600",
+    "200",
+    "25600",
+    "3200",
+    "400",
+    "51200",
+    "6400",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "Matthias_salt",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 22,
+   "isos": [
+    "100",
+    "125",
+    "160",
+    "200",
+    "3200",
+    "32000",
+    "4000",
+    "5000",
+    "51200",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "MuseeL-prettyflatstone-A7C",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "10000",
+    "12800",
+    "200",
+    "2000",
+    "5000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "ads",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "16000",
+    "2000",
+    "20000",
+    "3200",
+    "4000",
+    "40000",
+    "51200",
+    "64000",
+    "65535",
+    "800",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "another_hole_in_the_wall_brighter",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 5,
+   "noisy_pairs": 20,
+   "isos": [
+    "1000",
+    "12800",
+    "4000",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "applebag",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "1000",
+    "160",
+    "16000",
+    "200",
+    "2000",
+    "250",
+    "32000",
+    "4000",
+    "500",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "back_of_green_rug_at_night",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 16,
+   "isos": [
+    "1250",
+    "16000",
+    "250",
+    "2500",
+    "400",
+    "640",
+    "6400",
+    "64000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "back_of_green_rug_daylight",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "1250",
+    "160",
+    "1600",
+    "16000",
+    "250",
+    "25600",
+    "4000",
+    "40000",
+    "5000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "big_bookshelf_1",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "10000",
+    "12800",
+    "16000",
+    "2500",
+    "3200",
+    "40000",
+    "51200",
+    "64000",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "big_bookshelf_2",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "1000",
+    "125",
+    "20000",
+    "320",
+    "3200",
+    "40000",
+    "500",
+    "64000",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "blood_oranges",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "1250",
+    "1600",
+    "16000",
+    "200",
+    "3200",
+    "400",
+    "51200",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "conferences",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "100",
+    "1000",
+    "10000",
+    "125",
+    "1250",
+    "12800",
+    "2000",
+    "4000",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "consignes",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 10,
+   "noisy_pairs": 20,
+   "isos": [
+    "160",
+    "1600"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "consignes_brighter",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 5,
+   "noisy_pairs": 20,
+   "isos": [
+    "1000",
+    "1250",
+    "6400"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "dirtymug",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "10000",
+    "160",
+    "2500",
+    "3200",
+    "32000",
+    "40000",
+    "500",
+    "6400",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "drying_apple_seeds",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "100",
+    "1000",
+    "12800",
+    "16000",
+    "2000",
+    "20000",
+    "250",
+    "4000",
+    "640",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "dustpan",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "1000",
+    "10000",
+    "160",
+    "320",
+    "51200",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "fan",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 16,
+   "isos": [
+    "1250",
+    "12800",
+    "250",
+    "32000",
+    "51200",
+    "6400"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "gaine",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 18,
+   "isos": [
+    "25600",
+    "400",
+    "4000",
+    "6400",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "icing",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 3,
+   "noisy_pairs": 33,
+   "isos": [
+    "100",
+    "10000",
+    "12800",
+    "160",
+    "320",
+    "3200",
+    "400",
+    "6400",
+    "64000",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "key_holder_with_wallet",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "100",
+    "1000",
+    "250",
+    "25600",
+    "500",
+    "5000",
+    "6400",
+    "64000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "kimiko",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 20,
+   "isos": [
+    "1250",
+    "2000",
+    "250",
+    "2500",
+    "5000",
+    "65535",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "plomberie",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 16,
+   "isos": [
+    "100",
+    "1600",
+    "16000",
+    "400",
+    "4000",
+    "500",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "sprouting_garlic",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 22,
+   "isos": [
+    "125",
+    "12800",
+    "1600",
+    "2000",
+    "20000",
+    "250",
+    "25600",
+    "3200",
+    "32000",
+    "800"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "target",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "100",
+    "1000",
+    "125",
+    "1250",
+    "12800",
+    "200",
+    "20000",
+    "2500",
+    "3200",
+    "500",
+    "64000",
+    "65535"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "thermostat4",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 18,
+   "isos": [
+    "10000",
+    "250",
+    "320",
+    "40000",
+    "500",
+    "5000",
+    "800",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "white_cat",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 2,
+   "noisy_pairs": 24,
+   "isos": [
+    "1250",
+    "160",
+    "16000",
+    "200",
+    "20000",
+    "250",
+    "25600",
+    "640",
+    "6400",
+    "65535",
+    "800",
+    "8000"
+   ],
+   "validation_scene": false
+  },
+  {
+   "scene": "whiteboard",
+   "camera": "ILCE-7C",
+   "dark_fraction": 0.0,
+   "clean_images": 3,
+   "noisy_pairs": 24,
+   "isos": [
+    "1000",
+    "640",
+    "6400",
+    "65535",
+    "800"
+   ],
+   "validation_scene": false
+  }
+ ]
+}
