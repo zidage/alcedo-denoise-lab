@@ -89,6 +89,17 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   at ISO 6400 the crop mean is 1.02 of the input for the public weights, 1.08 for the start
   checkpoint, 1.13 for the control, and 1.07 and 1.11 for the dark-area loss at 10,000 and 25,000
   (2026-11-20, step 5 runs).
+- On five photos that the user gave as typical of the use (Nikon D7000 at ISO 3200, Canon EOS 90D
+  at ISO 1600, Nikon D7200 at ISO 12,800, Panasonic DC-S5M2 at ISO 4000; cameras that are not in
+  RawNIND), the checkpoints of the gamma detail loss keep more fine detail than the public
+  weights, and the user saw no lift of the dark areas by eye. On the DC-S5M2 photo the public
+  weights break thin LED lines into short pieces, which the checkpoints of the gamma detail loss
+  keep continuous. The user saw a clear purple cast with the public weights, which the
+  checkpoints of the gamma detail loss remove; in the darkest crops of the Nikon D7000 photos,
+  R/G and B/G of the public weights are up to 0.12 and 0.08 higher than with the start
+  checkpoint. The crop means still show the compressed brightness range: in the darkest crops of
+  the D7200 photo, 1.06 to 1.13 of the input for the start checkpoint (public weights 1.00 to
+  1.03), 1.03 to 1.10 for the dark-area loss at 10,000 (2026-11-20, step 5 runs).
 - All UtNet2 runs that train only on camera images remove all detail above 0.25 cycles/px, the
   Nyquist frequency of the packed grid: on a synthetic zone plate they keep at most 0.08 of the
   contrast at 0.25 cycles/px, where DemosaicNet keeps 1.00 and OpenCV EA 0.58. The loss, a 10
@@ -230,6 +241,56 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
     - Color in the darkest crops: the input is red (R/G 1.17 in the darkest cougar crop); the
       public weights keep R/G 1.12, and all checkpoints of the gamma detail loss give 1.00, with
       `m2_45k` at 1.03. The photos have no clean reference, so which value is right is not known.
+    - Check by eye of the user on the sheets: the public weights give a clear purple cast, which
+      the checkpoints of the gamma detail loss remove; the user saw no lift of the dark areas.
+      The crop means agree for the Nikon photos: in the darkest crops, R/G and B/G of the public
+      weights are 0.04 to 0.12 and 0.00 to 0.08 higher than with the start checkpoint (darkest
+      cougar crop: 1.12 / 0.79 against 1.00 / 0.71). On the other evaluation photos, R/G and B/G of
+      the darkest crops differ by 0.04 or less between the public weights and the start checkpoint.
+  - Canon EOS 90D photo at ISO 1600 (`data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3`, not
+    committed, given by the user as typical of the use; a camera that is not in RawNIND): a
+    hummingbird at a flower, 1/6400 s, input mean 0.052. Sheets at 0 and +2 EV and strips at 1:1.
+    - The checkpoints of the gamma detail loss keep more of the fine feather structure of the
+      head, the wing, and the tail than the public weights; `m2_45k` is between. Among the
+      checkpoints of the gamma detail loss, no difference is visible. The bokeh is smooth with
+      all methods.
+    - Crop means of 7 crops (input Y 0.049 to 0.082) are within 0.95 to 1.01 of the input for all
+      methods, and R/G and B/G are within 0.03 of each other except in the red flower (R/G 2.46
+      start checkpoint, 2.57 public weights, 2.56 input). In the crops of the wing, the flower, and
+      the purple flowers, the control and the dark-area loss at 25,000 are 2 to 4 % darker than
+      the public weights; the start checkpoint and the dark-area loss at 10,000 0.5 to 1.5 %.
+  - Nikon D7200 night photo in fog at ISO 12,800 (`data/evaluation_photos/high_iso_nikon_d7200/
+    Ric_Developer.NEF`, not committed, given by the user; a camera that is not in RawNIND): street
+    lamps, bare trees, and a wet road, 1/20 s, input mean 0.052. Sheets at 0 and +2 EV and strips
+    at 1:1.
+    - Crop mean relative to the input in the two darkest crops (dark sky, input Y 0.018; dark
+      grass, 0.017): public weights 1.003 and 1.025, `m2_45k` 1.001 and 1.020, start checkpoint
+      1.057 and 1.134, control 25,000 1.139 and 1.226, dark-area loss 10,000 1.030 and 1.095,
+      25,000 1.132 and 1.203. In the crop of the brightest lamp (input Y 0.138): 1.000, 1.007,
+      0.957, 0.908, 0.960, 0.917. This is the largest compression of the brightness range in the
+      evaluation photos, in the same order as on the validation.
+    - By eye at 0 EV on the whole photo, the public weights, the start checkpoint, and the
+      dark-area loss at 10,000 look nearly the same; the sky of the public weights is slightly
+      darker and cooler. In the 1:1 strips the fog, the branches, and the road are smooth with
+      all methods, without blotches; the dark line of the road edge has a little less contrast
+      with the checkpoints of the gamma detail loss than with the public weights.
+  - Panasonic DC-S5M2 night photo of city buildings at ISO 4000 (`data/evaluation_photos/
+    high_iso_s5m2/P2625452.RW2`, not committed, taken by the user; a camera that is not in
+    RawNIND): a lit facade with round windows, towers with LED lines, a dark sky, and people under
+    a walkway, 1/80 s, input mean 0.082. Sheets at 0 and +2 EV and strips at 1:1.
+    - Crop means of 8 crops are within 0.97 to 1.03 of the input for all methods, except the dark
+      sky (input Y 0.010): public weights 1.025, `m2_45k` 1.038, start checkpoint 1.061, control
+      25,000 1.068, dark-area loss 10,000 1.020, 25,000 1.063. In the sky, B/G is 1.19 in the
+      input, 1.17 with the public weights, 1.19 with the start checkpoint, and 1.26 with the
+      dark-area loss at 10,000. By eye at +2 EV the sky is smooth with all methods; with the
+      checkpoints of the gamma detail loss it is slightly lighter and bluer.
+    - Fine light lines: on the distant tower, the input has thin vertical LED lines in green,
+      blue, and yellow. The public weights break them into short pieces and make one line white;
+      `m2_45k` and the checkpoints of the gamma detail loss keep them as continuous colored lines,
+      as in the input.
+    - The panel joints of the facade, the people, and the walkway are slightly sharper with the
+      checkpoints of the gamma detail loss than with the public weights. Among the checkpoints of
+      the gamma detail loss, no difference is visible.
 - **Not measured**: the test split and the Canon EOS M100 for these checkpoints;
   `scripts/dark_area/brightness_error.py` (the brightness error by domain, brightness, and
   position on the dark test pairs); a second seed of each run, so the change between two

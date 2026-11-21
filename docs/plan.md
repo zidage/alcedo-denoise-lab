@@ -38,6 +38,10 @@ list of decisions.
   darktable integration (a separate DNG file, fixed tiles in ONNX Runtime).
 - The model of this lab runs only when the user turns on the noise reduction. When the noise
   reduction is off (for example for a daylight photo), Alcedo Studio demosaics with DemosaicNet.
+- The extreme noise of the dark test and validation scenes (Sony ILCE-7C, ISO 16,000 to 65,535,
+  input MS-SSIM below 0.85) is outside the use of the model. The lift of the dark areas there
+  is not a reason to train more. For now the lab does not train the model further after step 5,
+  and collects results on more photos of the use (2026-11-20).
 
 ## Terms
 
@@ -362,8 +366,12 @@ Findings: `inference_cost.md`.
   scenes. `data/evaluation_photos/` has a Canon EOS R3 photo at ISO 25600, two Panasonic DC-GH6
   photos at ISO 1600 and 6400 (`high_iso_gh6/`), a Sony ILCE-7RM3 star photo at ISO 3200
   (`astro/`), two Nikon D7000 wildlife photos at ISO 3200 in dim light (`high_iso_nikon/`, given
-  by the user on 2026-11-20 as photos near the limit of the denoiser and typical of its use), and
-  two low-ISO detail photos (`demosaic/`). The scripts of step 1 and
+  by the user on 2026-11-20 as photos near the limit of the denoiser and typical of its use), a
+  Canon EOS 90D photo at ISO 1600 (`high_iso_canon_90d/`, given by the user on 2026-11-20 as
+  typical of the ISO that photographers use), a Nikon D7200 night photo in fog at ISO 12,800
+  (`high_iso_nikon_d7200/`, given by the user on 2026-11-20), a Panasonic DC-S5M2 night photo
+  of city buildings at ISO 4000 (`high_iso_s5m2/`, taken by the user), and two low-ISO detail
+  photos (`demosaic/`). The scripts of step 1 and
   `scripts/loss_check/photos_with_checkpoints.py` make the outputs for each photo in a folder.
 - The request to the SID authors for a written permission to use the Fuji part of SID
   ([findings/datasets.md](findings/datasets.md)). The plan does not depend on the answer; a
