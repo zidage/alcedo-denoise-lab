@@ -5,6 +5,16 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
 
 ## Current state
 
+- In FP16 after an exact rescale of its layers, the model of step 5 runs on the Neural Engine of
+  the M4 (Core ML execution provider, one session for each tile shape) and denoises a 45.4
+  megapixel mosaic in 0.60 s, a 36.2 megapixel mosaic in 0.51 s, and a 24.3 megapixel mosaic in
+  0.37 s, with a peak footprint of 2.0 GiB: 5.9 times faster than the GPU in FP32, and the time
+  of the Metal DemosaicNet student and of the RAW processing of macOS (Core Image, 0.36 to 0.60 s
+  for a whole photo). Against the FP32 output, the developed PSNR is 75.7 to 80.6 dB at +2 EV on
+  the whole image and 60.2 to 75.2 dB at +5 EV on the dark crops (the float16 stored result:
+  81.8 dB). The rescale calibrated on 3 crops leaves a margin of 19 times to the largest FP16
+  value on 11 photos. On the GPU, FP16 saves only 7% to 15% (M4) and 17% to 20% (DirectML, RTX
+  3080 Laptop GPU) (2026-11-22, FP16 on the Neural Engine, and the RAW processing of macOS).
 - On macOS (MacBook Air, Apple M4 with 8 GPU cores, 16 GB), ONNX Runtime 1.24.4 with the Core
   ML execution provider (`ModelFormat` MLProgram, `MLComputeUnits` CPUAndGPU) runs each
   operation of the model of step 5 on the GPU in FP32 and gives the PyTorch output within 8.2e-7
@@ -92,6 +102,86 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
   stores the denoised result and computes it one time for each photo.
 
 ## Entries
+
+### 2026-11-22 FP16 on the Neural Engine, and the RAW processing of macOS
+
+- **Source**: `results/export/onnx_macos/fp16_graph.json` (write_fp16_graph.py),
+  `results/export/onnx_macos/probe-fp16/` and `time-fp16/` (macos/matrix_fp16.sh),
+  `results/export/onnx_macos/ciraw_time_*.json` (macos/ciraw_time.swift),
+  `results/export/fp16_photo_output.json` (compare_photo_output.py),
+  `results/export/fp16_range.json` (check_fp16_range.py), `results/export/directml_fp16.json`
+  (measure_directml_fp16.py); commands in the README of `scripts/export/`. The Mac, the ONNX
+  Runtime version (1.24.4), the photos, and the run procedure of the entry of the same date, ONNX
+  Runtime on macOS.
+- **FP16 graph**: the rescale of the 2026-11-18 entry (16-bit float of the public weights) on
+  the model of step 5, calibrated on the centre crop of 1536 packed px of 3 photos (24.3, 32.5,
+  42.4 MP) with a target of 1024. In FP32, the rescaled model gives the output of the model
+  within 8.7e-7 (the scale of the last layer, 127.9, is put back on the host). The weights, the
+  graph input, and the graph output are float16; the host converts the input and the output.
+  The Core ML execution provider does not take a Cast node from a float32 graph input (52 of 53
+  nodes), so the graph has no Cast. Largest activation on 11 full photos of
+  `data/evaluation_photos/`: 15,203 to 169,467 before the rescale, 119 to 3,413 after it; the
+  smallest margin to the FP16 largest value (65,504) is 19 times (Canon EOS R3 and Panasonic GH6).
+  The calibration crop of the R3 photo has 1,024, the full photo 3,413.
+- **Placement and precision** (relative to the largest value of the DN0 expected output):
+
+  | Configuration | Compute plan | Precision |
+  | --- | --- | ---: |
+  | `per_shape`, CPUAndNeuralEngine or ALL | 52 of 52 operations on the Neural Engine | 1.0e-3 to 1.5e-3 |
+  | `per_shape` or `free` without DepthToSpace, CPUAndGPU | each operation on the GPU | 1.2e-3 to 1.6e-3 |
+  | `free` without DepthToSpace, CPUAndNeuralEngine | 25 operations on the Neural Engine, 24 on the CPU | 8.2e-3 to 1.5e-2 |
+
+- **Result**, median seconds of the full run (peak footprint at 45.4 MP):
+
+  | Configuration | Tile | 24.3 MP | 36.2 MP | 45.4 MP |
+  | --- | ---: | ---: | ---: | ---: |
+  | Neural Engine, FP16, `per_shape` | 512 | 0.65 | 0.97 | 1.18 (1.5 GiB) |
+  | Neural Engine, FP16, `per_shape` | 1024 | 0.43 | 0.62 | 0.75 (1.7 GiB) |
+  | Neural Engine, FP16, `per_shape` | 1536 | **0.37** | **0.51** | **0.60** (2.0 GiB) |
+  | GPU, FP16, `free` without DepthToSpace | 1024 | 1.90 | 2.76 | 3.73 (2.2 GiB) |
+  | GPU, FP16, `free` without DepthToSpace | 1536 | 1.56 | 2.58 | 3.30 (3.2 GiB) |
+  | GPU, FP32, `free` without DepthToSpace (entry of the same date) | 1536 | 1.83 | 2.82 | 3.55 (5.5 GiB) |
+
+  - ALL gives the times of CPUAndNeuralEngine (0.60 s at 45.4 MP and tiles of 1536).
+  - The Neural Engine runs vary by at most 0.03 s. Session creation: 0.28 to 0.46 s for each
+    tile shape (4 shapes for each photo size); first run 0.01 to 0.14 s. The footprint after the
+    release stays at the peak in one process (2.0 GiB at 45.4 MP).
+  - The run time includes the conversion of the input and the output between float32 and
+    float16 on one CPU thread: 0.53 s of the 0.60 s is the time of the `Run` calls.
+- **Output against FP32** (Neural Engine FP16 against GPU FP32, tiles of 1536, each output gain
+  matched on its own; the metrics of the stored formats entry, quality.md, 2026-11-21):
+
+  | Photo | +2 EV whole | +2 EV dark | +2 EV detail | +5 EV whole | +5 EV dark |
+  | --- | ---: | ---: | ---: | ---: | ---: |
+  | 24.3 MP, Canon EOS R3 | 80.6 dB | 82.7 dB | 78.3 dB | 78.5 dB | 75.2 dB |
+  | 32.5 MP, Canon EOS 90D, high ISO | 80.3 dB | 82.4 dB | 79.1 dB | 75.2 dB | 74.9 dB |
+  | 42.4 MP, Sony ILCE-7RM3 | 75.7 dB | 67.8 dB | 78.4 dB | 71.6 dB | 60.2 dB |
+
+  The float16 stored result gives at least 81.8 dB, the lossy JPEG XL formats 26 to 54 dB
+  (quality.md, 2026-11-21, stored result formats).
+- **Result, DirectML FP16** (RTX 3080 Laptop GPU, the graph with a float32 input and output,
+  `free`): 0.44, 0.60, 0.74 s at tiles of 1536 against 0.54, 0.75, 0.89 s in FP32 (24.3, 36.2,
+  45.4 MP), 1.2 to 1.25 times faster; precision 2.4e-3 to 4.6e-3; photo output against FP32
+  3.4e-3 to 3.8e-3 largest and 5.4e-5 to 2.3e-4 RMS difference of the largest value.
+- **Result, the RAW processing of macOS** (Core Image `CIRAWFilter`, decoder version 8, the
+  default of these files; a new filter for each run, the full-size output rendered by a Metal
+  `CIContext` into a float RGBA bitmap in host memory; 5 runs after one run that is not
+  measured). The time includes the decode of the RAW file, the demosaic, the noise reduction,
+  and the color processing of Apple:
+
+  | Photo | Default noise reduction | Noise reduction 0 | Noise reduction 1 |
+  | --- | ---: | ---: | ---: |
+  | 24.0 MP, Canon EOS R3 | 0.60 s (0.47 to 0.93) | 0.69 s | 0.69 s |
+  | 32.3 MP, Canon EOS 90D | 0.50 s | 0.48 s | 1.00 s |
+  | 42.2 MP, Sony ILCE-7RM3 | 0.36 s | 0.36 s | 0.36 s |
+
+  The noise reduction of `CIRAWFilter` has two amounts (luminance and color). The macOS 27 SDK
+  has no other noise reduction for RAW files (no "denois" in the headers of its frameworks).
+- **Effect**: a new statement of Current state. The Neural Engine is 5.9 times faster than the
+  GPU in FP32 on this M4, and its time for 24.3 MP (0.37 s) is the time of the Metal DemosaicNet
+  student (377 ms on 24 MP) and of the RAW processing of macOS for the whole photo (0.36 to
+  0.60 s). Not measured: a calibration on more than 3 photos, a check by eye of the FP16
+  output, the Neural Engine of other Apple chips, ModelCacheDirectory for the session creation.
 
 ### 2026-11-22 ONNX Runtime on macOS of the model of step 5
 

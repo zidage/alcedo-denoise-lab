@@ -1,0 +1,56 @@
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] profile function : main
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.007121
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.038267
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.024953
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.038267
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.max_pool, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.023917
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.012477
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.019133
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.024932
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.019133
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.max_pool, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.011958
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.012466
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.009567
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.024921
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.009567
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.max_pool, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.005979
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.012460
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.004783
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.024916
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.004783
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.max_pool, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.002990
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.012458
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.002392
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.024913
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.002392
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv_transpose, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.010618
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.concat, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.003493
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.049826
+2026-11-22 11:43:02.828 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.004783
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.024916
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.004783
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv_transpose, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.010623
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.concat, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.006985
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.049831
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.009567
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.024921
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.009567
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv_transpose, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.010633
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.concat, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.013970
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.049842
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.019133
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.024932
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.019133
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv_transpose, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.010654
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.concat, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.027940
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.049864
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.038267
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.024953
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.leaky_relu, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.038267
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.conv, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.036135
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.reshape, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.014350
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.transpose, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.022921
+2026-11-22 11:43:02.829 ort_macos_measure-1.24.4[51259:41156220] Operation: ios18.reshape, Device Usage: <MLNeuralEngineComputeDevice: 0x76a4507c60>, Estimated Cost: 0.014350
+24mp tile 512: 54 tiles, 4 shapes, 0.65767 s (run 0.573041 s), footprint 0.474885 GiB, peak 0.474916 GiB, after release 0.47461 GiB, non-finite 0
+36mp tile 512: 88 tiles, 4 shapes, 0.968645 s (run 0.855099 s), footprint 1.01383 GiB, peak 1.01383 GiB, after release 1.01357 GiB, non-finite 0
+45mp tile 512: 104 tiles, 2 shapes, 1.18048 s (run 1.04435 s), footprint 1.34361 GiB, peak 1.5123 GiB, after release 1.34348 GiB, non-finite 0

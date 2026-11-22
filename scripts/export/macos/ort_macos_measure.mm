@@ -190,6 +190,10 @@ std::vector<std::string> g_log;
 bool g_capture_coreml = false;
 // The graph has no DepthToSpace node and gives `output_packed` (1, 12, h, w).
 bool g_packed_output = false;
+// The graph has float16 input and output (write_fp16_graph.py); the output is multiplied by
+// g_output_scale, the scale of its last layer.
+bool g_fp16_io = false;
+float g_output_scale = 1.0f;
 
 void ORT_API_CALL LogCallback(void*, OrtLoggingLevel severity, const char* category,
                               const char*, const char* location, const char* message) {
@@ -250,21 +254,37 @@ class SessionSet {
     const int64_t out_shape[] = {1, 3, 2 * h, 2 * w};
     const int64_t packed_shape[] = {1, 12, h, w};
     const size_t count = static_cast<size_t>(12) * h * w;
-    Ort::Value in = Ort::Value::CreateTensor<float>(mem, input, static_cast<size_t>(4) * h * w,
-                                                    in_shape, 4);
+    const size_t in_count = static_cast<size_t>(4) * h * w;
     const char* in_names[] = {"input"};
-    if (!g_packed_output) {
-      Ort::Value out = Ort::Value::CreateTensor<float>(mem, output, count, out_shape, 4);
-      const char* out_names[] = {"output"};
-      s.Run(Ort::RunOptions{nullptr}, in_names, &in, 1, out_names, &out, 1);
-      return;
-    }
-    // Graph without its DepthToSpace node: PixelShuffle(2), mode CRD, on the host.
+    const char* out_names[] = {g_packed_output ? "output_packed" : "output"};
+    const int64_t* shape = g_packed_output ? packed_shape : out_shape;
+    // The float32 result of the graph: the output itself, or the 12 channels before the
+    // PixelShuffle of the graph without DepthToSpace.
     thread_local std::vector<float> packed;
-    packed.resize(count);
-    Ort::Value out = Ort::Value::CreateTensor<float>(mem, packed.data(), count, packed_shape, 4);
-    const char* out_names[] = {"output_packed"};
-    s.Run(Ort::RunOptions{nullptr}, in_names, &in, 1, out_names, &out, 1);
+    float* result = output;
+    if (g_packed_output) {
+      packed.resize(count);
+      result = packed.data();
+    }
+    if (g_fp16_io) {
+      // FP16 graph (write_fp16_graph.py): float16 input and output, output times its scale.
+      thread_local std::vector<_Float16> in16, out16;
+      in16.resize(in_count);
+      out16.resize(count);
+      for (size_t i = 0; i < in_count; ++i) in16[i] = static_cast<_Float16>(input[i]);
+      Ort::Value in = Ort::Value::CreateTensor(mem, in16.data(), in_count * 2, in_shape, 4,
+                                               ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT16);
+      Ort::Value out = Ort::Value::CreateTensor(mem, out16.data(), count * 2, shape, 4,
+                                                ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT16);
+      s.Run(Ort::RunOptions{nullptr}, in_names, &in, 1, out_names, &out, 1);
+      for (size_t i = 0; i < count; ++i) result[i] = static_cast<float>(out16[i]) * g_output_scale;
+    } else {
+      Ort::Value in = Ort::Value::CreateTensor<float>(mem, input, in_count, in_shape, 4);
+      Ort::Value out = Ort::Value::CreateTensor<float>(mem, result, count, shape, 4);
+      s.Run(Ort::RunOptions{nullptr}, in_names, &in, 1, out_names, &out, 1);
+    }
+    if (!g_packed_output) return;
+    // Graph without its DepthToSpace node: PixelShuffle(2), mode CRD, on the host.
     const size_t plane = static_cast<size_t>(h) * w;
     for (int c = 0; c < 3; ++c) {
       for (int y = 0; y < h; ++y) {
@@ -450,6 +470,9 @@ int main(int argc, char** argv) {
   cfg.disable_cpu_fallback = get("--cpu-fallback", "0") == "0";
   const std::string graph = get("--graph", "utnet2_bayer_dark_loss_10k.onnx");
   g_packed_output = get("--packed-output", "0") == "1";
+  g_fp16_io = get("--fp16-io", "0") == "1";
+  const std::string save_dir = get("--save-output", "");
+  g_output_scale = std::stof(get("--output-scale", "1"));
   const std::string data = get("--data", "data");
   const std::string out_path = get("--out", "result.json");
   const auto photos = Split(get("--photos", ""));
@@ -471,7 +494,9 @@ int main(int argc, char** argv) {
   }
   j << ", \"cpu_ep_fallback_disabled\": " << (cfg.disable_cpu_fallback ? "true" : "false")
     << ", \"intra_op_threads\": " << cfg.threads << ", \"graph\": " << Quote(graph)
-    << ", \"packed_output\": " << (g_packed_output ? "true" : "false") << "},\n";
+    << ", \"packed_output\": " << (g_packed_output ? "true" : "false")
+    << ", \"fp16_io\": " << (g_fp16_io ? "true" : "false")
+    << ", \"output_scale\": " << Num(g_output_scale) << "},\n";
   j << " \"available_providers\": [";
   {
     const auto providers = Ort::GetAvailableProviders();
@@ -590,6 +615,13 @@ int main(int argc, char** argv) {
           }
           sum += v;
           largest = std::max(largest, std::fabs(static_cast<double>(v)));
+        }
+        if (!save_dir.empty()) {
+          // The photo output (3, 2h, 2w) float32 of the last run, for compare_photo_output.py.
+          const std::string path = save_dir + "/" + name + "_tile" + tile_text + ".f32";
+          std::ofstream(path, std::ios::binary)
+              .write(reinterpret_cast<const char*>(output.data()),
+                     static_cast<std::streamsize>(output.size() * sizeof(float)));
         }
         const Footprint fp = ReadFootprint();
         std::ostringstream e1;

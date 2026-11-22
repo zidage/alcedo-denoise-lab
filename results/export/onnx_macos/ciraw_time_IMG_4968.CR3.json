@@ -1,0 +1,62 @@
+{
+  "device" : "Apple M4",
+  "records" : [
+    {
+      "camera" : "Canon EOS 90D",
+      "decoder_version" : "8",
+      "default_color_noise_reduction" : 0.5,
+      "default_luminance_noise_reduction" : 0.3617611825466156,
+      "file" : "IMG_4968.CR3",
+      "luminance_noise_reduction_supported" : true,
+      "megapixels" : 32.294400000000003,
+      "native_size" : [
+        6960,
+        4640
+      ],
+      "output_extent" : [
+        6960,
+        4640
+      ],
+      "runs" : [
+        {
+          "median_seconds" : 0.50121087499999994,
+          "noise_reduction" : "default",
+          "seconds" : [
+            0.50011858300000001,
+            0.50026000000000004,
+            0.50121087499999994,
+            0.50429441699999999,
+            0.50736512499999997
+          ]
+        },
+        {
+          "median_seconds" : 0.48429274999999999,
+          "noise_reduction" : "off",
+          "seconds" : [
+            0.48333891699999998,
+            0.484166875,
+            0.48429274999999999,
+            0.485166125,
+            0.48687162499999997
+          ]
+        },
+        {
+          "median_seconds" : 0.99968175000000004,
+          "noise_reduction" : "max",
+          "seconds" : [
+            0.72452208299999998,
+            0.89684125000000003,
+            0.99968175000000004,
+            1.0064517500000001,
+            1.0987845000000001
+          ]
+        }
+      ],
+      "supported_decoder_versions" : [
+        "7",
+        "8",
+        "9"
+      ]
+    }
+  ]
+}

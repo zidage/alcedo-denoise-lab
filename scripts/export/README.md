@@ -90,6 +90,10 @@ weights file of the release asset and the packages of the last lines of `require
 | `measure_directml_packed_output.py` | `results/export/directml_packed_output.json` | inference_cost.md, 2026-11-22, ONNX Runtime on macOS |
 | `write_raw_inputs.py` | Raw float32 files and `manifest.txt` of the expected outputs and the packed photos (not committed), the input of the macOS tool | |
 | `macos/` | C++ tool of the macOS measurement and its shell drivers; `results/export/onnx_macos/` | inference_cost.md, 2026-11-22, ONNX Runtime on macOS |
+| `macos/write_fp16_graph.py`, `macos/matrix_fp16.sh`, `macos/ciraw_time.swift` | FP16 graphs and `results/export/onnx_macos/fp16_graph.json`; `probe-fp16/`, `time-fp16/`, `ciraw_time_*.json` | inference_cost.md, 2026-11-22, FP16 on the Neural Engine |
+| `measure_directml_fp16.py` | `results/export/directml_fp16.json` | the same |
+| `compare_photo_output.py` | `results/export/fp16_photo_output.json` | the same |
+| `check_fp16_range.py` | `results/export/fp16_range.json` | the same |
 | `measurement_common.py` | Input preparation 1, tile planner, tile loop, gain match, development, NVML sampler (imported) | |
 
 GPU jobs, one at a time, in this order (the later scripts read the overlap table of the first):
@@ -147,6 +151,26 @@ sh tool/build.sh
 sh tool/matrix.sh > results/matrix.log 2>&1
 sh tool/matrix_packed.sh > results/matrix_packed.log 2>&1
 # Copy results/ back to results/export/onnx_macos/.
+```
+
+FP16 on the Neural Engine and the RAW processing of macOS (2026-11-22). The FP16 graphs need the
+raw files of the 3 real photos in `$W/raw/` for `ciraw_time.swift`:
+
+```bash
+# Windows:
+$P scripts/export/macos/write_fp16_graph.py $A --out-dir build/tmp/onnx_macos_fp16
+cp build/tmp/onnx_macos_fp16/{utnet2_bayer_dark_loss_10k_fp16.onnx,utnet2_bayer_dark_loss_10k_fp16_packed_output.onnx,fp16_graph.json} $W/
+$P scripts/export/measure_directml_fp16.py --fp16-onnx build/tmp/onnx_macos_fp16/utnet2_bayer_dark_loss_10k_fp16_float32_io.onnx
+$P scripts/export/check_fp16_range.py $A --fp16-graph-json build/tmp/onnx_macos_fp16/fp16_graph.json
+# Mac:
+sh tool/matrix_fp16.sh > results/matrix_fp16.log 2>&1
+S=$(python3 -c "import json; print(json.load(open('fp16_graph.json'))['output_scale'])")
+B="--data data --precision 0 --photos 24mp,32mp,42mp --tiles 1536 --repeats 1"
+tool/ort_macos_measure-1.24.4 $B --graph utnet2_bayer_dark_loss_10k_packed_output.onnx --packed-output 1 --ep coreml --save-output out/fp32 --out out/fp32.json
+tool/ort_macos_measure-1.24.4 $B --graph utnet2_bayer_dark_loss_10k_fp16.onnx --fp16-io 1 --output-scale $S --ep coreml --strategy per_shape --coreml-units CPUAndNeuralEngine --save-output out/fp16 --out out/fp16.json
+# Windows, with out/ copied to $W/out (2.4 GB):
+O=$W/out
+$P scripts/export/compare_photo_output.py --labels coreml_gpu_fp32:coreml_neural_engine_fp16 24mp:$O/fp32/24mp_tile1536.f32:$O/fp16/24mp_tile1536.f32 32mp:$O/fp32/32mp_tile1536.f32:$O/fp16/32mp_tile1536.f32 42mp:$O/fp32/42mp_tile1536.f32:$O/fp16/42mp_tile1536.f32
 ```
 
 ## Tolerance of the forward tests

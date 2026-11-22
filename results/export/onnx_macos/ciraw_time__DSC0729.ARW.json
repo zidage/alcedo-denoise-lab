@@ -1,0 +1,62 @@
+{
+  "device" : "Apple M4",
+  "records" : [
+    {
+      "camera" : "ILCE-7RM3",
+      "decoder_version" : "8",
+      "default_color_noise_reduction" : 0.5,
+      "default_luminance_noise_reduction" : 0,
+      "file" : "_DSC0729.ARW",
+      "luminance_noise_reduction_supported" : true,
+      "megapixels" : 42.177408,
+      "native_size" : [
+        7952,
+        5304
+      ],
+      "output_extent" : [
+        5304,
+        7952
+      ],
+      "runs" : [
+        {
+          "median_seconds" : 0.355201875,
+          "noise_reduction" : "default",
+          "seconds" : [
+            0.34899533300000002,
+            0.35298504200000003,
+            0.355201875,
+            0.35562766699999998,
+            0.35762333299999999
+          ]
+        },
+        {
+          "median_seconds" : 0.36270524999999998,
+          "noise_reduction" : "off",
+          "seconds" : [
+            0.35784979099999997,
+            0.35806433300000001,
+            0.36270524999999998,
+            0.364431583,
+            0.36677245800000002
+          ]
+        },
+        {
+          "median_seconds" : 0.36358429199999998,
+          "noise_reduction" : "max",
+          "seconds" : [
+            0.35933970900000001,
+            0.36024829200000003,
+            0.36358429199999998,
+            0.363680958,
+            0.36526170800000002
+          ]
+        }
+      ],
+      "supported_decoder_versions" : [
+        "7",
+        "8",
+        "9"
+      ]
+    }
+  ]
+}
