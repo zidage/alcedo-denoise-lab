@@ -1,0 +1,28 @@
+# Python 3.14. Install torch and torchvision first from the CUDA 12.8 index:
+#   pip install torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cu128
+# The authors' code (rawnind_jddc) imports the same packages as in step 1, so the list is the list
+# of scripts/reference_measurement/requirements.txt, with safetensors added for the export.
+colour-science==0.4.7
+ConfigArgParse==1.7.1
+demosaicnet==0.0.14
+exif==1.6.1
+gdown==6.5.1
+imageio==2.38.2
+matplotlib==3.11.2
+numpy==2.5.4
+opencv-python==5.1.0.95
+OpenEXR==3.5.4
+OpenImageIO==3.2.2.0
+piexif==1.1.3
+piqa==1.3.2
+psutil==7.2.2
+ptflops==0.7.5
+pypng==0.20220715.0
+pytorch-msssim==1.0.0
+PyYAML==6.0.3
+rawpy==0.28.0
+safetensors==0.8.0
+requests==2.34.2
+scipy==1.18.1
+tqdm==4.70.1
+wget==3.2
