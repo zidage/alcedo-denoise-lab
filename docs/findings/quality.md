@@ -137,7 +137,8 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   68.2 to 76.5 dB at +2 EV on the whole image of the 11 evaluation photos, 73.3 dB or more on the
   dark crops, and 60.8 to 75.3 dB at +5 EV on the whole image. The lowest values are in areas
   that clip at the development gain (52.9 dB on a detail crop of a lit lantern at +2 EV). The
-  sheets wait for the check by eye of the user (2026-11-22, sheets of the FP16 graph).
+  user checked the sheets by eye, saw no difference, and accepted FP16 (2026-11-22, sheets of
+  the FP16 graph).
 
 ## Entries
 
@@ -169,8 +170,9 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   - Check by eye of the implementer on the sheet of 1296625388 (the lowest values): the FP16 and
     the FP32 crops at +2 EV and +5 EV show no difference; the difference times 64 at +5 EV is
     a fine noise in the areas that clip at +5 EV (the lit lantern), and black in the dark crops.
-- **Effect**: the sentence on the FP16 graph in Current state. Not done: the check by eye of the
-  user.
+  - Check by eye of the user on the 11 sheets (2026-11-22): no visible difference; FP16
+    accepted.
+- **Effect**: the sentence on the FP16 graph in Current state.
 
 ### 2026-11-21 Stored result formats
 

@@ -137,9 +137,9 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
   session of Alcedo Studio (float16 conversion with OpenCV on the host) gives the same three
   values. The FP32 graph on the CPU execution provider gives `random_64` within 9.2e-7.
 - **Effect**: the sentence on the calibration of the FP16 graph in Current state, and the FP16
-  tolerance of 7e-3 in [docs/alcedo_integration.md](../alcedo_integration.md). Not measured: the
-  new graph on the Neural Engine and on the Intel Iris Xe; its output on whole photos against
-  FP32 (quality.md, the entry of the same date, sheets of the FP16 graph).
+  tolerance of 7e-3 in [docs/alcedo_integration.md](../alcedo_integration.md). The output on
+  whole photos against FP32 is in quality.md, the entry of the same date, sheets of the FP16
+  graph. Not measured: the new graph on the Neural Engine and on the Intel Iris Xe.
 
 ### 2026-11-22 FP16 on DirectML
 
