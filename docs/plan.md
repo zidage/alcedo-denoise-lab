@@ -351,6 +351,12 @@ Findings: `training.md`, `quality.md`.
 
 ### Step 6: smaller model
 
+Status (2026-11-22): step 6 does not run. The user set `target_time` to the measured FP16 time
+of the full model (0.72 s at 45.4 MP on the RTX 3080 Laptop GPU with DirectML, 0.60 s on the
+M4 Neural Engine; [findings/inference_cost.md](findings/inference_cost.md), 2026-11-22). A
+slower device gets an error in Alcedo Studio (integration plan, `slow_device_limit`). The text
+below is the plan of 2026-11-21.
+
 Step 7 runs before step 6. Step 6 runs only if the time of the model of step 5 in the forward
 code of Alcedo Studio (step 7) is above `target_time` (2026-11-21). The reason: the reported cost
 of UtNet2 is 55 GMAC per megapixel. The DemosaicNet student of Alcedo Studio runs a 36 megapixel
@@ -440,13 +446,10 @@ Findings: `inference_cost.md`, `quality.md` (errors of the stored formats).
   `scripts/export/make_fp16_sheets.py` (phase DN2 of the integration plan), before Alcedo Studio
   uses the FP16 graph.
 - `budget_cap`: the amount available for the remaining rented runs in steps 5 and 6.
-- `target_time` (no value now; the user sets it after the measured time of the full model in
-  Alcedo Studio exists, 2026-11-21): the largest time for one 45 megapixel photo in Alcedo Studio on the RTX 3080
-  Laptop GPU. Step 7 compares the time of the model of step 5 with it; if that time is above
-  it, step 6 runs and selects the variants with it.
 - The RunPod network volume of the training data (200 GB, about 0.47 USD per day at the listed
-  price): keep it until step 7 decides whether step 6 runs, or delete it now and make the data
-  again if step 6 runs (about 4 hours of a pod, about 3 USD, as in step 2).
+  price): step 6 does not run (2026-11-22), so the volume is kept only for more fine-tuning.
+  Delete it, or keep it for a later run (to make the data again takes about 4 hours of a pod,
+  about 3 USD, as in step 2).
 - More evaluation photos, if the user wants the check by eye on other cameras, ISO values, or
   scenes. `data/evaluation_photos/` has a Canon EOS R3 photo at ISO 25600, two Panasonic DC-GH6
   photos at ISO 1600 and 6400 (`high_iso_gh6/`), a Sony ILCE-7RM3 star photo at ISO 3200
@@ -474,7 +477,7 @@ Findings: `inference_cost.md`, `quality.md` (errors of the stored formats).
 | `checkpoint_interval` | Set in step 4 from the measured iteration rate, one checkpoint for each hour | Iterations between two checkpoints |
 | `stop_patience` | 3 checkpoints | Checkpoints without an increase before the run stops |
 | `budget_cap` | From the user | Largest cost of the remaining rented runs |
-| `target_time` | From the user, after the measured time of the full model in Alcedo Studio exists | Largest time for one 45 megapixel photo in Alcedo Studio |
-| `student_variants` | Set in step 6 from the measured cost of each variant | The smaller models that step 6 trains |
+| `target_time` | The measured FP16 time of the full model: 0.72 s on the RTX 3080 Laptop GPU (DirectML), 0.60 s on the M4 Neural Engine (user, 2026-11-22) | Largest time for one 45 megapixel photo in Alcedo Studio |
+| `student_variants` | None: step 6 does not run (2026-11-22) | The smaller models that step 6 trains |
 | `tile_size` | The largest of 512, 768, 1024, and 1536 packed px whose workspace (200, 451, 800, 1,800 MiB in PyTorch) fits in the free GPU memory; 1536 is the fastest on the RTX 3080 Laptop GPU (PyTorch FP32: 0.69 s for 45.4 MP, 0.84 s at 1024). 256 is 20 times slower, and 2048 is slower than 1536 on an 8 GB GPU. Each tile input starts at a multiple of 16 ([findings/inference_cost.md](findings/inference_cost.md), 2026-11-21 and 2026-11-22) | Tile of the denoise job |
 | `tile_overlap` | 96 packed px: the smallest multiple of 16 with a border difference below the difference between the TF32 and the IEEE FP32 output of PyTorch; at 96 the tiled output is the one-pass output ([findings/inference_cost.md](findings/inference_cost.md), 2026-11-21) | Overlap between two tiles |
