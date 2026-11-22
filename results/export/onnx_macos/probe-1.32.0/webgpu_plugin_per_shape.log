@@ -1,0 +1,5 @@
+objc[40316]: Class MATStreamingSessionDelegate is implemented in both /Users/zidage/Projects/PuerhLab/build/tmp/dn1_macos/pkg/ort-1.32.0/lib/libonnxruntime.dylib (0x108e71068) and /Users/zidage/Projects/PuerhLab/build/tmp/dn1_macos/pkg/webgpu-0.6.0/libonnxruntime_providers_webgpu.dylib (0x10f718e98). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07

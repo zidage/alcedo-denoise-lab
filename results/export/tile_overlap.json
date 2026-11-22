@@ -1,0 +1,4169 @@
+{
+ "description": "Border difference of the tiled output against one pass (IEEE FP32), with the TF32 difference as the reference level",
+ "selection_rule": "smallest overlap with developed border max and RMS difference at or below the TF32 difference on the same pixels, on every crop",
+ "selected_overlap_by_tile": {
+  "256": 96,
+  "512": 96,
+  "768": 96,
+  "1024": 96
+ },
+ "summary_table": [
+  {
+   "tile": 256,
+   "overlap": 16,
+   "kept_fraction_of_interior_tile": 0.765625,
+   "developed_max": 0.03304004669189453,
+   "developed_rms": 0.002526752682509642,
+   "linear_max": 0.01670205593109131,
+   "linear_rms": 0.0004450029586598245,
+   "tf32_developed_max": 0.00015994906425476074,
+   "tf32_developed_rms": 2.4095793461012357e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 171114496,
+   "forward_seconds_per_tile": 0.009736734693877551
+  },
+  {
+   "tile": 256,
+   "overlap": 32,
+   "kept_fraction_of_interior_tile": 0.5625,
+   "developed_max": 0.019359171390533447,
+   "developed_rms": 0.0017983522726487185,
+   "linear_max": 0.010699331760406494,
+   "linear_rms": 0.0003115777522502894,
+   "tf32_developed_max": 0.00018960237503051758,
+   "tf32_developed_rms": 2.389309603212725e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 171114496,
+   "forward_seconds_per_tile": 0.007640625
+  },
+  {
+   "tile": 256,
+   "overlap": 48,
+   "kept_fraction_of_interior_tile": 0.390625,
+   "developed_max": 0.012680292129516602,
+   "developed_rms": 0.0011618470401051316,
+   "linear_max": 0.004167154431343079,
+   "linear_rms": 0.00021194071095874365,
+   "tf32_developed_max": 0.00018960237503051758,
+   "tf32_developed_rms": 2.3992983195405092e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 171114496,
+   "forward_seconds_per_tile": 0.007990123456790123
+  },
+  {
+   "tile": 256,
+   "overlap": 64,
+   "kept_fraction_of_interior_tile": 0.25,
+   "developed_max": 0.01090174913406372,
+   "developed_rms": 0.0005265443490237099,
+   "linear_max": 0.001976877450942993,
+   "linear_rms": 8.859672457198942e-05,
+   "tf32_developed_max": 0.00020736455917358398,
+   "tf32_developed_rms": 2.3715659081288836e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 171114496,
+   "forward_seconds_per_tile": 0.007806611570247934
+  },
+  {
+   "tile": 256,
+   "overlap": 80,
+   "kept_fraction_of_interior_tile": 0.140625,
+   "developed_max": 0.002324700355529785,
+   "developed_rms": 0.00010962808002192772,
+   "linear_max": 0.000364743173122406,
+   "linear_rms": 1.7048364096213357e-05,
+   "tf32_developed_max": 0.00018960237503051758,
+   "tf32_developed_rms": 2.3569927618213712e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 171114496,
+   "forward_seconds_per_tile": 0.007796
+  },
+  {
+   "tile": 256,
+   "overlap": 96,
+   "kept_fraction_of_interior_tile": 0.0625,
+   "developed_max": 7.748603820800781e-07,
+   "developed_rms": 4.155156357536157e-08,
+   "linear_max": 4.172325134277344e-07,
+   "linear_rms": 6.153534427339277e-09,
+   "tf32_developed_max": 0.00018960237503051758,
+   "tf32_developed_rms": 2.3673888362451467e-05,
+   "at_or_below_tf32_level_on_every_crop": true,
+   "tile_workspace_bytes": 171114496,
+   "forward_seconds_per_tile": 0.008011111111111111
+  },
+  {
+   "tile": 256,
+   "overlap": 112,
+   "kept_fraction_of_interior_tile": 0.015625,
+   "developed_max": 1.0132789611816406e-06,
+   "developed_rms": 4.134553109775945e-08,
+   "linear_max": 4.76837158203125e-07,
+   "linear_rms": 5.951214070669589e-09,
+   "tf32_developed_max": 0.00020736455917358398,
+   "tf32_developed_rms": 2.3607986439476302e-05,
+   "at_or_below_tf32_level_on_every_crop": true,
+   "tile_workspace_bytes": 171114496,
+   "forward_seconds_per_tile": 0.008166686496133254
+  },
+  {
+   "tile": 512,
+   "overlap": 16,
+   "kept_fraction_of_interior_tile": 0.87890625,
+   "developed_max": 0.02111649513244629,
+   "developed_rms": 0.00242299033108283,
+   "linear_max": 0.004249259829521179,
+   "linear_rms": 0.00039442368246972914,
+   "tf32_developed_max": 0.00017175078392028809,
+   "tf32_developed_rms": 2.158133409214987e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 209818112,
+   "forward_seconds_per_tile": 0.02554375
+  },
+  {
+   "tile": 512,
+   "overlap": 32,
+   "kept_fraction_of_interior_tile": 0.765625,
+   "developed_max": 0.015188008546829224,
+   "developed_rms": 0.0014029273329893472,
+   "linear_max": 0.0031426548957824707,
+   "linear_rms": 0.0002390798332482079,
+   "tf32_developed_max": 0.00015994906425476074,
+   "tf32_developed_rms": 2.1685276944153167e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 209818112,
+   "forward_seconds_per_tile": 0.015625
+  },
+  {
+   "tile": 512,
+   "overlap": 48,
+   "kept_fraction_of_interior_tile": 0.66015625,
+   "developed_max": 0.010120630264282227,
+   "developed_rms": 0.0009679911452293636,
+   "linear_max": 0.0033795759081840515,
+   "linear_rms": 0.00020771426062506036,
+   "tf32_developed_max": 0.00018042325973510742,
+   "tf32_developed_rms": 2.3182168235500407e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 209818112,
+   "forward_seconds_per_tile": 0.01525625
+  },
+  {
+   "tile": 512,
+   "overlap": 64,
+   "kept_fraction_of_interior_tile": 0.5625,
+   "developed_max": 0.004068255424499512,
+   "developed_rms": 0.00040333203676151794,
+   "linear_max": 0.0012003108859062195,
+   "linear_rms": 7.009572473918133e-05,
+   "tf32_developed_max": 0.00016242265701293945,
+   "tf32_developed_rms": 2.4411474794866567e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 209818112,
+   "forward_seconds_per_tile": 0.01593125
+  },
+  {
+   "tile": 512,
+   "overlap": 80,
+   "kept_fraction_of_interior_tile": 0.47265625,
+   "developed_max": 0.00481182336807251,
+   "developed_rms": 0.00014827495027887688,
+   "linear_max": 0.0008067898452281952,
+   "linear_rms": 2.5065171419395085e-05,
+   "tf32_developed_max": 0.0001634061336517334,
+   "tf32_developed_rms": 2.5295582760140397e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 209818112,
+   "forward_seconds_per_tile": 0.01571875
+  },
+  {
+   "tile": 512,
+   "overlap": 96,
+   "kept_fraction_of_interior_tile": 0.390625,
+   "developed_max": 0.0,
+   "developed_rms": 0.0,
+   "linear_max": 0.0,
+   "linear_rms": 0.0,
+   "tf32_developed_max": 0.00015932321548461914,
+   "tf32_developed_rms": 2.3593114187339976e-05,
+   "at_or_below_tf32_level_on_every_crop": true,
+   "tile_workspace_bytes": 209818112,
+   "forward_seconds_per_tile": 0.015700000000000002
+  },
+  {
+   "tile": 512,
+   "overlap": 112,
+   "kept_fraction_of_interior_tile": 0.31640625,
+   "developed_max": 0.0,
+   "developed_rms": 0.0,
+   "linear_max": 0.0,
+   "linear_rms": 0.0,
+   "tf32_developed_max": 0.00018352270126342773,
+   "tf32_developed_rms": 2.3913251925871904e-05,
+   "at_or_below_tf32_level_on_every_crop": true,
+   "tile_workspace_bytes": 209818112,
+   "forward_seconds_per_tile": 0.015872
+  },
+  {
+   "tile": 512,
+   "overlap": 128,
+   "kept_fraction_of_interior_tile": 0.25,
+   "developed_max": 0.0,
+   "developed_rms": 0.0,
+   "linear_max": 0.0,
+   "linear_rms": 0.0,
+   "tf32_developed_max": 0.00018042325973510742,
+   "tf32_developed_rms": 2.4971160406219647e-05,
+   "at_or_below_tf32_level_on_every_crop": true,
+   "tile_workspace_bytes": 209818112,
+   "forward_seconds_per_tile": 0.015596
+  },
+  {
+   "tile": 768,
+   "overlap": 16,
+   "kept_fraction_of_interior_tile": 0.9184027777777779,
+   "developed_max": 0.021384000778198242,
+   "developed_rms": 0.0022332572281385864,
+   "linear_max": 0.01700526475906372,
+   "linear_rms": 0.0004662070743073005,
+   "tf32_developed_max": 0.00020736455917358398,
+   "tf32_developed_rms": 2.4777541296238816e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 471962112,
+   "forward_seconds_per_tile": 0.03334444444444444
+  },
+  {
+   "tile": 768,
+   "overlap": 32,
+   "kept_fraction_of_interior_tile": 0.8402777777777777,
+   "developed_max": 0.013553082942962646,
+   "developed_rms": 0.0017902923064293523,
+   "linear_max": 0.0042047202587127686,
+   "linear_rms": 0.0003441242978053079,
+   "tf32_developed_max": 0.00014990568161010742,
+   "tf32_developed_rms": 2.5088704624708283e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 471962112,
+   "forward_seconds_per_tile": 0.03376666666666667
+  },
+  {
+   "tile": 768,
+   "overlap": 48,
+   "kept_fraction_of_interior_tile": 0.765625,
+   "developed_max": 0.011592507362365723,
+   "developed_rms": 0.0010836173109649776,
+   "linear_max": 0.0030054971575737,
+   "linear_rms": 0.00021673328214695374,
+   "tf32_developed_max": 0.00020736455917358398,
+   "tf32_developed_rms": 2.537801196267794e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 471962112,
+   "forward_seconds_per_tile": 0.03323333333333333
+  },
+  {
+   "tile": 768,
+   "overlap": 64,
+   "kept_fraction_of_interior_tile": 0.6944444444444445,
+   "developed_max": 0.007562577724456787,
+   "developed_rms": 0.000501804525551009,
+   "linear_max": 0.0019768550992012024,
+   "linear_rms": 9.723166207369195e-05,
+   "tf32_developed_max": 0.00020736455917358398,
+   "tf32_developed_rms": 2.5590307354824176e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 471962112,
+   "forward_seconds_per_tile": 0.03348888888888889
+  },
+  {
+   "tile": 768,
+   "overlap": 80,
+   "kept_fraction_of_interior_tile": 0.626736111111111,
+   "developed_max": 0.0017919540405273438,
+   "developed_rms": 9.459560294431394e-05,
+   "linear_max": 0.00035055726766586304,
+   "linear_rms": 1.605885879834169e-05,
+   "tf32_developed_max": 0.00016033649444580078,
+   "tf32_developed_rms": 2.6139530071892594e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 471962112,
+   "forward_seconds_per_tile": 0.03331111111111111
+  },
+  {
+   "tile": 768,
+   "overlap": 96,
+   "kept_fraction_of_interior_tile": 0.5625,
+   "developed_max": 0.0,
+   "developed_rms": 0.0,
+   "linear_max": 0.0,
+   "linear_rms": 0.0,
+   "tf32_developed_max": 0.00015181303024291992,
+   "tf32_developed_rms": 2.5999777320593204e-05,
+   "at_or_below_tf32_level_on_every_crop": true,
+   "tile_workspace_bytes": 471962112,
+   "forward_seconds_per_tile": 0.033322222222222225
+  },
+  {
+   "tile": 768,
+   "overlap": 112,
+   "kept_fraction_of_interior_tile": 0.5017361111111112,
+   "developed_max": 0.0,
+   "developed_rms": 0.0,
+   "linear_max": 0.0,
+   "linear_rms": 0.0,
+   "tf32_developed_max": 0.0001531541347503662,
+   "tf32_developed_rms": 2.6447727959709994e-05,
+   "at_or_below_tf32_level_on_every_crop": true,
+   "tile_workspace_bytes": 471962112,
+   "forward_seconds_per_tile": 0.033555555555555554
+  },
+  {
+   "tile": 768,
+   "overlap": 128,
+   "kept_fraction_of_interior_tile": 0.4444444444444444,
+   "developed_max": 0.0,
+   "developed_rms": 0.0,
+   "linear_max": 0.0,
+   "linear_rms": 0.0,
+   "tf32_developed_max": 0.00017526745796203613,
+   "tf32_developed_rms": 2.628034459248385e-05,
+   "at_or_below_tf32_level_on_every_crop": true,
+   "tile_workspace_bytes": 471962112,
+   "forward_seconds_per_tile": 0.03368888888888889
+  },
+  {
+   "tile": 1024,
+   "overlap": 16,
+   "kept_fraction_of_interior_tile": 0.9384765625,
+   "developed_max": 0.010896682739257812,
+   "developed_rms": 0.0015543097324962933,
+   "linear_max": 0.0017147921025753021,
+   "linear_rms": 0.0002460142487041765,
+   "tf32_developed_max": 0.0001379847526550293,
+   "tf32_developed_rms": 2.187017481366052e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 838963712,
+   "forward_seconds_per_tile": 0.0587
+  },
+  {
+   "tile": 1024,
+   "overlap": 32,
+   "kept_fraction_of_interior_tile": 0.87890625,
+   "developed_max": 0.006894022226333618,
+   "developed_rms": 0.0010874636645463462,
+   "linear_max": 0.0011046230792999268,
+   "linear_rms": 0.00018975519380565412,
+   "tf32_developed_max": 0.00017493963241577148,
+   "tf32_developed_rms": 2.1669394848108526e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 838963712,
+   "forward_seconds_per_tile": 0.05925
+  },
+  {
+   "tile": 1024,
+   "overlap": 48,
+   "kept_fraction_of_interior_tile": 0.8212890625,
+   "developed_max": 0.003958165645599365,
+   "developed_rms": 0.0006593171288629956,
+   "linear_max": 0.0009024068713188171,
+   "linear_rms": 0.0001176777507748631,
+   "tf32_developed_max": 0.0001436173915863037,
+   "tf32_developed_rms": 2.1554317580012188e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 838963712,
+   "forward_seconds_per_tile": 0.05885
+  },
+  {
+   "tile": 1024,
+   "overlap": 64,
+   "kept_fraction_of_interior_tile": 0.765625,
+   "developed_max": 0.002526521682739258,
+   "developed_rms": 0.00029323348713550544,
+   "linear_max": 0.00044737011194229126,
+   "linear_rms": 5.2070789730060685e-05,
+   "tf32_developed_max": 0.00016242265701293945,
+   "tf32_developed_rms": 2.1149040852148464e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 838963712,
+   "forward_seconds_per_tile": 0.058475
+  },
+  {
+   "tile": 1024,
+   "overlap": 80,
+   "kept_fraction_of_interior_tile": 0.7119140625,
+   "developed_max": 0.0005552470684051514,
+   "developed_rms": 5.454592537335075e-05,
+   "linear_max": 9.670108556747437e-05,
+   "linear_rms": 9.260098427849236e-06,
+   "tf32_developed_max": 0.00016242265701293945,
+   "tf32_developed_rms": 2.139748831596079e-05,
+   "at_or_below_tf32_level_on_every_crop": false,
+   "tile_workspace_bytes": 838963712,
+   "forward_seconds_per_tile": 0.0573
+  },
+  {
+   "tile": 1024,
+   "overlap": 96,
+   "kept_fraction_of_interior_tile": 0.66015625,
+   "developed_max": 0.0,
+   "developed_rms": 0.0,
+   "linear_max": 0.0,
+   "linear_rms": 0.0,
+   "tf32_developed_max": 0.00015968084335327148,
+   "tf32_developed_rms": 2.250425345973828e-05,
+   "at_or_below_tf32_level_on_every_crop": true,
+   "tile_workspace_bytes": 838963712,
+   "forward_seconds_per_tile": 0.057025
+  },
+  {
+   "tile": 1024,
+   "overlap": 112,
+   "kept_fraction_of_interior_tile": 0.6103515625,
+   "developed_max": 0.0,
+   "developed_rms": 0.0,
+   "linear_max": 0.0,
+   "linear_rms": 0.0,
+   "tf32_developed_max": 0.00015968084335327148,
+   "tf32_developed_rms": 2.4396052626793783e-05,
+   "at_or_below_tf32_level_on_every_crop": true,
+   "tile_workspace_bytes": 838963712,
+   "forward_seconds_per_tile": 0.06005
+  },
+  {
+   "tile": 1024,
+   "overlap": 128,
+   "kept_fraction_of_interior_tile": 0.5625,
+   "developed_max": 0.0,
+   "developed_rms": 0.0,
+   "linear_max": 0.0,
+   "linear_rms": 0.0,
+   "tf32_developed_max": 0.00018042325973510742,
+   "tf32_developed_rms": 2.5686592685712446e-05,
+   "at_or_below_tf32_level_on_every_crop": true,
+   "tile_workspace_bytes": 838963712,
+   "forward_seconds_per_tile": 0.0583
+  }
+ ],
+ "crops": [
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "raw_sha256": "d7bc230b2628a89fea652b7ad6e02a1b26fd6719332e54a40a79d7d2bd74c830",
+   "crop_origin_packed": [
+    238,
+    738
+   ],
+   "crop_size_packed": 1536,
+   "gain_match_factor": 9.69432701436801e-06,
+   "preparation": {
+    "area_size": [
+     4024,
+     6024
+    ],
+    "area_megapixels": 24.24,
+    "packed_size": [
+     2012,
+     3012
+    ],
+    "pattern": "RGGB",
+    "added_top": 0,
+    "added_left": 0,
+    "black_r_g1_g2_b": [
+     512.0,
+     512.0,
+     512.0,
+     512.0
+    ],
+    "maximum": 16383.0,
+    "linear_max_r_g_b": [
+     15360.0,
+     15360.0,
+     15360.0
+    ],
+    "saturation_r_g_b": [
+     0.93554281393737,
+     0.93554281393737,
+     0.93554281393737
+    ],
+    "cam_mul": [
+     2044.0,
+     1024.0,
+     2384.0,
+     1024.0
+    ]
+   },
+   "one_pass": {
+    "tile": 1536,
+    "overlap": 0,
+    "tile_count": 1,
+    "seconds_total": 0.2859,
+    "seconds_forward": 0.2676,
+    "seconds_upload": 0.0086,
+    "peak_allocated_bytes": 1843088896,
+    "peak_reserved_bytes": 2438987776,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 1774293504
+   },
+   "tf32_against_fp32_whole_crop": {
+    "linear": {
+     "max": 5.517899990081787e-05,
+     "rms": 5.044221477922945e-06
+    },
+    "developed": {
+     "max": 0.00020736455917358398,
+     "rms": 2.843889660484589e-05
+    }
+   }
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "raw_sha256": "5b9d095e8a9f4082fcbb63a8b9a511d7692371adb5c0cdd6f088ba38ee54712e",
+   "crop_origin_packed": [
+    397,
+    978
+   ],
+   "crop_size_packed": 1536,
+   "gain_match_factor": 9.541357096499884e-06,
+   "preparation": {
+    "area_size": [
+     4660,
+     6984
+    ],
+    "area_megapixels": 32.55,
+    "packed_size": [
+     2330,
+     3492
+    ],
+    "pattern": "RGGB",
+    "added_top": 0,
+    "added_left": 0,
+    "black_r_g1_g2_b": [
+     2048.0,
+     2048.0,
+     2048.0,
+     2048.0
+    ],
+    "maximum": 16383.0,
+    "linear_max_r_g_b": [
+     13660.0,
+     13660.0,
+     13660.0
+    ],
+    "saturation_r_g_b": [
+     0.8100453435647018,
+     0.8100453435647018,
+     0.8100453435647018
+    ],
+    "cam_mul": [
+     1716.0,
+     1024.0,
+     1708.0,
+     1024.0
+    ]
+   },
+   "one_pass": {
+    "tile": 1536,
+    "overlap": 0,
+    "tile_count": 1,
+    "seconds_total": 0.1596,
+    "seconds_forward": 0.1429,
+    "seconds_upload": 0.0075,
+    "peak_allocated_bytes": 1843088896,
+    "peak_reserved_bytes": 2438987776,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 1774293504
+   },
+   "tf32_against_fp32_whole_crop": {
+    "linear": {
+     "max": 0.0002282857894897461,
+     "rms": 4.575763295001352e-06
+    },
+    "developed": {
+     "max": 0.0004049539566040039,
+     "rms": 2.3569995307913667e-05
+    }
+   }
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "raw_sha256": "c74f52c8c9aa80d523a9d6216902bbc7a376a49bee32c05d0d63210b25ff09cf",
+   "crop_origin_packed": [
+    236,
+    736
+   ],
+   "crop_size_packed": 1536,
+   "gain_match_factor": 8.898384380123461e-06,
+   "preparation": {
+    "area_size": [
+     4016,
+     6016
+    ],
+    "area_megapixels": 24.16,
+    "packed_size": [
+     2008,
+     3008
+    ],
+    "pattern": "RGGB",
+    "added_top": 0,
+    "added_left": 0,
+    "black_r_g1_g2_b": [
+     600.0,
+     600.0,
+     600.0,
+     600.0
+    ],
+    "maximum": 16383.0,
+    "linear_max_r_g_b": [
+     15311.0,
+     15311.0,
+     15311.0
+    ],
+    "saturation_r_g_b": [
+     0.9320788189824495,
+     0.9320788189824495,
+     0.9320788189824495
+    ],
+    "cam_mul": [
+     1.30078125,
+     1.0,
+     2.734375,
+     1.0
+    ]
+   },
+   "one_pass": {
+    "tile": 1536,
+    "overlap": 0,
+    "tile_count": 1,
+    "seconds_total": 0.3095,
+    "seconds_forward": 0.2909,
+    "seconds_upload": 0.0084,
+    "peak_allocated_bytes": 1843088896,
+    "peak_reserved_bytes": 2438987776,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 1774293504
+   },
+   "tf32_against_fp32_whole_crop": {
+    "linear": {
+     "max": 0.0005671977996826172,
+     "rms": 5.872305674132083e-06
+    },
+    "developed": {
+     "max": 0.0004443526268005371,
+     "rms": 2.54894076066639e-05
+    }
+   }
+  }
+ ],
+ "configurations": [
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 256,
+    "overlap": 16,
+    "tile_count": 49,
+    "seconds_total": 0.4771,
+    "seconds_forward": 0.4302,
+    "seconds_upload": 0.0057,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 2211840,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0022657886147499084,
+     "rms": 0.00015632542299230464
+    },
+    "developed": {
+     "max": 0.01895207166671753,
+     "rms": 0.0012921951069153924
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.999339580535889e-05,
+     "rms": 5.2040058974483855e-06
+    },
+    "developed": {
+     "max": 0.00015994906425476074,
+     "rms": 2.8899566983384564e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 256,
+    "overlap": 16,
+    "tile_count": 49,
+    "seconds_total": 0.5222,
+    "seconds_forward": 0.4771,
+    "seconds_upload": 0.0046,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 2211840,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.005346924066543579,
+     "rms": 0.00020759041641113445
+    },
+    "developed": {
+     "max": 0.02033078670501709,
+     "rms": 0.001205674068333693
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00016701221466064453,
+     "rms": 4.704251384066689e-06
+    },
+    "developed": {
+     "max": 0.00029772520065307617,
+     "rms": 2.4095793461012357e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 256,
+    "overlap": 16,
+    "tile_count": 49,
+    "seconds_total": 0.5672,
+    "seconds_forward": 0.5169,
+    "seconds_upload": 0.0043,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 2211840,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.01670205593109131,
+     "rms": 0.0004450029586598245
+    },
+    "developed": {
+     "max": 0.03304004669189453,
+     "rms": 0.002526752682509642
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0005409121513366699,
+     "rms": 6.387842072059412e-06
+    },
+    "developed": {
+     "max": 0.00040537118911743164,
+     "rms": 2.607487956963416e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 256,
+    "overlap": 32,
+    "tile_count": 64,
+    "seconds_total": 0.5491,
+    "seconds_forward": 0.5031,
+    "seconds_upload": 0.0067,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 2551808,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0015391707420349121,
+     "rms": 0.00011694629530819434
+    },
+    "developed": {
+     "max": 0.011049509048461914,
+     "rms": 0.0008940700895163378
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 5.517899990081787e-05,
+     "rms": 5.207428113966769e-06
+    },
+    "developed": {
+     "max": 0.00018960237503051758,
+     "rms": 2.8886442352212244e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 256,
+    "overlap": 32,
+    "tile_count": 64,
+    "seconds_total": 0.5369,
+    "seconds_forward": 0.489,
+    "seconds_upload": 0.0094,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 2551808,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0032225772738456726,
+     "rms": 0.0001382702110366084
+    },
+    "developed": {
+     "max": 0.010421216487884521,
+     "rms": 0.0008349628092544441
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00018781423568725586,
+     "rms": 4.770883255155826e-06
+    },
+    "developed": {
+     "max": 0.0004049539566040039,
+     "rms": 2.389309603212725e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 256,
+    "overlap": 32,
+    "tile_count": 64,
+    "seconds_total": 0.5257,
+    "seconds_forward": 0.4875,
+    "seconds_upload": 0.0045,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 2551808,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.010699331760406494,
+     "rms": 0.0003115777522502894
+    },
+    "developed": {
+     "max": 0.019359171390533447,
+     "rms": 0.0017983522726487185
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0005671977996826172,
+     "rms": 7.4870250004142505e-06
+    },
+    "developed": {
+     "max": 0.00037935376167297363,
+     "rms": 2.5947779945865075e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 256,
+    "overlap": 48,
+    "tile_count": 81,
+    "seconds_total": 0.7162,
+    "seconds_forward": 0.6623,
+    "seconds_upload": 0.0044,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 2883584,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0009845942258834839,
+     "rms": 8.092330300195379e-05
+    },
+    "developed": {
+     "max": 0.00934937596321106,
+     "rms": 0.0006035620521659872
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 5.517899990081787e-05,
+     "rms": 5.183361064886929e-06
+    },
+    "developed": {
+     "max": 0.00018960237503051758,
+     "rms": 2.8807892914792724e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 256,
+    "overlap": 48,
+    "tile_count": 81,
+    "seconds_total": 0.6788,
+    "seconds_forward": 0.6246,
+    "seconds_upload": 0.0096,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 2883584,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.004167154431343079,
+     "rms": 7.730730553299518e-05
+    },
+    "developed": {
+     "max": 0.012680292129516602,
+     "rms": 0.00047531477598664637
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00015628337860107422,
+     "rms": 4.676676900850731e-06
+    },
+    "developed": {
+     "max": 0.00031512975692749023,
+     "rms": 2.3992983195405092e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 256,
+    "overlap": 48,
+    "tile_count": 81,
+    "seconds_total": 0.6958,
+    "seconds_forward": 0.6472,
+    "seconds_upload": 0.0058,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 2883584,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.003159642219543457,
+     "rms": 0.00021194071095874365
+    },
+    "developed": {
+     "max": 0.01111060380935669,
+     "rms": 0.0011618470401051316
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0004080533981323242,
+     "rms": 5.342968194836919e-06
+    },
+    "developed": {
+     "max": 0.0004443526268005371,
+     "rms": 2.5756404296125995e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 256,
+    "overlap": 64,
+    "tile_count": 121,
+    "seconds_total": 1.0272,
+    "seconds_forward": 0.9635,
+    "seconds_upload": 0.0084,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 3522560,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0005395933985710144,
+     "rms": 3.10706705112991e-05
+    },
+    "developed": {
+     "max": 0.003960728645324707,
+     "rms": 0.00023272389274410596
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.999339580535889e-05,
+     "rms": 5.174291828133766e-06
+    },
+    "developed": {
+     "max": 0.00020736455917358398,
+     "rms": 2.8805912218822828e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 256,
+    "overlap": 64,
+    "tile_count": 121,
+    "seconds_total": 1.0018,
+    "seconds_forward": 0.9446,
+    "seconds_upload": 0.005,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 3522560,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.001495465636253357,
+     "rms": 3.983161016996425e-05
+    },
+    "developed": {
+     "max": 0.0041013360023498535,
+     "rms": 0.00024464516171065305
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0002282857894897461,
+     "rms": 4.611304482959029e-06
+    },
+    "developed": {
+     "max": 0.0003324151039123535,
+     "rms": 2.3715659081288836e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 256,
+    "overlap": 64,
+    "tile_count": 121,
+    "seconds_total": 0.9986,
+    "seconds_forward": 0.9413,
+    "seconds_upload": 0.0041,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 3522560,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.001976877450942993,
+     "rms": 8.859672457198942e-05
+    },
+    "developed": {
+     "max": 0.01090174913406372,
+     "rms": 0.0005265443490237099
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0005409121513366699,
+     "rms": 5.78251792459899e-06
+    },
+    "developed": {
+     "max": 0.0004443526268005371,
+     "rms": 2.5693057804161488e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 256,
+    "overlap": 80,
+    "tile_count": 225,
+    "seconds_total": 1.7894,
+    "seconds_forward": 1.7144,
+    "seconds_upload": 0.0049,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 4702208,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.00010669231414794922,
+     "rms": 4.881652825984279e-06
+    },
+    "developed": {
+     "max": 0.0017933845520019531,
+     "rms": 4.270438427766828e-05
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 5.517899990081787e-05,
+     "rms": 5.1644664459057836e-06
+    },
+    "developed": {
+     "max": 0.00018960237503051758,
+     "rms": 2.8799152402701353e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 256,
+    "overlap": 80,
+    "tile_count": 225,
+    "seconds_total": 1.9351,
+    "seconds_forward": 1.8403,
+    "seconds_upload": 0.0087,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 4702208,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.00023520737886428833,
+     "rms": 6.440844427125946e-06
+    },
+    "developed": {
+     "max": 0.0017660856246948242,
+     "rms": 4.4608835299197544e-05
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0002282857894897461,
+     "rms": 4.612077377377056e-06
+    },
+    "developed": {
+     "max": 0.0004049539566040039,
+     "rms": 2.3569927618213712e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 256,
+    "overlap": 80,
+    "tile_count": 225,
+    "seconds_total": 1.8352,
+    "seconds_forward": 1.7541,
+    "seconds_upload": 0.0047,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 4702208,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.000364743173122406,
+     "rms": 1.7048364096213357e-05
+    },
+    "developed": {
+     "max": 0.002324700355529785,
+     "rms": 0.00010962808002192772
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0005671977996826172,
+     "rms": 5.901999176257901e-06
+    },
+    "developed": {
+     "max": 0.0004443526268005371,
+     "rms": 2.564624995683234e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 256,
+    "overlap": 96,
+    "tile_count": 441,
+    "seconds_total": 3.6804,
+    "seconds_forward": 3.5329,
+    "seconds_upload": 0.006,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 6225920,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 7.450580596923828e-08,
+     "rms": 5.460162238141681e-09
+    },
+    "developed": {
+     "max": 4.470348358154297e-07,
+     "rms": 4.1089953486476764e-08
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 5.517899990081787e-05,
+     "rms": 5.152286772562645e-06
+    },
+    "developed": {
+     "max": 0.00018960237503051758,
+     "rms": 2.8670244377271808e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 256,
+    "overlap": 96,
+    "tile_count": 441,
+    "seconds_total": 3.6866,
+    "seconds_forward": 3.5476,
+    "seconds_upload": 0.0052,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 6225920,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 1.7881393432617188e-07,
+     "rms": 5.0772642817544144e-09
+    },
+    "developed": {
+     "max": 6.556510925292969e-07,
+     "rms": 3.726278205815751e-08
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00018781423568725586,
+     "rms": 4.630756871811698e-06
+    },
+    "developed": {
+     "max": 0.0004049539566040039,
+     "rms": 2.3673888362451467e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 256,
+    "overlap": 96,
+    "tile_count": 441,
+    "seconds_total": 3.5409,
+    "seconds_forward": 3.415,
+    "seconds_upload": 0.005,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 6225920,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 4.172325134277344e-07,
+     "rms": 6.153534427339277e-09
+    },
+    "developed": {
+     "max": 7.748603820800781e-07,
+     "rms": 4.155156357536157e-08
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0005671977996826172,
+     "rms": 6.098941587533842e-06
+    },
+    "developed": {
+     "max": 0.00037935376167297363,
+     "rms": 2.5633123227904487e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 256,
+    "overlap": 112,
+    "tile_count": 1681,
+    "seconds_total": 14.2018,
+    "seconds_forward": 13.7282,
+    "seconds_upload": 0.0038,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 9175040,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 7.450580596923828e-08,
+     "rms": 5.3763586612966565e-09
+    },
+    "developed": {
+     "max": 4.172325134277344e-07,
+     "rms": 4.0797818202388544e-08
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 5.517899990081787e-05,
+     "rms": 5.0785823610089724e-06
+    },
+    "developed": {
+     "max": 0.00020736455917358398,
+     "rms": 2.8549700574730197e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 256,
+    "overlap": 112,
+    "tile_count": 1681,
+    "seconds_total": 13.849,
+    "seconds_forward": 13.4446,
+    "seconds_upload": 0.004,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 9175040,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 2.384185791015625e-07,
+     "rms": 5.042930926905675e-09
+    },
+    "developed": {
+     "max": 5.066394805908203e-07,
+     "rms": 3.726539112293995e-08
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0002282857894897461,
+     "rms": 4.593962671492222e-06
+    },
+    "developed": {
+     "max": 0.0004049539566040039,
+     "rms": 2.3607986439476302e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 256,
+    "overlap": 112,
+    "tile_count": 1681,
+    "seconds_total": 14.3792,
+    "seconds_forward": 13.9072,
+    "seconds_upload": 0.0053,
+    "peak_allocated_bytes": 239909888,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 171114496
+   },
+   "border_pixels": 9175040,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 4.76837158203125e-07,
+     "rms": 5.951214070669589e-09
+    },
+    "developed": {
+     "max": 1.0132789611816406e-06,
+     "rms": 4.134553109775945e-08
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0005671977996826172,
+     "rms": 5.844785018098235e-06
+    },
+    "developed": {
+     "max": 0.0004443526268005371,
+     "rms": 2.548597659421862e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 512,
+    "overlap": 16,
+    "tile_count": 16,
+    "seconds_total": 0.458,
+    "seconds_forward": 0.4087,
+    "seconds_upload": 0.0041,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.001592591404914856,
+     "rms": 0.00014580629803844346
+    },
+    "developed": {
+     "max": 0.01647809147834778,
+     "rms": 0.0010860308551239079
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.999339580535889e-05,
+     "rms": 5.192766619155835e-06
+    },
+    "developed": {
+     "max": 0.00019168853759765625,
+     "rms": 2.937911298655715e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 512,
+    "overlap": 16,
+    "tile_count": 16,
+    "seconds_total": 0.4154,
+    "seconds_forward": 0.3612,
+    "seconds_upload": 0.0068,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0040461719036102295,
+     "rms": 0.0001791701683736187
+    },
+    "developed": {
+     "max": 0.011078953742980957,
+     "rms": 0.0010530223754752642
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 9.170174598693848e-05,
+     "rms": 3.893237227984247e-06
+    },
+    "developed": {
+     "max": 0.0002213120460510254,
+     "rms": 2.158133409214987e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 512,
+    "overlap": 16,
+    "tile_count": 16,
+    "seconds_total": 0.4948,
+    "seconds_forward": 0.4254,
+    "seconds_upload": 0.0051,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.004249259829521179,
+     "rms": 0.00039442368246972914
+    },
+    "developed": {
+     "max": 0.02111649513244629,
+     "rms": 0.00242299033108283
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 6.426870822906494e-05,
+     "rms": 4.6029953821146935e-06
+    },
+    "developed": {
+     "max": 0.00017175078392028809,
+     "rms": 2.6047236948842667e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 512,
+    "overlap": 32,
+    "tile_count": 16,
+    "seconds_total": 0.3001,
+    "seconds_forward": 0.25,
+    "seconds_upload": 0.0077,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0013991445302963257,
+     "rms": 0.0001030919602529975
+    },
+    "developed": {
+     "max": 0.015188008546829224,
+     "rms": 0.0007902376276577384
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.999339580535889e-05,
+     "rms": 5.3125739606801905e-06
+    },
+    "developed": {
+     "max": 0.00015994906425476074,
+     "rms": 2.947756143175526e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 512,
+    "overlap": 32,
+    "tile_count": 16,
+    "seconds_total": 0.2944,
+    "seconds_forward": 0.2445,
+    "seconds_upload": 0.0049,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0024599581956863403,
+     "rms": 0.0001236752911872726
+    },
+    "developed": {
+     "max": 0.008437573909759521,
+     "rms": 0.0007528278132673685
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00016570091247558594,
+     "rms": 3.9048905557470045e-06
+    },
+    "developed": {
+     "max": 0.00024306774139404297,
+     "rms": 2.1685276944153167e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 512,
+    "overlap": 32,
+    "tile_count": 16,
+    "seconds_total": 0.357,
+    "seconds_forward": 0.2834,
+    "seconds_upload": 0.0059,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0031426548957824707,
+     "rms": 0.0002390798332482079
+    },
+    "developed": {
+     "max": 0.012799113988876343,
+     "rms": 0.0014029273329893472
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00039309263229370117,
+     "rms": 6.743964280782542e-06
+    },
+    "developed": {
+     "max": 0.00033226609230041504,
+     "rms": 2.6529399676615954e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 512,
+    "overlap": 48,
+    "tile_count": 16,
+    "seconds_total": 0.2873,
+    "seconds_forward": 0.2388,
+    "seconds_upload": 0.0037,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0008591488003730774,
+     "rms": 7.12052745662384e-05
+    },
+    "developed": {
+     "max": 0.008985549211502075,
+     "rms": 0.0005178323324300041
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.7400593757629395e-05,
+     "rms": 5.2351428414310525e-06
+    },
+    "developed": {
+     "max": 0.00018042325973510742,
+     "rms": 2.9140605936145418e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 512,
+    "overlap": 48,
+    "tile_count": 16,
+    "seconds_total": 0.3012,
+    "seconds_forward": 0.2441,
+    "seconds_upload": 0.0104,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0014690980315208435,
+     "rms": 8.929246010083663e-05
+    },
+    "developed": {
+     "max": 0.0053067803382873535,
+     "rms": 0.0004662659008005599
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0001938939094543457,
+     "rms": 4.4672926975932395e-06
+    },
+    "developed": {
+     "max": 0.00035756826400756836,
+     "rms": 2.3182168235500407e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 512,
+    "overlap": 48,
+    "tile_count": 16,
+    "seconds_total": 0.3041,
+    "seconds_forward": 0.2458,
+    "seconds_upload": 0.0059,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0033795759081840515,
+     "rms": 0.00020771426062506036
+    },
+    "developed": {
+     "max": 0.010120630264282227,
+     "rms": 0.0009679911452293636
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0001900196075439453,
+     "rms": 5.515576294033281e-06
+    },
+    "developed": {
+     "max": 0.00037935376167297363,
+     "rms": 2.6174586760928945e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 512,
+    "overlap": 64,
+    "tile_count": 16,
+    "seconds_total": 0.3079,
+    "seconds_forward": 0.2493,
+    "seconds_upload": 0.006,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.00033901631832122803,
+     "rms": 2.6923228014216516e-05
+    },
+    "developed": {
+     "max": 0.0039010345935821533,
+     "rms": 0.00021854614514908943
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.7400593757629395e-05,
+     "rms": 5.192202373501063e-06
+    },
+    "developed": {
+     "max": 0.00016242265701293945,
+     "rms": 2.8823440525491087e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 512,
+    "overlap": 64,
+    "tile_count": 16,
+    "seconds_total": 0.3169,
+    "seconds_forward": 0.2549,
+    "seconds_upload": 0.0099,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0012003108859062195,
+     "rms": 3.8601733657967716e-05
+    },
+    "developed": {
+     "max": 0.004068255424499512,
+     "rms": 0.00019704476518236404
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0002282857894897461,
+     "rms": 4.958839135609478e-06
+    },
+    "developed": {
+     "max": 0.0003324151039123535,
+     "rms": 2.4411474794866567e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 512,
+    "overlap": 64,
+    "tile_count": 16,
+    "seconds_total": 0.343,
+    "seconds_forward": 0.2712,
+    "seconds_upload": 0.0046,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0008344650268554688,
+     "rms": 7.009572473918133e-05
+    },
+    "developed": {
+     "max": 0.00372469425201416,
+     "rms": 0.00040333203676151794
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00019672513008117676,
+     "rms": 5.695016611329594e-06
+    },
+    "developed": {
+     "max": 0.00020319223403930664,
+     "rms": 2.6172743339759578e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 512,
+    "overlap": 80,
+    "tile_count": 16,
+    "seconds_total": 0.2945,
+    "seconds_forward": 0.2417,
+    "seconds_upload": 0.0075,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 9.310245513916016e-05,
+     "rms": 4.288551318339417e-06
+    },
+    "developed": {
+     "max": 0.0008889734745025635,
+     "rms": 3.539845406248763e-05
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.367530345916748e-05,
+     "rms": 5.124011935485409e-06
+    },
+    "developed": {
+     "max": 0.0001634061336517334,
+     "rms": 2.8393403368041518e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 512,
+    "overlap": 80,
+    "tile_count": 16,
+    "seconds_total": 0.3055,
+    "seconds_forward": 0.2515,
+    "seconds_upload": 0.0086,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.00031945109367370605,
+     "rms": 6.429193612886056e-06
+    },
+    "developed": {
+     "max": 0.0012410879135131836,
+     "rms": 3.2223424972398925e-05
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00016570091247558594,
+     "rms": 5.291903249913022e-06
+    },
+    "developed": {
+     "max": 0.0004049539566040039,
+     "rms": 2.5295582760140397e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 512,
+    "overlap": 80,
+    "tile_count": 16,
+    "seconds_total": 0.3524,
+    "seconds_forward": 0.2581,
+    "seconds_upload": 0.0092,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1142784,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0008067898452281952,
+     "rms": 2.5065171419395085e-05
+    },
+    "developed": {
+     "max": 0.00481182336807251,
+     "rms": 0.00014827495027887688
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00040274858474731445,
+     "rms": 7.97056610113729e-06
+    },
+    "developed": {
+     "max": 0.0003122091293334961,
+     "rms": 2.6015142977566846e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 512,
+    "overlap": 96,
+    "tile_count": 25,
+    "seconds_total": 0.4503,
+    "seconds_forward": 0.3925,
+    "seconds_upload": 0.0065,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1507328,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.713237285614014e-05,
+     "rms": 5.156229389693553e-06
+    },
+    "developed": {
+     "max": 0.00015932321548461914,
+     "rms": 2.8901870624854335e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 512,
+    "overlap": 96,
+    "tile_count": 25,
+    "seconds_total": 0.4566,
+    "seconds_forward": 0.4019,
+    "seconds_upload": 0.0038,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1507328,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0001119077205657959,
+     "rms": 4.581473156943017e-06
+    },
+    "developed": {
+     "max": 0.0002785921096801758,
+     "rms": 2.3593114187339976e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 512,
+    "overlap": 96,
+    "tile_count": 25,
+    "seconds_total": 0.4431,
+    "seconds_forward": 0.3811,
+    "seconds_upload": 0.0081,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1507328,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0005671977996826172,
+     "rms": 8.678617545263425e-06
+    },
+    "developed": {
+     "max": 0.0003167390823364258,
+     "rms": 2.6614563805177827e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 512,
+    "overlap": 112,
+    "tile_count": 25,
+    "seconds_total": 0.4456,
+    "seconds_forward": 0.3929,
+    "seconds_upload": 0.0064,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1507328,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 5.0805509090423584e-05,
+     "rms": 5.1028320247929505e-06
+    },
+    "developed": {
+     "max": 0.00018352270126342773,
+     "rms": 2.8718938916193924e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 512,
+    "overlap": 112,
+    "tile_count": 25,
+    "seconds_total": 0.4466,
+    "seconds_forward": 0.3968,
+    "seconds_upload": 0.0072,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1507328,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 9.328126907348633e-05,
+     "rms": 4.607883608401565e-06
+    },
+    "developed": {
+     "max": 0.00029772520065307617,
+     "rms": 2.3913251925871904e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 512,
+    "overlap": 112,
+    "tile_count": 25,
+    "seconds_total": 0.457,
+    "seconds_forward": 0.3979,
+    "seconds_upload": 0.0074,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1507328,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0005671977996826172,
+     "rms": 7.265516540658257e-06
+    },
+    "developed": {
+     "max": 0.00033226609230041504,
+     "rms": 2.6187947449068573e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 512,
+    "overlap": 128,
+    "tile_count": 25,
+    "seconds_total": 0.4327,
+    "seconds_forward": 0.3817,
+    "seconds_upload": 0.0038,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1507328,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.8473477363586426e-05,
+     "rms": 5.225567974207947e-06
+    },
+    "developed": {
+     "max": 0.00018042325973510742,
+     "rms": 2.880588852508827e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 512,
+    "overlap": 128,
+    "tile_count": 25,
+    "seconds_total": 0.4458,
+    "seconds_forward": 0.3899,
+    "seconds_upload": 0.0064,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1507328,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0002282857894897461,
+     "rms": 5.131096480949945e-06
+    },
+    "developed": {
+     "max": 0.00035756826400756836,
+     "rms": 2.4971160406219647e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 512,
+    "overlap": 128,
+    "tile_count": 25,
+    "seconds_total": 0.4563,
+    "seconds_forward": 0.3919,
+    "seconds_upload": 0.0059,
+    "peak_allocated_bytes": 278613504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 209818112
+   },
+   "border_pixels": 1507328,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00014007091522216797,
+     "rms": 4.886866841685189e-06
+    },
+    "developed": {
+     "max": 0.0002893805503845215,
+     "rms": 2.583899841385517e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 768,
+    "overlap": 16,
+    "tile_count": 9,
+    "seconds_total": 0.3252,
+    "seconds_forward": 0.2917,
+    "seconds_upload": 0.0054,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0012187249958515167,
+     "rms": 0.00011374999768061762
+    },
+    "developed": {
+     "max": 0.010745644569396973,
+     "rms": 0.0009519521538492123
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.6409666538238525e-05,
+     "rms": 4.840153529923694e-06
+    },
+    "developed": {
+     "max": 0.00020736455917358398,
+     "rms": 2.867380892842454e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 768,
+    "overlap": 16,
+    "tile_count": 9,
+    "seconds_total": 0.3318,
+    "seconds_forward": 0.3001,
+    "seconds_upload": 0.0077,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.005618184804916382,
+     "rms": 0.00019515046546758578
+    },
+    "developed": {
+     "max": 0.02001538872718811,
+     "rms": 0.0012066322454351102
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00010132789611816406,
+     "rms": 4.813162837913161e-06
+    },
+    "developed": {
+     "max": 0.0002785921096801758,
+     "rms": 2.4777541296238816e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 768,
+    "overlap": 16,
+    "tile_count": 9,
+    "seconds_total": 0.3359,
+    "seconds_forward": 0.3039,
+    "seconds_upload": 0.0069,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.01700526475906372,
+     "rms": 0.0004662070743073005
+    },
+    "developed": {
+     "max": 0.021384000778198242,
+     "rms": 0.0022332572281385864
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0005671977996826172,
+     "rms": 8.639331161899127e-06
+    },
+    "developed": {
+     "max": 0.0004443526268005371,
+     "rms": 2.689848766171509e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 768,
+    "overlap": 32,
+    "tile_count": 9,
+    "seconds_total": 0.3126,
+    "seconds_forward": 0.2824,
+    "seconds_upload": 0.0051,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0007984116673469543,
+     "rms": 9.426314074914795e-05
+    },
+    "developed": {
+     "max": 0.009531378746032715,
+     "rms": 0.0007408161092442819
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.3451786041259766e-05,
+     "rms": 4.9041731832037015e-06
+    },
+    "developed": {
+     "max": 0.00014990568161010742,
+     "rms": 2.8928796969005528e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 768,
+    "overlap": 32,
+    "tile_count": 9,
+    "seconds_total": 0.3573,
+    "seconds_forward": 0.3161,
+    "seconds_upload": 0.0088,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0042047202587127686,
+     "rms": 0.0001307612949779663
+    },
+    "developed": {
+     "max": 0.011289894580841064,
+     "rms": 0.0007927608999032459
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0001119077205657959,
+     "rms": 4.982557681021303e-06
+    },
+    "developed": {
+     "max": 0.0002785921096801758,
+     "rms": 2.5088704624708283e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 768,
+    "overlap": 32,
+    "tile_count": 9,
+    "seconds_total": 0.3369,
+    "seconds_forward": 0.3039,
+    "seconds_upload": 0.0047,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0036549270153045654,
+     "rms": 0.0003441242978053079
+    },
+    "developed": {
+     "max": 0.013553082942962646,
+     "rms": 0.0017902923064293523
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00037288665771484375,
+     "rms": 6.094216842541919e-06
+    },
+    "developed": {
+     "max": 0.0003167390823364258,
+     "rms": 2.686896221546497e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 768,
+    "overlap": 48,
+    "tile_count": 9,
+    "seconds_total": 0.3234,
+    "seconds_forward": 0.2912,
+    "seconds_upload": 0.0056,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0005739200860261917,
+     "rms": 6.415863582328732e-05
+    },
+    "developed": {
+     "max": 0.006227612495422363,
+     "rms": 0.0004852459673777892
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.756450653076172e-05,
+     "rms": 4.984425758758255e-06
+    },
+    "developed": {
+     "max": 0.00020736455917358398,
+     "rms": 2.9177147591743814e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 768,
+    "overlap": 48,
+    "tile_count": 9,
+    "seconds_total": 0.3355,
+    "seconds_forward": 0.2991,
+    "seconds_upload": 0.0066,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0014451369643211365,
+     "rms": 9.882729064137481e-05
+    },
+    "developed": {
+     "max": 0.006586015224456787,
+     "rms": 0.0005718636543939636
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0001119077205657959,
+     "rms": 4.9646220293087546e-06
+    },
+    "developed": {
+     "max": 0.00029772520065307617,
+     "rms": 2.537801196267794e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 768,
+    "overlap": 48,
+    "tile_count": 9,
+    "seconds_total": 0.3352,
+    "seconds_forward": 0.3022,
+    "seconds_upload": 0.0039,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0030054971575737,
+     "rms": 0.00021673328214695374
+    },
+    "developed": {
+     "max": 0.011592507362365723,
+     "rms": 0.0010836173109649776
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0003713369369506836,
+     "rms": 6.815950621163341e-06
+    },
+    "developed": {
+     "max": 0.00028705596923828125,
+     "rms": 2.7006623883866906e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 768,
+    "overlap": 64,
+    "tile_count": 9,
+    "seconds_total": 0.3215,
+    "seconds_forward": 0.2876,
+    "seconds_upload": 0.0074,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.00027366727590560913,
+     "rms": 2.460613077891201e-05
+    },
+    "developed": {
+     "max": 0.0028650760650634766,
+     "rms": 0.00018664528724627105
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.756450653076172e-05,
+     "rms": 4.924311849207115e-06
+    },
+    "developed": {
+     "max": 0.00020736455917358398,
+     "rms": 2.894881162530906e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 768,
+    "overlap": 64,
+    "tile_count": 9,
+    "seconds_total": 0.3344,
+    "seconds_forward": 0.3041,
+    "seconds_upload": 0.0044,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0009389221668243408,
+     "rms": 3.5410433949512366e-05
+    },
+    "developed": {
+     "max": 0.0041013360023498535,
+     "rms": 0.00022271752859902226
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 9.328126907348633e-05,
+     "rms": 5.009740349996924e-06
+    },
+    "developed": {
+     "max": 0.00029772520065307617,
+     "rms": 2.5590307354824176e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 768,
+    "overlap": 64,
+    "tile_count": 9,
+    "seconds_total": 0.3457,
+    "seconds_forward": 0.3014,
+    "seconds_upload": 0.0082,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0019768550992012024,
+     "rms": 9.723166207369195e-05
+    },
+    "developed": {
+     "max": 0.007562577724456787,
+     "rms": 0.000501804525551009
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00033915042877197266,
+     "rms": 7.86023391406188e-06
+    },
+    "developed": {
+     "max": 0.0004443526268005371,
+     "rms": 2.805548203672935e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 768,
+    "overlap": 80,
+    "tile_count": 9,
+    "seconds_total": 0.3384,
+    "seconds_forward": 0.2998,
+    "seconds_upload": 0.0055,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 7.79181718826294e-05,
+     "rms": 3.86295815403632e-06
+    },
+    "developed": {
+     "max": 0.0006328821182250977,
+     "rms": 2.9751460979142872e-05
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.414469003677368e-05,
+     "rms": 4.937236263270024e-06
+    },
+    "developed": {
+     "max": 0.00016033649444580078,
+     "rms": 2.8740194512708643e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 768,
+    "overlap": 80,
+    "tile_count": 9,
+    "seconds_total": 0.3388,
+    "seconds_forward": 0.2951,
+    "seconds_upload": 0.007,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 7.720291614532471e-05,
+     "rms": 4.231500516024554e-06
+    },
+    "developed": {
+     "max": 0.00034046173095703125,
+     "rms": 2.7769241658884894e-05
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 9.328126907348633e-05,
+     "rms": 5.173656838685923e-06
+    },
+    "developed": {
+     "max": 0.00029772520065307617,
+     "rms": 2.6139530071892594e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 768,
+    "overlap": 80,
+    "tile_count": 9,
+    "seconds_total": 0.339,
+    "seconds_forward": 0.3035,
+    "seconds_upload": 0.0057,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.00035055726766586304,
+     "rms": 1.605885879834169e-05
+    },
+    "developed": {
+     "max": 0.0017919540405273438,
+     "rms": 9.459560294431394e-05
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0004080533981323242,
+     "rms": 6.1553283431134035e-06
+    },
+    "developed": {
+     "max": 0.0002257823944091797,
+     "rms": 2.7153286784608687e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 768,
+    "overlap": 96,
+    "tile_count": 9,
+    "seconds_total": 0.3379,
+    "seconds_forward": 0.299,
+    "seconds_upload": 0.0048,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 5.0805509090423584e-05,
+     "rms": 5.016901550944446e-06
+    },
+    "developed": {
+     "max": 0.00015181303024291992,
+     "rms": 2.8847064406847013e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 768,
+    "overlap": 96,
+    "tile_count": 9,
+    "seconds_total": 0.3381,
+    "seconds_forward": 0.2999,
+    "seconds_upload": 0.0072,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00016701221466064453,
+     "rms": 5.383678231041779e-06
+    },
+    "developed": {
+     "max": 0.0004049539566040039,
+     "rms": 2.5999777320593204e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 768,
+    "overlap": 96,
+    "tile_count": 9,
+    "seconds_total": 0.3462,
+    "seconds_forward": 0.3031,
+    "seconds_upload": 0.005,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0004080533981323242,
+     "rms": 5.589482662942163e-06
+    },
+    "developed": {
+     "max": 0.00033226609230041504,
+     "rms": 2.6618694931350974e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 768,
+    "overlap": 112,
+    "tile_count": 9,
+    "seconds_total": 0.3416,
+    "seconds_forward": 0.2964,
+    "seconds_upload": 0.006,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.4673681259155273e-05,
+     "rms": 5.16725924525213e-06
+    },
+    "developed": {
+     "max": 0.0001531541347503662,
+     "rms": 2.898209982996249e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 768,
+    "overlap": 112,
+    "tile_count": 9,
+    "seconds_total": 0.3503,
+    "seconds_forward": 0.3047,
+    "seconds_upload": 0.008,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0002282857894897461,
+     "rms": 5.954223246150796e-06
+    },
+    "developed": {
+     "max": 0.0004049539566040039,
+     "rms": 2.6817558245892097e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 768,
+    "overlap": 112,
+    "tile_count": 9,
+    "seconds_total": 0.3438,
+    "seconds_forward": 0.302,
+    "seconds_upload": 0.0057,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0004080533981323242,
+     "rms": 5.011268335991135e-06
+    },
+    "developed": {
+     "max": 0.0002257823944091797,
+     "rms": 2.6447727959709994e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 768,
+    "overlap": 128,
+    "tile_count": 9,
+    "seconds_total": 0.3503,
+    "seconds_forward": 0.3025,
+    "seconds_upload": 0.0098,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.8473477363586426e-05,
+     "rms": 5.177730775762753e-06
+    },
+    "developed": {
+     "max": 0.00017696619033813477,
+     "rms": 2.8897546472910415e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 768,
+    "overlap": 128,
+    "tile_count": 9,
+    "seconds_total": 0.3645,
+    "seconds_forward": 0.3105,
+    "seconds_upload": 0.0048,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0002282857894897461,
+     "rms": 5.508505658036881e-06
+    },
+    "developed": {
+     "max": 0.00035756826400756836,
+     "rms": 2.628034459248385e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 768,
+    "overlap": 128,
+    "tile_count": 9,
+    "seconds_total": 0.3479,
+    "seconds_forward": 0.3032,
+    "seconds_upload": 0.0047,
+    "peak_allocated_bytes": 540757504,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 471962112
+   },
+   "border_pixels": 770048,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 6.277859210968018e-05,
+     "rms": 4.676697992641818e-06
+    },
+    "developed": {
+     "max": 0.00017526745796203613,
+     "rms": 2.6695873684247386e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 1024,
+    "overlap": 16,
+    "tile_count": 4,
+    "seconds_total": 0.2701,
+    "seconds_forward": 0.2348,
+    "seconds_upload": 0.0052,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.001252543181180954,
+     "rms": 8.701964933998193e-05
+    },
+    "developed": {
+     "max": 0.010896682739257812,
+     "rms": 0.000712210750526468
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.48077917098999e-05,
+     "rms": 5.913328620228318e-06
+    },
+    "developed": {
+     "max": 0.0001379847526550293,
+     "rms": 3.145875849408526e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 1024,
+    "overlap": 16,
+    "tile_count": 4,
+    "seconds_total": 0.2584,
+    "seconds_forward": 0.2276,
+    "seconds_upload": 0.0054,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0014406591653823853,
+     "rms": 0.00011369803052791323
+    },
+    "developed": {
+     "max": 0.008595168590545654,
+     "rms": 0.0007434430334684397
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 7.838010787963867e-05,
+     "rms": 4.222137912844449e-06
+    },
+    "developed": {
+     "max": 0.00017583370208740234,
+     "rms": 2.187017481366052e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 1024,
+    "overlap": 16,
+    "tile_count": 4,
+    "seconds_total": 0.2714,
+    "seconds_forward": 0.2378,
+    "seconds_upload": 0.0076,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0017147921025753021,
+     "rms": 0.0002460142487041765
+    },
+    "developed": {
+     "max": 0.0102882981300354,
+     "rms": 0.0015543097324962933
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 3.5800039768218994e-05,
+     "rms": 4.695306820961544e-06
+    },
+    "developed": {
+     "max": 0.00017493963241577148,
+     "rms": 2.6756064620830133e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 1024,
+    "overlap": 32,
+    "tile_count": 4,
+    "seconds_total": 0.2667,
+    "seconds_forward": 0.237,
+    "seconds_upload": 0.006,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0007101614028215408,
+     "rms": 6.329422177252205e-05
+    },
+    "developed": {
+     "max": 0.006894022226333618,
+     "rms": 0.0005224002727572322
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.756450653076172e-05,
+     "rms": 5.853954473801107e-06
+    },
+    "developed": {
+     "max": 0.00018352270126342773,
+     "rms": 3.128626474298533e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 1024,
+    "overlap": 32,
+    "tile_count": 4,
+    "seconds_total": 0.2603,
+    "seconds_forward": 0.2293,
+    "seconds_upload": 0.0065,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0006700679659843445,
+     "rms": 7.083750393207412e-05
+    },
+    "developed": {
+     "max": 0.005318015813827515,
+     "rms": 0.000490868181502772
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 7.838010787963867e-05,
+     "rms": 4.217490600851752e-06
+    },
+    "developed": {
+     "max": 0.00017583370208740234,
+     "rms": 2.1669394848108526e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 1024,
+    "overlap": 32,
+    "tile_count": 4,
+    "seconds_total": 0.2699,
+    "seconds_forward": 0.243,
+    "seconds_upload": 0.0042,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0011046230792999268,
+     "rms": 0.00018975519380565412
+    },
+    "developed": {
+     "max": 0.00594136118888855,
+     "rms": 0.0010874636645463462
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 3.5800039768218994e-05,
+     "rms": 4.755507241489553e-06
+    },
+    "developed": {
+     "max": 0.00017493963241577148,
+     "rms": 2.6907762668220253e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 1024,
+    "overlap": 48,
+    "tile_count": 4,
+    "seconds_total": 0.2691,
+    "seconds_forward": 0.2354,
+    "seconds_upload": 0.0045,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0004940181970596313,
+     "rms": 4.580878482378875e-05
+    },
+    "developed": {
+     "max": 0.003958165645599365,
+     "rms": 0.0003398640811385094
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.999339580535889e-05,
+     "rms": 5.846087902108387e-06
+    },
+    "developed": {
+     "max": 0.00018352270126342773,
+     "rms": 3.1459347976393975e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 1024,
+    "overlap": 48,
+    "tile_count": 4,
+    "seconds_total": 0.2544,
+    "seconds_forward": 0.2271,
+    "seconds_upload": 0.0038,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.00043281540274620056,
+     "rms": 4.313268578387639e-05
+    },
+    "developed": {
+     "max": 0.00393366813659668,
+     "rms": 0.0003122988691101676
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 5.461275577545166e-05,
+     "rms": 4.1274637323071325e-06
+    },
+    "developed": {
+     "max": 0.00015884637832641602,
+     "rms": 2.1554317580012188e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 1024,
+    "overlap": 48,
+    "tile_count": 4,
+    "seconds_total": 0.2777,
+    "seconds_forward": 0.2374,
+    "seconds_upload": 0.0084,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0009024068713188171,
+     "rms": 0.0001176777507748631
+    },
+    "developed": {
+     "max": 0.003911614418029785,
+     "rms": 0.0006593171288629956
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.976987838745117e-05,
+     "rms": 4.8083080369371455e-06
+    },
+    "developed": {
+     "max": 0.0001436173915863037,
+     "rms": 2.7018703013011576e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 1024,
+    "overlap": 64,
+    "tile_count": 4,
+    "seconds_total": 0.267,
+    "seconds_forward": 0.2339,
+    "seconds_upload": 0.0071,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.00026983022689819336,
+     "rms": 1.7553713992726924e-05
+    },
+    "developed": {
+     "max": 0.001957833766937256,
+     "rms": 0.00013552791987549173
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.999339580535889e-05,
+     "rms": 5.858145627431431e-06
+    },
+    "developed": {
+     "max": 0.00016242265701293945,
+     "rms": 3.1417383171318595e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 1024,
+    "overlap": 64,
+    "tile_count": 4,
+    "seconds_total": 0.258,
+    "seconds_forward": 0.2297,
+    "seconds_upload": 0.0043,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0002476591616868973,
+     "rms": 1.690716318372087e-05
+    },
+    "developed": {
+     "max": 0.0018556416034698486,
+     "rms": 0.0001333350195849634
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00018891692161560059,
+     "rms": 4.0106844457955e-06
+    },
+    "developed": {
+     "max": 0.00027382373809814453,
+     "rms": 2.1149040852148464e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 1024,
+    "overlap": 64,
+    "tile_count": 4,
+    "seconds_total": 0.2659,
+    "seconds_forward": 0.24,
+    "seconds_upload": 0.0038,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.00044737011194229126,
+     "rms": 5.2070789730060685e-05
+    },
+    "developed": {
+     "max": 0.002526521682739258,
+     "rms": 0.00029323348713550544
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.976987838745117e-05,
+     "rms": 4.863730017040532e-06
+    },
+    "developed": {
+     "max": 0.00016385316848754883,
+     "rms": 2.683906372636138e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 1024,
+    "overlap": 80,
+    "tile_count": 4,
+    "seconds_total": 0.2632,
+    "seconds_forward": 0.2272,
+    "seconds_upload": 0.0114,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 3.984197974205017e-05,
+     "rms": 2.6626415703102563e-06
+    },
+    "developed": {
+     "max": 0.0004146993160247803,
+     "rms": 2.2782933082163936e-05
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.70280647277832e-05,
+     "rms": 5.7769058681841765e-06
+    },
+    "developed": {
+     "max": 0.00016242265701293945,
+     "rms": 3.093217417378468e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 1024,
+    "overlap": 80,
+    "tile_count": 4,
+    "seconds_total": 0.2562,
+    "seconds_forward": 0.2292,
+    "seconds_upload": 0.0057,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 5.3359195590019226e-05,
+     "rms": 3.155121642925839e-06
+    },
+    "developed": {
+     "max": 0.0005552470684051514,
+     "rms": 2.7218395811872975e-05
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00018891692161560059,
+     "rms": 3.950028614084631e-06
+    },
+    "developed": {
+     "max": 0.00027382373809814453,
+     "rms": 2.139748831596079e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 1024,
+    "overlap": 80,
+    "tile_count": 4,
+    "seconds_total": 0.2677,
+    "seconds_forward": 0.239,
+    "seconds_upload": 0.0064,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 9.670108556747437e-05,
+     "rms": 9.260098427849236e-06
+    },
+    "developed": {
+     "max": 0.00047969818115234375,
+     "rms": 5.454592537335075e-05
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 7.051229476928711e-05,
+     "rms": 4.938494985405045e-06
+    },
+    "developed": {
+     "max": 0.00022399425506591797,
+     "rms": 2.6631629539134208e-05
+    }
+   },
+   "at_or_below_tf32_level": false
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 1024,
+    "overlap": 96,
+    "tile_count": 4,
+    "seconds_total": 0.2564,
+    "seconds_forward": 0.2281,
+    "seconds_upload": 0.0054,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.999339580535889e-05,
+     "rms": 5.832296526995713e-06
+    },
+    "developed": {
+     "max": 0.00015968084335327148,
+     "rms": 3.09323874308746e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 1024,
+    "overlap": 96,
+    "tile_count": 4,
+    "seconds_total": 0.2588,
+    "seconds_forward": 0.2273,
+    "seconds_upload": 0.0059,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00016570091247558594,
+     "rms": 4.217622765476051e-06
+    },
+    "developed": {
+     "max": 0.00024306774139404297,
+     "rms": 2.250425345973828e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 1024,
+    "overlap": 96,
+    "tile_count": 4,
+    "seconds_total": 0.2669,
+    "seconds_forward": 0.2355,
+    "seconds_upload": 0.0064,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00018411874771118164,
+     "rms": 5.077222804525426e-06
+    },
+    "developed": {
+     "max": 0.00033226609230041504,
+     "rms": 2.6605055575845863e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 1024,
+    "overlap": 112,
+    "tile_count": 4,
+    "seconds_total": 0.2565,
+    "seconds_forward": 0.2288,
+    "seconds_upload": 0.0054,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.999339580535889e-05,
+     "rms": 5.906686452276315e-06
+    },
+    "developed": {
+     "max": 0.00015968084335327148,
+     "rms": 3.1068482625623346e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 1024,
+    "overlap": 112,
+    "tile_count": 4,
+    "seconds_total": 0.2836,
+    "seconds_forward": 0.2474,
+    "seconds_upload": 0.0093,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00016701221466064453,
+     "rms": 5.227477357187332e-06
+    },
+    "developed": {
+     "max": 0.0002663731575012207,
+     "rms": 2.4396052626793783e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 1024,
+    "overlap": 112,
+    "tile_count": 4,
+    "seconds_total": 0.2735,
+    "seconds_forward": 0.2402,
+    "seconds_upload": 0.0071,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00018411874771118164,
+     "rms": 5.195763916569702e-06
+    },
+    "developed": {
+     "max": 0.00033226609230041504,
+     "rms": 2.6701255614244016e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+   "run": {
+    "tile": 1024,
+    "overlap": 128,
+    "tile_count": 4,
+    "seconds_total": 0.2701,
+    "seconds_forward": 0.2394,
+    "seconds_upload": 0.0085,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 4.731118679046631e-05,
+     "rms": 5.749844527358504e-06
+    },
+    "developed": {
+     "max": 0.00018042325973510742,
+     "rms": 3.0577805747097226e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "run": {
+    "tile": 1024,
+    "overlap": 128,
+    "tile_count": 4,
+    "seconds_total": 0.2672,
+    "seconds_forward": 0.2272,
+    "seconds_upload": 0.0078,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.0001938939094543457,
+     "rms": 5.678248889304941e-06
+    },
+    "developed": {
+     "max": 0.00035756826400756836,
+     "rms": 2.5686592685712446e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "run": {
+    "tile": 1024,
+    "overlap": 128,
+    "tile_count": 4,
+    "seconds_total": 0.2673,
+    "seconds_forward": 0.2332,
+    "seconds_upload": 0.0054,
+    "peak_allocated_bytes": 907759104,
+    "peak_reserved_bytes": 2441084928,
+    "baseline_allocated_bytes": 68795392,
+    "tile_workspace_bytes": 838963712
+   },
+   "border_pixels": 389120,
+   "tiled_against_fp32": {
+    "linear": {
+     "max": 0.0,
+     "rms": 0.0
+    },
+    "developed": {
+     "max": 0.0,
+     "rms": 0.0
+    }
+   },
+   "tf32_against_fp32": {
+    "linear": {
+     "max": 0.00010693073272705078,
+     "rms": 5.16910699317115e-06
+    },
+    "developed": {
+     "max": 0.0002893805503845215,
+     "rms": 2.655158955579827e-05
+    }
+   },
+   "at_or_below_tf32_level": true
+  }
+ ],
+ "settings": {
+  "border_packed_px": 16,
+  "gain_ev": 2.0,
+  "tiles": [
+   256,
+   512,
+   768,
+   1024
+  ],
+  "overlaps": [
+   16,
+   32,
+   48,
+   64,
+   80,
+   96,
+   112,
+   128
+  ],
+  "cpu_threads": 4
+ },
+ "weights_sha256": "0bfb9ddb07e6e6c20e6764dfc30336d9314d5760f875992f2144f13dd0df13a5",
+ "gpu": "NVIDIA GeForce RTX 3080 Laptop GPU",
+ "torch": "2.11.0+cu128",
+ "device_before_process": {
+  "temperature_c": 55.0,
+  "sm_clock_mhz": 210.0,
+  "power_w": 15.8,
+  "device_memory_used_bytes": 4153610240,
+  "device_memory_total_bytes": 8589934592,
+  "max_sm_clock_mhz": 2100.0
+ },
+ "gpu_during_runs": {
+  "samples": 3375,
+  "temperature_c": {
+   "first": 56.0,
+   "last": 74.0,
+   "min": 56.0,
+   "max": 86.0,
+   "median": 75.0
+  },
+  "sm_clock_mhz": {
+   "first": 240.0,
+   "last": 1785.0,
+   "min": 240.0,
+   "max": 1800.0,
+   "median": 1785.0
+  },
+  "power_w": {
+   "first": 17.077,
+   "last": 72.453,
+   "min": 17.077,
+   "max": 159.729,
+   "median": 74.936
+  },
+  "device_memory_used_bytes": {
+   "first": 4460376064.0,
+   "last": 3539722240.0,
+   "min": 3539722240.0,
+   "max": 8123662336.0,
+   "median": 6881230848.0
+  }
+ },
+ "peak_working_set_bytes": 3466846208,
+ "date": "2026-11-21",
+ "run": {
+  "command": "python -I scripts/export/measure_tile_overlap.py --authors-repo build/tmp/reference_measurement/rawnind_jddc",
+  "repository_commit": "65a4a9b36bb05636ce41919d5fe2794d9b5aff00",
+  "scripts_changed_after_commit": true,
+  "machine": "MSI Windows"
+ }
+}

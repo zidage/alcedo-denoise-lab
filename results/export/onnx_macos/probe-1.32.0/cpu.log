@@ -1,0 +1,4 @@
+precision random_64: 1.22345e-06 non-finite 0
+precision random_256: 1.01292e-06 non-finite 0
+precision rawnind_crop_512: 6.75066e-07 non-finite 0
+tiled crop: to one pass 3.37533e-07, to expected 6.1881e-07

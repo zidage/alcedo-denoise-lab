@@ -1,0 +1,144 @@
+{
+ "onnxruntime": "1.24.4",
+ "fp16_graph_sha256": "fd186931e7aa5f114f75ab52b7cb7067b770f5ec21812af8d69ec692e3cd9bf0",
+ "precision": [
+  {
+   "input": "random_64",
+   "relative_difference": 0.004626888664612152,
+   "non_finite": 0
+  },
+  {
+   "input": "random_256",
+   "relative_difference": 0.00393398505243483,
+   "non_finite": 0
+  },
+  {
+   "input": "rawnind_crop_512",
+   "relative_difference": 0.002394852307971335,
+   "non_finite": 0
+  }
+ ],
+ "photos": [
+  {
+   "photo": "24mp",
+   "tile": 1024,
+   "fp32_median_seconds": 0.6104,
+   "fp32_seconds": [
+    0.6104,
+    0.6046,
+    0.6412
+   ],
+   "fp16_median_seconds": 0.4977,
+   "fp16_seconds": [
+    0.5705,
+    0.4977,
+    0.4656
+   ],
+   "max_abs_difference_relative": 0.0038135977917734564,
+   "rms_difference_relative": 5.427310623906755e-05,
+   "fp16_non_finite": 0
+  },
+  {
+   "photo": "24mp",
+   "tile": 1536,
+   "fp32_median_seconds": 0.5437,
+   "fp32_seconds": [
+    0.5584,
+    0.5437,
+    0.5347
+   ],
+   "fp16_median_seconds": 0.4382,
+   "fp16_seconds": [
+    0.4489,
+    0.4382,
+    0.4216
+   ],
+   "max_abs_difference_relative": 0.003356553421513199,
+   "rms_difference_relative": 5.4204715626550096e-05,
+   "fp16_non_finite": 0
+  },
+  {
+   "photo": "36mp",
+   "tile": 1024,
+   "fp32_median_seconds": 0.8925,
+   "fp32_seconds": [
+    0.9102,
+    0.8925,
+    0.8829
+   ],
+   "fp16_median_seconds": 0.759,
+   "fp16_seconds": [
+    0.8261,
+    0.759,
+    0.7302
+   ],
+   "max_abs_difference_relative": 0.003689135397286075,
+   "rms_difference_relative": 0.00021070960840774227,
+   "fp16_non_finite": 0
+  },
+  {
+   "photo": "36mp",
+   "tile": 1536,
+   "fp32_median_seconds": 0.7494,
+   "fp32_seconds": [
+    0.7728,
+    0.7334,
+    0.7494
+   ],
+   "fp16_median_seconds": 0.6012,
+   "fp16_seconds": [
+    0.5896,
+    0.6012,
+    0.6021
+   ],
+   "max_abs_difference_relative": 0.0036891359791343522,
+   "rms_difference_relative": 0.00021070774003235704,
+   "fp16_non_finite": 0
+  },
+  {
+   "photo": "45mp",
+   "tile": 1024,
+   "fp32_median_seconds": 1.1606,
+   "fp32_seconds": [
+    1.1606,
+    1.139,
+    1.168
+   ],
+   "fp16_median_seconds": 0.9403,
+   "fp16_seconds": [
+    0.9631,
+    0.9187,
+    0.9403
+   ],
+   "max_abs_difference_relative": 0.003689056537590958,
+   "rms_difference_relative": 0.00022563739612299627,
+   "fp16_non_finite": 0
+  },
+  {
+   "photo": "45mp",
+   "tile": 1536,
+   "fp32_median_seconds": 0.8943,
+   "fp32_seconds": [
+    0.8943,
+    0.9479,
+    0.8937
+   ],
+   "fp16_median_seconds": 0.7431,
+   "fp16_seconds": [
+    0.729,
+    0.7431,
+    0.7463
+   ],
+   "max_abs_difference_relative": 0.0036891359791343522,
+   "rms_difference_relative": 0.00022564621260575998,
+   "fp16_non_finite": 0
+  }
+ ],
+ "date": "2026-11-22",
+ "run": {
+  "command": "python -I scripts/export/measure_directml_fp16.py --fp16-onnx build/tmp/onnx_macos_fp16/utnet2_bayer_dark_loss_10k_fp16_float32_io.onnx",
+  "repository_commit": "77172197e2194082cf2f27bd447a06d31d393b87",
+  "scripts_changed_after_commit": true,
+  "machine": "MSI Windows"
+ }
+}

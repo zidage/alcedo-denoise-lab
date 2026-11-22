@@ -1,0 +1,62 @@
+{
+  "device" : "Apple M4",
+  "records" : [
+    {
+      "camera" : "Canon EOS R3",
+      "decoder_version" : "8",
+      "default_color_noise_reduction" : 0.5,
+      "default_luminance_noise_reduction" : 0.71213066577911377,
+      "file" : "20220827-9578.cr3",
+      "luminance_noise_reduction_supported" : true,
+      "megapixels" : 24,
+      "native_size" : [
+        6000,
+        4000
+      ],
+      "output_extent" : [
+        6000,
+        4000
+      ],
+      "runs" : [
+        {
+          "median_seconds" : 0.59554404100000002,
+          "noise_reduction" : "default",
+          "seconds" : [
+            0.46879474999999998,
+            0.50725837500000004,
+            0.59554404100000002,
+            0.76641537500000001,
+            0.931027084
+          ]
+        },
+        {
+          "median_seconds" : 0.68534604200000004,
+          "noise_reduction" : "off",
+          "seconds" : [
+            0.65466304200000003,
+            0.65867583299999999,
+            0.68534604200000004,
+            0.723337958,
+            0.78361987499999997
+          ]
+        },
+        {
+          "median_seconds" : 0.693735667,
+          "noise_reduction" : "max",
+          "seconds" : [
+            0.67057645899999996,
+            0.69084183399999999,
+            0.693735667,
+            0.71880720899999995,
+            0.75027745800000001
+          ]
+        }
+      ],
+      "supported_decoder_versions" : [
+        "7",
+        "8",
+        "9"
+      ]
+    }
+  ]
+}

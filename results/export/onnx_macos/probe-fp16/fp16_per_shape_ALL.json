@@ -1,0 +1,25 @@
+{
+ "onnxruntime": "1.24.4",
+ "config": {"ep": "coreml", "strategy": "per_shape", "ModelFormat": "MLProgram", "MLComputeUnits": "ALL", "RequireStaticInputShapes": "0", "AllowLowPrecisionAccumulationOnGPU": "0", "SpecializationStrategy": "Default", "ModelCacheDirectory": "", "cpu_ep_fallback_disabled": true, "intra_op_threads": 4, "graph": "../utnet2_bayer_dark_loss_10k_fp16.onnx", "packed_output": false, "fp16_io": true, "output_scale": 127.915},
+ "available_providers": ["CoreMLExecutionProvider", "WebGpuExecutionProvider", "CPUExecutionProvider"],
+ "footprint_start_bytes": 2277880,
+ "probe_session_seconds": 0.555955,
+ "precision": [
+  {"input": "random_64", "relative_difference": 0.00150923, "non_finite": 0, "within_tolerance": false},
+  {"input": "random_256", "relative_difference": 0.00149257, "non_finite": 0, "within_tolerance": false},
+  {"input": "rawnind_crop_512", "relative_difference": 0.00101007, "non_finite": 0, "within_tolerance": false},
+  {"input": "rawnind_crop_512 tiles 256 overlap 96", "relative_difference_to_one_pass": 0, "relative_difference": 0.00101007, "within_tolerance": false}
+ ],
+ "precision_sessions": [{"shape": [64, 64], "create_seconds": 0.217873, "first_run_seconds": 0.000889167}, {"shape": [256, 256], "create_seconds": 0.252407, "first_run_seconds": 0.00742625}, {"shape": [512, 512], "create_seconds": 0.283559, "first_run_seconds": 0.020999}],
+ "photos": [
+ ],
+ "footprint_peak_bytes": 135529288,
+ "log": [
+  "onnxruntime inference_session.cc:607 TraceSessionOptions: Session Options {  execution_mode:0 execution_order:DEFAULT enable_profiling:0 optimized_model_filepath:\"\" enable_mem_pattern:1 enable_mem_reuse:1 enable_cpu_mem_arena:0 profile_file_prefix:onnxruntime_profile_ session_logid: session_log_severity_level:0 session_log_verbosity_level:0 max_num_graph_transformation_steps:10 graph_optimization_level:4 intra_op_param:OrtThreadPoolParams { thread_pool_size: 4 auto_set_affinity: 0 allow_spinning: 1 dynamic_block_base_: 0 stack_size: 0 affinity_str:  set_denormal_as_zero: 0 } inter_op_param:OrtThreadPoolParams { thread_pool_size: 1 auto_set_affinity: ",
+  "onnxruntime coreml_execution_provider.cc:31 CoreMLExecutionProvider: CoreML version: 8",
+  "onnxruntime coreml_execution_provider.cc:115 GetCapability: CoreMLExecutionProvider::GetCapability, number of partitions supported by CoreML: 1 number of nodes in the graph: 50 number of nodes supported by CoreML: 50",
+  "onnxruntime session_state.cc:1307 VerifyEachNodeIsAssignedToAnEp: Node placements",
+  "onnxruntime session_state.cc:1310 VerifyEachNodeIsAssignedToAnEp:  All nodes placed on [CoreMLExecutionProvider]. Number of nodes: 1",
+  "onnxruntime allocation_planner.cc:2658 CreateGraphPartitioner: Use DeviceBasedPartition as default"
+ ]
+}

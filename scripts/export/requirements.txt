@@ -22,6 +22,13 @@ pytorch-msssim==1.0.0
 PyYAML==6.0.3
 rawpy==0.28.0
 safetensors==0.8.0
+# The measurements of step 7: JPEG XL (libjxl 0.13.0) and zstd codecs, NVML for the GPU state.
+imagecodecs==2026.11.11
+zstandard==0.25.0
+nvidia-ml-py==13.615.71
+# ONNX Runtime with DirectML (Windows; 1.24.4 is the last version of the package on PyPI).
+onnx==1.23.2
+onnxruntime-directml==1.24.4
 requests==2.34.2
 scipy==1.18.1
 tqdm==4.70.1

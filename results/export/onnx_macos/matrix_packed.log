@@ -1,0 +1,181 @@
+== cpu
+precision random_64: 1.52931e-06 non-finite 0
+precision random_256: 1.54604e-06 non-finite 0
+precision rawnind_crop_512: 1.0126e-06 non-finite 0
+tiled crop: to one pass 0, to expected 1.0126e-06
+== coreml_mlprogram_gpu_free
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_mlprogram_gpu_lowprec_free
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_mlprogram_all_free
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_mlprogram_ane_free
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_mlprogram_cpuonly_free
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_neuralnetwork_gpu_free
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_mlprogram_gpu_cpufallback_free
+precision random_64: 8.15634e-07 non-finite 0
+precision random_256: 7.46365e-07 non-finite 0
+precision rawnind_crop_512: 5.62555e-07 non-finite 0
+tiled crop: to one pass 0, to expected 5.62555e-07
+== webgpu_builtin_free
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07
+== webgpu_plugin_free
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07
+== coreml_mlprogram_gpu_per_shape
+precision random_64: 8.15634e-07 non-finite 0
+precision random_256: 7.46365e-07 non-finite 0
+precision rawnind_crop_512: 5.62555e-07 non-finite 0
+tiled crop: to one pass 0, to expected 5.62555e-07
+== coreml_mlprogram_gpu_lowprec_per_shape
+precision random_64: 8.15634e-07 non-finite 0
+precision random_256: 7.46365e-07 non-finite 0
+precision rawnind_crop_512: 5.62555e-07 non-finite 0
+tiled crop: to one pass 0, to expected 5.62555e-07
+== coreml_mlprogram_all_per_shape
+precision random_64: 8.15634e-07 non-finite 0
+precision random_256: 7.46365e-07 non-finite 0
+precision rawnind_crop_512: 5.62555e-07 non-finite 0
+tiled crop: to one pass 0, to expected 5.62555e-07
+== coreml_mlprogram_ane_per_shape
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07
+== coreml_mlprogram_cpuonly_per_shape
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07
+== coreml_neuralnetwork_gpu_per_shape
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_mlprogram_gpu_cpufallback_per_shape
+precision random_64: 8.15634e-07 non-finite 0
+precision random_256: 7.46365e-07 non-finite 0
+precision rawnind_crop_512: 5.62555e-07 non-finite 0
+tiled crop: to one pass 0, to expected 5.62555e-07
+== webgpu_builtin_per_shape
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07
+== webgpu_plugin_per_shape
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07
+precision random_64: 8.15634e-07 non-finite 0
+precision random_256: 7.46365e-07 non-finite 0
+precision rawnind_crop_512: 5.62555e-07 non-finite 0
+tiled crop: to one pass 0, to expected 5.62555e-07
+== cpu
+precision random_64: 1.22345e-06 non-finite 0
+precision random_256: 1.01292e-06 non-finite 0
+precision rawnind_crop_512: 6.75066e-07 non-finite 0
+tiled crop: to one pass 3.37533e-07, to expected 6.1881e-07
+== coreml_mlprogram_gpu_free
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_mlprogram_gpu_lowprec_free
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_mlprogram_all_free
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_mlprogram_ane_free
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_mlprogram_cpuonly_free
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_neuralnetwork_gpu_free
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_mlprogram_gpu_cpufallback_free
+precision random_64: 8.15634e-07 non-finite 0
+precision random_256: 7.46365e-07 non-finite 0
+precision rawnind_crop_512: 5.62555e-07 non-finite 0
+tiled crop: to one pass 0, to expected 5.62555e-07
+== webgpu_builtin_free
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07
+== webgpu_plugin_free
+objc[40201]: Class MATStreamingSessionDelegate is implemented in both /Users/zidage/Projects/PuerhLab/build/tmp/dn1_macos/pkg/ort-1.32.0/lib/libonnxruntime.dylib (0x10970d068) and /Users/zidage/Projects/PuerhLab/build/tmp/dn1_macos/pkg/webgpu-0.6.0/libonnxruntime_providers_webgpu.dylib (0x10ffb4e98). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07
+== coreml_mlprogram_gpu_per_shape
+precision random_64: 8.15634e-07 non-finite 0
+precision random_256: 7.46365e-07 non-finite 0
+precision rawnind_crop_512: 5.62555e-07 non-finite 0
+tiled crop: to one pass 0, to expected 5.62555e-07
+== coreml_mlprogram_gpu_lowprec_per_shape
+precision random_64: 8.15634e-07 non-finite 0
+precision random_256: 7.46365e-07 non-finite 0
+precision rawnind_crop_512: 5.62555e-07 non-finite 0
+tiled crop: to one pass 0, to expected 5.62555e-07
+== coreml_mlprogram_all_per_shape
+precision random_64: 8.15634e-07 non-finite 0
+precision random_256: 7.46365e-07 non-finite 0
+precision rawnind_crop_512: 5.62555e-07 non-finite 0
+tiled crop: to one pass 0, to expected 5.62555e-07
+== coreml_mlprogram_ane_per_shape
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07
+== coreml_mlprogram_cpuonly_per_shape
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07
+== coreml_neuralnetwork_gpu_per_shape
+error: This session contains graph nodes that are assigned to the default CPU EP, but fallback to CPU EP has been explicitly disabled by the user.
+== coreml_mlprogram_gpu_cpufallback_per_shape
+precision random_64: 8.15634e-07 non-finite 0
+precision random_256: 7.46365e-07 non-finite 0
+precision rawnind_crop_512: 5.62555e-07 non-finite 0
+tiled crop: to one pass 0, to expected 5.62555e-07
+== webgpu_builtin_per_shape
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07
+== webgpu_plugin_per_shape
+objc[40316]: Class MATStreamingSessionDelegate is implemented in both /Users/zidage/Projects/PuerhLab/build/tmp/dn1_macos/pkg/ort-1.32.0/lib/libonnxruntime.dylib (0x108e71068) and /Users/zidage/Projects/PuerhLab/build/tmp/dn1_macos/pkg/webgpu-0.6.0/libonnxruntime_providers_webgpu.dylib (0x10f718e98). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07
+precision random_64: 8.15634e-07 non-finite 0
+precision random_256: 7.46365e-07 non-finite 0
+precision rawnind_crop_512: 5.62555e-07 non-finite 0
+tiled crop: to one pass 0, to expected 5.62555e-07
+== coreml_gpu_free_packed_output tile 1024 11:05:38
+24mp tile 1024: 12 tiles, 4 shapes, 2.15798 s (run 2.11995 s), footprint 0.874147 GiB, peak 1.69049 GiB, after release 0.70894 GiB, non-finite 0
+32mp tile 1024: 12 tiles, 4 shapes, 3.00103 s (run 2.94958 s), footprint 1.82453 GiB, peak 2.1758 GiB, after release 1.82413 GiB, non-finite 0
+36mp tile 1024: 15 tiles, 4 shapes, 3.24766 s (run 3.19335 s), footprint 1.98906 GiB, peak 2.71488 GiB, after release 1.73879 GiB, non-finite 0
+42mp tile 1024: 15 tiles, 4 shapes, 3.80005 s (run 3.73655 s), footprint 1.676 GiB, peak 3.18885 GiB, after release 1.6756 GiB, non-finite 0
+45mp tile 1024: 20 tiles, 4 shapes, 4.40154 s (run 4.33425 s), footprint 1.21385 GiB, peak 3.18885 GiB, after release 1.03188 GiB, non-finite 0
+== coreml_gpu_free_packed_output tile 1536 11:07:27
+24mp tile 1536: 6 tiles, 4 shapes, 1.83125 s (run 1.80264 s), footprint 1.17122 GiB, peak 3.44278 GiB, after release 0.970643 GiB, non-finite 0
+32mp tile 1536: 6 tiles, 4 shapes, 2.4978 s (run 2.46004 s), footprint 2.20999 GiB, peak 3.95796 GiB, after release 2.2096 GiB, non-finite 0
+36mp tile 1536: 6 tiles, 4 shapes, 2.82314 s (run 2.7869 s), footprint 3.05095 GiB, peak 4.41634 GiB, after release 3.05055 GiB, non-finite 0
+42mp tile 1536: 6 tiles, 4 shapes, 3.31406 s (run 3.27121 s), footprint 4.10221 GiB, peak 4.93645 GiB, after release 4.10184 GiB, non-finite 0
+45mp tile 1536: 6 tiles, 4 shapes, 3.54506 s (run 3.4935 s), footprint 4.90026 GiB, peak 5.47487 GiB, after release 4.89986 GiB, non-finite 0
+== coreml_gpu_free_packed_output tile 2048 11:09:07
+24mp tile 2048: 2 tiles, 2 shapes, 1.59541 s (run 1.56839 s), footprint 3.66867 GiB, peak 5.6886 GiB, after release 3.66831 GiB, non-finite 0
+32mp tile 2048: 4 tiles, 4 shapes, 2.4547 s (run 2.4203 s), footprint 2.75565 GiB, peak 6.36009 GiB, after release 2.75528 GiB, non-finite 0
+36mp tile 2048: 4 tiles, 4 shapes, 2.78251 s (run 2.74579 s), footprint 3.47937 GiB, peak 6.66564 GiB, after release 3.47901 GiB, non-finite 0
+42mp tile 2048: 6 tiles, 4 shapes, 3.22705 s (run 3.18339 s), footprint 3.13903 GiB, peak 7.17484 GiB, after release 2.94184 GiB, non-finite 0
+45mp tile 2048: 6 tiles, 4 shapes, 3.49365 s (run 3.44656 s), footprint 3.81713 GiB, peak 7.72452 GiB, after release 3.48629 GiB, non-finite 0
+== coreml_gpu_free_packed_output tile 1536 11:10:49
+24mp tile 1536: 6 tiles, 4 shapes, 1.82947 s (run 1.80134 s), footprint 1.15663 GiB, peak 3.50002 GiB, after release 0.956056 GiB, non-finite 0
+36mp tile 1536: 6 tiles, 4 shapes, 2.74269 s (run 2.70429 s), footprint 2.55062 GiB, peak 3.97869 GiB, after release 2.55023 GiB, non-finite 0
+45mp tile 1536: 6 tiles, 4 shapes, 3.50669 s (run 3.45645 s), footprint 3.92586 GiB, peak 4.63567 GiB, after release 3.92551 GiB, non-finite 0
+matrix done 11:11:56

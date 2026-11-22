@@ -1,0 +1,57 @@
+2026-11-22 11:05:28.780 ort_macos_measure-1.32.0[40271:41113659] profile function : main
+2026-11-22 11:05:28.780 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.105691
+2026-11-22 11:05:28.780 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.005156
+2026-11-22 11:05:28.780 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.058307
+2026-11-22 11:05:28.780 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.005156
+2026-11-22 11:05:28.780 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.max_pool, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.003222
+2026-11-22 11:05:28.780 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.029154
+2026-11-22 11:05:28.780 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.002578
+2026-11-22 11:05:28.780 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.029963
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.002578
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.max_pool, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.001611
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.014982
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.001289
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.029950
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.001289
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.max_pool, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.000806
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.014975
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.000644
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.029944
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.000644
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.max_pool, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.000403
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.014972
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.000322
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.029941
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.000322
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv_transpose, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.032106
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.concat, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.001705
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.059881
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.000644
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.029944
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.000644
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv_transpose, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.032122
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.concat, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.003409
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.059888
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.001289
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.029950
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.001289
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv_transpose, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.032153
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.concat, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.006819
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.059901
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.002578
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.029963
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.002578
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv_transpose, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.032216
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.concat, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.013637
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.059927
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.005156
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.058307
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.leaky_relu, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.005156
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.conv, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.035291
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.reshape, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.001933
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.transpose, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.015682
+2026-11-22 11:05:28.781 ort_macos_measure-1.32.0[40271:41113659] Operation: ios18.reshape, Device Usage: <MLCPUComputeDevice: 0x7cdd8bbd00>, Estimated Cost: 0.001933
+precision random_64: 1.32541e-06 non-finite 0
+precision random_256: 1.49273e-06 non-finite 0
+precision rawnind_crop_512: 9.56343e-07 non-finite 0
+tiled crop: to one pass 0, to expected 9.56343e-07

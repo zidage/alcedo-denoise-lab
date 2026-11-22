@@ -1,0 +1,275 @@
+{
+ "description": "ONNX Runtime DirectML precision and time of the model",
+ "onnxruntime": "1.24.4",
+ "device_before_process": {
+  "temperature_c": 70.0,
+  "sm_clock_mhz": 210.0,
+  "power_w": 16.0,
+  "device_memory_used_bytes": 2019954688,
+  "device_memory_total_bytes": 8589934592,
+  "max_sm_clock_mhz": 2100.0
+ },
+ "graph": {
+  "exported": false,
+  "path": "D:\\Projects\\alcedo-denoise-lab\\models\\export\\dark_area_loss\\utnet2_bayer_dark_loss_10k.onnx",
+  "sha256": "ee8f6fc89a3f876d06a269e59bd8d308a1b8cbb635cdd30f302a904d48c594ba",
+  "bytes": 31053461,
+  "opset": 17,
+  "onnx": "1.23.2",
+  "operators": {
+   "Concat": 4,
+   "Conv": 19,
+   "ConvTranspose": 4,
+   "DepthToSpace": 1,
+   "LeakyRelu": 18,
+   "MaxPool": 4
+  },
+  "nodes": 50,
+  "cpu_random_64_relative_difference": 9.175884267222549e-07
+ },
+ "precision": {
+  "tolerance_relative": 1e-05,
+  "entries": []
+ },
+ "photos": [
+  {
+   "name": "24mp",
+   "raw_path": "data/evaluation_photos/20220827-9578.cr3",
+   "preparation": {
+    "area_size": [
+     4032,
+     6032
+    ],
+    "area_megapixels": 24.32,
+    "packed_size": [
+     2016,
+     3016
+    ],
+    "pattern": "RGGB",
+    "added_top": 0,
+    "added_left": 0,
+    "black_r_g1_g2_b": [
+     2052.0,
+     2051.0,
+     2051.0,
+     2051.0
+    ],
+    "maximum": 16383.0,
+    "linear_max_r_g_b": [
+     14351.0,
+     14351.0,
+     14351.0
+    ],
+    "saturation_r_g_b": [
+     0.858209475961203,
+     0.8582193692436506,
+     0.8582193692436506
+    ],
+    "cam_mul": [
+     1953.0,
+     1024.0,
+     1792.0,
+     1024.0
+    ],
+    "mosaic_megapixels": 24.32
+   },
+   "runs": [
+    {
+     "strategy": "free",
+     "dml_memory_arena": true,
+     "tile": 1024,
+     "overlap": 96,
+     "tile_count": 12,
+     "tile_shapes": 4,
+     "computed_packed_pixels": 8640000,
+     "median_seconds_total": 3.5257,
+     "min_seconds_total": 3.5257,
+     "median_seconds_run": 3.4454,
+     "sessions": [
+      {
+       "shape": null,
+       "first_run_shape": [
+        1024,
+        1024
+       ],
+       "create_seconds": 0.0941,
+       "first_run_seconds": 7.8119
+      }
+     ],
+     "process_gpu_memory_used_bytes": 4456448,
+     "repeats": [
+      {
+       "tile_count": 12,
+       "tile_shapes": 4,
+       "computed_packed_pixels": 8640000,
+       "seconds_total": 3.5257,
+       "seconds_run": 3.4454,
+       "gpu": {
+        "samples": 64,
+        "temperature_c": {
+         "first": 66.0,
+         "last": 66.0,
+         "min": 66.0,
+         "max": 66.0,
+         "median": 66.0
+        },
+        "sm_clock_mhz": {
+         "first": 210.0,
+         "last": 210.0,
+         "min": 210.0,
+         "max": 210.0,
+         "median": 210.0
+        },
+        "power_w": {
+         "first": 15.375,
+         "last": 15.267,
+         "min": 15.203,
+         "max": 15.501,
+         "median": 15.375
+        },
+        "device_memory_used_bytes": {
+         "first": 2024411136.0,
+         "last": 2024411136.0,
+         "min": 2024411136.0,
+         "max": 2024411136.0,
+         "median": 2024411136.0
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "45mp",
+   "raw_path": "data/evaluation_photos/demosaic/_DSC0729.ARW",
+   "preparation": {
+    "area_size": [
+     5320,
+     7968
+    ],
+    "area_megapixels": 42.39,
+    "packed_size": [
+     2660,
+     3984
+    ],
+    "pattern": "RGGB",
+    "added_top": 0,
+    "added_left": 0,
+    "black_r_g1_g2_b": [
+     512.0,
+     512.0,
+     512.0,
+     512.0
+    ],
+    "maximum": 16383.0,
+    "linear_max_r_g_b": [
+     15360.0,
+     15360.0,
+     15360.0
+    ],
+    "saturation_r_g_b": [
+     0.93554281393737,
+     0.93554281393737,
+     0.93554281393737
+    ],
+    "cam_mul": [
+     2756.0,
+     1024.0,
+     1432.0,
+     1024.0
+    ],
+    "changed_to_mosaic": [
+     5504,
+     8256
+    ],
+    "change": "extend",
+    "mosaic_megapixels": 45.44
+   },
+   "runs": [
+    {
+     "strategy": "free",
+     "dml_memory_arena": true,
+     "tile": 1024,
+     "overlap": 96,
+     "tile_count": 20,
+     "tile_shapes": 4,
+     "computed_packed_pixels": 16293888,
+     "median_seconds_total": 6.9008,
+     "min_seconds_total": 6.9008,
+     "median_seconds_run": 6.7353,
+     "sessions": [
+      {
+       "shape": null,
+       "first_run_shape": [
+        1024,
+        1024
+       ],
+       "create_seconds": 0.047,
+       "first_run_seconds": 0.4635
+      }
+     ],
+     "process_gpu_memory_used_bytes": 4456448,
+     "repeats": [
+      {
+       "tile_count": 20,
+       "tile_shapes": 4,
+       "computed_packed_pixels": 16293888,
+       "seconds_total": 6.9008,
+       "seconds_run": 6.7353,
+       "gpu": {
+        "samples": 122,
+        "temperature_c": {
+         "first": 64.0,
+         "last": 64.0,
+         "min": 64.0,
+         "max": 64.0,
+         "median": 64.0
+        },
+        "sm_clock_mhz": {
+         "first": 210.0,
+         "last": 210.0,
+         "min": 210.0,
+         "max": 210.0,
+         "median": 210.0
+        },
+        "power_w": {
+         "first": 15.983,
+         "last": 15.844,
+         "min": 15.606,
+         "max": 16.269,
+         "median": 16.034
+        },
+        "device_memory_used_bytes": {
+         "first": 2024411136.0,
+         "last": 2024017920.0,
+         "min": 2024017920.0,
+         "max": 2024411136.0,
+         "median": 2024411136.0
+        }
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "process_gpu_memory_used_bytes": 4456448,
+ "settings": {
+  "repeats": 1,
+  "cpu_threads": 4,
+  "last_tile": "shrunk",
+  "overlap": 96,
+  "time_adapter": "minimum_power",
+  "pause_between_runs_s": 1.0
+ },
+ "weights_sha256": "0bfb9ddb07e6e6c20e6764dfc30336d9314d5760f875992f2144f13dd0df13a5",
+ "peak_working_set_bytes": 2291613696,
+ "date": "2026-11-22",
+ "run": {
+  "command": "python -I scripts/export/measure_onnx_directml.py --authors-repo build/tmp/reference_measurement/rawnind_jddc --adapters --time-adapter minimum_power --photos 24mp 45mp --tiles 1024 --strategies free --repeats 1 --device-check-tile 0 --out results/export/onnx_directml_integrated_gpu.json",
+  "repository_commit": "4db69fcd2a986a53fdddddd9e75b496cb2c03a60",
+  "scripts_changed_after_commit": true,
+  "machine": "MSI Windows"
+ }
+}

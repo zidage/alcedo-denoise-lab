@@ -1,0 +1,96 @@
+{
+ "date": "2026-11-22",
+ "fp16_max": 65504.0,
+ "scales_source": "build\\tmp\\onnx_macos_fp16\\fp16_graph.json",
+ "photos": [
+  {
+   "raw_path": "data/evaluation_photos/20220827-9578.cr3",
+   "largest_abs_before": 135666.4375,
+   "largest_layer_before": "tconvs4.2",
+   "largest_abs_after": 3413.391357421875,
+   "largest_layer_after": "bottom.2",
+   "fp16_margin": 19.190298779415375
+  },
+  {
+   "raw_path": "data/evaluation_photos/astro/_DSC8539.ARW",
+   "largest_abs_before": 155160.640625,
+   "largest_layer_before": "tconvs4.2",
+   "largest_abs_after": 1171.140625,
+   "largest_layer_after": "tconvs4.2",
+   "fp16_margin": 55.931797259616026
+  },
+  {
+   "raw_path": "data/evaluation_photos/demosaic/P1832629.RW2",
+   "largest_abs_before": 119929.140625,
+   "largest_layer_before": "output_module.0",
+   "largest_abs_after": 937.5684814453125,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 69.86582985279331
+  },
+  {
+   "raw_path": "data/evaluation_photos/demosaic/_DSC0729.ARW",
+   "largest_abs_before": 49534.17578125,
+   "largest_layer_before": "output_module.0",
+   "largest_abs_after": 387.24261474609375,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 169.1549367389472
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "largest_abs_before": 73066.0625,
+   "largest_layer_before": "output_module.0",
+   "largest_abs_after": 571.20751953125,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 114.67636149775224
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_gh6/1296625388.rw2",
+   "largest_abs_before": 157516.453125,
+   "largest_layer_before": "tconvs4.2",
+   "largest_abs_after": 2487.422607421875,
+   "largest_layer_after": "tconvs1.0",
+   "fp16_margin": 26.334085653379407
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_gh6/5721990840.rw2",
+   "largest_abs_before": 162308.015625,
+   "largest_layer_before": "tconvs4.2",
+   "largest_abs_after": 3437.541259765625,
+   "largest_layer_after": "bottom.2",
+   "fp16_margin": 19.05548037100975
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon/_DSC2403.NEF",
+   "largest_abs_before": 57243.4140625,
+   "largest_layer_before": "output_module.0",
+   "largest_abs_after": 472.5211486816406,
+   "largest_layer_after": "tconvs2.2",
+   "fp16_margin": 138.6265994289561
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon/_DSC2546.NEF",
+   "largest_abs_before": 15203.458984375,
+   "largest_layer_before": "output_module.0",
+   "largest_abs_after": 118.85588073730469,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 551.1212368597644
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+   "largest_abs_before": 140361.796875,
+   "largest_layer_before": "tconvs4.2",
+   "largest_abs_after": 2493.093505859375,
+   "largest_layer_after": "bottom.2",
+   "fp16_margin": 26.274185001906144
+  },
+  {
+   "raw_path": "data/evaluation_photos/high_iso_s5m2/P2625452.RW2",
+   "largest_abs_before": 169467.359375,
+   "largest_layer_before": "tconvs4.2",
+   "largest_abs_after": 1555.0233154296875,
+   "largest_layer_after": "tconvs1.0",
+   "fp16_margin": 42.124127239789836
+  }
+ ],
+ "smallest_margin": 19.05548037100975
+}

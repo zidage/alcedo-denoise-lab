@@ -121,8 +121,130 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   lines: the median flux ratio to the input is 0.98 for stars with an SNR of 20 to 50 (public
   weights 0.94, GALOSH 0.84) and 0.49 for an SNR of 5 to 10 (0.43, 0.39). One photo at ISO 3200
   does not test the faintest stars of a darker sky (2026-11-19, star photo).
+- In clipped highlights, the gain-matched output of the model of step 5 is below the clip level:
+  on 5 of 6 photos with clipped photosites, the median is 0.888 to 0.992 of `linear_max`, and 0%
+  to 72% of the pixels reach the clip threshold 0.987 of the highlight recovery of Alcedo Studio.
+  So the highlight recovery cannot find the clipped areas from the stored result alone; it needs
+  the clipped photosites of the mosaic (2026-11-21, model output in clipped highlights).
+- A stored result in float16 keeps the developed image of the FP32 result at 81.8 dB or more.
+  JPEG XL lossless of the float16 values is the smallest lossless format (1.9 to 2.3 MB per
+  megapixel, about 100 MB for 45 megapixels, 4 s to encode); float16 byte planes with zstd 3 are
+  3.3 to 3.6 MB per megapixel in about 1 s. Lossy JPEG XL is 0.01 to 0.3 MB per megapixel but
+  gives 26 to 54 dB on the parts of the image, and on linear values it shows color blocks in dark areas at +5 EV from
+  distance 0.5; a log encoding removes most of them and costs detail. A clip mask of the
+  highlights adds at most 3 KB (2026-11-21, stored result formats).
 
 ## Entries
+
+### 2026-11-21 Stored result formats
+
+- **Source**: `results/export/stored_formats.json` and the sheets
+  `results/export/images/<photo>_sheet.png` (measure_stored_formats.py; command in the README of
+  `scripts/export/`). imagecodecs 2026.11.11 with libjxl 0.13.0 and zstd 1.5.7, 4 threads,
+  Intel Core i7-12700H. The stored result is the gain-matched IEEE FP32 output of the model of
+  step 5 (camera RGB, 1 is LibRaw maximum minus black), in tiles of 1024 with the full last tile
+  (inference_cost.md, 2026-11-22: on axes that are not a multiple of 16 its last tiles differ
+  from one pass). Each format is compared with this same result, so the tile plan does not
+  enter the error of a format.
+- **Photos**: Canon EOS R3 `20220827-9578.cr3` (24.3 MP, ISO 25600, night), Canon EOS 90D
+  `high_iso_canon_90d/IMG_4968.CR3` (32.5 MP, ISO 1600), Sony ILCE-7RM3 `demosaic/_DSC0729.ARW`
+  (42.4 MP, low ISO, foliage).
+- **Procedure**: the formats of the docstring of the script. The error is the developed PSNR of
+  the decoded image against the FP32 result (linear Rec.2020, gain, clip, sRGB curve), on the
+  whole area, and the lowest of 4 dark crops and of 4 detail crops of 256 x 256 px.
+- **Result** (size: range over the 3 photos; time: the largest per megapixel; PSNR: the lowest
+  over the 3 photos, in dB):
+
+  | Format | MB / MP | Encode s / MP | Decode s / MP | +2 EV whole / dark / detail | +5 EV whole / dark / detail |
+  | --- | --- | ---: | ---: | --- | --- |
+  | float16, no compression | 6.00 | | | 83.6 / 90.4 / 83.4 | 82.2 / 82.9 / 81.8 |
+  | `fp16_planes_zstd3` | 3.30 to 3.57 | 0.021 | 0.020 | the same | the same |
+  | `fp16_delta_planes_zstd3` | 2.94 to 3.46 | 0.033 | 0.032 | the same | the same |
+  | `fp16_planes_zstd19` | 2.97 to 3.33 | 0.886 | 0.021 | the same | the same |
+  | `fp16_delta_planes_zstd19` | 2.77 to 3.26 | 1.721 | 0.032 | the same | the same |
+  | `jxl_lossless_fp16` (effort 3) | 1.90 to 2.33 | 0.090 | 0.047 | the same | the same |
+  | `jxl_linear_d0.1` | 0.139 to 0.314 | 0.195 | 0.019 | 51.3 / 47.1 / 46.9 | 45.3 / 39.4 / 41.3 |
+  | `jxl_linear_d0.25` | 0.063 to 0.176 | 0.170 | 0.021 | 47.2 / 42.9 / 43.4 | 41.1 / 35.1 / 37.6 |
+  | `jxl_linear_d0.5` | 0.029 to 0.106 | 0.166 | 0.019 | 44.0 / 39.6 / 40.8 | 37.8 / 31.5 / 34.5 |
+  | `jxl_linear_d1` | 0.018 to 0.054 | 0.170 | 0.018 | 41.1 / 36.6 / 37.9 | 34.8 / 28.1 / 31.9 |
+  | `jxl_linear_d2` | 0.013 to 0.034 | 0.170 | 0.016 | 39.1 / 34.8 / 35.6 | 32.9 / 26.3 / 29.7 |
+  | `jxl_log_d0.1` | 0.051 to 0.203 | 0.293 | 0.198 | 49.8 / 54.1 / 43.4 | 45.7 / 46.5 / 40.6 |
+  | `jxl_log_d0.25` | 0.021 to 0.115 | 0.272 | 0.194 | 46.2 / 49.9 / 39.6 | 41.8 / 42.4 / 37.0 |
+  | `jxl_log_d0.5` | 0.013 to 0.070 | 0.258 | 0.173 | 43.4 / 46.8 / 36.9 | 38.9 / 39.3 / 34.1 |
+  | `jxl_log_d1` | 0.009 to 0.036 | 0.290 | 0.173 | 40.4 / 44.2 / 34.1 | 36.4 / 36.7 / 31.5 |
+  | `jxl_log_d2` | 0.007 to 0.022 | 0.280 | 0.194 | 36.8 / 42.0 / 30.7 | 33.7 / 34.5 / 28.4 |
+
+  - The lossless formats keep the float16 values, so their error is the float16 rounding: at
+    least 81.8 dB on each part. For a 45 megapixel photo: float16 without compression 272 MB,
+    `fp16_planes_zstd3` 150 to 162 MB in about 1 s each way, `jxl_lossless_fp16` 86 to 106 MB
+    in 4.1 s to encode and 2.1 s to decode. The smallest zstd format (difference planes, level
+    19) is 2.77 MB / MP at 1.7 s / MP to encode, still larger than JPEG XL lossless.
+  - Lossy JPEG XL loses at least 30 dB against the lossless formats at the smallest distance
+    (0.1): 46.9 to 51.3 dB at +2 EV. The step from lossless to lossy is much larger than the steps
+    between the distances.
+  - The log encoding gives the dark crops 7.0 to 8.6 dB more than the linear values at the same
+    distance (for example 46.5 against 39.4 dB at +5 EV, distance 0.1), at a smaller size; it
+    gives the detail crops 3.5 to 4.9 dB less at +2 EV and 0.4 to 1.3 dB less at +5 EV.
+  - Check by eye of the sheets: the lossless row is the same as FP32. The linear rows at distance
+    1 and 2 show green and magenta blocks in the dark crop at +5 EV; distance 0.5 shows a weaker
+    form of them. The log rows at 0.5 to 2 are close to FP32 in the dark crops and a little
+    softer in the detail crops. The sheets show one dark and one detail crop of each photo.
+  - The decode time of the log formats includes the curve in NumPy (float64), most of the
+    4.8 to 8.2 s; the libjxl decode is about the time of the linear formats (0.5 to 0.8 s).
+  - The gain-matched results have no negative value (smallest 0.0002) and a largest value of 0.50
+    to 1.23.
+  - The clip mask (1 bit for each channel of each 2 x 2 cell, zstd 19) is 113 to 2,871 bytes for
+    a photo.
+  - Not measured: a stored format in Alcedo Studio (C++ libjxl or zstd), JPEG XL at other efforts,
+    lossy float16 formats, the error after the full Develop pipeline of Alcedo Studio.
+- **Effect**: the statement of Current state about the stored result formats.
+
+### 2026-11-21 Model output in clipped highlights
+
+- **Source**: `results/export/clipped_areas.json` (measure_clipped_areas.py; command in the README
+  of `scripts/export/`). The model of step 5 (`utnet2_bayer_dark_loss_10k.safetensors`) in PyTorch
+  IEEE FP32, tiles of 1536 packed px with an overlap of 96 and the shrunk last tile (the one-pass
+  output, inference_cost.md, 2026-11-22, last tile and cuDNN algorithms), input preparation 1,
+  gain match over the area. A first run with the full last tile differed by at most 0.004 in a
+  ratio and 0.003 in a fraction.
+- **Photos**: the 6 local photos with photosites at or above LibRaw `linear_max`: Canon EOS R3
+  `20220827-9578.cr3`, Sony ILCE-7RM3 `astro/_DSC8539.ARW` (stars), Panasonic DC-GH6
+  `high_iso_gh6/1296625388.rw2` and `5721990840.rw2`, Nikon D7200
+  `high_iso_nikon_d7200/Ric_Developer.NEF` (night, fog), Panasonic DC-S5M2
+  `high_iso_s5m2/P2625452.RW2` (night, city lights).
+- **Procedure**: a 2 x 2 cell has a clipped channel when each of its photosites of that color is
+  at or above `linear_max`. For each clipped channel, the 4 output pixels of the cell give the
+  ratio `stored / saturation`, where `saturation = (linear_max - black) / (maximum - black)`
+  (1 is the clip level). This is the value domain of the highlight recovery of Alcedo Studio,
+  which finds a clipped channel at 0.987 or more (the white balance multiplies the value and the
+  clip level by the same factor) and starts its soft clip at 0.95.
+- **Result** (cells with a clipped channel; median ratio; fraction of pixels at or above 0.987):
+
+  | Photo | R | G | B | Cells with one clipped channel |
+  | --- | --- | --- | --- | ---: |
+  | EOS R3 | 3,756; 1.076; 0.92 | 6,352; 1.085; 0.96 | 3,469; 1.083; 0.94 | 2,570 |
+  | ILCE-7RM3 stars | 575; 0.888; 0.19 | 1,275; 1.053; 0.72 | 902; 0.973; 0.46 | 686 |
+  | DC-GH6 1296625388 | 8,932; 0.974; 0.21 | 2,432; 0.971; 0.26 | 1,734; 0.975; 0.09 | 8,150 |
+  | DC-GH6 5721990840 | 35,698; 0.942; 0.00 | 51,670; 0.939; 0.01 | 32,376; 0.942; 0.05 | 19,209 |
+  | D7200 fog | 5,302; 0.955; 0.02 | 4,773; 0.953; 0.11 | 850; 0.920; 0.00 | 796 |
+  | DC-S5M2 city | 17,495; 0.979; 0.36 | 23,031; 0.992; 0.57 | 12,912; 0.975; 0.32 | 11,232 |
+
+  - On 5 of the 6 photos, the model output in the clipped cells is below the clip level: the
+    median is 0.888 to 0.992 of it, and 0% to 72% of the pixels (most channels below 40%) reach
+    0.987. A clip test of the highlight recovery on the stored result therefore does not find
+    most clipped areas. The 5th percentile is 0.50 to 0.93, so a lower threshold also misses
+    parts of them, and would mark unclipped bright pixels.
+  - The output of a flat clipped area is darker than the clip level: on DC-GH6 5721990840 (the
+    largest clipped areas), the 95th percentile of R is 0.952, so no R pixel of these cells
+    reaches 0.987.
+  - The cells with one clipped channel give the same picture: median 0.62 to 0.997, at most 63%
+    at or above 0.987.
+  - The EOS R3 is different because its LibRaw `linear_max` (14,351) is below the largest raw
+    values (16,325 to 16,383): the cells above `linear_max` are not all saturated, and the 95th
+    percentile of the model output is 1.09 to 1.15 of `linear_max`. Alcedo Studio clips the input at `linear_max`.
+  - Not measured: a check by eye of the highlight recovery on the stored result, the output
+    around the clipped areas (the transition), photos with large clipped areas in daylight.
+- **Effect**: the statement of Current state about the clipped highlights.
 
 ### 2026-11-20 Step 5 runs
 

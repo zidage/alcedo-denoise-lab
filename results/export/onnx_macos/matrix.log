@@ -1,0 +1,63 @@
+== coreml_gpu_per_shape tile 1024 10:41:21
+2026-11-22 10:41:21.909 ort_macos_measure-1.24.4[32571:41084711] profile function : main
+24mp tile 1024: 12 tiles, 4 shapes, 1.84445 s (run 1.79842 s), footprint 2.61435 GiB, peak 2.61635 GiB, after release 2.03442 GiB, non-finite 0
+32mp tile 1024: 12 tiles, 4 shapes, 2.5279 s (run 2.46719 s), footprint 4.33995 GiB, peak 4.34 GiB, after release 3.03172 GiB, non-finite 0
+36mp tile 1024: 15 tiles, 4 shapes, 3.00504 s (run 2.9301 s), footprint 3.99288 GiB, peak 4.34003 GiB, after release 2.97168 GiB, non-finite 0
+42mp tile 1024: 15 tiles, 4 shapes, 3.4779 s (run 3.40316 s), footprint 4.10489 GiB, peak 5.32234 GiB, after release 3.31418 GiB, non-finite 0
+45mp tile 1024: 20 tiles, 4 shapes, 3.93261 s (run 3.85571 s), footprint 3.66449 GiB, peak 5.32234 GiB, after release 2.22984 GiB, non-finite 0
+== coreml_gpu_per_shape tile 1536 10:43:10
+2026-11-22 10:43:10.690 ort_macos_measure-1.24.4[33136:41086761] profile function : main
+24mp tile 1536: 6 tiles, 4 shapes, 1.61578 s (run 1.56874 s), footprint 4.63053 GiB, peak 4.63057 GiB, after release 3.48586 GiB, non-finite 0
+32mp tile 1536: 6 tiles, 4 shapes, 3.0725 s (run 3.02802 s), footprint 6.32274 GiB, peak 6.83095 GiB, after release 5.31642 GiB, non-finite 0
+36mp tile 1536: 6 tiles, 4 shapes, 2.53756 s (run 2.49004 s), footprint 7.12088 GiB, peak 7.73909 GiB, after release 2.1173 GiB, non-finite 0
+42mp tile 1536: 6 tiles, 4 shapes, 3.00835 s (run 2.96454 s), footprint 8.55812 GiB, peak 9.15479 GiB, after release 0.844591 GiB, non-finite 0
+45mp tile 1536: 6 tiles, 4 shapes, 4.15175 s (run 4.09742 s), footprint 9.1771 GiB, peak 9.90323 GiB, after release 0.982301 GiB, non-finite 0
+== coreml_gpu_per_shape tile 2048 10:45:09
+2026-11-22 10:45:10.145 ort_macos_measure-1.24.4[33789:41090164] profile function : main
+24mp tile 2048: 2 tiles, 2 shapes, 1.35748 s (run 1.33047 s), footprint 7.14656 GiB, peak 7.14752 GiB, after release 4.856 GiB, non-finite 0
+32mp tile 2048: 4 tiles, 4 shapes, 2.21865 s (run 2.18409 s), footprint 10.2364 GiB, peak 10.2379 GiB, after release 4.38509 GiB, non-finite 0
+36mp tile 2048: 4 tiles, 4 shapes, 2.53512 s (run 2.50129 s), footprint 11.5475 GiB, peak 11.6038 GiB, after release 5.29398 GiB, non-finite 0
+42mp tile 2048: 6 tiles, 4 shapes, 2.9621 s (run 2.91861 s), footprint 8.60291 GiB, peak 11.6038 GiB, after release 2.80821 GiB, non-finite 0
+45mp tile 2048: 6 tiles, 4 shapes, 3.2216 s (run 3.17332 s), footprint 9.7152 GiB, peak 11.6038 GiB, after release 3.6052 GiB, non-finite 0
+== coreml_gpu_per_shape_fastprediction tile 1536 10:47:02
+2026-11-22 10:47:03.241 ort_macos_measure-1.24.4[34385:41092484] profile function : main
+24mp tile 1536: 6 tiles, 4 shapes, 1.60215 s (run 1.55985 s), footprint 4.63045 GiB, peak 4.63049 GiB, after release 3.40422 GiB, non-finite 0
+36mp tile 1536: 6 tiles, 4 shapes, 2.46011 s (run 2.40759 s), footprint 7.62753 GiB, peak 7.6285 GiB, after release 6.24101 GiB, non-finite 0
+45mp tile 1536: 6 tiles, 4 shapes, 3.2549 s (run 3.20727 s), footprint 10.0735 GiB, peak 10.0745 GiB, after release 1.78205 GiB, non-finite 0
+== coreml_gpu_free_d2s_cpu tile 1536 10:48:14
+2026-11-22 10:48:15.411 ort_macos_measure-1.24.4[34769:41093778] profile function : main
+24mp tile 1536: 6 tiles, 4 shapes, 1.91634 s (run 1.88571 s), footprint 1.24512 GiB, peak 3.51602 GiB, after release 1.04456 GiB, non-finite 0
+36mp tile 1536: 6 tiles, 4 shapes, 2.91392 s (run 2.8759 s), footprint 2.67267 GiB, peak 4.07204 GiB, after release 2.6723 GiB, non-finite 0
+45mp tile 1536: 6 tiles, 4 shapes, 3.72301 s (run 3.67573 s), footprint 4.04798 GiB, peak 4.74655 GiB, after release 4.01737 GiB, non-finite 0
+== webgpu_builtin_free tile 1536 10:49:24
+24mp tile 1536: 6 tiles, 4 shapes, 4.88796 s (run 4.85824 s), footprint 1.75739 GiB, peak 4.14058 GiB, after release 1.16159 GiB, non-finite 0
+36mp tile 1536: 6 tiles, 4 shapes, 7.36684 s (run 7.32766 s), footprint 2.16855 GiB, peak 4.56522 GiB, after release 1.82192 GiB, non-finite 0
+45mp tile 1536: 6 tiles, 4 shapes, 9.09868 s (run 9.05181 s), footprint 4.19956 GiB, peak 5.05533 GiB, after release 3.51358 GiB, non-finite 0
+== webgpu_builtin_per_shape tile 1536 10:51:27
+24mp tile 1536: 6 tiles, 4 shapes, 4.8702 s (run 4.84092 s), footprint 2.28169 GiB, peak 3.83025 GiB, after release 1.26079 GiB, non-finite 0
+36mp tile 1536: 6 tiles, 4 shapes, 7.19786 s (run 7.15911 s), footprint 2.98877 GiB, peak 4.23287 GiB, after release 2.51715 GiB, non-finite 0
+45mp tile 1536: 6 tiles, 4 shapes, 9.06296 s (run 9.01704 s), footprint 3.22519 GiB, peak 4.72893 GiB, after release 1.72635 GiB, non-finite 0
+== webgpu_plugin_free tile 1536 10:53:39
+24mp tile 1536: 6 tiles, 4 shapes, 5.07313 s (run 5.04442 s), footprint 3.18607 GiB, peak 5.69627 GiB, after release 0.578294 GiB, non-finite 0
+36mp tile 1536: 6 tiles, 4 shapes, 7.53238 s (run 7.48891 s), footprint 3.551 GiB, peak 6.02153 GiB, after release 1.11727 GiB, non-finite 0
+45mp tile 1536: 6 tiles, 4 shapes, 9.63743 s (run 9.58754 s), footprint 4.04402 GiB, peak 6.47328 GiB, after release 1.62601 GiB, non-finite 0
+== coreml_gpu_per_shape tile 1536 10:55:45
+2026-11-22 10:55:46.280 ort_macos_measure-1.32.0[37110:41102092] profile function : main
+24mp tile 1536: 6 tiles, 4 shapes, 1.63211 s (run 1.59247 s), footprint 4.61284 GiB, peak 4.61292 GiB, after release 3.38684 GiB, non-finite 0
+36mp tile 1536: 6 tiles, 4 shapes, 2.51182 s (run 2.4663 s), footprint 7.61214 GiB, peak 7.61318 GiB, after release 6.30258 GiB, non-finite 0
+45mp tile 1536: 6 tiles, 4 shapes, 3.31809 s (run 3.27145 s), footprint 10.0581 GiB, peak 10.0614 GiB, after release 1.76668 GiB, non-finite 0
+== coreml_gpu_free_d2s_cpu tile 1536 10:56:58
+2026-11-22 10:56:59.353 ort_macos_measure-1.32.0[37489:41103557] profile function : main
+24mp tile 1536: 6 tiles, 4 shapes, 1.90529 s (run 1.87783 s), footprint 1.23085 GiB, peak 3.57352 GiB, after release 1.03029 GiB, non-finite 0
+36mp tile 1536: 6 tiles, 4 shapes, 2.87728 s (run 2.83962 s), footprint 2.65782 GiB, peak 4.00861 GiB, after release 2.65746 GiB, non-finite 0
+45mp tile 1536: 6 tiles, 4 shapes, 3.75798 s (run 3.70536 s), footprint 4.03321 GiB, peak 4.53501 GiB, after release 4.03281 GiB, non-finite 0
+== webgpu_builtin_free tile 1536 10:58:08
+24mp tile 1536: 6 tiles, 4 shapes, 5.05902 s (run 5.02924 s), footprint 3.17821 GiB, peak 5.68739 GiB, after release 0.570451 GiB, non-finite 0
+36mp tile 1536: 6 tiles, 4 shapes, 7.51822 s (run 7.47867 s), footprint 3.49347 GiB, peak 6.01369 GiB, after release 1.10938 GiB, non-finite 0
+45mp tile 1536: 6 tiles, 4 shapes, 9.39385 s (run 9.34264 s), footprint 3.94516 GiB, peak 6.46533 GiB, after release 1.61815 GiB, non-finite 0
+== cpu tile 1024 11:00:13
+24mp tile 1024: 12 tiles, 4 shapes, 12.722 s (run 12.5619 s), footprint 11.517 GiB, peak 11.517 GiB, after release 11.5167 GiB, non-finite 0
+== coreml_cpu_only tile 1024 11:01:30
+2026-11-22 11:01:30.778 ort_macos_measure-1.24.4[38900:41108036] profile function : main
+24mp tile 1024: 12 tiles, 4 shapes, 5.18892 s (run 5.14339 s), footprint 0.647692 GiB, peak 1.14771 GiB, after release 0.551438 GiB, non-finite 0
+matrix done 11:02:17
