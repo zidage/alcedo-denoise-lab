@@ -385,9 +385,12 @@ run, and in which format does Alcedo Studio store its result?
 
 On Windows, Alcedo Studio runs the model in FP32 in ONNX Runtime with the DirectML execution
 provider, from its C++ code (changed on 2026-11-22 after the DirectML measurement,
-[findings/inference_cost.md](findings/inference_cost.md)). The lab exports the ONNX graph from
-the safetensors weights. macOS and Linux get their forward code later. Alcedo Studio does not use
-TensorRT or cuDNN.
+[findings/inference_cost.md](findings/inference_cost.md)). On macOS, Alcedo Studio runs the
+model in FP32 in ONNX Runtime with the Core ML execution provider on the GPU, also from its C++
+code (2026-11-22, after the measurement of ONNX Runtime on macOS in the same file). The lab
+exports the ONNX graph from the safetensors weights, and for macOS a copy without the last
+DepthToSpace node. Linux gets its forward code later. Alcedo Studio does not use TensorRT or
+cuDNN.
 
 - Export the weights to safetensors, with the SHA-256, the name and the shape of each tensor,
   and the slope of LeakyReLU. Make expected outputs of fixed inputs in PyTorch FP32 (TF32 off)

@@ -1,0 +1,21 @@
+{
+ "onnxruntime": "1.32.0",
+ "config": {"ep": "coreml", "strategy": "free", "ModelFormat": "MLProgram", "MLComputeUnits": "CPUAndGPU", "RequireStaticInputShapes": "0", "AllowLowPrecisionAccumulationOnGPU": "0", "SpecializationStrategy": "Default", "ModelCacheDirectory": "", "cpu_ep_fallback_disabled": true, "intra_op_threads": 4, "graph": "../utnet2_bayer_dark_loss_10k_packed_output.onnx", "packed_output": true},
+ "available_providers": ["CoreMLExecutionProvider", "WebGpuExecutionProvider", "CPUExecutionProvider"],
+ "footprint_start_bytes": 2376208,
+ "probe_session_seconds": 0.447999,
+ "photos": [
+  {"photo": "24mp", "mosaic_megapixels": 24.321, "tile": 1536, "overlap": 96, "tile_count": 6, "tile_shapes": 4, "computed_packed_pixels": 7524864, "median_seconds_total": 1.82947, "min_seconds_total": 1.79289, "median_seconds_run": 1.80134, "seconds_total": [1.87702, 1.79289, 1.82947], "thermal_state": [0, 0, 0, 0], "output_sum": 2.99443e+11, "output_max_abs": 130970, "output_non_finite": 0, "footprint_after_runs_bytes": 1241925168, "footprint_peak_bytes": 3758114352, "sessions": [{"shape": [1536, 1536], "free": true, "create_seconds": 0.145416, "first_run_seconds": 0.485467}]},
+  {"photo": "36mp", "mosaic_megapixels": 36.1523, "tile": 1536, "overlap": 96, "tile_count": 6, "tile_shapes": 4, "computed_packed_pixels": 10793984, "median_seconds_total": 2.74269, "min_seconds_total": 2.63453, "median_seconds_run": 2.70429, "seconds_total": [2.63453, 2.82833, 2.74269], "thermal_state": [0, 0, 0, 0], "output_sum": 6.98917e+11, "output_max_abs": 49534.2, "output_non_finite": 0, "footprint_after_runs_bytes": 2738702304, "footprint_peak_bytes": 4272080864, "sessions": [{"shape": [1536, 1536], "free": true, "create_seconds": 0.151439, "first_run_seconds": 0.637578}]},
+  {"photo": "45mp", "mosaic_megapixels": 45.441, "tile": 1536, "overlap": 96, "tile_count": 6, "tile_shapes": 4, "computed_packed_pixels": 13283328, "median_seconds_total": 3.50669, "min_seconds_total": 3.44995, "median_seconds_run": 3.45645, "seconds_total": [3.44995, 3.55186, 3.50669], "thermal_state": [0, 0, 0, 0], "output_sum": 9.92002e+11, "output_max_abs": 49534.2, "output_non_finite": 0, "footprint_after_runs_bytes": 4215359840, "footprint_peak_bytes": 4977510752, "sessions": [{"shape": [1536, 1536], "free": true, "create_seconds": 0.151384, "first_run_seconds": 0.666849}]}
+ ],
+ "footprint_peak_bytes": 4977510752,
+ "log": [
+  "onnxruntime inference_session.cc:778 TraceSessionOptions: Session Options {  execution_mode:0 execution_order:DEFAULT enable_profiling:0 optimized_model_filepath:\"\" enable_mem_pattern:1 enable_mem_reuse:1 enable_cpu_mem_arena:0 profile_file_prefix:onnxruntime_profile_ session_logid: session_log_severity_level:0 session_log_verbosity_level:0 max_num_graph_transformation_steps:10 graph_optimization_level:4 intra_op_param:OrtThreadPoolParams { thread_pool_size: 4 auto_set_affinity: 0 allow_spinning: 1 spin_duration_us: -1 spin_backoff_max: 1 dynamic_block_base_: 0 stack_size: 0 affinity_str:  set_denormal_as_zero: 0 } inter_op_param:OrtThreadPoolParams ",
+  "onnxruntime coreml_execution_provider.cc:32 CoreMLExecutionProvider: CoreML version: 8",
+  "onnxruntime coreml_execution_provider.cc:143 GetCapability: CoreMLExecutionProvider::GetCapability, number of partitions supported by CoreML: 1 number of nodes in the graph: 49 number of nodes supported by CoreML: 49",
+  "onnxruntime session_state.cc:1598 VerifyEachNodeIsAssignedToAnEp: Node placements",
+  "onnxruntime session_state.cc:1601 VerifyEachNodeIsAssignedToAnEp:  All nodes placed on [CoreMLExecutionProvider]. Number of nodes: 1",
+  "onnxruntime allocation_planner.cc:2818 CreateGraphPartitioner: Use DeviceBasedPartition as default"
+ ]
+}

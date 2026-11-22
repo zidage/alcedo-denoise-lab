@@ -1,0 +1,30 @@
+{
+ "onnxruntime": "1.32.0",
+ "config": {"ep": "coreml", "strategy": "free", "ModelFormat": "MLProgram", "MLComputeUnits": "CPUAndGPU", "RequireStaticInputShapes": "0", "AllowLowPrecisionAccumulationOnGPU": "0", "SpecializationStrategy": "Default", "ModelCacheDirectory": "", "cpu_ep_fallback_disabled": false, "intra_op_threads": 4},
+ "available_providers": ["CoreMLExecutionProvider", "WebGpuExecutionProvider", "CPUExecutionProvider"],
+ "footprint_start_bytes": 2408952,
+ "probe_session_seconds": 0.486459,
+ "photos": [
+  {"photo": "24mp", "mosaic_megapixels": 24.321, "tile": 1536, "overlap": 96, "tile_count": 6, "tile_shapes": 4, "computed_packed_pixels": 7524864, "median_seconds_total": 1.90529, "min_seconds_total": 1.85174, "median_seconds_run": 1.87783, "seconds_total": [2.33264, 1.90529, 1.85174], "thermal_state": [0, 0, 0, 0], "output_sum": 2.99443e+11, "output_max_abs": 130970, "output_non_finite": 0, "footprint_after_runs_bytes": 1321617040, "footprint_peak_bytes": 3837036080, "sessions": [{"shape": [1536, 1536], "free": true, "create_seconds": 0.166952, "first_run_seconds": 0.536645}]},
+  {"photo": "36mp", "mosaic_megapixels": 36.1523, "tile": 1536, "overlap": 96, "tile_count": 6, "tile_shapes": 4, "computed_packed_pixels": 10793984, "median_seconds_total": 2.87728, "min_seconds_total": 2.86168, "median_seconds_run": 2.83962, "seconds_total": [2.87728, 2.93256, 2.86168], "thermal_state": [0, 0, 0, 0], "output_sum": 6.98917e+11, "output_max_abs": 49534.2, "output_non_finite": 0, "footprint_after_runs_bytes": 2853816384, "footprint_peak_bytes": 4304209984, "sessions": [{"shape": [1536, 1536], "free": true, "create_seconds": 0.165611, "first_run_seconds": 0.657254}]},
+  {"photo": "45mp", "mosaic_megapixels": 45.441, "tile": 1536, "overlap": 96, "tile_count": 6, "tile_shapes": 4, "computed_packed_pixels": 13283328, "median_seconds_total": 3.75798, "min_seconds_total": 3.6758, "median_seconds_run": 3.70536, "seconds_total": [3.75798, 3.6758, 3.80735], "thermal_state": [0, 0, 0, 0], "output_sum": 9.92002e+11, "output_max_abs": 49534.2, "output_non_finite": 0, "footprint_after_runs_bytes": 4330621400, "footprint_peak_bytes": 4869425624, "sessions": [{"shape": [1536, 1536], "free": true, "create_seconds": 0.163936, "first_run_seconds": 0.759749}]}
+ ],
+ "footprint_peak_bytes": 4869425624,
+ "log": [
+  "onnxruntime inference_session.cc:778 TraceSessionOptions: Session Options {  execution_mode:0 execution_order:DEFAULT enable_profiling:0 optimized_model_filepath:\"\" enable_mem_pattern:1 enable_mem_reuse:1 enable_cpu_mem_arena:0 profile_file_prefix:onnxruntime_profile_ session_logid: session_log_severity_level:0 session_log_verbosity_level:0 max_num_graph_transformation_steps:10 graph_optimization_level:4 intra_op_param:OrtThreadPoolParams { thread_pool_size: 4 auto_set_affinity: 0 allow_spinning: 1 spin_duration_us: -1 spin_backoff_max: 1 dynamic_block_base_: 0 stack_size: 0 affinity_str:  set_denormal_as_zero: 0 } inter_op_param:OrtThreadPoolParams ",
+  "onnxruntime coreml_execution_provider.cc:32 CoreMLExecutionProvider: CoreML version: 8",
+  "onnxruntime base_op_builder.cc:46 IsOpSupported: Operator [DepthToSpace] is not supported by the impl",
+  "onnxruntime coreml_execution_provider.cc:143 GetCapability: CoreMLExecutionProvider::GetCapability, number of partitions supported by CoreML: 1 number of nodes in the graph: 50 number of nodes supported by CoreML: 49",
+  "onnxruntime session_state.cc:1598 VerifyEachNodeIsAssignedToAnEp: Node placements",
+  "onnxruntime session_state.cc:1604 VerifyEachNodeIsAssignedToAnEp:  Node(s) placed on [CoreMLExecutionProvider]. Number of nodes: 1",
+  "onnxruntime session_state.cc:1604 VerifyEachNodeIsAssignedToAnEp:  Node(s) placed on [CPUExecutionProvider]. Number of nodes: 1",
+  "onnxruntime session_state.cc:1618 VerifyEachNodeIsAssignedToAnEp: Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.",
+  "onnxruntime allocation_planner.cc:2818 CreateGraphPartitioner: Use DeviceBasedPartition as default",
+  "onnxruntime session_state.cc:1618 VerifyEachNodeIsAssignedToAnEp: Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.",
+  "onnxruntime session_state.cc:1620 VerifyEachNodeIsAssignedToAnEp: Rerunning with verbose output on a non-minimal build will show node assignments.",
+  "onnxruntime session_state.cc:1618 VerifyEachNodeIsAssignedToAnEp: Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.",
+  "onnxruntime session_state.cc:1620 VerifyEachNodeIsAssignedToAnEp: Rerunning with verbose output on a non-minimal build will show node assignments.",
+  "onnxruntime session_state.cc:1618 VerifyEachNodeIsAssignedToAnEp: Some nodes were not assigned to the preferred execution providers which may or may not have an negative impact on performance. e.g. ORT explicitly assigns shape related ops to CPU to improve perf.",
+  "onnxruntime session_state.cc:1620 VerifyEachNodeIsAssignedToAnEp: Rerunning with verbose output on a non-minimal build will show node assignments."
+ ]
+}

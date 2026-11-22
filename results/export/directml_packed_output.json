@@ -1,0 +1,63 @@
+{
+ "onnxruntime": "1.24.4",
+ "tile": 1536,
+ "overlap": 96,
+ "packed_graph_sha256": "e500ad2aaf2102a8ee20cdd8e0abfea31f0db7d65df20fff6e30623140f50000",
+ "photos": [
+  {
+   "photo": "24mp",
+   "full_median_seconds": 0.5088,
+   "full_seconds": [
+    0.6038,
+    0.5088,
+    0.5027
+   ],
+   "packed_output_median_seconds": 0.6724,
+   "packed_output_seconds": [
+    0.6807,
+    0.6724,
+    0.6426
+   ],
+   "max_abs_difference_relative": 0.0
+  },
+  {
+   "photo": "36mp",
+   "full_median_seconds": 0.7014,
+   "full_seconds": [
+    0.6934,
+    0.7014,
+    0.7157
+   ],
+   "packed_output_median_seconds": 1.1264,
+   "packed_output_seconds": [
+    1.0764,
+    1.1264,
+    1.1459
+   ],
+   "max_abs_difference_relative": 0.0
+  },
+  {
+   "photo": "45mp",
+   "full_median_seconds": 0.8472,
+   "full_seconds": [
+    0.8886,
+    0.8444,
+    0.8472
+   ],
+   "packed_output_median_seconds": 1.2599,
+   "packed_output_seconds": [
+    1.1225,
+    1.2784,
+    1.2599
+   ],
+   "max_abs_difference_relative": 0.0
+  }
+ ],
+ "date": "2026-11-22",
+ "run": {
+  "command": "python -I scripts/export/measure_directml_packed_output.py --packed-onnx build/tmp/dn1_macos/utnet2_bayer_dark_loss_10k_packed_output.onnx",
+  "repository_commit": "842324a674fdbb76e8de948699ad84f38f4f4bbb",
+  "scripts_changed_after_commit": true,
+  "machine": "MSI Windows"
+ }
+}

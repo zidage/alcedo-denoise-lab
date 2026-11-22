@@ -1,0 +1,55 @@
+2026-11-22 11:07:28.080 ort_macos_measure-1.24.4[40920:41116123] profile function : main
+2026-11-22 11:07:28.086 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.087 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.087 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.087 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.087 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.max_pool, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.087 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.087 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.087 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.087 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.087 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.max_pool, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.088 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.088 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.088 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.088 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.088 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.max_pool, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.088 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.088 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.089 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.089 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.089 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.max_pool, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.089 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.089 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.089 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.089 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.090 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv_transpose, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.090 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.concat, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.090 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.090 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.090 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.090 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.090 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv_transpose, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.091 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.concat, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.091 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.091 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.091 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.091 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.091 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv_transpose, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.091 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.concat, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.092 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.092 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.092 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.092 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.092 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv_transpose, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.092 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.concat, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.092 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.093 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.093 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.093 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.leaky_relu, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+2026-11-22 11:07:28.093 ort_macos_measure-1.24.4[40920:41116123] Operation: ios18.conv, Device Usage: <MLGPUComputeDevice: 0x78cc733ca0> Apple M4, Estimated Cost: 0.000000
+24mp tile 1536: 6 tiles, 4 shapes, 1.83125 s (run 1.80264 s), footprint 1.17122 GiB, peak 3.44278 GiB, after release 0.970643 GiB, non-finite 0
+32mp tile 1536: 6 tiles, 4 shapes, 2.4978 s (run 2.46004 s), footprint 2.20999 GiB, peak 3.95796 GiB, after release 2.2096 GiB, non-finite 0
+36mp tile 1536: 6 tiles, 4 shapes, 2.82314 s (run 2.7869 s), footprint 3.05095 GiB, peak 4.41634 GiB, after release 3.05055 GiB, non-finite 0
+42mp tile 1536: 6 tiles, 4 shapes, 3.31406 s (run 3.27121 s), footprint 4.10221 GiB, peak 4.93645 GiB, after release 4.10184 GiB, non-finite 0
+45mp tile 1536: 6 tiles, 4 shapes, 3.54506 s (run 3.4935 s), footprint 4.90026 GiB, peak 5.47487 GiB, after release 4.89986 GiB, non-finite 0

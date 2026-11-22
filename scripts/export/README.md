@@ -87,6 +87,9 @@ weights file of the release asset and the packages of the last lines of `require
 | `measure_clipped_areas.py` | `results/export/clipped_areas.json` | quality.md, 2026-11-21, clipped highlights |
 | `measure_stored_formats.py` | `results/export/stored_formats.json`, `results/export/images/*_sheet.png` (not committed) | quality.md, 2026-11-21, stored result formats |
 | `measure_onnx_directml.py` | `models/export/dark_area_loss/utnet2_bayer_dark_loss_10k.onnx` (not committed), `results/export/onnx_directml.json`, `results/export/onnx_directml_integrated_gpu.json` | inference_cost.md, 2026-11-22, ONNX Runtime DirectML |
+| `measure_directml_packed_output.py` | `results/export/directml_packed_output.json` | inference_cost.md, 2026-11-22, ONNX Runtime on macOS |
+| `write_raw_inputs.py` | Raw float32 files and `manifest.txt` of the expected outputs and the packed photos (not committed), the input of the macOS tool | |
+| `macos/` | C++ tool of the macOS measurement and its shell drivers; `results/export/onnx_macos/` | inference_cost.md, 2026-11-22, ONNX Runtime on macOS |
 | `measurement_common.py` | Input preparation 1, tile planner, tile loop, gain match, development, NVML sampler (imported) | |
 
 GPU jobs, one at a time, in this order (the later scripts read the overlap table of the first):
@@ -108,6 +111,42 @@ $P scripts/export/measure_photo_time.py $A $O --last-tile shrunk --modes ieee_fp
 $P scripts/export/measure_onnx_directml.py $A --arena-off
 $P scripts/export/measure_photo_time.py $A $O --last-tile shrunk --modes ieee_fp32_autotuned --out results/export/photo_time_beside_directml.json
 $P scripts/export/measure_onnx_directml.py $A --adapters --time-adapter minimum_power --photos 24mp 45mp --tiles 1024 --strategies free --repeats 1 --device-check-tile 0 --out results/export/onnx_directml_integrated_gpu.json
+# 2026-11-22: the graph without its DepthToSpace node (made by macos/, below) on DirectML.
+$P scripts/export/measure_directml_packed_output.py --packed-onnx build/tmp/onnx_macos/utnet2_bayer_dark_loss_10k_packed_output.onnx
+```
+
+### ONNX Runtime on macOS (C++)
+
+`macos/ort_macos_measure.mm` runs the ONNX graph through the C++ API of ONNX Runtime, as Alcedo
+Studio does: precision against the expected outputs of DN0, the tiled output of
+`rawnind_crop_512` (tiles of 256, overlap 96) against one pass, and the time of the photos of
+`measure_photo_time.py` with the planner of `measurement_common.plan_axis` (last tile shrunk).
+One process measures one configuration, so that the peak memory footprint of the process
+(`TASK_VM_INFO`, `ledger_phys_footprint_peak`) belongs to it. Execution providers: CPU, Core ML
+(`ModelFormat`, `MLComputeUnits`, `AllowLowPrecisionAccumulationOnGPU`,
+`SpecializationStrategy`), the WebGPU execution provider of the ONNX Runtime package
+(`webgpu_builtin`), and the WebGPU plugin execution provider (`webgpu`). Session strategies as
+in `measure_onnx_directml.py` (`free`, `per_shape`). `--packed-output 1` runs the graph of
+`macos/write_graph_without_pixel_shuffle.py` and does the PixelShuffle on the host.
+
+Work folder layout (on the Mac, for example `build/tmp/onnx_macos/`): `tool/` (a copy of
+`macos/`), `pkg/` (from `fetch_onnxruntime.py`), `data/` (from `write_raw_inputs.py`, 0.7 GB),
+the two ONNX graphs, and `results/`. The photo data stays on the user's machines; delete the
+work folder after the run.
+
+```bash
+# Windows: inputs and graphs.
+W=build/tmp/onnx_macos
+$P scripts/export/write_raw_inputs.py $W/data
+$P scripts/export/macos/write_graph_without_pixel_shuffle.py models/export/dark_area_loss/utnet2_bayer_dark_loss_10k.onnx $W/utnet2_bayer_dark_loss_10k_packed_output.onnx
+cp models/export/dark_area_loss/utnet2_bayer_dark_loss_10k.onnx $W/
+python -I scripts/export/macos/fetch_onnxruntime.py $W
+cp -r scripts/export/macos $W/tool
+# Copy $W to the Mac, then on the Mac, one job at a time:
+sh tool/build.sh
+sh tool/matrix.sh > results/matrix.log 2>&1
+sh tool/matrix_packed.sh > results/matrix_packed.log 2>&1
+# Copy results/ back to results/export/onnx_macos/.
 ```
 
 ## Tolerance of the forward tests

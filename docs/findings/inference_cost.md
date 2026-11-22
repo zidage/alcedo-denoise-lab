@@ -5,6 +5,21 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
 
 ## Current state
 
+- On macOS (MacBook Air, Apple M4 with 8 GPU cores, 16 GB), ONNX Runtime 1.24.4 with the Core
+  ML execution provider (`ModelFormat` MLProgram, `MLComputeUnits` CPUAndGPU) runs each
+  operation of the model of step 5 on the GPU in FP32 and gives the PyTorch output within 8.2e-7
+  of the largest value. Core ML does not take DepthToSpace with free height and width, so one
+  session with free height and width uses a copy of the graph without that last node, and the
+  host does the PixelShuffle in the crop of each tile. With that session and tiles of 1536
+  packed px, the M4 denoises a 45.4 megapixel mosaic in 3.5 s, a 36.2 megapixel mosaic in 2.8 s,
+  and a 24.3 megapixel mosaic in 1.8 s, with a peak footprint of the process of 4.6 to 5.5 GiB.
+  One session for each tile shape is 7% to 12% faster but uses up to 10 GiB, and its times vary
+  by up to 1.6 times. ONNX Runtime 1.32.0 has the same times. The WebGPU execution provider takes
+  2.6 to 2.7 times as long (9.1 s at 45.4 megapixels), and the CPU takes 2.4 to 2.8 times (Core
+  ML CPUOnly) and 6 to 7 times (the CPU provider) as long as the GPU at tiles of 1024. The Neural Engine takes no
+  operation of the FP32 graph. 1.83 s on 24.3 megapixels is 4.9 times the Metal DemosaicNet
+  student of Alcedo Studio on the same M4 (2026-11-22, ONNX Runtime on macOS of the model of
+  step 5).
 - In ONNX Runtime with the DirectML execution provider (FP32, DirectML 1.15.4, the DirectML.dll
   of Alcedo Studio), the model of step 5 gives the PyTorch output within 1.7e-6 of the largest
   value on the RTX 3080 Laptop GPU and on the Intel Iris Xe integrated GPU, below the tolerance
@@ -77,6 +92,94 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
   stores the denoised result and computes it one time for each photo.
 
 ## Entries
+
+### 2026-11-22 ONNX Runtime on macOS of the model of step 5
+
+- **Source**: `results/export/onnx_macos/` (`probe-<version>/` precision and node placement,
+  `time-<version>/` photo times, one JSON and one log file for each process; the logs hold the
+  Core ML compute plan), `results/export/directml_packed_output.json`; `macos/` and
+  `measure_directml_packed_output.py`, commands in the README of `scripts/export/`. MacBook Air
+  (Mac16,12), Apple M4 with a GPU of 8 cores, 16 GB unified memory, macOS 27.0.1, no fan.
+  ONNX Runtime 1.24.4 and 1.32.0 through the C++ API (`libonnxruntime.dylib` of the osx-arm64
+  folder of the NuGet package `Microsoft.ML.OnnxRuntime`; it has the CPU, Core ML, and WebGPU
+  execution providers) and the WebGPU plugin execution provider 0.6.0
+  (`Microsoft.ML.OnnxRuntime.EP.WebGpu`). The ONNX graph of the DirectML entry, the photos and the
+  tile planner of the PyTorch time entries (overlap 96 packed px, last tile shrunk), 3 runs after
+  one run that is not measured, 1 s pause, 20 s between processes, 4 CPU threads. One process for
+  each configuration and tile size; the memory is the peak physical footprint of the process
+  (`ledger_phys_footprint_peak`), which on this Mac also counts the GPU memory. It includes about
+  0.75 GiB of host arrays at 45.4 MP (packed input and output image). The macOS thermal state was
+  nominal in every run.
+- **Node placement** (`session.disable_cpu_ep_fallback` on, so a session fails when a node is not
+  on the selected provider):
+  - Core ML, `ModelFormat` MLProgram, one session for each tile shape (`per_shape`): all 50 nodes
+    on Core ML. With `MLComputeUnits` CPUAndGPU or ALL, the compute plan puts each operation on the
+    GPU (`MLGPUComputeDevice`); with CPUAndNeuralEngine or CPUOnly, on the CPU
+    (`MLCPUComputeDevice`). The Neural Engine takes no operation of the FP32 graph.
+  - Core ML MLProgram, one session with free height and width (`free`): 49 of 50 nodes. Core ML
+    does not take DepthToSpace (the PixelShuffle) with free dimensions. A copy of the graph
+    without that last node (`write_graph_without_pixel_shuffle.py`, output `output_packed`
+    (1, 12, height, width), the PixelShuffle on the host in the crop of each tile) runs all 49
+    nodes on Core ML in a `free` session, on the GPU.
+  - Core ML `ModelFormat` NeuralNetwork: 45 of 50 nodes; Core ML takes neither the 4
+    ConvTranspose nodes nor DepthToSpace.
+  - WebGPU (the provider of the package and the plugin): all nodes, `free` and `per_shape`. With
+    ONNX Runtime 1.32.0, the plugin and the package both define the Objective-C class
+    `MATStreamingSessionDelegate` (a warning at load).
+- **Precision** (largest difference to the expected output of DN0, relative to the largest value;
+  tolerance 1e-5), the same with ONNX Runtime 1.24.4 and 1.32.0 except the CPU provider:
+
+  | Input | Core ML GPU | Core ML CPU | WebGPU | CPU provider (1.24.4) |
+  | --- | ---: | ---: | ---: | ---: |
+  | `random_64` | 8.2e-7 | 1.3e-6 | 1.3e-6 | 1.5e-6 |
+  | `random_256` | 7.5e-7 | 1.5e-6 | 1.5e-6 | 1.5e-6 |
+  | `rawnind_crop_512` | 5.6e-7 | 9.6e-7 | 9.6e-7 | 1.0e-6 |
+
+  `AllowLowPrecisionAccumulationOnGPU` = 1 gives the same output as 0. The tiled output of
+  `rawnind_crop_512` (tiles of 256, overlap 96) equals the one-pass output (difference 0) in each
+  configuration, also with the graph without DepthToSpace. Each photo output has only finite
+  values.
+- **Result**, ONNX Runtime 1.24.4, Core ML MLProgram CPUAndGPU, median seconds of the full run
+  (the peak footprint of the process at 45.4 MP in brackets):
+
+  | Configuration | Tile | 24.3 MP | 32.5 MP | 36.2 MP | 42.4 MP | 45.4 MP |
+  | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+  | `free`, graph without DepthToSpace | 1024 | 2.16 | 3.00 | 3.25 | 3.80 | 4.40 (3.2 GiB) |
+  | `free`, graph without DepthToSpace | 1536 | 1.83 | 2.50 | 2.82 | 3.31 | 3.55 (5.5 GiB) |
+  | `free`, graph without DepthToSpace | 2048 | 1.60 | 2.46 | 2.78 | 3.23 | 3.49 (7.7 GiB) |
+  | `free`, DepthToSpace on the CPU provider | 1536 | 1.92 | | 2.91 | | 3.72 (4.7 GiB) |
+  | `per_shape` | 1024 | 1.84 | 2.53 | 3.01 | 3.48 | 3.93 (5.3 GiB) |
+  | `per_shape` | 1536 | 1.62 | 3.07 | 2.54 | 3.01 | 4.15 (9.9 GiB) |
+  | `per_shape` | 2048 | 1.36 | 2.22 | 2.54 | 2.96 | 3.22 (11.6 GiB) |
+
+  - The `per_shape` runs of tiles of 1536 vary: 2.38 to 3.71 s at 32.5 MP and 3.15 to 5.04 s at
+    45.4 MP in one process; a second process gives 3.32 s at 45.4 MP (ONNX Runtime 1.32.0) and
+    `SpecializationStrategy` FastPrediction 3.25 s (10.1 GiB). The `free` runs vary by at most
+    0.12 s.
+  - ONNX Runtime 1.32.0 against 1.24.4, tiles of 1536: `free` without DepthToSpace 1.83, 2.74,
+    3.51 s (24.3, 36.2, 45.4 MP; 4.6 GiB); `per_shape` 1.63, 2.51, 3.32 s; `free` with
+    DepthToSpace on the CPU 1.91, 2.88, 3.76 s. The newer version is not faster.
+  - WebGPU, `free`, tiles of 1536: 4.89, 7.37, 9.10 s (provider of the package, 5.1 GiB); 5.07,
+    7.53, 9.64 s (plugin, 6.5 GiB); `per_shape` 4.87, 7.20, 9.06 s. 2.6 to 2.7 times Core ML.
+  - CPU, 24.3 MP, tiles of 1024: Core ML CPUOnly 5.19 s (1.1 GiB); the CPU provider with 4
+    threads 12.7 s (11.5 GiB).
+  - Session creation: Core ML 0.09 to 0.50 s for each session; first run of a session at a tile
+    of 1536: 0.47 to 1.07 s (`per_shape`), 0.49 to 0.79 s (`free`). WebGPU: 0.01 s and a first
+    run of 1.35 to 1.73 s (it compiles its shaders).
+  - The footprint after the release of the sessions of a `free` run stays high in one process:
+    after the 45.4 MP photo it is 4.9 GiB with tiles of 1536 (0.75 GiB of host arrays), and it
+    grows from photo to photo (0.97, 2.2, 3.1, 4.1, 4.9 GiB). The `per_shape` runs fall back to
+    0.8 to 1.8 GiB after some photos. The lab did not find the owner of this memory.
+- **Result**, the graph without DepthToSpace on DirectML (RTX 3080 Laptop GPU, ONNX Runtime
+  1.24.4, `free`, tiles of 1536, PixelShuffle with NumPy in the crop): 0.67, 1.13, 1.26 s against
+  0.51, 0.70, 0.85 s of the full graph (24.3, 36.2, 45.4 MP); the outputs are equal (difference
+  0). DirectML keeps the full graph.
+- **Effect**: a new statement of Current state. The ratio to the Metal DemosaicNet student of
+  Alcedo Studio on this M4 (377 ms for the 24.2 MP Bayer photo of the Lumix S5M2, Alcedo Studio
+  `metal_nn_forward_demosaicnet_plan.md`): 1.83 s on 24.3 MP is 4.9 times (Windows: 1.9 times).
+  Not measured: other Apple GPUs (M4 Pro and Max have more GPU cores), Intel Macs, a Mac with
+  more than 16 GB, Core ML with the input and the output in `MLMultiArray` or `IOSurface` memory,
+  and the macOS memory after the release in Alcedo Studio.
 
 ### 2026-11-22 ONNX Runtime DirectML of the model of step 5
 
