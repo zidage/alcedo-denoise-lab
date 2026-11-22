@@ -6,20 +6,27 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
 ## Current state
 
 - In PyTorch IEEE FP32 (TF32 off) on the RTX 3080 Laptop GPU, the model of step 5 denoises a
-  45.4 megapixel mosaic in 0.92 s in tiles of 1536 packed px (overlap 96), with 1.96 GiB of
-  allocated GPU memory, and in 1.37 s in tiles of 1024 (0.98 GiB). A 24.3 megapixel photo takes
-  0.58 to 0.97 s in tiles of 768 to 2048. Tiles of 256 packed px take about 20 times longer
-  (20.7 s at 45.4 megapixels),
-  because a tile of 256 keeps only 6% of its area. The GPU ran at 71 to 89 C and an SM clock of
-  1,350 to 1,785 MHz (the largest clock is 2,100 MHz), so the times include thermal clock limits.
-  This is the reference of the lab for the forward code of Alcedo Studio; the lab has no cost
-  measurement of a smaller model (2026-11-21, PyTorch time of the model of step 5).
+  45.4 megapixel mosaic in 0.69 s and a 36.2 megapixel mosaic in 0.64 s, in tiles of 1536 packed
+  px (overlap 96, the last tile of each axis shrunk to its need) with the fastest cuDNN algorithm
+  of each shape; 1.96 GiB of allocated GPU memory. With tiles of 1024 (0.98 GiB) it is 0.84 s and
+  0.65 s. A 24.3 megapixel photo takes 0.44 s. The fastest cuDNN algorithms change the output by
+  at most 1.1e-6 of the largest value; TF32 convolutions save at most 0.17 s against them on this
+  GPU (0.01 s at 45.4 megapixels) and change the output by 5.5e-4. Against the deterministic algorithms and
+  a last tile of the full size (0.92 s at 45.4 megapixels), the two changes save 25%. Tiles of
+  256 packed px take about 20 times longer, because a tile of 256 keeps only 6% of its area. The
+  GPU ran at 71 to 89 C and an SM clock of 1,350 to 1,800 MHz (the largest clock is 2,100 MHz),
+  so the times include thermal clock limits. This is the reference of the lab for the forward
+  code of Alcedo Studio; the lab has no cost measurement of a smaller model (2026-11-21, PyTorch
+  time of the model of step 5; 2026-11-22, last tile and cuDNN algorithms).
 - An overlap of 96 packed px between tiles gives the one-pass output: the difference is 0 in IEEE
   FP32 for tiles of 512 to 1024 packed px, and below 1e-6 after the development for tiles of 256.
   At 80 packed px the border difference is 3 to 30 times the difference between TF32 and IEEE
-  FP32. The workspace of one tile is 163 MiB (256), 200 MiB (512), 451 MiB (768), 800 MiB
-  (1024), 1,800 MiB (1536), and 3,200 MiB (2048) (2026-11-21, tile overlap of the model of
-  step 5).
+  FP32. Each tile input must start at a multiple of 16 packed px: a last tile of the full tile
+  size at the end of an axis whose length is not a multiple of 16 shifts the grid of the max
+  pooling layers and changes the output by up to 6% of the largest value. The workspace of one
+  tile is 163 MiB (256), 200 MiB (512), 451 MiB (768), 800 MiB (1024), 1,800 MiB (1536), and
+  3,200 MiB (2048) (2026-11-21, tile overlap of the model of step 5; 2026-11-22, last tile and
+  cuDNN algorithms).
 - The model of step 5 is exported to safetensors for the forward code of Alcedo Studio and gives
   the checkpoint output with a difference of 0. In IEEE FP32, the CPU and the GPU output of PyTorch
   differ by at most 2.4e-6 of the largest value of a tensor, so the forward tests of Alcedo Studio
@@ -55,7 +62,65 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
 
 ## Entries
 
+### 2026-11-22 Last tile and cuDNN algorithms of the model of step 5
+
+- **Source**: `results/export/photo_time_precision.json` and
+  `results/export/photo_time_shrunk_last_tile.json` (measure_photo_time.py with `--modes` and
+  `--last-tile`; commands in the README of `scripts/export/`), and the one-time check
+  `build/tmp/dn1/check_last_tile.py` (not committed). The setup, the photos, and the run
+  procedure of the PyTorch time entry of 2026-11-21. Overlap 96 packed px; tiles of 768, 1024,
+  and 1536. Tiles of 2048 were not run (more reserved memory than the GPU had free).
+- **Modes**: `ieee_fp32` (deterministic cuDNN algorithms, as in the entry of 2026-11-21),
+  `ieee_fp32_autotuned` (`cudnn.benchmark`: cuDNN measures the algorithms of each shape and uses
+  the fastest), `tf32`, `tf32_autotuned`. The modes alternate for each photo and tile size, so
+  they see the same GPU temperature.
+- **Last tile**: `full` (the planner of the entry of 2026-11-21: the last tile of an axis has its
+  input at `[length - tile, length)`) and `shrunk` (the last tile has its input from 96 px before
+  its kept range to the end of the axis, filled by reflection to a multiple of 16).
+- **Result**:
+  - Median seconds of the full run, the last tile shrunk (deterministic / fastest algorithms):
+
+    | Tile | 24.3 MP | 32.5 MP | 36.2 MP | 42.4 MP | 45.4 MP |
+    | ---: | --- | --- | --- | --- | --- |
+    | 768 | 0.63 / 0.50 | 0.84 / 0.70 | 0.95 / 0.76 | 1.20 / 0.95 | 1.26 / 1.03 |
+    | 1024 | 0.55 / 0.45 | 0.70 / 0.57 | 0.81 / 0.65 | 0.94 / 0.77 | 1.06 / 0.84 |
+    | 1536 | 0.51 / 0.44 | 0.67 / 0.57 | 0.76 / 0.64 | 0.82 / 0.66 | 0.88 / 0.69 |
+
+  - The last tile of the full size, at 45.4 MP and tiles of 1536: 0.91 s (`ieee_fp32`), 0.73 s
+    (`ieee_fp32_autotuned`), 0.73 s (`tf32`), 0.72 s (`tf32_autotuned`). At tiles of 1024:
+    1.32, 1.03, 1.06, 1.04 s. Against the fastest FP32 algorithms, TF32 (`tf32_autotuned`) saves
+    0.17 s on the 42.4 MP photo at tiles of 768 and 0 to 0.08 s on the other photos and tile
+    sizes.
+  - The shrunk last tile computes 13.3 M packed px for the 45.4 MP size (11.4 M in the image)
+    instead of 14.2 M, and 10.8 M for the 36.2 MP size (9.0 M in the image) instead of 14.2 M,
+    with tiles of 1536. With the fastest algorithms, 45.4 MP and tiles of 1536: the
+    forward passes take 0.57 s for 2.46 TMAC (4.3 TMAC/s, 8.6 TFLOP/s).
+  - Largest difference to the `ieee_fp32` output, relative to its largest value, over all photos
+    and tile sizes: 1.1e-6 (`ieee_fp32_autotuned`), 5.5e-4 (`tf32`), 4.1e-4 (`tf32_autotuned`).
+    The tolerance of the forward tests of Alcedo Studio is 1e-5.
+  - The first call of a new tile shape with `cudnn.benchmark` takes 12 to 37 s (the search of
+    the algorithms); the time of the later runs does not include it.
+  - On a crop of 1500 x 1400 packed px (`Bayer_TEST_TitusToys_ISO6400`), against one pass: the
+    full last tile differs by 5.7e-2 (tiles of 512) and 6.0e-2 (tiles of 1024) of the largest
+    value, because its input starts at a position that is not a multiple of 16 and the grid of
+    the max pooling layers moves. The shrunk last tile gives 0 (deterministic) and 3.7e-7 (fastest
+    algorithms). The 24.3, 32.5, and 42.4 MP photos have such axis lengths. A one-time check of
+    `plan_axis` with the shrunk last tile (507 cases: exact cover, overlap of context, starts at
+    multiples of 16, input size at most the tile size) passes.
+  - Largest used GPU memory of the process by NVML: 4.50 GiB (precision run), 4.66 GiB (shrunk
+    run), with the CUDA context and the PyTorch cache.
+  - The DemosaicNet student of Alcedo Studio takes 376 ms (p50, from 82 to 84 C) and 294 ms
+    (cool, 1,785 MHz) for the 36.3 MP Bayer photo of its tests, as reported in the Alcedo Studio
+    repository (`docs/roadmap/alcedo_studio/raw-processing/demosaicnet/cuda_demosaicnet_performance_next.md`).
+    That time is the complete demosaic stage of Alcedo Studio; the times of this entry are the
+    model only, without the input preparation and the gain match.
+  - Not measured: the forward code of Alcedo Studio, other GPUs, the input preparation and the
+    gain match on the GPU.
+- **Effect**: the statements of Current state about the time and about the overlap.
+
 ### 2026-11-21 PyTorch time of the model of step 5
+
+Replaced by the entry of 2026-11-22.
 
 - **Source**: `results/export/photo_time.json` (measure_photo_time.py; command in the README of
   `scripts/export/`). PyTorch 2.11.0+cu128, cuDNN 9.19.0, IEEE FP32 (TF32 off, deterministic cuDNN

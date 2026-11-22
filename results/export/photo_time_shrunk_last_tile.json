@@ -1,0 +1,6209 @@
+{
+ "description": "PyTorch time and GPU memory of the model on full photos, in tiles",
+ "modes": {
+  "ieee_fp32": {
+   "tf32": false,
+   "cudnn_autotuned": false
+  },
+  "ieee_fp32_autotuned": {
+   "tf32": false,
+   "cudnn_autotuned": true
+  }
+ },
+ "overlap_by_tile": {
+  "768": 96,
+  "1024": 96,
+  "1536": 96
+ },
+ "photos": [
+  {
+   "name": "24mp",
+   "raw_path": "data/evaluation_photos/20220827-9578.cr3",
+   "raw_sha256": "5ae9450b2fac54af8f1dd8661bd06a694c9b0446d0adbdac74b739b1c60b9ecc",
+   "preparation": {
+    "area_size": [
+     4032,
+     6032
+    ],
+    "area_megapixels": 24.32,
+    "packed_size": [
+     2016,
+     3016
+    ],
+    "pattern": "RGGB",
+    "added_top": 0,
+    "added_left": 0,
+    "black_r_g1_g2_b": [
+     2052.0,
+     2051.0,
+     2051.0,
+     2051.0
+    ],
+    "maximum": 16383.0,
+    "linear_max_r_g_b": [
+     14351.0,
+     14351.0,
+     14351.0
+    ],
+    "saturation_r_g_b": [
+     0.858209475961203,
+     0.8582193692436506,
+     0.8582193692436506
+    ],
+    "cam_mul": [
+     1953.0,
+     1024.0,
+     1792.0,
+     1024.0
+    ],
+    "mosaic_megapixels": 24.32
+   },
+   "runs": [
+    {
+     "mode": "ieee_fp32",
+     "tile": 768,
+     "overlap": 96,
+     "tile_count": 20,
+     "median_seconds_total": 0.6288,
+     "min_seconds_total": 0.6269,
+     "max_seconds_total": 0.6421,
+     "median_seconds_forward": 0.5316,
+     "peak_allocated_bytes": 600292864,
+     "peak_reserved_bytes": 861929472,
+     "tile_workspace_bytes": 471962112,
+     "repeats": [
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 20,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 9828864,
+       "seconds_total": 0.6269,
+       "seconds_forward": 0.5322,
+       "seconds_upload": 0.0119,
+       "peak_allocated_bytes": 600292864,
+       "peak_reserved_bytes": 861929472,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 12,
+        "temperature_c": {
+         "first": 65.0,
+         "last": 69.0,
+         "min": 65.0,
+         "max": 69.0,
+         "median": 69.0
+        },
+        "sm_clock_mhz": {
+         "first": 1800.0,
+         "last": 1695.0,
+         "min": 1695.0,
+         "max": 1800.0,
+         "median": 1695.0
+        },
+        "power_w": {
+         "first": 42.426,
+         "last": 53.784,
+         "min": 42.426,
+         "max": 53.784,
+         "median": 53.784
+        },
+        "device_memory_used_bytes": {
+         "first": 3873820672.0,
+         "last": 3873820672.0,
+         "min": 3873820672.0,
+         "max": 3873820672.0,
+         "median": 3873820672.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 20,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 9828864,
+       "seconds_total": 0.6288,
+       "seconds_forward": 0.531,
+       "seconds_upload": 0.0118,
+       "peak_allocated_bytes": 600292864,
+       "peak_reserved_bytes": 861929472,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 12,
+        "temperature_c": {
+         "first": 66.0,
+         "last": 74.0,
+         "min": 65.0,
+         "max": 74.0,
+         "median": 65.0
+        },
+        "sm_clock_mhz": {
+         "first": 1800.0,
+         "last": 1695.0,
+         "min": 1695.0,
+         "max": 1800.0,
+         "median": 1800.0
+        },
+        "power_w": {
+         "first": 43.208,
+         "last": 158.844,
+         "min": 42.491,
+         "max": 158.844,
+         "median": 42.491
+        },
+        "device_memory_used_bytes": {
+         "first": 3873820672.0,
+         "last": 3873820672.0,
+         "min": 3873820672.0,
+         "max": 3873820672.0,
+         "median": 3873820672.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 20,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 9828864,
+       "seconds_total": 0.6421,
+       "seconds_forward": 0.5316,
+       "seconds_upload": 0.0103,
+       "peak_allocated_bytes": 600292864,
+       "peak_reserved_bytes": 861929472,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 12,
+        "temperature_c": {
+         "first": 66.0,
+         "last": 74.0,
+         "min": 66.0,
+         "max": 74.0,
+         "median": 66.0
+        },
+        "sm_clock_mhz": {
+         "first": 1800.0,
+         "last": 1785.0,
+         "min": 1785.0,
+         "max": 1800.0,
+         "median": 1800.0
+        },
+        "power_w": {
+         "first": 42.641,
+         "last": 93.676,
+         "min": 42.641,
+         "max": 93.676,
+         "median": 42.641
+        },
+        "device_memory_used_bytes": {
+         "first": 3873820672.0,
+         "last": 3873820672.0,
+         "min": 3873820672.0,
+         "max": 3873820672.0,
+         "median": 3873820672.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 768,
+     "overlap": 96,
+     "tile_count": 20,
+     "median_seconds_total": 0.5044,
+     "min_seconds_total": 0.5041,
+     "max_seconds_total": 0.5061,
+     "median_seconds_forward": 0.4162,
+     "peak_allocated_bytes": 600292864,
+     "peak_reserved_bytes": 910163968,
+     "tile_workspace_bytes": 471962112,
+     "repeats": [
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 20,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 9828864,
+       "seconds_total": 0.5044,
+       "seconds_forward": 0.4216,
+       "seconds_upload": 0.0095,
+       "peak_allocated_bytes": 600292864,
+       "peak_reserved_bytes": 910163968,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 10,
+        "temperature_c": {
+         "first": 71.0,
+         "last": 78.0,
+         "min": 71.0,
+         "max": 78.0,
+         "median": 71.0
+        },
+        "sm_clock_mhz": {
+         "first": 1800.0,
+         "last": 1620.0,
+         "min": 1620.0,
+         "max": 1800.0,
+         "median": 1800.0
+        },
+        "power_w": {
+         "first": 68.175,
+         "last": 70.35,
+         "min": 68.175,
+         "max": 70.35,
+         "median": 68.175
+        },
+        "device_memory_used_bytes": {
+         "first": 3220230144.0,
+         "last": 3861958656.0,
+         "min": 3220230144.0,
+         "max": 3861958656.0,
+         "median": 3861958656.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 20,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 9828864,
+       "seconds_total": 0.5061,
+       "seconds_forward": 0.4148,
+       "seconds_upload": 0.0111,
+       "peak_allocated_bytes": 600292864,
+       "peak_reserved_bytes": 910163968,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 10,
+        "temperature_c": {
+         "first": 71.0,
+         "last": 77.0,
+         "min": 71.0,
+         "max": 77.0,
+         "median": 71.0
+        },
+        "sm_clock_mhz": {
+         "first": 1800.0,
+         "last": 1710.0,
+         "min": 1710.0,
+         "max": 1800.0,
+         "median": 1800.0
+        },
+        "power_w": {
+         "first": 78.084,
+         "last": 73.124,
+         "min": 73.124,
+         "max": 78.084,
+         "median": 78.084
+        },
+        "device_memory_used_bytes": {
+         "first": 3861958656.0,
+         "last": 3854880768.0,
+         "min": 3854880768.0,
+         "max": 3861958656.0,
+         "median": 3861958656.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 20,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 9828864,
+       "seconds_total": 0.5041,
+       "seconds_forward": 0.4162,
+       "seconds_upload": 0.0143,
+       "peak_allocated_bytes": 600292864,
+       "peak_reserved_bytes": 910163968,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 10,
+        "temperature_c": {
+         "first": 71.0,
+         "last": 77.0,
+         "min": 71.0,
+         "max": 77.0,
+         "median": 74.0
+        },
+        "sm_clock_mhz": {
+         "first": 1800.0,
+         "last": 1740.0,
+         "min": 1740.0,
+         "max": 1800.0,
+         "median": 1770.0
+        },
+        "power_w": {
+         "first": 79.835,
+         "last": 72.043,
+         "min": 72.043,
+         "max": 79.835,
+         "median": 75.939
+        },
+        "device_memory_used_bytes": {
+         "first": 3854880768.0,
+         "last": 3854880768.0,
+         "min": 3854880768.0,
+         "max": 3854880768.0,
+         "median": 3854880768.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 3.7281777824225905e-08
+    },
+    {
+     "mode": "ieee_fp32",
+     "tile": 1024,
+     "overlap": 96,
+     "tile_count": 12,
+     "median_seconds_total": 0.552,
+     "min_seconds_total": 0.5473,
+     "max_seconds_total": 0.5552,
+     "median_seconds_forward": 0.4673,
+     "peak_allocated_bytes": 967294464,
+     "peak_reserved_bytes": 1581252608,
+     "tile_workspace_bytes": 838963712,
+     "repeats": [
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 12,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 8640000,
+       "seconds_total": 0.5473,
+       "seconds_forward": 0.4679,
+       "seconds_upload": 0.0135,
+       "peak_allocated_bytes": 967294464,
+       "peak_reserved_bytes": 1581252608,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 11,
+        "temperature_c": {
+         "first": 72.0,
+         "last": 71.0,
+         "min": 71.0,
+         "max": 72.0,
+         "median": 71.0
+        },
+        "sm_clock_mhz": {
+         "first": 1800.0,
+         "last": 1680.0,
+         "min": 1680.0,
+         "max": 1800.0,
+         "median": 1680.0
+        },
+        "power_w": {
+         "first": 99.335,
+         "last": 53.511,
+         "min": 53.511,
+         "max": 99.335,
+         "median": 53.511
+        },
+        "device_memory_used_bytes": {
+         "first": 4526034944.0,
+         "last": 4526034944.0,
+         "min": 4526034944.0,
+         "max": 4526034944.0,
+         "median": 4526034944.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 12,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 8640000,
+       "seconds_total": 0.5552,
+       "seconds_forward": 0.467,
+       "seconds_upload": 0.0129,
+       "peak_allocated_bytes": 967294464,
+       "peak_reserved_bytes": 1581252608,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 11,
+        "temperature_c": {
+         "first": 72.0,
+         "last": 79.0,
+         "min": 71.0,
+         "max": 79.0,
+         "median": 71.0
+        },
+        "sm_clock_mhz": {
+         "first": 1800.0,
+         "last": 1740.0,
+         "min": 1740.0,
+         "max": 1800.0,
+         "median": 1800.0
+        },
+        "power_w": {
+         "first": 102.971,
+         "last": 88.055,
+         "min": 58.769,
+         "max": 102.971,
+         "median": 58.769
+        },
+        "device_memory_used_bytes": {
+         "first": 4526034944.0,
+         "last": 4526034944.0,
+         "min": 4526034944.0,
+         "max": 4526034944.0,
+         "median": 4526034944.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 12,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 8640000,
+       "seconds_total": 0.552,
+       "seconds_forward": 0.4673,
+       "seconds_upload": 0.0101,
+       "peak_allocated_bytes": 967294464,
+       "peak_reserved_bytes": 1581252608,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 11,
+        "temperature_c": {
+         "first": 71.0,
+         "last": 79.0,
+         "min": 71.0,
+         "max": 79.0,
+         "median": 71.0
+        },
+        "sm_clock_mhz": {
+         "first": 1800.0,
+         "last": 1725.0,
+         "min": 1725.0,
+         "max": 1800.0,
+         "median": 1800.0
+        },
+        "power_w": {
+         "first": 64.349,
+         "last": 83.584,
+         "min": 64.349,
+         "max": 83.584,
+         "median": 64.349
+        },
+        "device_memory_used_bytes": {
+         "first": 4533112832.0,
+         "last": 4533112832.0,
+         "min": 4533112832.0,
+         "max": 4533112832.0,
+         "median": 4533112832.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 1024,
+     "overlap": 96,
+     "tile_count": 12,
+     "median_seconds_total": 0.4508,
+     "min_seconds_total": 0.4392,
+     "max_seconds_total": 0.4681,
+     "median_seconds_forward": 0.3617,
+     "peak_allocated_bytes": 967294464,
+     "peak_reserved_bytes": 1470103552,
+     "tile_workspace_bytes": 838963712,
+     "repeats": [
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 12,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 8640000,
+       "seconds_total": 0.4681,
+       "seconds_forward": 0.3716,
+       "seconds_upload": 0.0134,
+       "peak_allocated_bytes": 967294464,
+       "peak_reserved_bytes": 1470103552,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 9,
+        "temperature_c": {
+         "first": 75.0,
+         "last": 79.0,
+         "min": 75.0,
+         "max": 79.0,
+         "median": 79.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1575.0,
+         "min": 1575.0,
+         "max": 1785.0,
+         "median": 1575.0
+        },
+        "power_w": {
+         "first": 85.431,
+         "last": 53.924,
+         "min": 53.924,
+         "max": 85.431,
+         "median": 53.924
+        },
+        "device_memory_used_bytes": {
+         "first": 3213938688.0,
+         "last": 4421898240.0,
+         "min": 3213938688.0,
+         "max": 4421898240.0,
+         "median": 4421898240.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 12,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 8640000,
+       "seconds_total": 0.4508,
+       "seconds_forward": 0.3617,
+       "seconds_upload": 0.0115,
+       "peak_allocated_bytes": 967294464,
+       "peak_reserved_bytes": 1470103552,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 9,
+        "temperature_c": {
+         "first": 75.0,
+         "last": 79.0,
+         "min": 75.0,
+         "max": 79.0,
+         "median": 79.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1560.0,
+         "min": 1560.0,
+         "max": 1785.0,
+         "median": 1560.0
+        },
+        "power_w": {
+         "first": 88.763,
+         "last": 56.53,
+         "min": 56.53,
+         "max": 88.763,
+         "median": 56.53
+        },
+        "device_memory_used_bytes": {
+         "first": 4421898240.0,
+         "last": 4421898240.0,
+         "min": 4421898240.0,
+         "max": 4421898240.0,
+         "median": 4421898240.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 12,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 8640000,
+       "seconds_total": 0.4392,
+       "seconds_forward": 0.3613,
+       "seconds_upload": 0.0122,
+       "peak_allocated_bytes": 967294464,
+       "peak_reserved_bytes": 1470103552,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 9,
+        "temperature_c": {
+         "first": 74.0,
+         "last": 80.0,
+         "min": 74.0,
+         "max": 80.0,
+         "median": 80.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1635.0,
+         "min": 1635.0,
+         "max": 1785.0,
+         "median": 1635.0
+        },
+        "power_w": {
+         "first": 88.688,
+         "last": 60.735,
+         "min": 60.735,
+         "max": 88.688,
+         "median": 60.735
+        },
+        "device_memory_used_bytes": {
+         "first": 4414820352.0,
+         "last": 4414820352.0,
+         "min": 4414820352.0,
+         "max": 4414820352.0,
+         "median": 4414820352.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 1.4912711129690362e-08
+    },
+    {
+     "mode": "ieee_fp32",
+     "tile": 1536,
+     "overlap": 96,
+     "tile_count": 6,
+     "median_seconds_total": 0.5128,
+     "min_seconds_total": 0.5088,
+     "max_seconds_total": 0.523,
+     "median_seconds_forward": 0.4053,
+     "peak_allocated_bytes": 2015870464,
+     "peak_reserved_bytes": 3282042880,
+     "tile_workspace_bytes": 1887539712,
+     "repeats": [
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 7524864,
+       "seconds_total": 0.5128,
+       "seconds_forward": 0.4051,
+       "seconds_upload": 0.0104,
+       "peak_allocated_bytes": 2015870464,
+       "peak_reserved_bytes": 3282042880,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 10,
+        "temperature_c": {
+         "first": 75.0,
+         "last": 74.0,
+         "min": 74.0,
+         "max": 75.0,
+         "median": 74.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1785.0,
+         "min": 1785.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 92.602,
+         "last": 54.538,
+         "min": 54.538,
+         "max": 92.602,
+         "median": 54.538
+        },
+        "device_memory_used_bytes": {
+         "first": 6226759680.0,
+         "last": 6226759680.0,
+         "min": 6226759680.0,
+         "max": 6226759680.0,
+         "median": 6226759680.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 7524864,
+       "seconds_total": 0.523,
+       "seconds_forward": 0.4053,
+       "seconds_upload": 0.0106,
+       "peak_allocated_bytes": 2015870464,
+       "peak_reserved_bytes": 3282042880,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 10,
+        "temperature_c": {
+         "first": 75.0,
+         "last": 74.0,
+         "min": 74.0,
+         "max": 75.0,
+         "median": 74.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1785.0,
+         "min": 1785.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 91.858,
+         "last": 57.757,
+         "min": 57.757,
+         "max": 91.858,
+         "median": 57.757
+        },
+        "device_memory_used_bytes": {
+         "first": 6226759680.0,
+         "last": 6226759680.0,
+         "min": 6226759680.0,
+         "max": 6226759680.0,
+         "median": 6226759680.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 7524864,
+       "seconds_total": 0.5088,
+       "seconds_forward": 0.4063,
+       "seconds_upload": 0.0096,
+       "peak_allocated_bytes": 2015870464,
+       "peak_reserved_bytes": 3282042880,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 10,
+        "temperature_c": {
+         "first": 74.0,
+         "last": 81.0,
+         "min": 74.0,
+         "max": 81.0,
+         "median": 74.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1620.0,
+         "min": 1620.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 91.679,
+         "last": 88.112,
+         "min": 60.571,
+         "max": 91.679,
+         "median": 60.571
+        },
+        "device_memory_used_bytes": {
+         "first": 6226759680.0,
+         "last": 6226759680.0,
+         "min": 6226759680.0,
+         "max": 6226759680.0,
+         "median": 6226759680.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 1536,
+     "overlap": 96,
+     "tile_count": 6,
+     "median_seconds_total": 0.437,
+     "min_seconds_total": 0.434,
+     "max_seconds_total": 0.4422,
+     "median_seconds_forward": 0.3192,
+     "peak_allocated_bytes": 2015870464,
+     "peak_reserved_bytes": 2516582400,
+     "tile_workspace_bytes": 1887539712,
+     "repeats": [
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 7524864,
+       "seconds_total": 0.4422,
+       "seconds_forward": 0.3334,
+       "seconds_upload": 0.0131,
+       "peak_allocated_bytes": 2015870464,
+       "peak_reserved_bytes": 2516582400,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 9,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 80.0,
+         "min": 80.0,
+         "max": 80.0,
+         "median": 80.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1485.0,
+         "min": 1485.0,
+         "max": 1785.0,
+         "median": 1485.0
+        },
+        "power_w": {
+         "first": 92.944,
+         "last": 56.136,
+         "min": 56.136,
+         "max": 92.944,
+         "median": 56.136
+        },
+        "device_memory_used_bytes": {
+         "first": 3251097600.0,
+         "last": 5440524288.0,
+         "min": 3251097600.0,
+         "max": 5440524288.0,
+         "median": 5440524288.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 7524864,
+       "seconds_total": 0.434,
+       "seconds_forward": 0.3192,
+       "seconds_upload": 0.0114,
+       "peak_allocated_bytes": 2015870464,
+       "peak_reserved_bytes": 2516582400,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 9,
+        "temperature_c": {
+         "first": 79.0,
+         "last": 83.0,
+         "min": 79.0,
+         "max": 83.0,
+         "median": 83.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1770.0,
+         "min": 1770.0,
+         "max": 1785.0,
+         "median": 1770.0
+        },
+        "power_w": {
+         "first": 85.926,
+         "last": 57.462,
+         "min": 57.462,
+         "max": 85.926,
+         "median": 57.462
+        },
+        "device_memory_used_bytes": {
+         "first": 5440524288.0,
+         "last": 5440458752.0,
+         "min": 5440458752.0,
+         "max": 5440524288.0,
+         "median": 5440458752.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 7524864,
+       "seconds_total": 0.437,
+       "seconds_forward": 0.319,
+       "seconds_upload": 0.0137,
+       "peak_allocated_bytes": 2015870464,
+       "peak_reserved_bytes": 2516582400,
+       "baseline_allocated_bytes": 128330752,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 9,
+        "temperature_c": {
+         "first": 78.0,
+         "last": 81.0,
+         "min": 78.0,
+         "max": 81.0,
+         "median": 81.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1560.0,
+         "min": 1560.0,
+         "max": 1785.0,
+         "median": 1560.0
+        },
+        "power_w": {
+         "first": 84.246,
+         "last": 58.783,
+         "min": 58.783,
+         "max": 84.246,
+         "median": 58.783
+        },
+        "device_memory_used_bytes": {
+         "first": 5440458752.0,
+         "last": 5440458752.0,
+         "min": 5440458752.0,
+         "max": 5440458752.0,
+         "median": 5440458752.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 6.710720008360663e-08
+    }
+   ]
+  },
+  {
+   "name": "32mp",
+   "raw_path": "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+   "raw_sha256": "5b9d095e8a9f4082fcbb63a8b9a511d7692371adb5c0cdd6f088ba38ee54712e",
+   "preparation": {
+    "area_size": [
+     4660,
+     6984
+    ],
+    "area_megapixels": 32.55,
+    "packed_size": [
+     2330,
+     3492
+    ],
+    "pattern": "RGGB",
+    "added_top": 0,
+    "added_left": 0,
+    "black_r_g1_g2_b": [
+     2048.0,
+     2048.0,
+     2048.0,
+     2048.0
+    ],
+    "maximum": 16383.0,
+    "linear_max_r_g_b": [
+     13660.0,
+     13660.0,
+     13660.0
+    ],
+    "saturation_r_g_b": [
+     0.8100453435647018,
+     0.8100453435647018,
+     0.8100453435647018
+    ],
+    "cam_mul": [
+     1716.0,
+     1024.0,
+     1708.0,
+     1024.0
+    ],
+    "mosaic_megapixels": 32.55
+   },
+   "runs": [
+    {
+     "mode": "ieee_fp32",
+     "tile": 768,
+     "overlap": 96,
+     "tile_count": 24,
+     "median_seconds_total": 0.8441,
+     "min_seconds_total": 0.8344,
+     "max_seconds_total": 0.8498,
+     "median_seconds_forward": 0.709,
+     "peak_allocated_bytes": 633190912,
+     "peak_reserved_bytes": 744488960,
+     "tile_workspace_bytes": 471962112,
+     "repeats": [
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 24,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12999168,
+       "seconds_total": 0.8344,
+       "seconds_forward": 0.7086,
+       "seconds_upload": 0.0136,
+       "peak_allocated_bytes": 633190912,
+       "peak_reserved_bytes": 744488960,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 16,
+        "temperature_c": {
+         "first": 78.0,
+         "last": 86.0,
+         "min": 78.0,
+         "max": 86.0,
+         "median": 83.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1680.0,
+         "min": 1650.0,
+         "max": 1785.0,
+         "median": 1665.0
+        },
+        "power_w": {
+         "first": 93.955,
+         "last": 104.8,
+         "min": 56.861,
+         "max": 104.8,
+         "median": 75.408
+        },
+        "device_memory_used_bytes": {
+         "first": 3668365312.0,
+         "last": 3668365312.0,
+         "min": 3668365312.0,
+         "max": 3668365312.0,
+         "median": 3668365312.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 24,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12999168,
+       "seconds_total": 0.8498,
+       "seconds_forward": 0.709,
+       "seconds_upload": 0.0136,
+       "peak_allocated_bytes": 633190912,
+       "peak_reserved_bytes": 744488960,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 15,
+        "temperature_c": {
+         "first": 78.0,
+         "last": 86.0,
+         "min": 78.0,
+         "max": 86.0,
+         "median": 84.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1635.0,
+         "min": 1635.0,
+         "max": 1785.0,
+         "median": 1695.0
+        },
+        "power_w": {
+         "first": 79.871,
+         "last": 127.387,
+         "min": 72.055,
+         "max": 127.387,
+         "median": 72.055
+        },
+        "device_memory_used_bytes": {
+         "first": 3668365312.0,
+         "last": 3661287424.0,
+         "min": 3661287424.0,
+         "max": 3668365312.0,
+         "median": 3661287424.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 24,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12999168,
+       "seconds_total": 0.8441,
+       "seconds_forward": 0.7106,
+       "seconds_upload": 0.0137,
+       "peak_allocated_bytes": 633190912,
+       "peak_reserved_bytes": 744488960,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 15,
+        "temperature_c": {
+         "first": 78.0,
+         "last": 85.0,
+         "min": 78.0,
+         "max": 85.0,
+         "median": 78.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1725.0,
+         "min": 1725.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 65.257,
+         "last": 86.304,
+         "min": 65.257,
+         "max": 86.304,
+         "median": 65.257
+        },
+        "device_memory_used_bytes": {
+         "first": 3661287424.0,
+         "last": 3661287424.0,
+         "min": 3661287424.0,
+         "max": 3661287424.0,
+         "median": 3661287424.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 768,
+     "overlap": 96,
+     "tile_count": 24,
+     "median_seconds_total": 0.7019,
+     "min_seconds_total": 0.6996,
+     "max_seconds_total": 0.7252,
+     "median_seconds_forward": 0.5575,
+     "peak_allocated_bytes": 633190912,
+     "peak_reserved_bytes": 799014912,
+     "tile_workspace_bytes": 471962112,
+     "repeats": [
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 24,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12999168,
+       "seconds_total": 0.7252,
+       "seconds_forward": 0.5611,
+       "seconds_upload": 0.0137,
+       "peak_allocated_bytes": 633190912,
+       "peak_reserved_bytes": 799014912,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 13,
+        "temperature_c": {
+         "first": 79.0,
+         "last": 86.0,
+         "min": 79.0,
+         "max": 86.0,
+         "median": 79.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1620.0,
+         "min": 1620.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 67.81,
+         "last": 86.119,
+         "min": 67.81,
+         "max": 86.119,
+         "median": 67.81
+        },
+        "device_memory_used_bytes": {
+         "first": 3309293568.0,
+         "last": 3686780928.0,
+         "min": 3309293568.0,
+         "max": 3686780928.0,
+         "median": 3686780928.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 24,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12999168,
+       "seconds_total": 0.7019,
+       "seconds_forward": 0.5565,
+       "seconds_upload": 0.0152,
+       "peak_allocated_bytes": 633190912,
+       "peak_reserved_bytes": 799014912,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 13,
+        "temperature_c": {
+         "first": 79.0,
+         "last": 85.0,
+         "min": 79.0,
+         "max": 85.0,
+         "median": 85.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1740.0,
+         "min": 1740.0,
+         "max": 1785.0,
+         "median": 1740.0
+        },
+        "power_w": {
+         "first": 90.678,
+         "last": 62.463,
+         "min": 62.463,
+         "max": 90.678,
+         "median": 62.463
+        },
+        "device_memory_used_bytes": {
+         "first": 3686780928.0,
+         "last": 3686780928.0,
+         "min": 3686780928.0,
+         "max": 3686780928.0,
+         "median": 3686780928.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 24,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12999168,
+       "seconds_total": 0.6996,
+       "seconds_forward": 0.5575,
+       "seconds_upload": 0.0156,
+       "peak_allocated_bytes": 633190912,
+       "peak_reserved_bytes": 799014912,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 13,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 86.0,
+         "min": 79.0,
+         "max": 86.0,
+         "median": 79.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1710.0,
+         "min": 1710.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 111.448,
+         "last": 93.649,
+         "min": 63.081,
+         "max": 111.448,
+         "median": 63.081
+        },
+        "device_memory_used_bytes": {
+         "first": 3686780928.0,
+         "last": 3686780928.0,
+         "min": 3686780928.0,
+         "max": 3686780928.0,
+         "median": 3686780928.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 3.207713567430844e-07
+    },
+    {
+     "mode": "ieee_fp32",
+     "tile": 1024,
+     "overlap": 96,
+     "tile_count": 12,
+     "median_seconds_total": 0.7009,
+     "min_seconds_total": 0.6979,
+     "max_seconds_total": 0.7041,
+     "median_seconds_forward": 0.6009,
+     "peak_allocated_bytes": 1004386816,
+     "peak_reserved_bytes": 1604321280,
+     "tile_workspace_bytes": 843158016,
+     "repeats": [
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 12,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 11097600,
+       "seconds_total": 0.6979,
+       "seconds_forward": 0.6047,
+       "seconds_upload": 0.0141,
+       "peak_allocated_bytes": 1004386816,
+       "peak_reserved_bytes": 1604321280,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 843158016,
+       "gpu": {
+        "samples": 13,
+        "temperature_c": {
+         "first": 79.0,
+         "last": 85.0,
+         "min": 79.0,
+         "max": 85.0,
+         "median": 85.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1620.0,
+         "min": 1620.0,
+         "max": 1785.0,
+         "median": 1620.0
+        },
+        "power_w": {
+         "first": 78.461,
+         "last": 76.477,
+         "min": 76.477,
+         "max": 78.461,
+         "median": 76.477
+        },
+        "device_memory_used_bytes": {
+         "first": 4492087296.0,
+         "last": 4492087296.0,
+         "min": 4492087296.0,
+         "max": 4492087296.0,
+         "median": 4492087296.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 12,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 11097600,
+       "seconds_total": 0.7009,
+       "seconds_forward": 0.5976,
+       "seconds_upload": 0.0129,
+       "peak_allocated_bytes": 1004386816,
+       "peak_reserved_bytes": 1604321280,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 843158016,
+       "gpu": {
+        "samples": 13,
+        "temperature_c": {
+         "first": 79.0,
+         "last": 86.0,
+         "min": 79.0,
+         "max": 86.0,
+         "median": 83.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1620.0,
+         "min": 1620.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 98.113,
+         "last": 108.467,
+         "min": 57.579,
+         "max": 108.467,
+         "median": 57.579
+        },
+        "device_memory_used_bytes": {
+         "first": 4492087296.0,
+         "last": 4492087296.0,
+         "min": 4492087296.0,
+         "max": 4492087296.0,
+         "median": 4492087296.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 12,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 11097600,
+       "seconds_total": 0.7041,
+       "seconds_forward": 0.6009,
+       "seconds_upload": 0.0166,
+       "peak_allocated_bytes": 1004386816,
+       "peak_reserved_bytes": 1604321280,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 843158016,
+       "gpu": {
+        "samples": 13,
+        "temperature_c": {
+         "first": 79.0,
+         "last": 86.0,
+         "min": 79.0,
+         "max": 86.0,
+         "median": 79.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1620.0,
+         "min": 1620.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 70.588,
+         "last": 86.553,
+         "min": 70.588,
+         "max": 86.553,
+         "median": 70.588
+        },
+        "device_memory_used_bytes": {
+         "first": 4485009408.0,
+         "last": 4485009408.0,
+         "min": 4485009408.0,
+         "max": 4485009408.0,
+         "median": 4485009408.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 1024,
+     "overlap": 96,
+     "tile_count": 12,
+     "median_seconds_total": 0.5672,
+     "min_seconds_total": 0.5613,
+     "max_seconds_total": 0.5717,
+     "median_seconds_forward": 0.4699,
+     "peak_allocated_bytes": 1010477568,
+     "peak_reserved_bytes": 1493172224,
+     "tile_workspace_bytes": 849248768,
+     "repeats": [
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 12,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 11097600,
+       "seconds_total": 0.5717,
+       "seconds_forward": 0.4753,
+       "seconds_upload": 0.0145,
+       "peak_allocated_bytes": 1010477568,
+       "peak_reserved_bytes": 1493172224,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 849248768,
+       "gpu": {
+        "samples": 11,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 86.0,
+         "min": 80.0,
+         "max": 86.0,
+         "median": 80.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1560.0,
+         "min": 1560.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 68.217,
+         "last": 79.878,
+         "min": 68.217,
+         "max": 79.878,
+         "median": 68.217
+        },
+        "device_memory_used_bytes": {
+         "first": 3441414144.0,
+         "last": 4380938240.0,
+         "min": 3441414144.0,
+         "max": 4380938240.0,
+         "median": 4380938240.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 12,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 11097600,
+       "seconds_total": 0.5672,
+       "seconds_forward": 0.4699,
+       "seconds_upload": 0.0171,
+       "peak_allocated_bytes": 1010477568,
+       "peak_reserved_bytes": 1493172224,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 849248768,
+       "gpu": {
+        "samples": 11,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 86.0,
+         "min": 80.0,
+         "max": 86.0,
+         "median": 80.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1545.0,
+         "min": 1545.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 73.69,
+         "last": 77.637,
+         "min": 73.69,
+         "max": 77.637,
+         "median": 73.69
+        },
+        "device_memory_used_bytes": {
+         "first": 4380938240.0,
+         "last": 4380938240.0,
+         "min": 4380938240.0,
+         "max": 4380938240.0,
+         "median": 4380938240.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 12,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 11097600,
+       "seconds_total": 0.5613,
+       "seconds_forward": 0.4665,
+       "seconds_upload": 0.0139,
+       "peak_allocated_bytes": 1010477568,
+       "peak_reserved_bytes": 1493172224,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 849248768,
+       "gpu": {
+        "samples": 11,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 85.0,
+         "min": 80.0,
+         "max": 85.0,
+         "median": 85.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1680.0,
+         "min": 1680.0,
+         "max": 1785.0,
+         "median": 1680.0
+        },
+        "power_w": {
+         "first": 80.59,
+         "last": 73.167,
+         "min": 73.167,
+         "max": 80.59,
+         "median": 73.167
+        },
+        "device_memory_used_bytes": {
+         "first": 4380938240.0,
+         "last": 4380938240.0,
+         "min": 4380938240.0,
+         "max": 4380938240.0,
+         "median": 4380938240.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 4.276951423241125e-07
+    },
+    {
+     "mode": "ieee_fp32",
+     "tile": 1536,
+     "overlap": 96,
+     "tile_count": 6,
+     "median_seconds_total": 0.6712,
+     "min_seconds_total": 0.6602,
+     "max_seconds_total": 0.6784,
+     "median_seconds_forward": 0.5322,
+     "peak_allocated_bytes": 2048768512,
+     "peak_reserved_bytes": 3305111552,
+     "tile_workspace_bytes": 1887539712,
+     "repeats": [
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 9828864,
+       "seconds_total": 0.6712,
+       "seconds_forward": 0.5322,
+       "seconds_upload": 0.0179,
+       "peak_allocated_bytes": 2048768512,
+       "peak_reserved_bytes": 3305111552,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 12,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 83.0,
+         "min": 80.0,
+         "max": 83.0,
+         "median": 83.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1620.0,
+         "min": 1620.0,
+         "max": 1785.0,
+         "median": 1620.0
+        },
+        "power_w": {
+         "first": 73.744,
+         "last": 68.731,
+         "min": 68.731,
+         "max": 73.744,
+         "median": 68.731
+        },
+        "device_memory_used_bytes": {
+         "first": 6192877568.0,
+         "last": 6192877568.0,
+         "min": 6192877568.0,
+         "max": 6192877568.0,
+         "median": 6192877568.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 9828864,
+       "seconds_total": 0.6784,
+       "seconds_forward": 0.5346,
+       "seconds_upload": 0.0177,
+       "peak_allocated_bytes": 2048768512,
+       "peak_reserved_bytes": 3305111552,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 13,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 87.0,
+         "min": 79.0,
+         "max": 87.0,
+         "median": 79.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1590.0,
+         "min": 1590.0,
+         "max": 1785.0,
+         "median": 1605.0
+        },
+        "power_w": {
+         "first": 93.735,
+         "last": 102.579,
+         "min": 57.138,
+         "max": 102.579,
+         "median": 57.138
+        },
+        "device_memory_used_bytes": {
+         "first": 6192877568.0,
+         "last": 6192877568.0,
+         "min": 6192877568.0,
+         "max": 6192877568.0,
+         "median": 6192877568.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 9828864,
+       "seconds_total": 0.6602,
+       "seconds_forward": 0.5311,
+       "seconds_upload": 0.0157,
+       "peak_allocated_bytes": 2048768512,
+       "peak_reserved_bytes": 3305111552,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 13,
+        "temperature_c": {
+         "first": 79.0,
+         "last": 86.0,
+         "min": 79.0,
+         "max": 86.0,
+         "median": 79.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1635.0,
+         "min": 1635.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 66.228,
+         "last": 82.385,
+         "min": 66.228,
+         "max": 82.385,
+         "median": 66.228
+        },
+        "device_memory_used_bytes": {
+         "first": 6208671744.0,
+         "last": 6208671744.0,
+         "min": 6208671744.0,
+         "max": 6208671744.0,
+         "median": 6208671744.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 1536,
+     "overlap": 96,
+     "tile_count": 6,
+     "median_seconds_total": 0.5692,
+     "min_seconds_total": 0.5541,
+     "max_seconds_total": 0.5754,
+     "median_seconds_forward": 0.4215,
+     "peak_allocated_bytes": 2048768512,
+     "peak_reserved_bytes": 2638217216,
+     "tile_workspace_bytes": 1887539712,
+     "repeats": [
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 9828864,
+       "seconds_total": 0.5692,
+       "seconds_forward": 0.4276,
+       "seconds_upload": 0.0199,
+       "peak_allocated_bytes": 2048768512,
+       "peak_reserved_bytes": 2638217216,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 11,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 81.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1620.0,
+         "min": 1620.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 89.87,
+         "last": 87.889,
+         "min": 59.575,
+         "max": 89.87,
+         "median": 59.575
+        },
+        "device_memory_used_bytes": {
+         "first": 3540504576.0,
+         "last": 5503438848.0,
+         "min": 3540504576.0,
+         "max": 5503438848.0,
+         "median": 5503438848.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 9828864,
+       "seconds_total": 0.5754,
+       "seconds_forward": 0.4215,
+       "seconds_upload": 0.0175,
+       "peak_allocated_bytes": 2048768512,
+       "peak_reserved_bytes": 2638217216,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 11,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 86.0,
+         "min": 81.0,
+         "max": 86.0,
+         "median": 81.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1770.0,
+         "min": 1770.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 66.462,
+         "last": 80.64,
+         "min": 66.462,
+         "max": 80.64,
+         "median": 66.462
+        },
+        "device_memory_used_bytes": {
+         "first": 5526441984.0,
+         "last": 5527162880.0,
+         "min": 5526441984.0,
+         "max": 5527162880.0,
+         "median": 5527162880.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 9828864,
+       "seconds_total": 0.5541,
+       "seconds_forward": 0.4128,
+       "seconds_upload": 0.0139,
+       "peak_allocated_bytes": 2048768512,
+       "peak_reserved_bytes": 2638217216,
+       "baseline_allocated_bytes": 161228800,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 10,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 86.0,
+         "min": 80.0,
+         "max": 86.0,
+         "median": 80.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1545.0,
+         "min": 1545.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 72.297,
+         "last": 76.209,
+         "min": 72.297,
+         "max": 76.209,
+         "median": 72.297
+        },
+        "device_memory_used_bytes": {
+         "first": 5527162880.0,
+         "last": 5519626240.0,
+         "min": 5519626240.0,
+         "max": 5527162880.0,
+         "median": 5522083840.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 2.1384757116205625e-07
+    }
+   ]
+  },
+  {
+   "name": "36mp",
+   "raw_path": "data/evaluation_photos/demosaic/_DSC0729.ARW",
+   "raw_sha256": "ed27ac4316f783dd2b612d99affc788086a749e23eee85f41ff7f8cba1510c18",
+   "preparation": {
+    "area_size": [
+     5320,
+     7968
+    ],
+    "area_megapixels": 42.39,
+    "packed_size": [
+     2660,
+     3984
+    ],
+    "pattern": "RGGB",
+    "added_top": 0,
+    "added_left": 0,
+    "black_r_g1_g2_b": [
+     512.0,
+     512.0,
+     512.0,
+     512.0
+    ],
+    "maximum": 16383.0,
+    "linear_max_r_g_b": [
+     15360.0,
+     15360.0,
+     15360.0
+    ],
+    "saturation_r_g_b": [
+     0.93554281393737,
+     0.93554281393737,
+     0.93554281393737
+    ],
+    "cam_mul": [
+     2756.0,
+     1024.0,
+     1432.0,
+     1024.0
+    ],
+    "changed_to_mosaic": [
+     4912,
+     7360
+    ],
+    "change": "crop",
+    "mosaic_megapixels": 36.15
+   },
+   "runs": [
+    {
+     "mode": "ieee_fp32",
+     "tile": 768,
+     "overlap": 96,
+     "tile_count": 28,
+     "median_seconds_total": 0.9509,
+     "min_seconds_total": 0.9419,
+     "max_seconds_total": 0.9533,
+     "median_seconds_forward": 0.8124,
+     "peak_allocated_bytes": 647712256,
+     "peak_reserved_bytes": 901775360,
+     "tile_workspace_bytes": 471962112,
+     "repeats": [
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 28,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 14689280,
+       "seconds_total": 0.9509,
+       "seconds_forward": 0.8238,
+       "seconds_upload": 0.0151,
+       "peak_allocated_bytes": 647712256,
+       "peak_reserved_bytes": 901775360,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 17,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 87.0,
+         "min": 80.0,
+         "max": 87.0,
+         "median": 87.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1500.0,
+         "min": 1500.0,
+         "max": 1785.0,
+         "median": 1725.0
+        },
+        "power_w": {
+         "first": 66.888,
+         "last": 123.926,
+         "min": 66.888,
+         "max": 123.926,
+         "median": 83.18
+        },
+        "device_memory_used_bytes": {
+         "first": 3780366336.0,
+         "last": 3775909888.0,
+         "min": 3775909888.0,
+         "max": 3780366336.0,
+         "median": 3775909888.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 28,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 14689280,
+       "seconds_total": 0.9419,
+       "seconds_forward": 0.8065,
+       "seconds_upload": 0.0155,
+       "peak_allocated_bytes": 647712256,
+       "peak_reserved_bytes": 901775360,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 17,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 87.0,
+         "min": 80.0,
+         "max": 87.0,
+         "median": 87.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1740.0,
+         "min": 1740.0,
+         "max": 1785.0,
+         "median": 1740.0
+        },
+        "power_w": {
+         "first": 63.039,
+         "last": 93.143,
+         "min": 63.039,
+         "max": 93.143,
+         "median": 93.143
+        },
+        "device_memory_used_bytes": {
+         "first": 3775909888.0,
+         "last": 3775909888.0,
+         "min": 3775909888.0,
+         "max": 3775909888.0,
+         "median": 3775909888.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 28,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 14689280,
+       "seconds_total": 0.9533,
+       "seconds_forward": 0.8124,
+       "seconds_upload": 0.0155,
+       "peak_allocated_bytes": 647712256,
+       "peak_reserved_bytes": 901775360,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 17,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 80.0,
+         "max": 87.0,
+         "median": 81.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1665.0,
+         "min": 1665.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 108.521,
+         "last": 91.916,
+         "min": 60.231,
+         "max": 108.521,
+         "median": 91.916
+        },
+        "device_memory_used_bytes": {
+         "first": 3775909888.0,
+         "last": 3773419520.0,
+         "min": 3773419520.0,
+         "max": 3775909888.0,
+         "median": 3773419520.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 768,
+     "overlap": 96,
+     "tile_count": 28,
+     "median_seconds_total": 0.7563,
+     "min_seconds_total": 0.7535,
+     "max_seconds_total": 0.7839,
+     "median_seconds_forward": 0.6268,
+     "peak_allocated_bytes": 647712256,
+     "peak_reserved_bytes": 799014912,
+     "tile_workspace_bytes": 471962112,
+     "repeats": [
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 28,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 14689280,
+       "seconds_total": 0.7839,
+       "seconds_forward": 0.6405,
+       "seconds_upload": 0.017,
+       "peak_allocated_bytes": 647712256,
+       "peak_reserved_bytes": 799014912,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 14,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 87.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1635.0,
+         "min": 1635.0,
+         "max": 1785.0,
+         "median": 1635.0
+        },
+        "power_w": {
+         "first": 74.926,
+         "last": 71.305,
+         "min": 71.305,
+         "max": 74.926,
+         "median": 71.305
+        },
+        "device_memory_used_bytes": {
+         "first": 3170488320.0,
+         "last": 3661221888.0,
+         "min": 3170488320.0,
+         "max": 3661221888.0,
+         "median": 3661221888.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 28,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 14689280,
+       "seconds_total": 0.7535,
+       "seconds_forward": 0.6264,
+       "seconds_upload": 0.0162,
+       "peak_allocated_bytes": 647712256,
+       "peak_reserved_bytes": 799014912,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 14,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 80.0,
+         "max": 87.0,
+         "median": 80.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1695.0,
+         "min": 1695.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 104.467,
+         "last": 91.661,
+         "min": 59.113,
+         "max": 104.467,
+         "median": 59.113
+        },
+        "device_memory_used_bytes": {
+         "first": 3661221888.0,
+         "last": 3668299776.0,
+         "min": 3661221888.0,
+         "max": 3668299776.0,
+         "median": 3664760832.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 28,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 14689280,
+       "seconds_total": 0.7563,
+       "seconds_forward": 0.6268,
+       "seconds_upload": 0.0184,
+       "peak_allocated_bytes": 647712256,
+       "peak_reserved_bytes": 799014912,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 14,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 86.0,
+         "min": 80.0,
+         "max": 86.0,
+         "median": 86.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1680.0,
+         "min": 1680.0,
+         "max": 1785.0,
+         "median": 1680.0
+        },
+        "power_w": {
+         "first": 86.449,
+         "last": 67.073,
+         "min": 67.073,
+         "max": 86.449,
+         "median": 67.073
+        },
+        "device_memory_used_bytes": {
+         "first": 3668299776.0,
+         "last": 3668299776.0,
+         "min": 3668299776.0,
+         "max": 3668299776.0,
+         "median": 3668299776.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 0.0
+    },
+    {
+     "mode": "ieee_fp32",
+     "tile": 1024,
+     "overlap": 96,
+     "tile_count": 15,
+     "median_seconds_total": 0.8117,
+     "min_seconds_total": 0.8018,
+     "max_seconds_total": 0.8409,
+     "median_seconds_forward": 0.7061,
+     "peak_allocated_bytes": 1014713856,
+     "peak_reserved_bytes": 1335885824,
+     "tile_workspace_bytes": 838963712,
+     "repeats": [
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 15,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12667904,
+       "seconds_total": 0.8117,
+       "seconds_forward": 0.7061,
+       "seconds_upload": 0.0171,
+       "peak_allocated_bytes": 1014713856,
+       "peak_reserved_bytes": 1335885824,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 15,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 87.0,
+         "min": 80.0,
+         "max": 87.0,
+         "median": 87.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1635.0,
+         "min": 1635.0,
+         "max": 1785.0,
+         "median": 1635.0
+        },
+        "power_w": {
+         "first": 69.489,
+         "last": 74.883,
+         "min": 69.489,
+         "max": 74.883,
+         "median": 74.883
+        },
+        "device_memory_used_bytes": {
+         "first": 4205170688.0,
+         "last": 4205170688.0,
+         "min": 4205170688.0,
+         "max": 4205170688.0,
+         "median": 4205170688.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 15,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12667904,
+       "seconds_total": 0.8018,
+       "seconds_forward": 0.6923,
+       "seconds_upload": 0.0171,
+       "peak_allocated_bytes": 1014713856,
+       "peak_reserved_bytes": 1335885824,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 14,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 88.0,
+         "min": 80.0,
+         "max": 88.0,
+         "median": 80.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1650.0,
+         "min": 1650.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 102.696,
+         "last": 93.118,
+         "min": 57.312,
+         "max": 102.696,
+         "median": 57.312
+        },
+        "device_memory_used_bytes": {
+         "first": 4205170688.0,
+         "last": 4205170688.0,
+         "min": 4205170688.0,
+         "max": 4205170688.0,
+         "median": 4205170688.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 15,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12667904,
+       "seconds_total": 0.8409,
+       "seconds_forward": 0.7282,
+       "seconds_upload": 0.019,
+       "peak_allocated_bytes": 1014713856,
+       "peak_reserved_bytes": 1335885824,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 15,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 86.0,
+         "min": 80.0,
+         "max": 86.0,
+         "median": 86.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1395.0,
+         "min": 1395.0,
+         "max": 1785.0,
+         "median": 1770.0
+        },
+        "power_w": {
+         "first": 89.744,
+         "last": 109.391,
+         "min": 62.668,
+         "max": 109.391,
+         "median": 62.668
+        },
+        "device_memory_used_bytes": {
+         "first": 4205170688.0,
+         "last": 4205170688.0,
+         "min": 4205170688.0,
+         "max": 4205170688.0,
+         "median": 4205170688.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 1024,
+     "overlap": 96,
+     "tile_count": 15,
+     "median_seconds_total": 0.6539,
+     "min_seconds_total": 0.6418,
+     "max_seconds_total": 0.6685,
+     "median_seconds_forward": 0.5363,
+     "peak_allocated_bytes": 1014713856,
+     "peak_reserved_bytes": 1251999744,
+     "tile_workspace_bytes": 838963712,
+     "repeats": [
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 15,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12667904,
+       "seconds_total": 0.6685,
+       "seconds_forward": 0.5568,
+       "seconds_upload": 0.0237,
+       "peak_allocated_bytes": 1014713856,
+       "peak_reserved_bytes": 1251999744,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 12,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 85.0,
+         "min": 81.0,
+         "max": 85.0,
+         "median": 85.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1545.0,
+         "min": 1545.0,
+         "max": 1785.0,
+         "median": 1545.0
+        },
+        "power_w": {
+         "first": 71.944,
+         "last": 58.586,
+         "min": 58.586,
+         "max": 71.944,
+         "median": 58.586
+        },
+        "device_memory_used_bytes": {
+         "first": 3248869376.0,
+         "last": 4121284608.0,
+         "min": 3248869376.0,
+         "max": 4121284608.0,
+         "median": 4121284608.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 15,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12667904,
+       "seconds_total": 0.6418,
+       "seconds_forward": 0.5363,
+       "seconds_upload": 0.0163,
+       "peak_allocated_bytes": 1014713856,
+       "peak_reserved_bytes": 1251999744,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 12,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 80.0,
+         "max": 87.0,
+         "median": 80.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1605.0,
+         "min": 1605.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 103.3,
+         "last": 93.906,
+         "min": 59.089,
+         "max": 103.3,
+         "median": 59.089
+        },
+        "device_memory_used_bytes": {
+         "first": 4121284608.0,
+         "last": 4121284608.0,
+         "min": 4121284608.0,
+         "max": 4121284608.0,
+         "median": 4121284608.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 15,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12667904,
+       "seconds_total": 0.6539,
+       "seconds_forward": 0.536,
+       "seconds_upload": 0.0155,
+       "peak_allocated_bytes": 1014713856,
+       "peak_reserved_bytes": 1251999744,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 12,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 86.0,
+         "min": 80.0,
+         "max": 86.0,
+         "median": 80.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1680.0,
+         "min": 1680.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 77.036,
+         "last": 76.011,
+         "min": 76.011,
+         "max": 77.036,
+         "median": 77.036
+        },
+        "device_memory_used_bytes": {
+         "first": 4121284608.0,
+         "last": 4121284608.0,
+         "min": 4121284608.0,
+         "max": 4121284608.0,
+         "median": 4121284608.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 0.0
+    },
+    {
+     "mode": "ieee_fp32",
+     "tile": 1536,
+     "overlap": 96,
+     "tile_count": 6,
+     "median_seconds_total": 0.7552,
+     "min_seconds_total": 0.7513,
+     "max_seconds_total": 0.7956,
+     "median_seconds_forward": 0.5867,
+     "peak_allocated_bytes": 2063289856,
+     "peak_reserved_bytes": 3063939072,
+     "tile_workspace_bytes": 1887539712,
+     "repeats": [
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 10793984,
+       "seconds_total": 0.7552,
+       "seconds_forward": 0.5867,
+       "seconds_upload": 0.0178,
+       "peak_allocated_bytes": 2063289856,
+       "peak_reserved_bytes": 3063939072,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 14,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 87.0,
+         "min": 80.0,
+         "max": 87.0,
+         "median": 85.0
+        },
+        "sm_clock_mhz": {
+         "first": 1680.0,
+         "last": 1605.0,
+         "min": 1605.0,
+         "max": 1680.0,
+         "median": 1665.0
+        },
+        "power_w": {
+         "first": 75.538,
+         "last": 99.569,
+         "min": 51.789,
+         "max": 99.569,
+         "median": 51.789
+        },
+        "device_memory_used_bytes": {
+         "first": 5933223936.0,
+         "last": 5933223936.0,
+         "min": 5933223936.0,
+         "max": 5933223936.0,
+         "median": 5933223936.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 10793984,
+       "seconds_total": 0.7956,
+       "seconds_forward": 0.5949,
+       "seconds_upload": 0.0143,
+       "peak_allocated_bytes": 2063289856,
+       "peak_reserved_bytes": 3063939072,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 15,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 85.0,
+         "min": 80.0,
+         "max": 85.0,
+         "median": 85.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1605.0,
+         "min": 1605.0,
+         "max": 1785.0,
+         "median": 1605.0
+        },
+        "power_w": {
+         "first": 70.575,
+         "last": 75.699,
+         "min": 70.575,
+         "max": 75.699,
+         "median": 75.699
+        },
+        "device_memory_used_bytes": {
+         "first": 5933223936.0,
+         "last": 5933223936.0,
+         "min": 5933223936.0,
+         "max": 5933223936.0,
+         "median": 5933223936.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 10793984,
+       "seconds_total": 0.7513,
+       "seconds_forward": 0.5837,
+       "seconds_upload": 0.0174,
+       "peak_allocated_bytes": 2063289856,
+       "peak_reserved_bytes": 3063939072,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 14,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 87.0,
+         "min": 80.0,
+         "max": 87.0,
+         "median": 81.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1785.0,
+         "min": 1605.0,
+         "max": 1785.0,
+         "median": 1605.0
+        },
+        "power_w": {
+         "first": 90.868,
+         "last": 92.503,
+         "min": 52.637,
+         "max": 92.503,
+         "median": 52.637
+        },
+        "device_memory_used_bytes": {
+         "first": 5933223936.0,
+         "last": 5926146048.0,
+         "min": 5926146048.0,
+         "max": 5933223936.0,
+         "median": 5926146048.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 1536,
+     "overlap": 96,
+     "tile_count": 6,
+     "median_seconds_total": 0.6406,
+     "min_seconds_total": 0.6307,
+     "max_seconds_total": 0.6585,
+     "median_seconds_forward": 0.453,
+     "peak_allocated_bytes": 2063289856,
+     "peak_reserved_bytes": 2703228928,
+     "tile_workspace_bytes": 1887539712,
+     "repeats": [
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 10793984,
+       "seconds_total": 0.6585,
+       "seconds_forward": 0.4768,
+       "seconds_upload": 0.0149,
+       "peak_allocated_bytes": 2063289856,
+       "peak_reserved_bytes": 2703228928,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 13,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 81.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 69.21,
+         "last": 79.493,
+         "min": 69.21,
+         "max": 79.493,
+         "median": 69.21
+        },
+        "device_memory_used_bytes": {
+         "first": 3760574464.0,
+         "last": 5572513792.0,
+         "min": 3760574464.0,
+         "max": 5572513792.0,
+         "median": 5572513792.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 10793984,
+       "seconds_total": 0.6307,
+       "seconds_forward": 0.4486,
+       "seconds_upload": 0.0154,
+       "peak_allocated_bytes": 2063289856,
+       "peak_reserved_bytes": 2703228928,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 12,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 84.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1755.0,
+         "min": 1755.0,
+         "max": 1785.0,
+         "median": 1755.0
+        },
+        "power_w": {
+         "first": 72.644,
+         "last": 65.754,
+         "min": 65.754,
+         "max": 72.644,
+         "median": 65.754
+        },
+        "device_memory_used_bytes": {
+         "first": 5565435904.0,
+         "last": 5565435904.0,
+         "min": 5565435904.0,
+         "max": 5565435904.0,
+         "median": 5565435904.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 10793984,
+       "seconds_total": 0.6406,
+       "seconds_forward": 0.453,
+       "seconds_upload": 0.0166,
+       "peak_allocated_bytes": 2063289856,
+       "peak_reserved_bytes": 2703228928,
+       "baseline_allocated_bytes": 175750144,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 12,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 85.0,
+         "min": 81.0,
+         "max": 85.0,
+         "median": 85.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1785.0,
+         "min": 1785.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 89.414,
+         "last": 55.765,
+         "min": 55.765,
+         "max": 89.414,
+         "median": 55.765
+        },
+        "device_memory_used_bytes": {
+         "first": 5565435904.0,
+         "last": 5565435904.0,
+         "min": 5565435904.0,
+         "max": 5565435904.0,
+         "median": 5565435904.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 0.0
+    }
+   ]
+  },
+  {
+   "name": "42mp",
+   "raw_path": "data/evaluation_photos/demosaic/_DSC0729.ARW",
+   "raw_sha256": "ed27ac4316f783dd2b612d99affc788086a749e23eee85f41ff7f8cba1510c18",
+   "preparation": {
+    "area_size": [
+     5320,
+     7968
+    ],
+    "area_megapixels": 42.39,
+    "packed_size": [
+     2660,
+     3984
+    ],
+    "pattern": "RGGB",
+    "added_top": 0,
+    "added_left": 0,
+    "black_r_g1_g2_b": [
+     512.0,
+     512.0,
+     512.0,
+     512.0
+    ],
+    "maximum": 16383.0,
+    "linear_max_r_g_b": [
+     15360.0,
+     15360.0,
+     15360.0
+    ],
+    "saturation_r_g_b": [
+     0.93554281393737,
+     0.93554281393737,
+     0.93554281393737
+    ],
+    "cam_mul": [
+     2756.0,
+     1024.0,
+     1432.0,
+     1024.0
+    ],
+    "mosaic_megapixels": 42.39
+   },
+   "runs": [
+    {
+     "mode": "ieee_fp32",
+     "tile": 768,
+     "overlap": 96,
+     "tile_count": 35,
+     "median_seconds_total": 1.2013,
+     "min_seconds_total": 1.1941,
+     "max_seconds_total": 1.2026,
+     "median_seconds_forward": 1.0213,
+     "peak_allocated_bytes": 672878080,
+     "peak_reserved_bytes": 782237696,
+     "tile_workspace_bytes": 471962112,
+     "repeats": [
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 35,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 17667840,
+       "seconds_total": 1.2013,
+       "seconds_forward": 1.0264,
+       "seconds_upload": 0.0185,
+       "peak_allocated_bytes": 672878080,
+       "peak_reserved_bytes": 782237696,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 21,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 87.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1785.0,
+         "median": 1635.0
+        },
+        "power_w": {
+         "first": 70.742,
+         "last": 110.954,
+         "min": 68.649,
+         "max": 110.954,
+         "median": 70.742
+        },
+        "device_memory_used_bytes": {
+         "first": 3651522560.0,
+         "last": 3651522560.0,
+         "min": 3651522560.0,
+         "max": 3651522560.0,
+         "median": 3651522560.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 35,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 17667840,
+       "seconds_total": 1.1941,
+       "seconds_forward": 1.0001,
+       "seconds_upload": 0.0191,
+       "peak_allocated_bytes": 672878080,
+       "peak_reserved_bytes": 782237696,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 21,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 88.0,
+         "median": 83.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1470.0,
+         "min": 1470.0,
+         "max": 1785.0,
+         "median": 1635.0
+        },
+        "power_w": {
+         "first": 83.928,
+         "last": 143.428,
+         "min": 53.047,
+         "max": 143.428,
+         "median": 83.928
+        },
+        "device_memory_used_bytes": {
+         "first": 3651522560.0,
+         "last": 3651522560.0,
+         "min": 3651522560.0,
+         "max": 3651522560.0,
+         "median": 3651522560.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 35,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 17667840,
+       "seconds_total": 1.2026,
+       "seconds_forward": 1.0213,
+       "seconds_upload": 0.0216,
+       "peak_allocated_bytes": 672878080,
+       "peak_reserved_bytes": 782237696,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 21,
+        "temperature_c": {
+         "first": 80.0,
+         "last": 86.0,
+         "min": 80.0,
+         "max": 87.0,
+         "median": 86.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1785.0,
+         "median": 1725.0
+        },
+        "power_w": {
+         "first": 67.422,
+         "last": 118.4,
+         "min": 67.422,
+         "max": 118.4,
+         "median": 77.137
+        },
+        "device_memory_used_bytes": {
+         "first": 3651522560.0,
+         "last": 3651522560.0,
+         "min": 3651522560.0,
+         "max": 3651522560.0,
+         "median": 3651522560.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 768,
+     "overlap": 96,
+     "tile_count": 35,
+     "median_seconds_total": 0.9499,
+     "min_seconds_total": 0.9408,
+     "max_seconds_total": 0.9699,
+     "median_seconds_forward": 0.7671,
+     "peak_allocated_bytes": 672878080,
+     "peak_reserved_bytes": 941621248,
+     "tile_workspace_bytes": 471962112,
+     "repeats": [
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 35,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 17667840,
+       "seconds_total": 0.9699,
+       "seconds_forward": 0.772,
+       "seconds_upload": 0.0218,
+       "peak_allocated_bytes": 672878080,
+       "peak_reserved_bytes": 941621248,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 18,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 86.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1455.0,
+         "min": 1455.0,
+         "max": 1785.0,
+         "median": 1695.0
+        },
+        "power_w": {
+         "first": 60.096,
+         "last": 122.008,
+         "min": 60.096,
+         "max": 122.008,
+         "median": 73.149
+        },
+        "device_memory_used_bytes": {
+         "first": 3211448320.0,
+         "last": 3803828224.0,
+         "min": 3211448320.0,
+         "max": 3815428096.0,
+         "median": 3815428096.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 35,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 17667840,
+       "seconds_total": 0.9499,
+       "seconds_forward": 0.7648,
+       "seconds_upload": 0.0197,
+       "peak_allocated_bytes": 672878080,
+       "peak_reserved_bytes": 941621248,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 17,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 86.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1635.0,
+         "min": 1635.0,
+         "max": 1785.0,
+         "median": 1695.0
+        },
+        "power_w": {
+         "first": 72.85,
+         "last": 126.165,
+         "min": 72.85,
+         "max": 126.165,
+         "median": 80.734
+        },
+        "device_memory_used_bytes": {
+         "first": 3810906112.0,
+         "last": 3810906112.0,
+         "min": 3810906112.0,
+         "max": 3810906112.0,
+         "median": 3810906112.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 35,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 17667840,
+       "seconds_total": 0.9408,
+       "seconds_forward": 0.7671,
+       "seconds_upload": 0.0187,
+       "peak_allocated_bytes": 672878080,
+       "peak_reserved_bytes": 941621248,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 17,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 88.0,
+         "min": 81.0,
+         "max": 88.0,
+         "median": 87.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1560.0,
+         "min": 1560.0,
+         "max": 1785.0,
+         "median": 1725.0
+        },
+        "power_w": {
+         "first": 69.136,
+         "last": 123.57,
+         "min": 69.136,
+         "max": 123.57,
+         "median": 81.048
+        },
+        "device_memory_used_bytes": {
+         "first": 3810906112.0,
+         "last": 3810906112.0,
+         "min": 3810906112.0,
+         "max": 3810906112.0,
+         "median": 3810906112.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 0.0
+    },
+    {
+     "mode": "ieee_fp32",
+     "tile": 1024,
+     "overlap": 96,
+     "tile_count": 15,
+     "median_seconds_total": 0.9402,
+     "min_seconds_total": 0.935,
+     "max_seconds_total": 0.9504,
+     "median_seconds_forward": 0.8168,
+     "peak_allocated_bytes": 1043287552,
+     "peak_reserved_bytes": 1612709888,
+     "tile_workspace_bytes": 842371584,
+     "repeats": [
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 15,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 14522112,
+       "seconds_total": 0.935,
+       "seconds_forward": 0.8103,
+       "seconds_upload": 0.0204,
+       "peak_allocated_bytes": 1043287552,
+       "peak_reserved_bytes": 1612709888,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 842371584,
+       "gpu": {
+        "samples": 17,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 88.0,
+         "min": 81.0,
+         "max": 88.0,
+         "median": 84.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1500.0,
+         "min": 1500.0,
+         "max": 1785.0,
+         "median": 1590.0
+        },
+        "power_w": {
+         "first": 87.211,
+         "last": 103.808,
+         "min": 59.317,
+         "max": 103.808,
+         "median": 59.317
+        },
+        "device_memory_used_bytes": {
+         "first": 4481994752.0,
+         "last": 4481994752.0,
+         "min": 4481994752.0,
+         "max": 4481994752.0,
+         "median": 4481994752.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 15,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 14522112,
+       "seconds_total": 0.9402,
+       "seconds_forward": 0.8168,
+       "seconds_upload": 0.0173,
+       "peak_allocated_bytes": 1043287552,
+       "peak_reserved_bytes": 1612709888,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 842371584,
+       "gpu": {
+        "samples": 17,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 88.0,
+         "min": 81.0,
+         "max": 88.0,
+         "median": 86.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1500.0,
+         "min": 1500.0,
+         "max": 1785.0,
+         "median": 1620.0
+        },
+        "power_w": {
+         "first": 80.954,
+         "last": 115.83,
+         "min": 66.751,
+         "max": 115.83,
+         "median": 66.751
+        },
+        "device_memory_used_bytes": {
+         "first": 4481994752.0,
+         "last": 4481994752.0,
+         "min": 4481994752.0,
+         "max": 4481994752.0,
+         "median": 4481994752.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 15,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 14522112,
+       "seconds_total": 0.9504,
+       "seconds_forward": 0.8251,
+       "seconds_upload": 0.0188,
+       "peak_allocated_bytes": 1043287552,
+       "peak_reserved_bytes": 1612709888,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 842371584,
+       "gpu": {
+        "samples": 17,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 86.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1425.0,
+         "min": 1425.0,
+         "max": 1785.0,
+         "median": 1635.0
+        },
+        "power_w": {
+         "first": 73.302,
+         "last": 110.324,
+         "min": 72.133,
+         "max": 110.324,
+         "median": 73.302
+        },
+        "device_memory_used_bytes": {
+         "first": 4481994752.0,
+         "last": 4481994752.0,
+         "min": 4481994752.0,
+         "max": 4481994752.0,
+         "median": 4481994752.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 1024,
+     "overlap": 96,
+     "tile_count": 15,
+     "median_seconds_total": 0.772,
+     "min_seconds_total": 0.741,
+     "max_seconds_total": 0.7746,
+     "median_seconds_forward": 0.6198,
+     "peak_allocated_bytes": 1043811840,
+     "peak_reserved_bytes": 1537212416,
+     "tile_workspace_bytes": 842895872,
+     "repeats": [
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 15,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 14522112,
+       "seconds_total": 0.7746,
+       "seconds_forward": 0.619,
+       "seconds_upload": 0.025,
+       "peak_allocated_bytes": 1043811840,
+       "peak_reserved_bytes": 1537212416,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 842895872,
+       "gpu": {
+        "samples": 14,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 88.0,
+         "min": 81.0,
+         "max": 88.0,
+         "median": 81.0
+        },
+        "sm_clock_mhz": {
+         "first": 1740.0,
+         "last": 1575.0,
+         "min": 1545.0,
+         "max": 1740.0,
+         "median": 1545.0
+        },
+        "power_w": {
+         "first": 80.131,
+         "last": 109.638,
+         "min": 55.802,
+         "max": 109.638,
+         "median": 55.802
+        },
+        "device_memory_used_bytes": {
+         "first": 3466973184.0,
+         "last": 4406497280.0,
+         "min": 3466973184.0,
+         "max": 4406497280.0,
+         "median": 4406497280.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 15,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 14522112,
+       "seconds_total": 0.772,
+       "seconds_forward": 0.6326,
+       "seconds_upload": 0.018,
+       "peak_allocated_bytes": 1043811840,
+       "peak_reserved_bytes": 1537212416,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 842895872,
+       "gpu": {
+        "samples": 14,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 87.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1530.0,
+         "min": 1530.0,
+         "max": 1785.0,
+         "median": 1530.0
+        },
+        "power_w": {
+         "first": 74.658,
+         "last": 78.611,
+         "min": 74.658,
+         "max": 78.611,
+         "median": 78.611
+        },
+        "device_memory_used_bytes": {
+         "first": 4406497280.0,
+         "last": 4406497280.0,
+         "min": 4406497280.0,
+         "max": 4406497280.0,
+         "median": 4406497280.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 15,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 14522112,
+       "seconds_total": 0.741,
+       "seconds_forward": 0.6198,
+       "seconds_upload": 0.0192,
+       "peak_allocated_bytes": 1043811840,
+       "peak_reserved_bytes": 1537212416,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 842895872,
+       "gpu": {
+        "samples": 14,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 88.0,
+         "min": 81.0,
+         "max": 88.0,
+         "median": 84.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1785.0,
+         "median": 1605.0
+        },
+        "power_w": {
+         "first": 89.992,
+         "last": 105.313,
+         "min": 55.456,
+         "max": 105.313,
+         "median": 55.456
+        },
+        "device_memory_used_bytes": {
+         "first": 4406497280.0,
+         "last": 4406497280.0,
+         "min": 4406497280.0,
+         "max": 4406497280.0,
+         "median": 4406497280.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 0.0
+    },
+    {
+     "mode": "ieee_fp32",
+     "tile": 1536,
+     "overlap": 96,
+     "tile_count": 6,
+     "median_seconds_total": 0.8218,
+     "min_seconds_total": 0.8207,
+     "max_seconds_total": 0.8308,
+     "median_seconds_forward": 0.7048,
+     "peak_allocated_bytes": 2088455680,
+     "peak_reserved_bytes": 3349151744,
+     "tile_workspace_bytes": 1887539712,
+     "repeats": [
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12509952,
+       "seconds_total": 0.8308,
+       "seconds_forward": 0.71,
+       "seconds_upload": 0.0195,
+       "peak_allocated_bytes": 2088455680,
+       "peak_reserved_bytes": 3349151744,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 15,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 87.0
+        },
+        "sm_clock_mhz": {
+         "first": 1725.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1725.0,
+         "median": 1575.0
+        },
+        "power_w": {
+         "first": 77.546,
+         "last": 108.861,
+         "min": 65.661,
+         "max": 108.861,
+         "median": 65.661
+        },
+        "device_memory_used_bytes": {
+         "first": 6218436608.0,
+         "last": 6218436608.0,
+         "min": 6218436608.0,
+         "max": 6218436608.0,
+         "median": 6218436608.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12509952,
+       "seconds_total": 0.8218,
+       "seconds_forward": 0.7023,
+       "seconds_upload": 0.0196,
+       "peak_allocated_bytes": 2088455680,
+       "peak_reserved_bytes": 3349151744,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 15,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 88.0,
+         "min": 81.0,
+         "max": 88.0,
+         "median": 88.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1605.0,
+         "min": 1605.0,
+         "max": 1785.0,
+         "median": 1605.0
+        },
+        "power_w": {
+         "first": 61.533,
+         "last": 82.733,
+         "min": 61.533,
+         "max": 82.733,
+         "median": 82.733
+        },
+        "device_memory_used_bytes": {
+         "first": 6218436608.0,
+         "last": 6218436608.0,
+         "min": 6218436608.0,
+         "max": 6218436608.0,
+         "median": 6218436608.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12509952,
+       "seconds_total": 0.8207,
+       "seconds_forward": 0.7048,
+       "seconds_upload": 0.0206,
+       "peak_allocated_bytes": 2088455680,
+       "peak_reserved_bytes": 3349151744,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 15,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 84.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1470.0,
+         "min": 1470.0,
+         "max": 1785.0,
+         "median": 1560.0
+        },
+        "power_w": {
+         "first": 93.904,
+         "last": 95.349,
+         "min": 54.072,
+         "max": 95.349,
+         "median": 54.072
+        },
+        "device_memory_used_bytes": {
+         "first": 6218174464.0,
+         "last": 6218174464.0,
+         "min": 6218174464.0,
+         "max": 6218174464.0,
+         "median": 6218174464.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 1536,
+     "overlap": 96,
+     "tile_count": 6,
+     "median_seconds_total": 0.6615,
+     "min_seconds_total": 0.6605,
+     "max_seconds_total": 0.662,
+     "median_seconds_forward": 0.5406,
+     "peak_allocated_bytes": 2088455680,
+     "peak_reserved_bytes": 2778726400,
+     "tile_workspace_bytes": 1887539712,
+     "repeats": [
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12509952,
+       "seconds_total": 0.6605,
+       "seconds_forward": 0.5406,
+       "seconds_upload": 0.0179,
+       "peak_allocated_bytes": 2088455680,
+       "peak_reserved_bytes": 2778726400,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 12,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 89.0,
+         "min": 82.0,
+         "max": 89.0,
+         "median": 82.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1530.0,
+         "min": 1530.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 67.495,
+         "last": 77.195,
+         "min": 67.495,
+         "max": 77.195,
+         "median": 67.495
+        },
+        "device_memory_used_bytes": {
+         "first": 4130590720.0,
+         "last": 5647618048.0,
+         "min": 4130590720.0,
+         "max": 5647618048.0,
+         "median": 5647618048.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12509952,
+       "seconds_total": 0.6615,
+       "seconds_forward": 0.5371,
+       "seconds_upload": 0.0183,
+       "peak_allocated_bytes": 2088455680,
+       "peak_reserved_bytes": 2778726400,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 13,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 87.0,
+         "min": 82.0,
+         "max": 87.0,
+         "median": 87.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1485.0,
+         "min": 1485.0,
+         "max": 1785.0,
+         "median": 1485.0
+        },
+        "power_w": {
+         "first": 87.79,
+         "last": 61.894,
+         "min": 61.894,
+         "max": 87.79,
+         "median": 61.894
+        },
+        "device_memory_used_bytes": {
+         "first": 5647618048.0,
+         "last": 5647618048.0,
+         "min": 5647618048.0,
+         "max": 5647618048.0,
+         "median": 5647618048.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 12509952,
+       "seconds_total": 0.662,
+       "seconds_forward": 0.543,
+       "seconds_upload": 0.019,
+       "peak_allocated_bytes": 2088455680,
+       "peak_reserved_bytes": 2778726400,
+       "baseline_allocated_bytes": 200915968,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 12,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 81.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 99.187,
+         "last": 88.435,
+         "min": 54.843,
+         "max": 99.187,
+         "median": 54.843
+        },
+        "device_memory_used_bytes": {
+         "first": 5647618048.0,
+         "last": 5647618048.0,
+         "min": 5647618048.0,
+         "max": 5647618048.0,
+         "median": 5647618048.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 7.885969511737832e-07
+    }
+   ]
+  },
+  {
+   "name": "45mp",
+   "raw_path": "data/evaluation_photos/demosaic/_DSC0729.ARW",
+   "raw_sha256": "ed27ac4316f783dd2b612d99affc788086a749e23eee85f41ff7f8cba1510c18",
+   "preparation": {
+    "area_size": [
+     5320,
+     7968
+    ],
+    "area_megapixels": 42.39,
+    "packed_size": [
+     2660,
+     3984
+    ],
+    "pattern": "RGGB",
+    "added_top": 0,
+    "added_left": 0,
+    "black_r_g1_g2_b": [
+     512.0,
+     512.0,
+     512.0,
+     512.0
+    ],
+    "maximum": 16383.0,
+    "linear_max_r_g_b": [
+     15360.0,
+     15360.0,
+     15360.0
+    ],
+    "saturation_r_g_b": [
+     0.93554281393737,
+     0.93554281393737,
+     0.93554281393737
+    ],
+    "cam_mul": [
+     2756.0,
+     1024.0,
+     1432.0,
+     1024.0
+    ],
+    "changed_to_mosaic": [
+     5504,
+     8256
+    ],
+    "change": "extend",
+    "mosaic_megapixels": 45.44
+   },
+   "runs": [
+    {
+     "mode": "ieee_fp32",
+     "tile": 768,
+     "overlap": 96,
+     "tile_count": 35,
+     "median_seconds_total": 1.2637,
+     "min_seconds_total": 1.2516,
+     "max_seconds_total": 1.27,
+     "median_seconds_forward": 1.0698,
+     "peak_allocated_bytes": 685460992,
+     "peak_reserved_bytes": 945815552,
+     "tile_workspace_bytes": 471962112,
+     "repeats": [
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 35,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 18585600,
+       "seconds_total": 1.2516,
+       "seconds_forward": 1.062,
+       "seconds_upload": 0.0192,
+       "peak_allocated_bytes": 685460992,
+       "peak_reserved_bytes": 945815552,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 22,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 88.0,
+         "median": 87.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1410.0,
+         "min": 1410.0,
+         "max": 1785.0,
+         "median": 1635.0
+        },
+        "power_w": {
+         "first": 64.772,
+         "last": 125.735,
+         "min": 64.772,
+         "max": 125.735,
+         "median": 76.965
+        },
+        "device_memory_used_bytes": {
+         "first": 3814707200.0,
+         "last": 3807629312.0,
+         "min": 3807629312.0,
+         "max": 3814707200.0,
+         "median": 3807629312.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 35,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 18585600,
+       "seconds_total": 1.27,
+       "seconds_forward": 1.0877,
+       "seconds_upload": 0.0201,
+       "peak_allocated_bytes": 685460992,
+       "peak_reserved_bytes": 945815552,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 23,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 86.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 86.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1785.0,
+         "median": 1470.0
+        },
+        "power_w": {
+         "first": 83.082,
+         "last": 127.515,
+         "min": 55.396,
+         "max": 127.515,
+         "median": 101.941
+        },
+        "device_memory_used_bytes": {
+         "first": 3807629312.0,
+         "last": 3814707200.0,
+         "min": 3807629312.0,
+         "max": 3814707200.0,
+         "median": 3807629312.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 35,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 18585600,
+       "seconds_total": 1.2637,
+       "seconds_forward": 1.0698,
+       "seconds_upload": 0.0204,
+       "peak_allocated_bytes": 685460992,
+       "peak_reserved_bytes": 945815552,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 471962112,
+       "gpu": {
+        "samples": 22,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 87.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1470.0,
+         "min": 1470.0,
+         "max": 1785.0,
+         "median": 1470.0
+        },
+        "power_w": {
+         "first": 66.45,
+         "last": 108.897,
+         "min": 66.45,
+         "max": 108.897,
+         "median": 74.142
+        },
+        "device_memory_used_bytes": {
+         "first": 3814707200.0,
+         "last": 3814707200.0,
+         "min": 3814707200.0,
+         "max": 3814707200.0,
+         "median": 3814707200.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 768,
+     "overlap": 96,
+     "tile_count": 35,
+     "median_seconds_total": 1.0334,
+     "min_seconds_total": 1.0262,
+     "max_seconds_total": 1.0458,
+     "median_seconds_forward": 0.8322,
+     "peak_allocated_bytes": 686509568,
+     "peak_reserved_bytes": 947912704,
+     "tile_workspace_bytes": 473010688,
+     "repeats": [
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 35,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 18585600,
+       "seconds_total": 1.0334,
+       "seconds_forward": 0.8405,
+       "seconds_upload": 0.0245,
+       "peak_allocated_bytes": 686509568,
+       "peak_reserved_bytes": 947912704,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 473010688,
+       "gpu": {
+        "samples": 18,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 81.0
+        },
+        "sm_clock_mhz": {
+         "first": 1665.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1665.0,
+         "median": 1665.0
+        },
+        "power_w": {
+         "first": 76.835,
+         "last": 88.262,
+         "min": 50.763,
+         "max": 88.262,
+         "median": 76.835
+        },
+        "device_memory_used_bytes": {
+         "first": 3288322048.0,
+         "last": 3816804352.0,
+         "min": 3288322048.0,
+         "max": 3816804352.0,
+         "median": 3816804352.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 35,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 18585600,
+       "seconds_total": 1.0262,
+       "seconds_forward": 0.8062,
+       "seconds_upload": 0.0253,
+       "peak_allocated_bytes": 686509568,
+       "peak_reserved_bytes": 947912704,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 473010688,
+       "gpu": {
+        "samples": 18,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 88.0,
+         "min": 81.0,
+         "max": 88.0,
+         "median": 85.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1455.0,
+         "min": 1455.0,
+         "max": 1785.0,
+         "median": 1620.0
+        },
+        "power_w": {
+         "first": 88.118,
+         "last": 91.309,
+         "min": 56.328,
+         "max": 91.309,
+         "median": 89.7135
+        },
+        "device_memory_used_bytes": {
+         "first": 3816804352.0,
+         "last": 3816804352.0,
+         "min": 3816804352.0,
+         "max": 3816804352.0,
+         "median": 3816804352.0
+        }
+       }
+      },
+      {
+       "tile": 768,
+       "overlap": 96,
+       "tile_count": 35,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 18585600,
+       "seconds_total": 1.0458,
+       "seconds_forward": 0.8322,
+       "seconds_upload": 0.0232,
+       "peak_allocated_bytes": 686509568,
+       "peak_reserved_bytes": 947912704,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 473010688,
+       "gpu": {
+        "samples": 19,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 86.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 86.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1395.0,
+         "min": 1395.0,
+         "max": 1785.0,
+         "median": 1560.0
+        },
+        "power_w": {
+         "first": 96.518,
+         "last": 126.558,
+         "min": 62.266,
+         "max": 126.558,
+         "median": 87.172
+        },
+        "device_memory_used_bytes": {
+         "first": 3816804352.0,
+         "last": 3816804352.0,
+         "min": 3816804352.0,
+         "max": 3816804352.0,
+         "median": 3816804352.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 0.0
+    },
+    {
+     "mode": "ieee_fp32",
+     "tile": 1024,
+     "overlap": 96,
+     "tile_count": 20,
+     "median_seconds_total": 1.0611,
+     "min_seconds_total": 1.0432,
+     "max_seconds_total": 1.0644,
+     "median_seconds_forward": 0.9184,
+     "peak_allocated_bytes": 1052462592,
+     "peak_reserved_bytes": 1350565888,
+     "tile_workspace_bytes": 838963712,
+     "repeats": [
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 20,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 16293888,
+       "seconds_total": 1.0644,
+       "seconds_forward": 0.9277,
+       "seconds_upload": 0.0193,
+       "peak_allocated_bytes": 1052462592,
+       "peak_reserved_bytes": 1350565888,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 19,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 88.0,
+         "median": 87.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1785.0,
+         "median": 1665.0
+        },
+        "power_w": {
+         "first": 57.624,
+         "last": 134.242,
+         "min": 57.624,
+         "max": 134.242,
+         "median": 88.985
+        },
+        "device_memory_used_bytes": {
+         "first": 4219523072.0,
+         "last": 4219523072.0,
+         "min": 4219523072.0,
+         "max": 4219523072.0,
+         "median": 4219523072.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 20,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 16293888,
+       "seconds_total": 1.0432,
+       "seconds_forward": 0.9055,
+       "seconds_upload": 0.0196,
+       "peak_allocated_bytes": 1052462592,
+       "peak_reserved_bytes": 1350565888,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 19,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 89.0,
+         "min": 81.0,
+         "max": 89.0,
+         "median": 88.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1470.0,
+         "min": 1470.0,
+         "max": 1785.0,
+         "median": 1635.0
+        },
+        "power_w": {
+         "first": 64.018,
+         "last": 132.855,
+         "min": 64.018,
+         "max": 132.855,
+         "median": 83.5
+        },
+        "device_memory_used_bytes": {
+         "first": 4219523072.0,
+         "last": 4219523072.0,
+         "min": 4219523072.0,
+         "max": 4219523072.0,
+         "median": 4219523072.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 20,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 16293888,
+       "seconds_total": 1.0611,
+       "seconds_forward": 0.9184,
+       "seconds_upload": 0.0225,
+       "peak_allocated_bytes": 1052462592,
+       "peak_reserved_bytes": 1350565888,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 19,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 88.0,
+         "min": 81.0,
+         "max": 88.0,
+         "median": 88.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1440.0,
+         "min": 1440.0,
+         "max": 1785.0,
+         "median": 1665.0
+        },
+        "power_w": {
+         "first": 74.89,
+         "last": 118.175,
+         "min": 74.696,
+         "max": 118.175,
+         "median": 74.89
+        },
+        "device_memory_used_bytes": {
+         "first": 4219523072.0,
+         "last": 4219523072.0,
+         "min": 4219523072.0,
+         "max": 4219523072.0,
+         "median": 4219523072.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 1024,
+     "overlap": 96,
+     "tile_count": 20,
+     "median_seconds_total": 0.8355,
+     "min_seconds_total": 0.8322,
+     "max_seconds_total": 0.8701,
+     "median_seconds_forward": 0.6974,
+     "peak_allocated_bytes": 1052462592,
+     "peak_reserved_bytes": 1560281088,
+     "tile_workspace_bytes": 838963712,
+     "repeats": [
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 20,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 16293888,
+       "seconds_total": 0.8701,
+       "seconds_forward": 0.7086,
+       "seconds_upload": 0.0233,
+       "peak_allocated_bytes": 1052462592,
+       "peak_reserved_bytes": 1560281088,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 15,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 88.0,
+         "min": 82.0,
+         "max": 88.0,
+         "median": 82.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 61.326,
+         "last": 81.219,
+         "min": 61.326,
+         "max": 81.219,
+         "median": 61.326
+        },
+        "device_memory_used_bytes": {
+         "first": 3225800704.0,
+         "last": 4429172736.0,
+         "min": 3225800704.0,
+         "max": 4433760256.0,
+         "median": 4429172736.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 20,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 16293888,
+       "seconds_total": 0.8322,
+       "seconds_forward": 0.6902,
+       "seconds_upload": 0.0193,
+       "peak_allocated_bytes": 1052462592,
+       "peak_reserved_bytes": 1560281088,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 15,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 88.0,
+         "min": 81.0,
+         "max": 88.0,
+         "median": 81.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1515.0,
+         "min": 1515.0,
+         "max": 1785.0,
+         "median": 1560.0
+        },
+        "power_w": {
+         "first": 98.38,
+         "last": 99.457,
+         "min": 58.72,
+         "max": 99.457,
+         "median": 58.72
+        },
+        "device_memory_used_bytes": {
+         "first": 4429172736.0,
+         "last": 4429172736.0,
+         "min": 4429172736.0,
+         "max": 4429172736.0,
+         "median": 4429172736.0
+        }
+       }
+      },
+      {
+       "tile": 1024,
+       "overlap": 96,
+       "tile_count": 20,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 16293888,
+       "seconds_total": 0.8355,
+       "seconds_forward": 0.6974,
+       "seconds_upload": 0.0227,
+       "peak_allocated_bytes": 1052462592,
+       "peak_reserved_bytes": 1560281088,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 838963712,
+       "gpu": {
+        "samples": 15,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 89.0,
+         "min": 82.0,
+         "max": 89.0,
+         "median": 86.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1785.0,
+         "median": 1515.0
+        },
+        "power_w": {
+         "first": 88.468,
+         "last": 110.561,
+         "min": 62.712,
+         "max": 110.561,
+         "median": 62.712
+        },
+        "device_memory_used_bytes": {
+         "first": 4429172736.0,
+         "last": 4429172736.0,
+         "min": 4429172736.0,
+         "max": 4429172736.0,
+         "median": 4429172736.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 4.7315820801738196e-07
+    },
+    {
+     "mode": "ieee_fp32",
+     "tile": 1536,
+     "overlap": 96,
+     "tile_count": 6,
+     "median_seconds_total": 0.879,
+     "min_seconds_total": 0.8662,
+     "max_seconds_total": 0.8957,
+     "median_seconds_forward": 0.7428,
+     "peak_allocated_bytes": 2101038592,
+     "peak_reserved_bytes": 3372220416,
+     "tile_workspace_bytes": 1887539712,
+     "repeats": [
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 13283328,
+       "seconds_total": 0.8957,
+       "seconds_forward": 0.7688,
+       "seconds_upload": 0.0221,
+       "peak_allocated_bytes": 2101038592,
+       "peak_reserved_bytes": 3372220416,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 17,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 86.0,
+         "min": 82.0,
+         "max": 86.0,
+         "median": 86.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 75.16,
+         "last": 100.883,
+         "min": 60.321,
+         "max": 100.883,
+         "median": 60.321
+        },
+        "device_memory_used_bytes": {
+         "first": 6241112064.0,
+         "last": 6241112064.0,
+         "min": 6241112064.0,
+         "max": 6241112064.0,
+         "median": 6241112064.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 13283328,
+       "seconds_total": 0.8662,
+       "seconds_forward": 0.7401,
+       "seconds_upload": 0.0218,
+       "peak_allocated_bytes": 2101038592,
+       "peak_reserved_bytes": 3372220416,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 16,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 87.0,
+         "min": 81.0,
+         "max": 87.0,
+         "median": 87.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1560.0,
+         "min": 1485.0,
+         "max": 1785.0,
+         "median": 1522.5
+        },
+        "power_w": {
+         "first": 70.109,
+         "last": 114.429,
+         "min": 70.109,
+         "max": 114.429,
+         "median": 70.109
+        },
+        "device_memory_used_bytes": {
+         "first": 6241112064.0,
+         "last": 6241112064.0,
+         "min": 6241112064.0,
+         "max": 6241112064.0,
+         "median": 6241112064.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 13283328,
+       "seconds_total": 0.879,
+       "seconds_forward": 0.7428,
+       "seconds_upload": 0.0198,
+       "peak_allocated_bytes": 2101038592,
+       "peak_reserved_bytes": 3372220416,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 16,
+        "temperature_c": {
+         "first": 81.0,
+         "last": 88.0,
+         "min": 81.0,
+         "max": 88.0,
+         "median": 84.5
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1560.0,
+         "min": 1560.0,
+         "max": 1785.0,
+         "median": 1672.5
+        },
+        "power_w": {
+         "first": 67.658,
+         "last": 82.072,
+         "min": 67.658,
+         "max": 82.072,
+         "median": 74.86500000000001
+        },
+        "device_memory_used_bytes": {
+         "first": 6241112064.0,
+         "last": 6241112064.0,
+         "min": 6241112064.0,
+         "max": 6241112064.0,
+         "median": 6241112064.0
+        }
+       }
+      }
+     ]
+    },
+    {
+     "mode": "ieee_fp32_autotuned",
+     "tile": 1536,
+     "overlap": 96,
+     "tile_count": 6,
+     "median_seconds_total": 0.6896,
+     "min_seconds_total": 0.6892,
+     "max_seconds_total": 0.7191,
+     "median_seconds_forward": 0.5692,
+     "peak_allocated_bytes": 2101038592,
+     "peak_reserved_bytes": 2910846976,
+     "tile_workspace_bytes": 1887539712,
+     "repeats": [
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 13283328,
+       "seconds_total": 0.7191,
+       "seconds_forward": 0.5808,
+       "seconds_upload": 0.0184,
+       "peak_allocated_bytes": 2101038592,
+       "peak_reserved_bytes": 2910846976,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 13,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 88.0,
+         "min": 82.0,
+         "max": 88.0,
+         "median": 82.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1545.0,
+         "min": 1545.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 61.363,
+         "last": 81.987,
+         "min": 61.363,
+         "max": 81.987,
+         "median": 61.363
+        },
+        "device_memory_used_bytes": {
+         "first": 4269789184.0,
+         "last": 5779738624.0,
+         "min": 4269789184.0,
+         "max": 5779738624.0,
+         "median": 5779738624.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 13283328,
+       "seconds_total": 0.6892,
+       "seconds_forward": 0.5677,
+       "seconds_upload": 0.0218,
+       "peak_allocated_bytes": 2101038592,
+       "peak_reserved_bytes": 2910846976,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 13,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 87.0,
+         "min": 82.0,
+         "max": 87.0,
+         "median": 86.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1785.0,
+         "median": 1755.0
+        },
+        "power_w": {
+         "first": 82.899,
+         "last": 111.657,
+         "min": 63.658,
+         "max": 111.657,
+         "median": 63.658
+        },
+        "device_memory_used_bytes": {
+         "first": 5772660736.0,
+         "last": 5772660736.0,
+         "min": 5772660736.0,
+         "max": 5772660736.0,
+         "median": 5772660736.0
+        }
+       }
+      },
+      {
+       "tile": 1536,
+       "overlap": 96,
+       "tile_count": 6,
+       "last_tile": "shrunk",
+       "computed_packed_pixels": 13283328,
+       "seconds_total": 0.6896,
+       "seconds_forward": 0.5692,
+       "seconds_upload": 0.0197,
+       "peak_allocated_bytes": 2101038592,
+       "peak_reserved_bytes": 2910846976,
+       "baseline_allocated_bytes": 213498880,
+       "tile_workspace_bytes": 1887539712,
+       "gpu": {
+        "samples": 13,
+        "temperature_c": {
+         "first": 82.0,
+         "last": 87.0,
+         "min": 82.0,
+         "max": 87.0,
+         "median": 82.0
+        },
+        "sm_clock_mhz": {
+         "first": 1785.0,
+         "last": 1350.0,
+         "min": 1350.0,
+         "max": 1785.0,
+         "median": 1785.0
+        },
+        "power_w": {
+         "first": 53.7,
+         "last": 88.254,
+         "min": 53.7,
+         "max": 88.254,
+         "median": 53.7
+        },
+        "device_memory_used_bytes": {
+         "first": 5772660736.0,
+         "last": 5772660736.0,
+         "min": 5772660736.0,
+         "max": 5772660736.0,
+         "median": 5772660736.0
+        }
+       }
+      }
+     ],
+     "max_abs_difference_to_ieee_fp32_relative": 4.7315820801738196e-07
+    }
+   ]
+  }
+ ],
+ "first_calls": [
+  {
+   "photo": "24mp",
+   "mode": "ieee_fp32",
+   "tile": 768,
+   "overlap": 96,
+   "tile_count": 20,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 9828864,
+   "seconds_total": 0.8575,
+   "seconds_forward": 0.7303,
+   "seconds_upload": 0.0356,
+   "peak_allocated_bytes": 600292864,
+   "peak_reserved_bytes": 861929472,
+   "baseline_allocated_bytes": 128330752,
+   "tile_workspace_bytes": 471962112,
+   "gpu": {
+    "samples": 17,
+    "temperature_c": {
+     "first": 62.0,
+     "last": 70.0,
+     "min": 62.0,
+     "max": 70.0,
+     "median": 63.0
+    },
+    "sm_clock_mhz": {
+     "first": 1710.0,
+     "last": 1695.0,
+     "min": 1695.0,
+     "max": 1710.0,
+     "median": 1710.0
+    },
+    "power_w": {
+     "first": 20.669,
+     "last": 62.716,
+     "min": 20.669,
+     "max": 62.716,
+     "median": 31.6
+    },
+    "device_memory_used_bytes": {
+     "first": 3026571264.0,
+     "last": 3873820672.0,
+     "min": 3026571264.0,
+     "max": 3873820672.0,
+     "median": 3873820672.0
+    }
+   }
+  },
+  {
+   "photo": "24mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 768,
+   "overlap": 96,
+   "tile_count": 20,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 9828864,
+   "seconds_total": 11.8917,
+   "seconds_forward": 11.7986,
+   "seconds_upload": 0.0136,
+   "peak_allocated_bytes": 4748536832,
+   "peak_reserved_bytes": 4810866688,
+   "baseline_allocated_bytes": 128330752,
+   "tile_workspace_bytes": 4620206080,
+   "gpu": {
+    "samples": 196,
+    "temperature_c": {
+     "first": 74.0,
+     "last": 78.0,
+     "min": 71.0,
+     "max": 78.0,
+     "median": 76.0
+    },
+    "sm_clock_mhz": {
+     "first": 1785.0,
+     "last": 1785.0,
+     "min": 1695.0,
+     "max": 1800.0,
+     "median": 1785.0
+    },
+    "power_w": {
+     "first": 93.676,
+     "last": 110.722,
+     "min": 86.57,
+     "max": 142.704,
+     "median": 116.729
+    },
+    "device_memory_used_bytes": {
+     "first": 3873820672.0,
+     "last": 3220230144.0,
+     "min": 3130707968.0,
+     "max": 7726354432.0,
+     "median": 3595751424.0
+    }
+   }
+  },
+  {
+   "photo": "24mp",
+   "mode": "ieee_fp32",
+   "tile": 1024,
+   "overlap": 96,
+   "tile_count": 12,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 8640000,
+   "seconds_total": 0.5828,
+   "seconds_forward": 0.4968,
+   "seconds_upload": 0.0139,
+   "peak_allocated_bytes": 967294464,
+   "peak_reserved_bytes": 1581252608,
+   "baseline_allocated_bytes": 128330752,
+   "tile_workspace_bytes": 838963712,
+   "gpu": {
+    "samples": 11,
+    "temperature_c": {
+     "first": 77.0,
+     "last": 77.0,
+     "min": 77.0,
+     "max": 77.0,
+     "median": 77.0
+    },
+    "sm_clock_mhz": {
+     "first": 1740.0,
+     "last": 1695.0,
+     "min": 1695.0,
+     "max": 1740.0,
+     "median": 1695.0
+    },
+    "power_w": {
+     "first": 72.043,
+     "last": 107.102,
+     "min": 72.043,
+     "max": 107.102,
+     "median": 107.102
+    },
+    "device_memory_used_bytes": {
+     "first": 3854880768.0,
+     "last": 4526034944.0,
+     "min": 3854880768.0,
+     "max": 4526034944.0,
+     "median": 4526034944.0
+    }
+   }
+  },
+  {
+   "photo": "24mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 1024,
+   "overlap": 96,
+   "tile_count": 12,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 8640000,
+   "seconds_total": 12.2261,
+   "seconds_forward": 12.1473,
+   "seconds_upload": 0.0142,
+   "peak_allocated_bytes": 4576234496,
+   "peak_reserved_bytes": 4596957184,
+   "baseline_allocated_bytes": 128330752,
+   "tile_workspace_bytes": 4447903744,
+   "gpu": {
+    "samples": 200,
+    "temperature_c": {
+     "first": 79.0,
+     "last": 82.0,
+     "min": 76.0,
+     "max": 84.0,
+     "median": 82.0
+    },
+    "sm_clock_mhz": {
+     "first": 1725.0,
+     "last": 1785.0,
+     "min": 1455.0,
+     "max": 1785.0,
+     "median": 1785.0
+    },
+    "power_w": {
+     "first": 83.584,
+     "last": 99.222,
+     "min": 83.584,
+     "max": 149.785,
+     "median": 137.721
+    },
+    "device_memory_used_bytes": {
+     "first": 4533112832.0,
+     "last": 3213938688.0,
+     "min": 3167801344.0,
+     "max": 7548751872.0,
+     "median": 3637628928.0
+    }
+   }
+  },
+  {
+   "photo": "24mp",
+   "mode": "ieee_fp32",
+   "tile": 1536,
+   "overlap": 96,
+   "tile_count": 6,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 7524864,
+   "seconds_total": 0.5595,
+   "seconds_forward": 0.4452,
+   "seconds_upload": 0.0107,
+   "peak_allocated_bytes": 2015870464,
+   "peak_reserved_bytes": 3282042880,
+   "baseline_allocated_bytes": 128330752,
+   "tile_workspace_bytes": 1887539712,
+   "gpu": {
+    "samples": 11,
+    "temperature_c": {
+     "first": 80.0,
+     "last": 79.0,
+     "min": 79.0,
+     "max": 80.0,
+     "median": 79.0
+    },
+    "sm_clock_mhz": {
+     "first": 1635.0,
+     "last": 1605.0,
+     "min": 1605.0,
+     "max": 1635.0,
+     "median": 1605.0
+    },
+    "power_w": {
+     "first": 60.735,
+     "last": 94.471,
+     "min": 60.735,
+     "max": 94.471,
+     "median": 94.471
+    },
+    "device_memory_used_bytes": {
+     "first": 4414820352.0,
+     "last": 6226759680.0,
+     "min": 4414820352.0,
+     "max": 6226759680.0,
+     "median": 6226759680.0
+    }
+   }
+  },
+  {
+   "photo": "24mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 1536,
+   "overlap": 96,
+   "tile_count": 6,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 7524864,
+   "seconds_total": 22.3583,
+   "seconds_forward": 22.2447,
+   "seconds_upload": 0.0149,
+   "peak_allocated_bytes": 4680942592,
+   "peak_reserved_bytes": 4771020800,
+   "baseline_allocated_bytes": 128330752,
+   "tile_workspace_bytes": 4552611840,
+   "gpu": {
+    "samples": 365,
+    "temperature_c": {
+     "first": 81.0,
+     "last": 87.0,
+     "min": 79.0,
+     "max": 87.0,
+     "median": 85.0
+    },
+    "sm_clock_mhz": {
+     "first": 1620.0,
+     "last": 1785.0,
+     "min": 1470.0,
+     "max": 1785.0,
+     "median": 1725.0
+    },
+    "power_w": {
+     "first": 88.112,
+     "last": 102.554,
+     "min": 68.428,
+     "max": 160.8,
+     "median": 134.04
+    },
+    "device_memory_used_bytes": {
+     "first": 6226759680.0,
+     "last": 3247820800.0,
+     "min": 3247820800.0,
+     "max": 7684608000.0,
+     "median": 4073771008.0
+    }
+   }
+  },
+  {
+   "photo": "32mp",
+   "mode": "ieee_fp32",
+   "tile": 768,
+   "overlap": 96,
+   "tile_count": 24,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 12999168,
+   "seconds_total": 0.9894,
+   "seconds_forward": 0.7509,
+   "seconds_upload": 0.0238,
+   "peak_allocated_bytes": 633190912,
+   "peak_reserved_bytes": 744488960,
+   "baseline_allocated_bytes": 161228800,
+   "tile_workspace_bytes": 471962112,
+   "gpu": {
+    "samples": 18,
+    "temperature_c": {
+     "first": 78.0,
+     "last": 86.0,
+     "min": 78.0,
+     "max": 86.0,
+     "median": 79.0
+    },
+    "sm_clock_mhz": {
+     "first": 1785.0,
+     "last": 1725.0,
+     "min": 1725.0,
+     "max": 1785.0,
+     "median": 1785.0
+    },
+    "power_w": {
+     "first": 81.865,
+     "last": 99.644,
+     "min": 51.546,
+     "max": 99.644,
+     "median": 66.7055
+    },
+    "device_memory_used_bytes": {
+     "first": 2970013696.0,
+     "last": 3668365312.0,
+     "min": 2970013696.0,
+     "max": 3668365312.0,
+     "median": 3668365312.0
+    }
+   }
+  },
+  {
+   "photo": "32mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 768,
+   "overlap": 96,
+   "tile_count": 24,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 12999168,
+   "seconds_total": 10.109,
+   "seconds_forward": 9.9561,
+   "seconds_upload": 0.016,
+   "peak_allocated_bytes": 4761336832,
+   "peak_reserved_bytes": 4829741056,
+   "baseline_allocated_bytes": 161228800,
+   "tile_workspace_bytes": 4600108032,
+   "gpu": {
+    "samples": 165,
+    "temperature_c": {
+     "first": 85.0,
+     "last": 86.0,
+     "min": 83.0,
+     "max": 88.0,
+     "median": 86.0
+    },
+    "sm_clock_mhz": {
+     "first": 1725.0,
+     "last": 1665.0,
+     "min": 1470.0,
+     "max": 1785.0,
+     "median": 1785.0
+    },
+    "power_w": {
+     "first": 86.304,
+     "last": 114.171,
+     "min": 86.304,
+     "max": 142.964,
+     "median": 121.546
+    },
+    "device_memory_used_bytes": {
+     "first": 3661287424.0,
+     "last": 3309293568.0,
+     "min": 3208630272.0,
+     "max": 7717507072.0,
+     "median": 3523203072.0
+    }
+   }
+  },
+  {
+   "photo": "32mp",
+   "mode": "ieee_fp32",
+   "tile": 1024,
+   "overlap": 96,
+   "tile_count": 12,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 11097600,
+   "seconds_total": 0.784,
+   "seconds_forward": 0.6182,
+   "seconds_upload": 0.0133,
+   "peak_allocated_bytes": 1004386816,
+   "peak_reserved_bytes": 1604321280,
+   "baseline_allocated_bytes": 161228800,
+   "tile_workspace_bytes": 843158016,
+   "gpu": {
+    "samples": 14,
+    "temperature_c": {
+     "first": 86.0,
+     "last": 87.0,
+     "min": 84.0,
+     "max": 87.0,
+     "median": 84.0
+    },
+    "sm_clock_mhz": {
+     "first": 1710.0,
+     "last": 1785.0,
+     "min": 1710.0,
+     "max": 1785.0,
+     "median": 1785.0
+    },
+    "power_w": {
+     "first": 93.649,
+     "last": 129.047,
+     "min": 93.649,
+     "max": 129.047,
+     "median": 126.564
+    },
+    "device_memory_used_bytes": {
+     "first": 3686780928.0,
+     "last": 4492087296.0,
+     "min": 3686780928.0,
+     "max": 4492087296.0,
+     "median": 4492087296.0
+    }
+   }
+  },
+  {
+   "photo": "32mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 1024,
+   "overlap": 96,
+   "tile_count": 12,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 11097600,
+   "seconds_total": 14.2805,
+   "seconds_forward": 14.1739,
+   "seconds_upload": 0.0152,
+   "peak_allocated_bytes": 4754724864,
+   "peak_reserved_bytes": 4812963840,
+   "baseline_allocated_bytes": 161228800,
+   "tile_workspace_bytes": 4593496064,
+   "gpu": {
+    "samples": 234,
+    "temperature_c": {
+     "first": 86.0,
+     "last": 87.0,
+     "min": 82.0,
+     "max": 88.0,
+     "median": 86.5
+    },
+    "sm_clock_mhz": {
+     "first": 1620.0,
+     "last": 1545.0,
+     "min": 1350.0,
+     "max": 1785.0,
+     "median": 1575.0
+    },
+    "power_w": {
+     "first": 86.553,
+     "last": 104.476,
+     "min": 86.553,
+     "max": 141.945,
+     "median": 119.248
+    },
+    "device_memory_used_bytes": {
+     "first": 4485009408.0,
+     "last": 3441414144.0,
+     "min": 3312701440.0,
+     "max": 7693651968.0,
+     "median": 3686780928.0
+    }
+   }
+  },
+  {
+   "photo": "32mp",
+   "mode": "ieee_fp32",
+   "tile": 1536,
+   "overlap": 96,
+   "tile_count": 6,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 9828864,
+   "seconds_total": 0.7294,
+   "seconds_forward": 0.5567,
+   "seconds_upload": 0.0186,
+   "peak_allocated_bytes": 2048768512,
+   "peak_reserved_bytes": 3305111552,
+   "baseline_allocated_bytes": 161228800,
+   "tile_workspace_bytes": 1887539712,
+   "gpu": {
+    "samples": 13,
+    "temperature_c": {
+     "first": 83.0,
+     "last": 87.0,
+     "min": 83.0,
+     "max": 87.0,
+     "median": 83.0
+    },
+    "sm_clock_mhz": {
+     "first": 1785.0,
+     "last": 1785.0,
+     "min": 1785.0,
+     "max": 1785.0,
+     "median": 1785.0
+    },
+    "power_w": {
+     "first": 107.145,
+     "last": 122.085,
+     "min": 107.145,
+     "max": 122.085,
+     "median": 107.145
+    },
+    "device_memory_used_bytes": {
+     "first": 4380938240.0,
+     "last": 6192877568.0,
+     "min": 4380938240.0,
+     "max": 6192877568.0,
+     "median": 6192877568.0
+    }
+   }
+  },
+  {
+   "photo": "32mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 1536,
+   "overlap": 96,
+   "tile_count": 6,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 9828864,
+   "seconds_total": 20.6826,
+   "seconds_forward": 20.5381,
+   "seconds_upload": 0.0175,
+   "peak_allocated_bytes": 4895424512,
+   "peak_reserved_bytes": 4974444544,
+   "baseline_allocated_bytes": 161228800,
+   "tile_workspace_bytes": 4734195712,
+   "gpu": {
+    "samples": 338,
+    "temperature_c": {
+     "first": 86.0,
+     "last": 83.0,
+     "min": 83.0,
+     "max": 89.0,
+     "median": 86.0
+    },
+    "sm_clock_mhz": {
+     "first": 1635.0,
+     "last": 1785.0,
+     "min": 1350.0,
+     "max": 1785.0,
+     "median": 1575.0
+    },
+    "power_w": {
+     "first": 82.385,
+     "last": 94.007,
+     "min": 70.835,
+     "max": 142.647,
+     "median": 116.988
+    },
+    "device_memory_used_bytes": {
+     "first": 6208671744.0,
+     "last": 3540504576.0,
+     "min": 3396915200.0,
+     "max": 7839666176.0,
+     "median": 3974615040.0
+    }
+   }
+  },
+  {
+   "photo": "36mp",
+   "mode": "ieee_fp32",
+   "tile": 768,
+   "overlap": 96,
+   "tile_count": 28,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 14689280,
+   "seconds_total": 1.0493,
+   "seconds_forward": 0.8502,
+   "seconds_upload": 0.0194,
+   "peak_allocated_bytes": 647712256,
+   "peak_reserved_bytes": 901775360,
+   "baseline_allocated_bytes": 175750144,
+   "tile_workspace_bytes": 471962112,
+   "gpu": {
+    "samples": 19,
+    "temperature_c": {
+     "first": 80.0,
+     "last": 87.0,
+     "min": 80.0,
+     "max": 87.0,
+     "median": 86.0
+    },
+    "sm_clock_mhz": {
+     "first": 1785.0,
+     "last": 1560.0,
+     "min": 1560.0,
+     "max": 1785.0,
+     "median": 1755.0
+    },
+    "power_w": {
+     "first": 48.446,
+     "last": 133.283,
+     "min": 48.446,
+     "max": 133.283,
+     "median": 85.646
+    },
+    "device_memory_used_bytes": {
+     "first": 2925907968.0,
+     "last": 3781545984.0,
+     "min": 2925907968.0,
+     "max": 3781545984.0,
+     "median": 3636842496.0
+    }
+   }
+  },
+  {
+   "photo": "36mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 768,
+   "overlap": 96,
+   "tile_count": 28,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 14689280,
+   "seconds_total": 8.1975,
+   "seconds_forward": 8.0649,
+   "seconds_upload": 0.0211,
+   "peak_allocated_bytes": 4779981824,
+   "peak_reserved_bytes": 4833935360,
+   "baseline_allocated_bytes": 175750144,
+   "tile_workspace_bytes": 4604231680,
+   "gpu": {
+    "samples": 136,
+    "temperature_c": {
+     "first": 88.0,
+     "last": 88.0,
+     "min": 84.0,
+     "max": 88.0,
+     "median": 86.0
+    },
+    "sm_clock_mhz": {
+     "first": 1635.0,
+     "last": 1695.0,
+     "min": 1350.0,
+     "max": 1785.0,
+     "median": 1725.0
+    },
+    "power_w": {
+     "first": 143.763,
+     "last": 99.578,
+     "min": 84.746,
+     "max": 143.763,
+     "median": 105.623
+    },
+    "device_memory_used_bytes": {
+     "first": 3773419520.0,
+     "last": 3177566208.0,
+     "min": 3133526016.0,
+     "max": 7703220224.0,
+     "median": 3651522560.0
+    }
+   }
+  },
+  {
+   "photo": "36mp",
+   "mode": "ieee_fp32",
+   "tile": 1024,
+   "overlap": 96,
+   "tile_count": 15,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 12667904,
+   "seconds_total": 0.9256,
+   "seconds_forward": 0.7352,
+   "seconds_upload": 0.0213,
+   "peak_allocated_bytes": 1014713856,
+   "peak_reserved_bytes": 1335885824,
+   "baseline_allocated_bytes": 175750144,
+   "tile_workspace_bytes": 838963712,
+   "gpu": {
+    "samples": 17,
+    "temperature_c": {
+     "first": 88.0,
+     "last": 88.0,
+     "min": 86.0,
+     "max": 88.0,
+     "median": 88.0
+    },
+    "sm_clock_mhz": {
+     "first": 1635.0,
+     "last": 1395.0,
+     "min": 1395.0,
+     "max": 1635.0,
+     "median": 1605.0
+    },
+    "power_w": {
+     "first": 113.629,
+     "last": 124.755,
+     "min": 113.629,
+     "max": 125.352,
+     "median": 124.755
+    },
+    "device_memory_used_bytes": {
+     "first": 3668299776.0,
+     "last": 4205170688.0,
+     "min": 3668299776.0,
+     "max": 4205170688.0,
+     "median": 4205170688.0
+    }
+   }
+  },
+  {
+   "photo": "36mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 1024,
+   "overlap": 96,
+   "tile_count": 15,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 12667904,
+   "seconds_total": 9.6342,
+   "seconds_forward": 9.5271,
+   "seconds_upload": 0.0155,
+   "peak_allocated_bytes": 4733094912,
+   "peak_reserved_bytes": 4785700864,
+   "baseline_allocated_bytes": 175750144,
+   "tile_workspace_bytes": 4557344768,
+   "gpu": {
+    "samples": 158,
+    "temperature_c": {
+     "first": 86.0,
+     "last": 86.0,
+     "min": 84.0,
+     "max": 88.0,
+     "median": 86.0
+    },
+    "sm_clock_mhz": {
+     "first": 1395.0,
+     "last": 1485.0,
+     "min": 1350.0,
+     "max": 1785.0,
+     "median": 1545.0
+    },
+    "power_w": {
+     "first": 109.391,
+     "last": 113.01,
+     "min": 90.118,
+     "max": 126.011,
+     "median": 115.982
+    },
+    "device_memory_used_bytes": {
+     "first": 4205170688.0,
+     "last": 3253391360.0,
+     "min": 3204829184.0,
+     "max": 7659507712.0,
+     "median": 3586838528.0
+    }
+   }
+  },
+  {
+   "photo": "36mp",
+   "mode": "ieee_fp32",
+   "tile": 1536,
+   "overlap": 96,
+   "tile_count": 6,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 10793984,
+   "seconds_total": 0.8642,
+   "seconds_forward": 0.6343,
+   "seconds_upload": 0.0158,
+   "peak_allocated_bytes": 2063289856,
+   "peak_reserved_bytes": 3063939072,
+   "baseline_allocated_bytes": 175750144,
+   "tile_workspace_bytes": 1887539712,
+   "gpu": {
+    "samples": 15,
+    "temperature_c": {
+     "first": 86.0,
+     "last": 84.0,
+     "min": 83.0,
+     "max": 86.0,
+     "median": 83.0
+    },
+    "sm_clock_mhz": {
+     "first": 1680.0,
+     "last": 1785.0,
+     "min": 1680.0,
+     "max": 1785.0,
+     "median": 1785.0
+    },
+    "power_w": {
+     "first": 76.011,
+     "last": 122.267,
+     "min": 76.011,
+     "max": 122.267,
+     "median": 114.255
+    },
+    "device_memory_used_bytes": {
+     "first": 4121284608.0,
+     "last": 5933223936.0,
+     "min": 4121284608.0,
+     "max": 5933223936.0,
+     "median": 5933223936.0
+    }
+   }
+  },
+  {
+   "photo": "36mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 1536,
+   "overlap": 96,
+   "tile_count": 6,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 10793984,
+   "seconds_total": 24.8182,
+   "seconds_forward": 24.6363,
+   "seconds_upload": 0.0166,
+   "peak_allocated_bytes": 2063289856,
+   "peak_reserved_bytes": 3063939072,
+   "baseline_allocated_bytes": 175750144,
+   "tile_workspace_bytes": 1887539712,
+   "gpu": {
+    "samples": 404,
+    "temperature_c": {
+     "first": 87.0,
+     "last": 90.0,
+     "min": 82.0,
+     "max": 90.0,
+     "median": 86.0
+    },
+    "sm_clock_mhz": {
+     "first": 1785.0,
+     "last": 1650.0,
+     "min": 1350.0,
+     "max": 1785.0,
+     "median": 1470.0
+    },
+    "power_w": {
+     "first": 92.503,
+     "last": 100.777,
+     "min": 74.103,
+     "max": 135.501,
+     "median": 113.205
+    },
+    "device_memory_used_bytes": {
+     "first": 5926146048.0,
+     "last": 3760574464.0,
+     "min": 3610890240.0,
+     "max": 5933223936.0,
+     "median": 4051292160.0
+    }
+   }
+  },
+  {
+   "photo": "42mp",
+   "mode": "ieee_fp32",
+   "tile": 768,
+   "overlap": 96,
+   "tile_count": 35,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 17667840,
+   "seconds_total": 1.3114,
+   "seconds_forward": 1.0435,
+   "seconds_upload": 0.0227,
+   "peak_allocated_bytes": 672878080,
+   "peak_reserved_bytes": 782237696,
+   "baseline_allocated_bytes": 200915968,
+   "tile_workspace_bytes": 471962112,
+   "gpu": {
+    "samples": 23,
+    "temperature_c": {
+     "first": 80.0,
+     "last": 87.0,
+     "min": 80.0,
+     "max": 87.0,
+     "median": 87.0
+    },
+    "sm_clock_mhz": {
+     "first": 1785.0,
+     "last": 1350.0,
+     "min": 1350.0,
+     "max": 1785.0,
+     "median": 1695.0
+    },
+    "power_w": {
+     "first": 61.427,
+     "last": 137.2,
+     "min": 48.871,
+     "max": 137.2,
+     "median": 95.403
+    },
+    "device_memory_used_bytes": {
+     "first": 2915422208.0,
+     "last": 3651522560.0,
+     "min": 2915422208.0,
+     "max": 3651522560.0,
+     "median": 3651522560.0
+    }
+   }
+  },
+  {
+   "photo": "42mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 768,
+   "overlap": 96,
+   "tile_count": 35,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 17667840,
+   "seconds_total": 8.3509,
+   "seconds_forward": 8.146,
+   "seconds_upload": 0.0178,
+   "peak_allocated_bytes": 4774493184,
+   "peak_reserved_bytes": 4825546752,
+   "baseline_allocated_bytes": 200915968,
+   "tile_workspace_bytes": 4573577216,
+   "gpu": {
+    "samples": 137,
+    "temperature_c": {
+     "first": 86.0,
+     "last": 87.0,
+     "min": 84.0,
+     "max": 88.0,
+     "median": 86.0
+    },
+    "sm_clock_mhz": {
+     "first": 1350.0,
+     "last": 1350.0,
+     "min": 1350.0,
+     "max": 1785.0,
+     "median": 1650.0
+    },
+    "power_w": {
+     "first": 118.4,
+     "last": 107.925,
+     "min": 86.341,
+     "max": 133.708,
+     "median": 107.925
+    },
+    "device_memory_used_bytes": {
+     "first": 3651522560.0,
+     "last": 3211448320.0,
+     "min": 3186282496.0,
+     "max": 7694831616.0,
+     "median": 3651522560.0
+    }
+   }
+  },
+  {
+   "photo": "42mp",
+   "mode": "ieee_fp32",
+   "tile": 1024,
+   "overlap": 96,
+   "tile_count": 15,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 14522112,
+   "seconds_total": 1.0308,
+   "seconds_forward": 0.8199,
+   "seconds_upload": 0.0173,
+   "peak_allocated_bytes": 1043287552,
+   "peak_reserved_bytes": 1612709888,
+   "baseline_allocated_bytes": 200915968,
+   "tile_workspace_bytes": 842371584,
+   "gpu": {
+    "samples": 18,
+    "temperature_c": {
+     "first": 88.0,
+     "last": 89.0,
+     "min": 85.0,
+     "max": 89.0,
+     "median": 88.0
+    },
+    "sm_clock_mhz": {
+     "first": 1560.0,
+     "last": 1575.0,
+     "min": 1560.0,
+     "max": 1665.0,
+     "median": 1575.0
+    },
+    "power_w": {
+     "first": 123.57,
+     "last": 117.366,
+     "min": 113.717,
+     "max": 123.57,
+     "median": 117.366
+    },
+    "device_memory_used_bytes": {
+     "first": 3810906112.0,
+     "last": 4481994752.0,
+     "min": 3810906112.0,
+     "max": 4481994752.0,
+     "median": 4481994752.0
+    }
+   }
+  },
+  {
+   "photo": "42mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 1024,
+   "overlap": 96,
+   "tile_count": 15,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 14522112,
+   "seconds_total": 14.6043,
+   "seconds_forward": 14.4731,
+   "seconds_upload": 0.0205,
+   "peak_allocated_bytes": 4805981184,
+   "peak_reserved_bytes": 4859101184,
+   "baseline_allocated_bytes": 200915968,
+   "tile_workspace_bytes": 4605065216,
+   "gpu": {
+    "samples": 238,
+    "temperature_c": {
+     "first": 87.0,
+     "last": 83.0,
+     "min": 83.0,
+     "max": 89.0,
+     "median": 86.0
+    },
+    "sm_clock_mhz": {
+     "first": 1425.0,
+     "last": 1785.0,
+     "min": 1350.0,
+     "max": 1785.0,
+     "median": 1440.0
+    },
+    "power_w": {
+     "first": 110.324,
+     "last": 88.166,
+     "min": 88.166,
+     "max": 128.786,
+     "median": 110.656
+    },
+    "device_memory_used_bytes": {
+     "first": 4481994752.0,
+     "last": 3466973184.0,
+     "min": 3347435520.0,
+     "max": 7728386048.0,
+     "median": 3733311488.0
+    }
+   }
+  },
+  {
+   "photo": "42mp",
+   "mode": "ieee_fp32",
+   "tile": 1536,
+   "overlap": 96,
+   "tile_count": 6,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 12509952,
+   "seconds_total": 0.8683,
+   "seconds_forward": 0.7265,
+   "seconds_upload": 0.0202,
+   "peak_allocated_bytes": 2088455680,
+   "peak_reserved_bytes": 3349151744,
+   "baseline_allocated_bytes": 200915968,
+   "tile_workspace_bytes": 1887539712,
+   "gpu": {
+    "samples": 16,
+    "temperature_c": {
+     "first": 88.0,
+     "last": 88.0,
+     "min": 86.0,
+     "max": 88.0,
+     "median": 87.0
+    },
+    "sm_clock_mhz": {
+     "first": 1350.0,
+     "last": 1620.0,
+     "min": 1350.0,
+     "max": 1620.0,
+     "median": 1590.0
+    },
+    "power_w": {
+     "first": 105.313,
+     "last": 122.456,
+     "min": 105.313,
+     "max": 122.456,
+     "median": 118.935
+    },
+    "device_memory_used_bytes": {
+     "first": 4406497280.0,
+     "last": 6218436608.0,
+     "min": 4406497280.0,
+     "max": 6218436608.0,
+     "median": 6218436608.0
+    }
+   }
+  },
+  {
+   "photo": "42mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 1536,
+   "overlap": 96,
+   "tile_count": 6,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 12509952,
+   "seconds_total": 32.8561,
+   "seconds_forward": 32.7263,
+   "seconds_upload": 0.0186,
+   "peak_allocated_bytes": 2088455680,
+   "peak_reserved_bytes": 3349151744,
+   "baseline_allocated_bytes": 200915968,
+   "tile_workspace_bytes": 1887539712,
+   "gpu": {
+    "samples": 534,
+    "temperature_c": {
+     "first": 87.0,
+     "last": 89.0,
+     "min": 82.0,
+     "max": 90.0,
+     "median": 87.0
+    },
+    "sm_clock_mhz": {
+     "first": 1470.0,
+     "last": 1425.0,
+     "min": 1350.0,
+     "max": 1785.0,
+     "median": 1410.0
+    },
+    "power_w": {
+     "first": 95.349,
+     "last": 119.338,
+     "min": 62.254,
+     "max": 134.831,
+     "median": 112.583
+    },
+    "device_memory_used_bytes": {
+     "first": 6218174464.0,
+     "last": 4130590720.0,
+     "min": 3743404032.0,
+     "max": 6218174464.0,
+     "median": 4380151808.0
+    }
+   }
+  },
+  {
+   "photo": "45mp",
+   "mode": "ieee_fp32",
+   "tile": 768,
+   "overlap": 96,
+   "tile_count": 35,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 18585600,
+   "seconds_total": 1.4679,
+   "seconds_forward": 1.1299,
+   "seconds_upload": 0.0689,
+   "peak_allocated_bytes": 685460992,
+   "peak_reserved_bytes": 945815552,
+   "baseline_allocated_bytes": 213498880,
+   "tile_workspace_bytes": 471962112,
+   "gpu": {
+    "samples": 28,
+    "temperature_c": {
+     "first": 81.0,
+     "last": 86.0,
+     "min": 81.0,
+     "max": 88.0,
+     "median": 84.0
+    },
+    "sm_clock_mhz": {
+     "first": 1785.0,
+     "last": 1380.0,
+     "min": 1380.0,
+     "max": 1785.0,
+     "median": 1545.0
+    },
+    "power_w": {
+     "first": 48.959,
+     "last": 127.766,
+     "min": 48.959,
+     "max": 127.766,
+     "median": 58.333
+    },
+    "device_memory_used_bytes": {
+     "first": 2915028992.0,
+     "last": 3814707200.0,
+     "min": 2915028992.0,
+     "max": 3814707200.0,
+     "median": 3814707200.0
+    }
+   }
+  },
+  {
+   "photo": "45mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 768,
+   "overlap": 96,
+   "tile_count": 35,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 18585600,
+   "seconds_total": 9.9125,
+   "seconds_forward": 9.7357,
+   "seconds_upload": 0.0189,
+   "peak_allocated_bytes": 4815993856,
+   "peak_reserved_bytes": 4886364160,
+   "baseline_allocated_bytes": 213498880,
+   "tile_workspace_bytes": 4602494976,
+   "gpu": {
+    "samples": 163,
+    "temperature_c": {
+     "first": 85.0,
+     "last": 87.0,
+     "min": 84.0,
+     "max": 89.0,
+     "median": 87.0
+    },
+    "sm_clock_mhz": {
+     "first": 1785.0,
+     "last": 1395.0,
+     "min": 1350.0,
+     "max": 1785.0,
+     "median": 1665.0
+    },
+    "power_w": {
+     "first": 127.199,
+     "last": 106.54,
+     "min": 87.701,
+     "max": 127.199,
+     "median": 110.807
+    },
+    "device_memory_used_bytes": {
+     "first": 3814707200.0,
+     "last": 3288322048.0,
+     "min": 3208630272.0,
+     "max": 7755255808.0,
+     "median": 3491745792.0
+    }
+   }
+  },
+  {
+   "photo": "45mp",
+   "mode": "ieee_fp32",
+   "tile": 1024,
+   "overlap": 96,
+   "tile_count": 20,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 16293888,
+   "seconds_total": 1.2284,
+   "seconds_forward": 0.9942,
+   "seconds_upload": 0.02,
+   "peak_allocated_bytes": 1052462592,
+   "peak_reserved_bytes": 1350565888,
+   "baseline_allocated_bytes": 213498880,
+   "tile_workspace_bytes": 838963712,
+   "gpu": {
+    "samples": 22,
+    "temperature_c": {
+     "first": 86.0,
+     "last": 86.0,
+     "min": 84.0,
+     "max": 87.0,
+     "median": 86.0
+    },
+    "sm_clock_mhz": {
+     "first": 1395.0,
+     "last": 1365.0,
+     "min": 1350.0,
+     "max": 1725.0,
+     "median": 1395.0
+    },
+    "power_w": {
+     "first": 126.558,
+     "last": 120.327,
+     "min": 102.441,
+     "max": 126.558,
+     "median": 106.079
+    },
+    "device_memory_used_bytes": {
+     "first": 3816804352.0,
+     "last": 4219457536.0,
+     "min": 3816804352.0,
+     "max": 4219457536.0,
+     "median": 4219457536.0
+    }
+   }
+  },
+  {
+   "photo": "45mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 1024,
+   "overlap": 96,
+   "tile_count": 20,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 16293888,
+   "seconds_total": 9.27,
+   "seconds_forward": 9.1241,
+   "seconds_upload": 0.0198,
+   "peak_allocated_bytes": 4721294336,
+   "peak_reserved_bytes": 4747952128,
+   "baseline_allocated_bytes": 213498880,
+   "tile_workspace_bytes": 4507795456,
+   "gpu": {
+    "samples": 153,
+    "temperature_c": {
+     "first": 88.0,
+     "last": 86.0,
+     "min": 84.0,
+     "max": 90.0,
+     "median": 87.0
+    },
+    "sm_clock_mhz": {
+     "first": 1440.0,
+     "last": 1575.0,
+     "min": 1350.0,
+     "max": 1785.0,
+     "median": 1470.0
+    },
+    "power_w": {
+     "first": 118.175,
+     "last": 110.855,
+     "min": 90.538,
+     "max": 131.61,
+     "median": 109.046
+    },
+    "device_memory_used_bytes": {
+     "first": 4219523072.0,
+     "last": 3225800704.0,
+     "min": 3196440576.0,
+     "max": 7621431296.0,
+     "median": 3649097728.0
+    }
+   }
+  },
+  {
+   "photo": "45mp",
+   "mode": "ieee_fp32",
+   "tile": 1536,
+   "overlap": 96,
+   "tile_count": 6,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 13283328,
+   "seconds_total": 0.933,
+   "seconds_forward": 0.8029,
+   "seconds_upload": 0.0205,
+   "peak_allocated_bytes": 2101038592,
+   "peak_reserved_bytes": 3372220416,
+   "baseline_allocated_bytes": 213498880,
+   "tile_workspace_bytes": 1887539712,
+   "gpu": {
+    "samples": 17,
+    "temperature_c": {
+     "first": 89.0,
+     "last": 87.0,
+     "min": 86.0,
+     "max": 89.0,
+     "median": 87.0
+    },
+    "sm_clock_mhz": {
+     "first": 1350.0,
+     "last": 1350.0,
+     "min": 1350.0,
+     "max": 1590.0,
+     "median": 1350.0
+    },
+    "power_w": {
+     "first": 110.561,
+     "last": 108.591,
+     "min": 108.591,
+     "max": 122.338,
+     "median": 110.561
+    },
+    "device_memory_used_bytes": {
+     "first": 4429172736.0,
+     "last": 6241112064.0,
+     "min": 4429172736.0,
+     "max": 6241112064.0,
+     "median": 6241112064.0
+    }
+   }
+  },
+  {
+   "photo": "45mp",
+   "mode": "ieee_fp32_autotuned",
+   "tile": 1536,
+   "overlap": 96,
+   "tile_count": 6,
+   "last_tile": "shrunk",
+   "computed_packed_pixels": 13283328,
+   "seconds_total": 36.6412,
+   "seconds_forward": 36.4973,
+   "seconds_upload": 0.0242,
+   "peak_allocated_bytes": 2101038592,
+   "peak_reserved_bytes": 3372220416,
+   "baseline_allocated_bytes": 213498880,
+   "tile_workspace_bytes": 1887539712,
+   "gpu": {
+    "samples": 594,
+    "temperature_c": {
+     "first": 88.0,
+     "last": 87.0,
+     "min": 83.0,
+     "max": 90.0,
+     "median": 87.0
+    },
+    "sm_clock_mhz": {
+     "first": 1560.0,
+     "last": 1350.0,
+     "min": 1230.0,
+     "max": 1785.0,
+     "median": 1380.0
+    },
+    "power_w": {
+     "first": 82.072,
+     "last": 120.976,
+     "min": 62.189,
+     "max": 127.047,
+     "median": 110.829
+    },
+    "device_memory_used_bytes": {
+     "first": 6241112064.0,
+     "last": 4269789184.0,
+     "min": 3770011648.0,
+     "max": 6241112064.0,
+     "median": 4456435712.0
+    }
+   }
+  }
+ ],
+ "process_gpu_memory_used_bytes": 4998750208,
+ "device_before_process": {
+  "temperature_c": 61.0,
+  "sm_clock_mhz": 210.0,
+  "power_w": 15.2,
+  "device_memory_used_bytes": 2840915968,
+  "device_memory_total_bytes": 8589934592,
+  "max_sm_clock_mhz": 2100.0
+ },
+ "settings": {
+  "repeats": 3,
+  "cpu_threads": 4,
+  "last_tile": "shrunk",
+  "pause_between_runs_s": 1.0
+ },
+ "weights_sha256": "0bfb9ddb07e6e6c20e6764dfc30336d9314d5760f875992f2144f13dd0df13a5",
+ "gpu": "NVIDIA GeForce RTX 3080 Laptop GPU",
+ "torch": "2.11.0+cu128",
+ "cudnn": 91900,
+ "peak_working_set_bytes": 5047443456,
+ "date": "2026-11-22",
+ "run": {
+  "command": "python -I scripts/export/measure_photo_time.py --authors-repo build/tmp/reference_measurement/rawnind_jddc --overlap-by-tile 768:96 1024:96 1536:96 --modes ieee_fp32 ieee_fp32_autotuned --last-tile shrunk --out results/export/photo_time_shrunk_last_tile.json",
+  "repository_commit": "6ba4f6a650958d2d8a572eafb7d68d4dbc31824b",
+  "scripts_changed_after_commit": true,
+  "machine": "MSI Windows"
+ }
+}

@@ -94,9 +94,14 @@ GPU jobs, one at a time, in this order (the later scripts read the overlap table
 P="build/tmp/export/venv/Scripts/python -I -u"
 A="--authors-repo build/tmp/reference_measurement/rawnind_jddc"
 $P scripts/export/measure_tile_overlap.py $A
-$P scripts/export/measure_photo_time.py $A --overlap-by-tile 256:96 512:96 768:96 1024:96 1536:96 2048:96
+$P scripts/export/measure_photo_time.py $A --last-tile full --overlap-by-tile 256:96 512:96 768:96 1024:96 1536:96 2048:96
 $P scripts/export/measure_clipped_areas.py $A --tile 1536 --overlap 96
 $P scripts/export/measure_stored_formats.py $A
+# 2026-11-22: precision modes and the shrunk last tile (the default of plan_axis since then).
+# measure_stored_formats.py ran before that change, with the full last tile.
+O="--overlap-by-tile 768:96 1024:96 1536:96"
+$P scripts/export/measure_photo_time.py $A $O --last-tile full --modes ieee_fp32 ieee_fp32_autotuned tf32 tf32_autotuned --out results/export/photo_time_precision.json
+$P scripts/export/measure_photo_time.py $A $O --last-tile shrunk --modes ieee_fp32 ieee_fp32_autotuned --out results/export/photo_time_shrunk_last_tile.json
 ```
 
 ## Tolerance of the forward tests

@@ -174,15 +174,22 @@ def load_model(weights: Path, authors_repo: Path, tmp_dir: Path, device):
     return model.to(device), code
 
 
-def set_precision(torch_module, tf32: bool) -> None:
-    """IEEE FP32 (TF32 off, deterministic cuDNN) or the PyTorch default with TF32 convolutions."""
-    if tf32:
-        torch_module.backends.cudnn.allow_tf32 = True
-        torch_module.backends.cuda.matmul.allow_tf32 = True
-        torch_module.backends.cudnn.deterministic = True
-        torch_module.backends.cudnn.benchmark = False
-    else:
-        export_common.set_ieee_fp32(torch_module)
+def set_precision(torch_module, tf32: bool, autotuned: bool = False) -> None:
+    """IEEE FP32 or TF32 convolutions; deterministic cuDNN algorithms, or the fastest algorithm
+    that cuDNN measures for each shape (`autotuned`: cudnn.benchmark on, deterministic off)."""
+    export_common.set_ieee_fp32(torch_module)
+    torch_module.backends.cudnn.allow_tf32 = tf32
+    torch_module.backends.cuda.matmul.allow_tf32 = tf32
+    torch_module.backends.cudnn.deterministic = not autotuned
+    torch_module.backends.cudnn.benchmark = autotuned
+
+
+PRECISION_MODES = {
+    "ieee_fp32": (False, False),
+    "ieee_fp32_autotuned": (False, True),
+    "tf32": (True, False),
+    "tf32_autotuned": (True, True),
+}
 
 
 # --- Tiles -------------------------------------------------------------------------------------
@@ -197,15 +204,22 @@ class AxisTile:
     keep_end: int
 
 
-def plan_axis(length: int, tile: int, overlap: int) -> list[AxisTile]:
+def plan_axis(length: int, tile: int, overlap: int, last_tile: str = "shrunk") -> list[AxisTile]:
     """Tiles of one axis of `length` packed px with the input size `tile` and `overlap`.
 
     - `length <= tile`: one tile; its input is the whole axis, filled by reflection to a multiple
       of 16 (input_size is the filled size).
     - Otherwise: the first tile keeps [0, tile - overlap), each next tile keeps `tile - 2 overlap`
-      px, and the last tile has its input at [length - tile, length). Each kept range has
-      `overlap` px or more of input before and after it, except at the image border.
+      px. Each kept range has `overlap` px or more of input before and after it, except at the
+      image border.
+    - `last_tile = "full"`: the last tile has its input at [length - tile, length), the full tile
+      size; its start is a multiple of 16 only when `length` is.
+    - `last_tile = "shrunk"`: the last tile has its input from `overlap` px before its kept range
+      to the end of the axis, filled by reflection to a multiple of 16. Every tile input then
+      starts at a multiple of 16, and the last tile computes no more than it needs.
     """
+    if last_tile not in ("full", "shrunk"):
+        raise ValueError(f"last_tile {last_tile}: expected full or shrunk")
     if tile % ALIGNMENT or overlap < 0 or 2 * overlap >= tile:
         raise ValueError(f"tile {tile} with overlap {overlap}: tile must be a multiple of "
                          f"{ALIGNMENT} and larger than 2 x overlap")
@@ -217,18 +231,23 @@ def plan_axis(length: int, tile: int, overlap: int) -> list[AxisTile]:
     for index in range(1, count - 1):
         start = tile - overlap + (index - 1) * kept
         tiles.append(AxisTile(start - overlap, tile, start, start + kept))
-    last_input = length - tile
-    tiles.append(AxisTile(last_input, tile, tiles[-1].keep_end, length))
+    keep_start = tiles[-1].keep_end
+    if last_tile == "full":
+        last_input, last_size = length - tile, tile
+    else:
+        last_input = keep_start - overlap
+        last_size = -(-(length - last_input) // ALIGNMENT) * ALIGNMENT
+    tiles.append(AxisTile(last_input, last_size, keep_start, length))
     if tiles[-1].keep_start - last_input < overlap:
         raise AssertionError("last tile has less than the overlap of context")
     return tiles
 
 
-def plan_tiles(height: int, width: int, tile: int, overlap: int
+def plan_tiles(height: int, width: int, tile: int, overlap: int, last_tile: str = "shrunk"
                ) -> list[tuple[AxisTile, AxisTile]]:
     """Row-major (y, x) tile pairs of a packed image."""
-    return [(ty, tx) for ty in plan_axis(height, tile, overlap)
-            for tx in plan_axis(width, tile, overlap)]
+    return [(ty, tx) for ty in plan_axis(height, tile, overlap, last_tile)
+            for tx in plan_axis(width, tile, overlap, last_tile)]
 
 
 def tile_input(packed_gpu, ty: AxisTile, tx: AxisTile):
@@ -256,9 +275,13 @@ class TiledRunRecord:
     peak_allocated_bytes: int = 0
     peak_reserved_bytes: int = 0
     baseline_allocated_bytes: int = 0
+    last_tile: str = "shrunk"
+    computed_packed_pixels: int = 0
 
     def as_dict(self) -> dict:
         return {"tile": self.tile, "overlap": self.overlap, "tile_count": self.tile_count,
+                "last_tile": self.last_tile,
+                "computed_packed_pixels": self.computed_packed_pixels,
                 "seconds_total": round(self.seconds_total, 4),
                 "seconds_forward": round(self.seconds_forward, 4),
                 "seconds_upload": round(self.seconds_upload, 4),
@@ -269,9 +292,9 @@ class TiledRunRecord:
 
 
 def run_tiled(model, packed: np.ndarray, tile: int, overlap: int, device,
-              output=None) -> tuple["object", TiledRunRecord]:
+              output=None, last_tile: str = "shrunk") -> tuple["object", TiledRunRecord]:
     """Run the model on `packed` (4, h, w) in tiles; return the host output (3, 2h, 2w) and the
-    record of the run.
+    record of the run. `last_tile` is the option of `plan_axis`.
 
     The time starts with the host packed image and ends when the last output tile is in host
     memory (pinned; `output` can give a buffer of an earlier run). `seconds_forward` is the sum
@@ -282,8 +305,11 @@ def run_tiled(model, packed: np.ndarray, tile: int, overlap: int, device,
     import torch
 
     _, height, width = packed.shape
-    tiles = plan_tiles(height, width, tile, overlap)
-    record = TiledRunRecord(tile=tile, overlap=overlap, tile_count=len(tiles))
+    tiles = plan_tiles(height, width, tile, overlap, last_tile)
+    record = TiledRunRecord(tile=tile, overlap=overlap, tile_count=len(tiles),
+                            last_tile=last_tile,
+                            computed_packed_pixels=sum(ty.input_size * tx.input_size
+                                                       for ty, tx in tiles))
     if output is None or tuple(output.shape) != (3, 2 * height, 2 * width):
         output = torch.empty((3, 2 * height, 2 * width), dtype=torch.float32, pin_memory=True)
     host_input = torch.from_numpy(packed)

@@ -191,11 +191,15 @@ packed image, and the workspace of one tile. `scripts/export/measurement_common.
   reflection to a multiple of 16.
 - Otherwise: the first tile has its input at `[0, T)` and keeps `[0, T - O)`. Each next tile
   keeps `T - 2 O` px and has its input from `O` px before to `O` px after its kept range. The last
-  tile has its input at `[N - T, N)` and keeps the rest of the axis. The kept ranges cover the
-  axis exactly one time.
-- So every tile input starts at a multiple of 16 except the last tile on an axis whose length is
-  not a multiple of 16. Each kept range has `O` px or more of input on each side that is not an
-  image border.
+  tile keeps the rest of the axis and has its input from `O` px before its kept range to the end
+  of the axis, filled by reflection to a multiple of 16. The kept ranges cover the axis exactly
+  one time, and each kept range has `O` px or more of input on each side that is not an image
+  border.
+- **Each tile input starts at a multiple of 16 packed px.** The 4 max pooling layers then use the
+  grid of one pass. A tile input at another position, for example a last tile at `[N - T, N)`
+  when `N` is not a multiple of 16, changes the output by up to 6% of the largest value
+  ([findings/inference_cost.md](findings/inference_cost.md), 2026-11-22, last tile and cuDNN
+  algorithms).
 
 **Overlap: 96 packed px.** With this overlap, the tiled output in IEEE FP32 is the one-pass output:
 the difference is 0 for tiles of 512, 768, and 1024 packed px on three crops, and at most 7.8e-7
@@ -204,11 +208,11 @@ px, the border difference is 5.5e-4 to 4.8e-3 after the development, 3 to 30 tim
 between TF32 and IEEE FP32. A smaller overlap is not correct; a larger overlap does not change the
 output ([findings/inference_cost.md](findings/inference_cost.md), 2026-11-21, tile overlap).
 
-**Tile size.** Use the largest tile whose workspace fits in the free GPU memory. With an overlap of
-96, a tile of 1024 keeps 66% of its area and a tile of 2048 keeps 82%, so a larger tile needs less
-time for one photo. The GPU memory and the time of each tile size are in
-[findings/inference_cost.md](findings/inference_cost.md) (2026-11-21, PyTorch time of the model
-of step 5).
+**Tile size.** Use the largest tile up to 1536 packed px whose workspace fits in the free GPU
+memory. With an overlap of 96, a tile of 1024 keeps 66% of its area and a tile of 1536 keeps 76%,
+so a larger tile needs less time for one photo. The GPU memory and the time of each tile size are
+in [findings/inference_cost.md](findings/inference_cost.md) (2026-11-21, PyTorch time of the
+model of step 5; 2026-11-22, last tile and cuDNN algorithms).
 
 ## Output and gain match
 

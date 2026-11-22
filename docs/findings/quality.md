@@ -122,7 +122,7 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   weights 0.94, GALOSH 0.84) and 0.49 for an SNR of 5 to 10 (0.43, 0.39). One photo at ISO 3200
   does not test the faintest stars of a darker sky (2026-11-19, star photo).
 - In clipped highlights, the gain-matched output of the model of step 5 is below the clip level:
-  on 5 of 6 photos with clipped photosites, the median is 0.887 to 0.992 of `linear_max`, and 0%
+  on 5 of 6 photos with clipped photosites, the median is 0.888 to 0.992 of `linear_max`, and 0%
   to 72% of the pixels reach the clip threshold 0.987 of the highlight recovery of Alcedo Studio.
   So the highlight recovery cannot find the clipped areas from the stored result alone; it needs
   the clipped photosites of the mosaic (2026-11-21, model output in clipped highlights).
@@ -142,7 +142,10 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   `results/export/images/<photo>_sheet.png` (measure_stored_formats.py; command in the README of
   `scripts/export/`). imagecodecs 2026.11.11 with libjxl 0.13.0 and zstd 1.5.7, 4 threads,
   Intel Core i7-12700H. The stored result is the gain-matched IEEE FP32 output of the model of
-  step 5 (camera RGB, 1 is LibRaw maximum minus black).
+  step 5 (camera RGB, 1 is LibRaw maximum minus black), in tiles of 1024 with the full last tile
+  (inference_cost.md, 2026-11-22: on axes that are not a multiple of 16 its last tiles differ
+  from one pass). Each format is compared with this same result, so the tile plan does not
+  enter the error of a format.
 - **Photos**: Canon EOS R3 `20220827-9578.cr3` (24.3 MP, ISO 25600, night), Canon EOS 90D
   `high_iso_canon_90d/IMG_4968.CR3` (32.5 MP, ISO 1600), Sony ILCE-7RM3 `demosaic/_DSC0729.ARW`
   (42.4 MP, low ISO, foliage).
@@ -200,8 +203,10 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
 
 - **Source**: `results/export/clipped_areas.json` (measure_clipped_areas.py; command in the README
   of `scripts/export/`). The model of step 5 (`utnet2_bayer_dark_loss_10k.safetensors`) in PyTorch
-  IEEE FP32, tiles of 1536 packed px with an overlap of 96 (the one-pass output,
-  inference_cost.md, 2026-11-21, tile overlap), input preparation 1, gain match over the area.
+  IEEE FP32, tiles of 1536 packed px with an overlap of 96 and the shrunk last tile (the one-pass
+  output, inference_cost.md, 2026-11-22, last tile and cuDNN algorithms), input preparation 1,
+  gain match over the area. A first run with the full last tile differed by at most 0.004 in a
+  ratio and 0.003 in a fraction.
 - **Photos**: the 6 local photos with photosites at or above LibRaw `linear_max`: Canon EOS R3
   `20220827-9578.cr3`, Sony ILCE-7RM3 `astro/_DSC8539.ARW` (stars), Panasonic DC-GH6
   `high_iso_gh6/1296625388.rw2` and `5721990840.rw2`, Nikon D7200
@@ -218,14 +223,14 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   | Photo | R | G | B | Cells with one clipped channel |
   | --- | --- | --- | --- | ---: |
   | EOS R3 | 3,756; 1.076; 0.92 | 6,352; 1.085; 0.96 | 3,469; 1.083; 0.94 | 2,570 |
-  | ILCE-7RM3 stars | 575; 0.887; 0.19 | 1,275; 1.053; 0.72 | 902; 0.973; 0.46 | 686 |
+  | ILCE-7RM3 stars | 575; 0.888; 0.19 | 1,275; 1.053; 0.72 | 902; 0.973; 0.46 | 686 |
   | DC-GH6 1296625388 | 8,932; 0.974; 0.21 | 2,432; 0.971; 0.26 | 1,734; 0.975; 0.09 | 8,150 |
   | DC-GH6 5721990840 | 35,698; 0.942; 0.00 | 51,670; 0.939; 0.01 | 32,376; 0.942; 0.05 | 19,209 |
   | D7200 fog | 5,302; 0.955; 0.02 | 4,773; 0.953; 0.11 | 850; 0.920; 0.00 | 796 |
   | DC-S5M2 city | 17,495; 0.979; 0.36 | 23,031; 0.992; 0.57 | 12,912; 0.975; 0.32 | 11,232 |
 
   - On 5 of the 6 photos, the model output in the clipped cells is below the clip level: the
-    median is 0.887 to 0.992 of it, and 0% to 72% of the pixels (most channels below 40%) reach
+    median is 0.888 to 0.992 of it, and 0% to 72% of the pixels (most channels below 40%) reach
     0.987. A clip test of the highlight recovery on the stored result therefore does not find
     most clipped areas. The 5th percentile is 0.50 to 0.93, so a lower threshold also misses
     parts of them, and would mark unclipped bright pixels.
