@@ -5,8 +5,21 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
 
 ## Current state
 
-- The lab has no cost measurement of a fine-tuned or smaller model. Steps 6 and 7 of
-  [the plan](../plan.md) make it.
+- In PyTorch IEEE FP32 (TF32 off) on the RTX 3080 Laptop GPU, the model of step 5 denoises a
+  45.4 megapixel mosaic in 0.92 s in tiles of 1536 packed px (overlap 96), with 1.96 GiB of
+  allocated GPU memory, and in 1.37 s in tiles of 1024 (0.98 GiB). A 24.3 megapixel photo takes
+  0.58 to 0.97 s in tiles of 768 to 2048. Tiles of 256 packed px take about 20 times longer
+  (20.7 s at 45.4 megapixels),
+  because a tile of 256 keeps only 6% of its area. The GPU ran at 71 to 89 C and an SM clock of
+  1,350 to 1,785 MHz (the largest clock is 2,100 MHz), so the times include thermal clock limits.
+  This is the reference of the lab for the forward code of Alcedo Studio; the lab has no cost
+  measurement of a smaller model (2026-11-21, PyTorch time of the model of step 5).
+- An overlap of 96 packed px between tiles gives the one-pass output: the difference is 0 in IEEE
+  FP32 for tiles of 512 to 1024 packed px, and below 1e-6 after the development for tiles of 256.
+  At 80 packed px the border difference is 3 to 30 times the difference between TF32 and IEEE
+  FP32. The workspace of one tile is 163 MiB (256), 200 MiB (512), 451 MiB (768), 800 MiB
+  (1024), 1,800 MiB (1536), and 3,200 MiB (2048) (2026-11-21, tile overlap of the model of
+  step 5).
 - The model of step 5 is exported to safetensors for the forward code of Alcedo Studio and gives
   the checkpoint output with a difference of 0. In IEEE FP32, the CPU and the GPU output of PyTorch
   differ by at most 2.4e-6 of the largest value of a tensor, so the forward tests of Alcedo Studio
@@ -41,6 +54,100 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
   stores the denoised result and computes it one time for each photo.
 
 ## Entries
+
+### 2026-11-21 PyTorch time of the model of step 5
+
+- **Source**: `results/export/photo_time.json` (measure_photo_time.py; command in the README of
+  `scripts/export/`). PyTorch 2.11.0+cu128, cuDNN 9.19.0, IEEE FP32 (TF32 off, deterministic cuDNN
+  algorithms), 4 CPU threads, RTX 3080 Laptop GPU 8 GB, of which 3.1 GiB were used by the
+  display and other programs before the run. Weights `utnet2_bayer_dark_loss_10k.safetensors`.
+  Overlap 96 packed px (tile overlap entry of the same date).
+- **Photos**: Canon EOS R3 (`20220827-9578.cr3`, 24.3 MP), Canon EOS 90D
+  (`high_iso_canon_90d/IMG_4968.CR3`, 32.5 MP), and Sony ILCE-7RM3
+  (`demosaic/_DSC0729.ARW`, 42.4 MP). No local photo has 36 or 45 megapixels, so the 36.2 MP
+  size (7360 x 4912, Nikon D810) is a crop of the Sony photo and the 45.4 MP size (8256 x 5504,
+  Nikon Z 8) is the Sony photo extended by reflection. The time of an FP32 convolution does not
+  depend on the pixel values.
+- **Procedure**: a run starts with the packed image in host memory and ends when the last kept
+  output tile is in pinned host memory; the packed image is on the GPU during the run, each tile
+  is one forward pass. The median of 3 runs after one run of each tile size, with 1 s between
+  runs. Input preparation, gain match, and the write of a result are not in the time.
+- **Result** (median seconds of the full run; in brackets the tile count; then the PyTorch peak
+  of allocated GPU memory):
+
+  | Tile (packed px) | 24.3 MP | 32.5 MP | 36.2 MP | 42.4 MP | 45.4 MP | Peak allocated, 45.4 MP |
+  | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+  | 256 | 11.27 (1305) | 16.04 (1768) | 17.94 (1980) | 19.72 (2340) | 20.67 (2480) | 0.36 GiB |
+  | 512 | 1.00 (54) | 1.50 (77) | 1.67 (88) | 1.77 (96) | 2.17 (104) | 0.39 GiB |
+  | 768 | 0.78 (20) | 0.99 (24) | 1.13 (28) | 1.35 (35) | 1.39 (35) | 0.64 GiB |
+  | 1024 | 0.82 (12) | 0.83 (12) | 1.03 (15) | 1.01 (15) | 1.37 (20) | 0.98 GiB |
+  | 1536 | 0.97 (6) | 0.95 (6) | 1.03 (6) | 0.92 (6) | 0.92 (6) | 1.96 GiB |
+  | 2048 | 0.58 (2) | 1.14 (4) | 1.12 (4) | 1.56 (6) | 1.67 (6) | 3.32 GiB |
+
+  - The spread of the 3 runs is at most 0.16 s for tiles of 512 and larger. The forward passes are
+    78 to 97% of the run; the upload of the packed image takes 0.01 to 0.07 s.
+  - The time follows the tile count more than the photo size: the last tile of an axis has the
+    full tile size, also when it keeps only a few px. At 1536, the 42.4 and the 45.4 MP sizes both
+    need 2 x 3 tiles; at 1024 the 45.4 MP size needs 4 x 5 tiles and the 42.4 MP size 3 x 5.
+  - At 45.4 MP with tiles of 1536, the forward passes compute 2.62 TMAC in 0.79 s (3.3 TMAC/s,
+    6.6 TFLOP/s); the model needs 2.10 TMAC for the area (46.2 GMAC/MP).
+  - Tiles of 2048 reserve up to 4.85 GiB in the PyTorch cache. The GPU had 4.9 GiB free before
+    the run, and the CUDA context also uses a part of it. These tiles are slower than tiles of 1536 on each photo with
+    more than 2 tiles. The cause is not measured; a spill of the GPU memory to shared memory by
+    the Windows driver agrees with it.
+  - Peak of reserved GPU memory: 0.40 GiB (256), 0.52 GiB (512), 0.94 GiB (768), 1.44 GiB (1024),
+    2.85 GiB (1536), 4.85 GiB (2048). Largest used GPU memory of the process by NVML (sampled
+    every 50 ms, CUDA context included): 4.36 GiB, less than the reserved memory of the tiles of
+    2048.
+  - GPU state: 71 to 89 C; median SM clock of a run 1,350 to 1,785 MHz (largest 2,100 MHz).
+  - The first call of each tile size (on the 24.3 MP photo) is at most 0.15 s slower than the
+    median of the later runs.
+  - Peak working set: 3.34 GiB.
+  - Not measured: the forward code of Alcedo Studio (DN3 of the integration plan), TF32 and 16-bit
+    float times, a GPU with more memory, a tile planner that makes the last tile smaller.
+- **Effect**: the statement of Current state about the PyTorch time.
+
+### 2026-11-21 Tile overlap of the model of step 5
+
+- **Source**: `results/export/tile_overlap.json` (measure_tile_overlap.py; command in the README
+  of `scripts/export/`). PyTorch 2.11.0+cu128 on the RTX 3080 Laptop GPU, 4 CPU threads. The
+  tiled output and the reference are IEEE FP32 (TF32 off, deterministic cuDNN algorithms).
+- **Crops**: 1536 x 1536 packed px from the centre of three photos, prepared with input
+  preparation 1: Sony ILCE-7C `Bayer_TEST_TitusToys_ISO6400` (RawNIND test split), Canon EOS 90D
+  `high_iso_canon_90d/IMG_4968.CR3` (ISO 1600), Nikon D7200 `high_iso_nikon_d7200/Ric_Developer.NEF`
+  (ISO 12,800).
+- **Procedure**: for tiles of 256, 512, 768, and 1024 packed px and overlaps of 16 to 128 packed
+  px in steps of 16, the tiled output against one pass, on the output pixels within 16 packed px
+  of each seam (planner `plan_axis` of `measurement_common.py`; the tile inputs start at
+  multiples of 16). The reference level is the difference of the TF32 one-pass output against
+  the IEEE FP32 one-pass output on the same pixels. Linear values are the output times the gain
+  match factor of the crop; the development is linear Rec.2020, +2 EV, clip, sRGB curve.
+- **Result** (largest over the three crops; developed values, peak 1):
+
+  | Tile | Overlap 64: max / RMS | Overlap 80: max / RMS | Overlap 96: max / RMS | TF32 level at 96: max / RMS | Kept area at 96 |
+  | ---: | --- | --- | --- | --- | ---: |
+  | 256 | 1.1e-2 / 5.3e-4 | 2.3e-3 / 1.1e-4 | 7.8e-7 / 4.2e-8 | 1.9e-4 / 2.4e-5 | 6% |
+  | 512 | 4.1e-3 / 4.0e-4 | 4.8e-3 / 1.5e-4 | 0 / 0 | 1.6e-4 / 2.4e-5 | 39% |
+  | 768 | 7.6e-3 / 5.0e-4 | 1.8e-3 / 9.5e-5 | 0 / 0 | 1.5e-4 / 2.6e-5 | 56% |
+  | 1024 | 2.5e-3 / 2.9e-4 | 5.5e-4 / 5.5e-5 | 0 / 0 | 1.6e-4 / 2.3e-5 | 66% |
+
+  - At an overlap of 96 and more, the tiled output is the one-pass output bit for bit for tiles
+    of 512 to 1024 on all three crops, and at most 7.8e-7 (developed) and 4.2e-7 (linear, 1 is the
+    white level) away for tiles of 256. The selected overlap is 96 for each tile size.
+  - In linear values the border difference at 80 is 9.7e-5 (1024) to 8.1e-4 (512) of the white
+    level. At 16 it is up to 1.7e-2, visible after the development (3.3e-2 developed).
+  - The TF32 difference on the whole crop: developed 2.1e-4 to 4.4e-4 largest, 2.4e-5 to 2.8e-5
+    RMS.
+  - The difference becomes 0 between 80 and 96: the receptive field of the model is 92 packed px
+    by the layer count (1 px for each 3 x 3 convolution, times 2 for each level below the input),
+    and tile inputs at multiples of 16 keep the grid of the 4 max pooling layers.
+  - GPU memory of one tile (PyTorch peak of allocated memory minus the weights and the packed
+    crop): 163 MiB (256), 200 MiB (512), 450 MiB (768), 800 MiB (1024). One pass on a crop of
+    1536: 1.72 GiB in total. Median forward time of one tile at overlap 96: 8.0 ms (256),
+    15.7 ms (512), 33.3 ms (768), 57.0 ms (1024).
+  - GPU state: 56 to 86 C, SM clock median 1,785 MHz. Peak working set 3.23 GiB.
+  - Not measured: overlaps that are not multiples of 16, other photos, TF32 tiles.
+- **Effect**: the statement of Current state about the overlap and the tile workspace.
 
 ### 2026-11-21 Weights export of the model of step 5
 

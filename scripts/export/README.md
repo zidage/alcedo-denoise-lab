@@ -74,6 +74,31 @@ they start from. `rawnind_crop_512.safetensors` holds a crop of the RawNIND imag
 `Bayer_TEST_TitusToys_ISO6400_sha1=bedd1475...arw` (B. Brummer and C. De Vleeschouwer, RawNIND,
 CC BY-SA 4.0); the crop and the model output of it have the same license.
 
+## Measurements (phase DN1)
+
+The measurements of the tile overlap, the time, the clipped highlights, and the stored result
+formats (phase DN1 of the integration plan, issue zidage/AlcedoStudio#1033). They need the
+weights file of the release asset and the packages of the last lines of `requirements.txt`.
+
+| Script | Output | Findings |
+| --- | --- | --- |
+| `measure_tile_overlap.py` | `results/export/tile_overlap.json` | inference_cost.md, 2026-11-21, tile overlap |
+| `measure_photo_time.py` | `results/export/photo_time.json` | inference_cost.md, 2026-11-21, PyTorch time |
+| `measure_clipped_areas.py` | `results/export/clipped_areas.json` | quality.md, 2026-11-21, clipped highlights |
+| `measure_stored_formats.py` | `results/export/stored_formats.json`, `results/export/images/*_sheet.png` (not committed) | quality.md, 2026-11-21, stored result formats |
+| `measurement_common.py` | Input preparation 1, tile planner, tile loop, gain match, development, NVML sampler (imported) | |
+
+GPU jobs, one at a time, in this order (the later scripts read the overlap table of the first):
+
+```bash
+P="build/tmp/export/venv/Scripts/python -I -u"
+A="--authors-repo build/tmp/reference_measurement/rawnind_jddc"
+$P scripts/export/measure_tile_overlap.py $A
+$P scripts/export/measure_photo_time.py $A --overlap-by-tile 256:96 512:96 768:96 1024:96 1536:96 2048:96
+$P scripts/export/measure_clipped_areas.py $A --tile 1536 --overlap 96
+$P scripts/export/measure_stored_formats.py $A
+```
+
 ## Tolerance of the forward tests
 
 The tests of Alcedo Studio compare each tensor with the rule

@@ -430,6 +430,12 @@ Findings: `inference_cost.md`, `quality.md` (errors of the stored formats).
 
 ## Items that need the user
 
+- The pixel format and the compression of the sidecar file (issue zidage/AlcedoStudio#1033,
+  decision U2 of the integration plan): the table and the sheets are in
+  [findings/quality.md](findings/quality.md) (2026-11-21, stored result formats) and
+  `results/export/images/` (made again by `scripts/export/measure_stored_formats.py`). After
+  the answer, `scripts/export/write_stored_result.py` writes sidecar files in that format for
+  the early check of Alcedo Studio.
 - `budget_cap`: the amount available for the remaining rented runs in steps 5 and 6.
 - `target_time` (no value now; the user sets it after the measured time of the full model in
   Alcedo Studio exists, 2026-11-21): the largest time for one 45 megapixel photo in Alcedo Studio on the RTX 3080
@@ -467,5 +473,5 @@ Findings: `inference_cost.md`, `quality.md` (errors of the stored formats).
 | `budget_cap` | From the user | Largest cost of the remaining rented runs |
 | `target_time` | From the user, after the measured time of the full model in Alcedo Studio exists | Largest time for one 45 megapixel photo in Alcedo Studio |
 | `student_variants` | Set in step 6 from the measured cost of each variant | The smaller models that step 6 trains |
-| `tile_size` | Measured in step 7: 256 to 1024 packed px; Alcedo Studio selects the size from the free GPU memory | Tile of the denoise job |
-| `tile_overlap` | Measured in step 7: the smallest overlap with a border difference below the difference between the TF32 and the IEEE FP32 output of PyTorch | Overlap between two tiles |
+| `tile_size` | The largest of 512, 768, 1024, and 1536 packed px whose workspace (200, 451, 800, 1,800 MiB in PyTorch) fits in the free GPU memory; 1536 is the fastest on the RTX 3080 Laptop GPU (0.92 s for 45.4 MP, 1.37 s at 1024). 256 is 20 times slower, and 2048 is slower than 1536 on an 8 GB GPU ([findings/inference_cost.md](findings/inference_cost.md), 2026-11-21) | Tile of the denoise job |
+| `tile_overlap` | 96 packed px: the smallest multiple of 16 with a border difference below the difference between the TF32 and the IEEE FP32 output of PyTorch; at 96 the tiled output is the one-pass output ([findings/inference_cost.md](findings/inference_cost.md), 2026-11-21) | Overlap between two tiles |

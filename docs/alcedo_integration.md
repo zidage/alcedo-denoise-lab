@@ -11,9 +11,10 @@ Each statement about the authors' code gives the file and the lines that prove i
 file under `results/export/` and the entry of
 [findings/inference_cost.md](findings/inference_cost.md).
 
-This first part covers the weights file, the tensors, the input preparation, and the output. The
-tile size and overlap, the highlight handling, and the stored result format come from the
-measurements of step 7 of [the plan](plan.md) and are added to this file then.
+This file covers the weights file, the tensors, the input preparation, the tiles, and the output.
+The highlight handling and the stored result format are added to this file when Alcedo Studio
+selects them from the measurements of step 7 of [the plan](plan.md)
+([findings/quality.md](findings/quality.md), 2026-11-21).
 
 ## Weights file
 
@@ -171,13 +172,43 @@ The authors crop the packed image at the bottom and the right to a multiple of 1
 
 Alcedo Studio does not crop. A tile is filled by reflection of the packed image (each of the 4
 channels separately) to a multiple of 16, and the output of the filled area is not part of the
-result. The tile size and the overlap between tiles are measured in step 7.
+result. The tile size and the overlap between tiles are in the section "Tiles".
 
 ### Exposure
 
 The authors apply no gain to the network input at inference (`denoise_image.py:181-190`). In
 training, the noisy input of a pair is multiplied by the gain that matches its exposure to the
 clean image (`scripts/loss_check/train_bayer.py:285`). Alcedo Studio applies no gain to the input.
+
+## Tiles
+
+The model runs in square tiles of the packed image, so that the GPU holds only the weights, the
+packed image, and the workspace of one tile. `scripts/export/measurement_common.py`
+(`plan_axis`) is the reference planner:
+
+- The tile size `T` and the overlap `O` are multiples of 16 packed px, and `T > 2 O`.
+- On an axis of `N` packed px with `N <= T`: one tile, whose input is the whole axis filled by
+  reflection to a multiple of 16.
+- Otherwise: the first tile has its input at `[0, T)` and keeps `[0, T - O)`. Each next tile
+  keeps `T - 2 O` px and has its input from `O` px before to `O` px after its kept range. The last
+  tile has its input at `[N - T, N)` and keeps the rest of the axis. The kept ranges cover the
+  axis exactly one time.
+- So every tile input starts at a multiple of 16 except the last tile on an axis whose length is
+  not a multiple of 16. Each kept range has `O` px or more of input on each side that is not an
+  image border.
+
+**Overlap: 96 packed px.** With this overlap, the tiled output in IEEE FP32 is the one-pass output:
+the difference is 0 for tiles of 512, 768, and 1024 packed px on three crops, and at most 7.8e-7
+after the +2 EV development for tiles of 256 (another cuDNN algorithm for that size). At 80 packed
+px, the border difference is 5.5e-4 to 4.8e-3 after the development, 3 to 30 times the difference
+between TF32 and IEEE FP32. A smaller overlap is not correct; a larger overlap does not change the
+output ([findings/inference_cost.md](findings/inference_cost.md), 2026-11-21, tile overlap).
+
+**Tile size.** Use the largest tile whose workspace fits in the free GPU memory. With an overlap of
+96, a tile of 1024 keeps 66% of its area and a tile of 2048 keeps 82%, so a larger tile needs less
+time for one photo. The GPU memory and the time of each tile size are in
+[findings/inference_cost.md](findings/inference_cost.md) (2026-11-21, PyTorch time of the model
+of step 5).
 
 ## Output and gain match
 
