@@ -171,7 +171,7 @@ def gain_match_factors(code, packed: torch.Tensor, output: torch.Tensor,
 
 
 def main() -> int:
-    from safetensors.torch import load_file, save_file
+    from safetensors.torch import load_file
     import psutil
 
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
@@ -242,7 +242,7 @@ def main() -> int:
         else:
             metadata["generator_seed"] = str(args.seed)
         path = args.out_dir / f"{name}.safetensors"
-        save_file(tensors, str(path), metadata=metadata)
+        common.write_safetensors(path, tensors, metadata)
         for record in records.values():
             if "cpu_gpu_relative_diff" in record:
                 largest_relative = max(largest_relative, record["cpu_gpu_relative_diff"])

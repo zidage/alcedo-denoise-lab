@@ -7,7 +7,8 @@ Input:
   the slope of LeakyReLU.
 
 Output (export, the default mode):
-- `--out`: the safetensors file. The tensor names are the PyTorch state dict names
+- `--out`: the safetensors file (utnet2_export_common.write_safetensors: the same bytes on each
+  run; the tensors in the order of the forward pass). The tensor names are the PyTorch state dict names
   (`convs1.0.weight`, `up1.weight`, `output_module.0.bias`); the layout is the PyTorch layout
   (Conv2d OIHW, ConvTranspose2d IOHW), float32. The metadata of the file holds `architecture`,
   `checkpoint_sha256`, `checkpoint_step`, `leaky_relu_slope`, `input_preparation_version`,
@@ -71,8 +72,6 @@ def check_tensors(model_state: dict[str, torch.Tensor]) -> None:
 
 
 def export(args: argparse.Namespace, code) -> int:
-    from safetensors.torch import save_file
-
     model_state, step = load_checkpoint_state(args.checkpoint)
     check_tensors(model_state)
     slope = common.leaky_relu_slope(code)
@@ -89,7 +88,7 @@ def export(args: argparse.Namespace, code) -> int:
     }
     tensors = {name: model_state[name].contiguous() for name in common.EXPECTED_TENSORS}
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    save_file(tensors, str(args.out), metadata=metadata)
+    common.write_safetensors(args.out, tensors, metadata)
     table = {
         "file": args.out.name,
         "sha256": common.sha256_of(args.out),

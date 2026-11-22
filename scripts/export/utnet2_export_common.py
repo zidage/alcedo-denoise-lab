@@ -127,6 +127,43 @@ def topology_differences(shapes: dict[str, tuple[int, ...]]) -> list[str]:
     return differences
 
 
+def write_safetensors(path: Path, tensors: dict, metadata: dict[str, str]) -> None:
+    """Write float32 `tensors` (name -> torch tensor) and `metadata` to a safetensors file.
+
+    The `safetensors` package writes the metadata keys in a random order (a Rust HashMap), so two
+    runs give two files with different SHA-256 values. This writer gives the same bytes for the
+    same tensors: the metadata keys are sorted, the tensors keep the order of `tensors`, and the
+    header is compact JSON padded with spaces to a multiple of 8 bytes, as the format requires
+    (https://github.com/huggingface/safetensors, "Format"). The data is little-endian float32.
+    The `safetensors` package reads the file (export_weights.py --verify).
+    """
+    import json
+
+    import numpy as np
+    import torch
+
+    header: dict[str, object] = {"__metadata__": dict(sorted(metadata.items()))}
+    blobs = []
+    offset = 0
+    for name, tensor in tensors.items():
+        if tensor.dtype != torch.float32:
+            raise ValueError(f"{name}: type {tensor.dtype}, expected torch.float32")
+        data = np.ascontiguousarray(tensor.detach().cpu().numpy(), dtype="<f4").tobytes()
+        header[name] = {"dtype": "F32", "shape": list(tensor.shape),
+                        "data_offsets": [offset, offset + len(data)]}
+        offset += len(data)
+        blobs.append(data)
+    text = json.dumps(header, separators=(",", ":")).encode("utf-8")
+    text += b" " * (-len(text) % 8)
+    temporary = path.with_name(path.name + ".tmp")
+    with temporary.open("wb") as stream:
+        stream.write(len(text).to_bytes(8, "little"))
+        stream.write(text)
+        for data in blobs:
+            stream.write(data)
+    temporary.replace(path)
+
+
 def run_record() -> dict[str, str]:
     """The command, the commit of this repository, and the machine of the running script."""
     import platform
