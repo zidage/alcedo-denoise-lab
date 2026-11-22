@@ -13,8 +13,13 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
   for a whole photo). Against the FP32 output, the developed PSNR is 75.7 to 80.6 dB at +2 EV on
   the whole image and 60.2 to 75.2 dB at +5 EV on the dark crops (the float16 stored result:
   81.8 dB). The rescale calibrated on 3 crops leaves a margin of 19 times to the largest FP16
-  value on 11 photos. On the GPU, FP16 saves only 7% to 15% (M4) and 17% to 20% (DirectML, RTX
-  3080 Laptop GPU) (2026-11-22, FP16 on the Neural Engine, and the RAW processing of macOS).
+  value on 11 photos. On the GPU, FP16 saves only 7% to 15% on the M4. On DirectML, FP16 halves the GPU
+  time of a tile of 1536 on the RTX 3080 Laptop GPU (0.044 s against 0.090 s), but the full run
+  with the tile input and output through host memory is only 1.2 to 1.4 times faster (0.72 s
+  against 0.94 s at 45.4 megapixels); the Intel Iris Xe is 1.3 times faster (5.2 s against
+  6.7 s). DirectML FP16 against FP32 gives 70.0 to 72.8 dB at +2 EV on the whole image and 69.7
+  to 71.0 dB at +5 EV on the dark crops (2026-11-22, FP16 on the Neural Engine, and the RAW
+  processing of macOS; 2026-11-22, FP16 on DirectML).
 - On macOS (MacBook Air, Apple M4 with 8 GPU cores, 16 GB), ONNX Runtime 1.24.4 with the Core
   ML execution provider (`ModelFormat` MLProgram, `MLComputeUnits` CPUAndGPU) runs each
   operation of the model of step 5 on the GPU in FP32 and gives the PyTorch output within 8.2e-7
@@ -102,6 +107,49 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
   stores the denoised result and computes it one time for each photo.
 
 ## Entries
+
+### 2026-11-22 FP16 on DirectML
+
+- **Source**: `results/export/directml_fp16_variants.json` (RTX 3080 Laptop GPU),
+  `results/export/directml_fp16_variants_integrated_gpu.json` (Intel Iris Xe),
+  `results/export/directml_fp16_photo_output.json`; measure_directml_fp16_variants.py and
+  compare_photo_output.py, commands in the README of `scripts/export/`. ONNX Runtime 1.24.4
+  (`onnxruntime-directml`), the FP16 graphs of the entry of the same date (FP16 on the Neural
+  Engine), one session with free height and width, memory arena on, overlap 96, last tile shrunk.
+  Graphs: `fp32`; `fp16_float32_io` (Cast nodes at the float32 input and output in the graph);
+  `fp16_io` (float16 input and output, the conversion with NumPy on the host).
+- **Result**, RTX 3080 Laptop GPU, tiles of 1536, median seconds of the full run (in brackets: of
+  the `run` calls):
+
+  | Graph | 24.3 MP | 32.5 MP | 36.2 MP | 42.4 MP | 45.4 MP | One tile in device memory |
+  | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+  | `fp32` | 0.53 (0.45) | 0.69 (0.59) | 0.78 (0.67) | 0.88 (0.75) | 0.94 (0.79) | 0.090 s |
+  | `fp16_float32_io` | 0.44 (0.36) | 0.50 (0.41) | 0.55 (0.44) | 0.64 (0.51) | 0.72 (0.57) | 0.044 s |
+  | `fp16_io` | 0.68 (0.60) | 0.89 (0.79) | 0.99 (0.87) | 1.15 (1.02) | 1.29 (1.14) | 0.042 s |
+
+  - FP16 halves the GPU time of a tile (0.044 s against 0.090 s with the input and the output in
+    DirectML memory), but the full run is 1.2 to 1.4 times faster: a `run` call with host input
+    and output takes 0.095 s for a tile of 1536 in FP16 and 0.13 s in FP32, so the copies between
+    host and device and the tile input and crop on the host are about half of the FP16 time.
+  - `fp16_io` is slower because the NumPy conversion between float32 and float16 of each tile is
+    slow; its output equals the output of `fp16_float32_io`.
+- **Result**, Intel Iris Xe, tiles of 1024, one run: FP32 3.57 s (24.3 MP) and 6.68 s (45.4 MP),
+  FP16 2.76 s and 5.16 s (1.29 to 1.30 times faster). Two of four processes on the Iris Xe ended
+  with the DirectML error 887A0005 (device removed): one at the creation of the FP32 session
+  before any run, one in the device time of the FP16 graph. The process without the device
+  time ran all four photos.
+- **Output against FP32** (DirectML FP16 against DirectML FP32, RTX 3080 Laptop GPU; each
+  output gain matched on its own; the metrics of the stored formats entry):
+
+  | Photo | +2 EV whole | +2 EV dark | +2 EV detail | +5 EV whole | +5 EV dark |
+  | --- | ---: | ---: | ---: | ---: | ---: |
+  | 24.3 MP, Canon EOS R3 | 72.8 dB | 78.3 dB | 69.6 dB | 72.2 dB | 71.0 dB |
+  | 32.5 MP, Canon EOS 90D, high ISO | 71.7 dB | 77.6 dB | 70.8 dB | 66.4 dB | 70.0 dB |
+  | 42.4 MP, Sony ILCE-7RM3 | 70.0 dB | 77.3 dB | 72.3 dB | 70.9 dB | 69.7 dB |
+
+- **Effect**: the sentence on FP16 on the GPU in Current state. Not measured: the copies of a
+  tile loop with the tiles in DirectML memory, an AMD GPU, the cause of the device removals of
+  the Iris Xe.
 
 ### 2026-11-22 FP16 on the Neural Engine, and the RAW processing of macOS
 

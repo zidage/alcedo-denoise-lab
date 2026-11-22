@@ -1,0 +1,65 @@
+{
+ "onnxruntime": "1.24.4",
+ "tile": 1024,
+ "overlap": 96,
+ "output_scale": 127.91508483886719,
+ "graphs": {
+  "fp32": "ee8f6fc89a3f876d06a269e59bd8d308a1b8cbb635cdd30f302a904d48c594ba",
+  "fp16_float32_io": "fd186931e7aa5f114f75ab52b7cb7067b770f5ec21812af8d69ec692e3cd9bf0"
+ },
+ "adapters": [
+  {
+   "adapter": "minimum_power",
+   "runs": [
+    {
+     "graph": "fp32",
+     "photo": "24mp",
+     "median_seconds_total": 3.5687,
+     "median_seconds_run": 3.4888,
+     "seconds_total": [
+      3.5687
+     ],
+     "non_finite": 0
+    },
+    {
+     "graph": "fp32",
+     "photo": "45mp",
+     "median_seconds_total": 6.6839,
+     "median_seconds_run": 6.537,
+     "seconds_total": [
+      6.6839
+     ],
+     "non_finite": 0
+    },
+    {
+     "graph": "fp16_float32_io",
+     "photo": "24mp",
+     "median_seconds_total": 2.761,
+     "median_seconds_run": 2.6849,
+     "seconds_total": [
+      2.761
+     ],
+     "non_finite": 0
+    },
+    {
+     "graph": "fp16_float32_io",
+     "photo": "45mp",
+     "median_seconds_total": 5.1626,
+     "median_seconds_run": 5.017,
+     "seconds_total": [
+      5.1626
+     ],
+     "non_finite": 0
+    }
+   ],
+   "device_seconds": {}
+  }
+ ],
+ "date": "2026-11-22",
+ "run": {
+  "command": "python -I scripts/export/measure_directml_fp16_variants.py --fp16-dir build/tmp/onnx_macos_fp16 --adapters minimum_power --graphs fp32 fp16_float32_io --photos 24mp 45mp --tile 1024 --repeats 1 --device-time 0 --out results/export/directml_fp16_variants_integrated_gpu.json",
+  "repository_commit": "e2c88cea046fab7838f4664ab216753715f9427a",
+  "scripts_changed_after_commit": true,
+  "machine": "MSI Windows"
+ }
+}

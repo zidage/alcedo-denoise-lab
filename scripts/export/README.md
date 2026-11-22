@@ -92,6 +92,7 @@ weights file of the release asset and the packages of the last lines of `require
 | `macos/` | C++ tool of the macOS measurement and its shell drivers; `results/export/onnx_macos/` | inference_cost.md, 2026-11-22, ONNX Runtime on macOS |
 | `macos/write_fp16_graph.py`, `macos/matrix_fp16.sh`, `macos/ciraw_time.swift` | FP16 graphs and `results/export/onnx_macos/fp16_graph.json`; `probe-fp16/`, `time-fp16/`, `ciraw_time_*.json` | inference_cost.md, 2026-11-22, FP16 on the Neural Engine |
 | `measure_directml_fp16.py` | `results/export/directml_fp16.json` | the same |
+| `measure_directml_fp16_variants.py` | `results/export/directml_fp16_variants.json`, `results/export/directml_fp16_variants_integrated_gpu.json`, photo outputs for compare_photo_output.py (not committed) | inference_cost.md, 2026-11-22, FP16 on DirectML |
 | `compare_photo_output.py` | `results/export/fp16_photo_output.json` | the same |
 | `check_fp16_range.py` | `results/export/fp16_range.json` | the same |
 | `measurement_common.py` | Input preparation 1, tile planner, tile loop, gain match, development, NVML sampler (imported) | |
@@ -171,6 +172,16 @@ tool/ort_macos_measure-1.24.4 $B --graph utnet2_bayer_dark_loss_10k_fp16.onnx --
 # Windows, with out/ copied to $W/out (2.4 GB):
 O=$W/out
 $P scripts/export/compare_photo_output.py --labels coreml_gpu_fp32:coreml_neural_engine_fp16 24mp:$O/fp32/24mp_tile1536.f32:$O/fp16/24mp_tile1536.f32 32mp:$O/fp32/32mp_tile1536.f32:$O/fp16/32mp_tile1536.f32 42mp:$O/fp32/42mp_tile1536.f32:$O/fp16/42mp_tile1536.f32
+```
+
+FP16 on DirectML (2026-11-22), one GPU job at a time:
+
+```bash
+F=build/tmp/onnx_macos_fp16
+$P scripts/export/measure_directml_fp16_variants.py --fp16-dir $F --save-dir build/tmp/directml_fp16_out
+$P scripts/export/measure_directml_fp16_variants.py --fp16-dir $F --adapters minimum_power --graphs fp32 fp16_float32_io --photos 24mp 45mp --tile 1024 --repeats 1 --device-time 0 --out results/export/directml_fp16_variants_integrated_gpu.json
+D=build/tmp/directml_fp16_out/high_performance
+$P scripts/export/compare_photo_output.py --labels directml_fp32:directml_fp16_float32_io --out results/export/directml_fp16_photo_output.json 24mp:$D/fp32/24mp_tile1536.f32:$D/fp16_float32_io/24mp_tile1536.f32 32mp:$D/fp32/32mp_tile1536.f32:$D/fp16_float32_io/32mp_tile1536.f32 42mp:$D/fp32/42mp_tile1536.f32:$D/fp16_float32_io/42mp_tile1536.f32
 ```
 
 ## Tolerance of the forward tests
