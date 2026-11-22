@@ -26,6 +26,15 @@ Training runs: data, loss, settings, time, and cost. The rules of this file are 
   same settings and schedule with the authors' loss in place of the gamma detail loss
   (`fine_tune_msssim_cosine`) do not give the sharpness (2026-11-20, step 4 with the authors'
   loss).
+- The model of step 5 is `models/dark_area_loss/checkpoint_10000.pt` (SHA-256
+  `b2244dec55f9f0ee82eaded6b9b053b7460a60638814ed1f2faa5ea1bb7a5818`): the step 4 checkpoint
+  below, then 10,000 iterations with the gamma detail loss and the dark-area loss at weight 0.039,
+  cosine learning rate from 1.515e-4 (25,000-iteration schedule, 1.00e-4 at 10,000). The user
+  selected the checkpoint at 25,000 first and changed to 10,000 on 2026-11-20: the user did not
+  check the +2 EV sheets by eye, and at 10,000 the dark-area error on the validation and the crop
+  means of the dark crops of the photos of the use are nearer to the public weights than at
+  25,000, with the same detail (quality.md, 2026-11-20, step 5 runs); it is the teacher of step 6
+  (2026-11-20, step 5 runs).
 - The selected gamma checkpoint of step 4 is `models/fine_tune_e5c_cosine/checkpoint_25000.pt`.
   This is E5c at 60,000 iterations, then 25,000 iterations with a cosine learning rate from 3e-4
   toward 3e-6. The user selected it from the checkpoints at 25,000 and 50,000 (2026-11-19, step 4).

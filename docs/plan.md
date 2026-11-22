@@ -38,6 +38,27 @@ list of decisions.
   darktable integration (a separate DNG file, fixed tiles in ONNX Runtime).
 - The model of this lab runs only when the user turns on the noise reduction. When the noise
   reduction is off (for example for a daylight photo), Alcedo Studio demosaics with DemosaicNet.
+- The noise reduction in Alcedo Studio blocks the editor with a progress display until the
+  result is complete, and it can process a batch of photos. It does not run in the background
+  during editing (2026-11-21).
+- Alcedo Studio stores the denoised result in a sidecar file of the RAW file, as the current
+  Camera Raw stores its enhanced data, and not in a separate DNG file. The RAW file stays the
+  photo, and the noise reduction is a setting of its edit. The sidecar files are in one folder
+  that the user selects, and a project package (`.alcd`) does not contain them. The settings of
+  Alcedo Studio show the folder and how much space the files use, and let the user delete them.
+  When the user deletes a RAW file from the library, Alcedo Studio deletes its sidecar file
+  too; it deletes a sidecar file in no other automatic case. The compression of the sidecar
+  file is decided after the measurements of step 7 (2026-11-21).
+- The first version in Alcedo Studio supports Bayer sensors only, on CUDA first, then Metal,
+  then OpenCL. An X-Trans or a monochrome photo is reported as not supported (2026-11-21).
+- The integration starts with the weights export and the measurements of step 7. The plan of
+  the integration is in the Alcedo Studio repository:
+  `docs/roadmap/alcedo_studio/raw-processing/ai_denoise/ai_denoise_integration_plan.md`,
+  tracking issue zidage/AlcedoStudio#1030 (2026-11-21).
+- A sidecar file keeps the result of the model that made it. A model update does not change the
+  result of a photo that has a sidecar file; the user can denoise the photo again with the new
+  model. If the user deletes a sidecar file after a model update, the new result can differ, and
+  Alcedo Studio tells the user this before the deletion (2026-11-21).
 - The extreme noise of the dark test and validation scenes (Sony ILCE-7C, ISO 16,000 to 65,535,
   input MS-SSIM below 0.85) is outside the use of the model. The lift of the dark areas there
   is not a reason to train more. For now the lab does not train the model further after step 5,
@@ -312,6 +333,13 @@ Settings of the two runs (2026-11-20, `scripts/dark_area/`):
   the authors' loss (`summarize_validation.py`).
 - Estimated cost on one A40: about 1.5 hours, about 0.9 USD (`scripts/dark_area/README.md`).
 
+Result (2026-11-20): no checkpoint reaches the dark-area values of the public weights on the dark
+validation pairs at the highest noise ([quality.md](findings/quality.md), step 5 runs). That noise
+is outside the use of the model (Constraints from the user). The user selected
+`models/dark_area_loss/checkpoint_10000.pt` as the teacher: the dark-area values at 10,000 are
+nearer to the public weights than at 25,000, with the same detail, and the user did not check the
++2 EV sheets by eye. The metrics of step 1 on the full test split and the Canon EOS M100 measure it.
+
 Compute: the development machine for checkpoint measurements on local data. RunPod for training,
 and for the validation measurements that need the training scenes on the network volume. Estimate
 the time and cost before each rented run and record the measured time and cost after it.
@@ -319,6 +347,16 @@ the time and cost before each rented run and record the measured time and cost a
 Findings: `training.md`, `quality.md`.
 
 ### Step 6: smaller model
+
+Step 7 runs before step 6. Step 6 runs only if the time of the model of step 5 in the forward
+code of Alcedo Studio (step 7) is above `target_time` (2026-11-21). The reason: the reported cost
+of UtNet2 is 55 GMAC per megapixel. The DemosaicNet student of Alcedo Studio runs a 36 megapixel
+photo (Nikon D800E) in about 380 ms at an effective 1.6 to 2.0 TFLOP/s, which gives about 8 to 11
+GMAC per megapixel (an estimate from the time, not a count of the layers). So a model near the
+speed of DemosaicNet must be about 5 times smaller than UtNet2, and the detail above
+0.25 cycles/px came only after about 40,000 iterations at 3e-4 from the public weights
+([findings/quality.md](findings/quality.md)); a smaller model trained from a random start can
+lose it.
 
 Question: how much quality does a smaller model lose against the fine-tuned model of step 5, for
 each decrease of the cost?
@@ -338,30 +376,68 @@ Compute: the development machine for the cost of the variants; RunPod for the di
 
 Findings: `methods.md`, `training.md`, `quality.md`, `inference_cost.md`.
 
-### Step 7: export and cost
+### Step 7: export, cost, and stored result
 
-Question: what does the selected model cost to run, and what must the integration handle?
+Question: what does the model of step 5 (`models/dark_area_loss/checkpoint_10000.pt`) cost to
+run, and in which format does Alcedo Studio store its result?
 
-- Export to ONNX and to safetensors. Compare the outputs with PyTorch and record the largest
-  difference.
-- Measure the difference at the tile borders for tiles of `tile_size` with `tile_overlap`.
-- Measure the time and the peak memory for one 24 megapixel photo and one 45 megapixel photo.
+Alcedo Studio runs the model in its own forward code: the topology is fixed in C++, the kernels
+are FP32 CUDA, OpenCL, and Metal kernels, and the weights come from a safetensors file, as for
+the DemosaicNet student. Alcedo Studio does not use ONNX Runtime, TensorRT, or cuDNN.
+
+- Export the weights to safetensors, with the SHA-256, the name and the shape of each tensor,
+  and the slope of LeakyReLU. Make expected outputs of fixed inputs in PyTorch FP32 (TF32 off)
+  for the forward test of Alcedo Studio, and state the tolerance of the comparison.
+- Tiles: the denoise runs in tiles, so that one photo needs only its mosaic, the workspace of
+  one tile, and the weights on the GPU, and each output tile goes to host memory. Measure, for
+  tile sizes from 256 to 1024 packed px (multiples of 16), the border difference against one
+  pass as a function of the overlap (`tile_overlap`), and the peak GPU memory of one tile.
+- Time: PyTorch FP32 with TF32 off, in tiles, for one 24, one 36, and one 45 megapixel photo,
+  with the GPU temperature and clock of each run. This is the reference of the lab; the time of
+  the forward code of Alcedo Studio is measured in the Alcedo Studio repository and compared
+  with `target_time`.
+- Stored result: the sidecar file holds the gain-matched linear camera RGB output at the full
+  size. Measure the size per megapixel and the error against the FP32 output for FP16 with
+  lossless compression (byte planes and zstd), and for lossy JPEG XL at some distances, on
+  linear and on log-encoded values. The error is the developed PSNR at +2 EV and +5 EV on the
+  whole image, on dark crops, and on detail crops, and a check by eye on the evaluation photos.
+  Also measure the size of the clip mask of the highlights.
 
 Compute: the development machine.
 
-Findings: `inference_cost.md`.
+Findings: `inference_cost.md`, `quality.md` (errors of the stored formats).
 
 ### Step 8: specification for Alcedo Studio
 
 - Write `docs/alcedo_integration.md`: tensor layout, value range, gain match, color matrix of the
   Bayer output, tile size and overlap, FP32, and the weights file with its hash and license.
+  Also:
+  - The place of the result in the Develop stage: the stored image is a second input of Develop
+    and replaces the linearization and the demosaic of `SensorDevelopPass`; the highlight
+    recovery uses the clip mask of the sidecar file or the original mosaic.
+  - The sidecar file: the stored image in the format that step 7 selects, the clip mask, the
+    content hash of the RAW file, the SHA-256 of the weights, the version of the input
+    preparation, the size, the active area, and the CFA phase. A sidecar file whose RAW hash or
+    weights hash does not agree is not used, and Alcedo Studio states why.
+  - The preview at a reduced decode size comes from the stored full-size image. The model does
+    not run on a downsampled mosaic.
+  - The denoise job: one photo at a time on the GPU, tiles of the size that the free GPU memory
+    permits, a progress display and a cancel between tiles, the next RAW file unpacked on the CPU
+    while the GPU runs, and the sidecar written to a temporary file and then renamed. In a batch,
+    a photo that the model does not support (X-Trans, monochrome) is reported for that photo,
+    and the batch continues with the other photos.
 - Open the integration issue in the Alcedo Studio repository with a link to this file.
 
 ## Items that need the user
 
 - `budget_cap`: the amount available for the remaining rented runs in steps 5 and 6.
-- `target_time`: the largest time for one 45 megapixel photo in Alcedo Studio on the RTX 3080
-  Laptop GPU. Step 6 selects the variants with it.
+- `target_time` (no value now; the user sets it after the measured time of the full model in
+  Alcedo Studio exists, 2026-11-21): the largest time for one 45 megapixel photo in Alcedo Studio on the RTX 3080
+  Laptop GPU. Step 7 compares the time of the model of step 5 with it; if that time is above
+  it, step 6 runs and selects the variants with it.
+- The RunPod network volume of the training data (200 GB, about 0.47 USD per day at the listed
+  price): keep it until step 7 decides whether step 6 runs, or delete it now and make the data
+  again if step 6 runs (about 4 hours of a pod, about 3 USD, as in step 2).
 - More evaluation photos, if the user wants the check by eye on other cameras, ISO values, or
   scenes. `data/evaluation_photos/` has a Canon EOS R3 photo at ISO 25600, two Panasonic DC-GH6
   photos at ISO 1600 and 6400 (`high_iso_gh6/`), a Sony ILCE-7RM3 star photo at ISO 3200
@@ -389,7 +465,7 @@ Findings: `inference_cost.md`.
 | `checkpoint_interval` | Set in step 4 from the measured iteration rate, one checkpoint for each hour | Iterations between two checkpoints |
 | `stop_patience` | 3 checkpoints | Checkpoints without an increase before the run stops |
 | `budget_cap` | From the user | Largest cost of the remaining rented runs |
-| `target_time` | From the user | Largest time for one 45 megapixel photo in Alcedo Studio |
+| `target_time` | From the user, after the measured time of the full model in Alcedo Studio exists | Largest time for one 45 megapixel photo in Alcedo Studio |
 | `student_variants` | Set in step 6 from the measured cost of each variant | The smaller models that step 6 trains |
-| `tile_size` | 512 x 512 packed Bayer, the tile of the public export | Tile of the border measurement |
-| `tile_overlap` | Measured in step 7: the smallest overlap with a border difference below the output difference between ONNX and PyTorch | Overlap between two tiles |
+| `tile_size` | Measured in step 7: 256 to 1024 packed px; Alcedo Studio selects the size from the free GPU memory | Tile of the denoise job |
+| `tile_overlap` | Measured in step 7: the smallest overlap with a border difference below the difference between the TF32 and the IEEE FP32 output of PyTorch | Overlap between two tiles |
