@@ -23,9 +23,9 @@ list of decisions.
 - The training data is real photographs of real noise. Synthetic noise is not part of this plan.
 - The lab does not photograph its own training pairs.
 - The model has no strength control. It has one output for one input.
-- The model runs in FP32 in Alcedo Studio on Windows. On macOS it runs in FP16 on the Neural
-  Engine, after an exact rescale of its layers (the user, 2026-11-22). A lower cost on Windows
-  comes from a smaller model.
+- The model runs in FP16 in Alcedo Studio, after an exact rescale of its layers: on Windows on
+  DirectML, on macOS on the Neural Engine (the user, 2026-11-22). A lower cost comes from a
+  smaller model.
 - The training budget is low. The rented compute is Google Colab and RunPod.
 - The development machine does not get all of RawNIND (120.2 GB). It downloads only the scenes
   that a check on that machine uses, to keep the disk use low. The rented machines download the
@@ -39,32 +39,32 @@ list of decisions.
   darktable integration (a separate DNG file, fixed tiles in ONNX Runtime).
 - The model of this lab runs only when the user turns on the noise reduction. When the noise
   reduction is off (for example for a daylight photo), Alcedo Studio demosaics with DemosaicNet.
-- The noise reduction in Alcedo Studio blocks the editor with a progress display until the
-  result is complete, and it can process a batch of photos. It does not run in the background
-  during editing (2026-11-21).
-- Alcedo Studio stores the denoised result in a sidecar file of the RAW file, as the current
-  Camera Raw stores its enhanced data, and not in a separate DNG file. The RAW file stays the
-  photo, and the noise reduction is a setting of its edit. The sidecar files are in one folder
-  that the user selects, and a project package (`.alcd`) does not contain them. The settings of
-  Alcedo Studio show the folder and how much space the files use, and let the user delete them.
-  When the user deletes a RAW file from the library, Alcedo Studio deletes its sidecar file
-  too; it deletes a sidecar file in no other automatic case. The compression of the sidecar
-  file is decided after the measurements of step 7 (2026-11-21).
-- The first version in Alcedo Studio supports Bayer sensors only, on CUDA first, then Metal,
-  then OpenCL. An X-Trans or a monochrome photo is reported as not supported (2026-11-21).
+- The model runs in the Develop render of Alcedo Studio (the editor and the export) when the
+  noise reduction of the photo is on, as the DemosaicNet student runs for the Neural demosaic.
+  It does not run in the background during editing (2026-11-22; on 2026-11-21 it was a blocking
+  run with a progress display and a batch run).
+- Alcedo Studio stores no denoised image: no sidecar file and no separate DNG file. The RAW file
+  stays the photo, the noise reduction is a setting of its edit, and the model output stays in
+  the memory cache of the render. A project package (`.alcd`) holds the setting only
+  (2026-11-22, after the FP16 measurements of step 7; on 2026-11-21 it was a sidecar file in
+  one folder that the user selects).
+- The model runs in ONNX Runtime in the C++ code of Alcedo Studio, not in its Rust sidecar
+  (`alcedo_mind`) (2026-11-22).
+- The first version in Alcedo Studio supports Bayer sensors only, on Windows first (DirectML),
+  then macOS (the Neural Engine), then Linux. An X-Trans or a monochrome photo is reported as
+  not supported (2026-11-21; the platform order 2026-11-22).
 - The integration starts with the weights export and the measurements of step 7. The plan of
   the integration is in the Alcedo Studio repository:
   `docs/roadmap/alcedo_studio/raw-processing/ai_denoise/ai_denoise_integration_plan.md`,
   tracking issue zidage/AlcedoStudio#1030 (2026-11-21).
-- A sidecar file keeps the result of the model that made it. A model update does not change the
-  result of a photo that has a sidecar file; the user can denoise the photo again with the new
-  model. If the user deletes a sidecar file after a model update, the new result can differ, and
-  Alcedo Studio tells the user this before the deletion (2026-11-21).
+- The setting of a photo records the model version. A model update changes the result of a
+  photo with the noise reduction on, and Alcedo Studio states the version difference in the
+  editor (2026-11-22; on 2026-11-21 a sidecar file kept the result of its model).
 - The extreme noise of the dark test and validation scenes (Sony ILCE-7C, ISO 16,000 to 65,535,
   input MS-SSIM below 0.85) is outside the use of the model. The lift of the dark areas there
   is not a reason to train more. For now the lab does not train the model further after step 5,
   and collects results on more photos of the use (2026-11-20).
-- The sidecar file has no clip mask of the highlights. High-noise photos have a low dynamic
+- The model output gets no clip mask of the highlights. High-noise photos have a low dynamic
   range, and many scenes that need the highlight recovery are not at a high ISO (2026-11-22).
 
 ## Terms
@@ -384,17 +384,15 @@ Findings: `methods.md`, `training.md`, `quality.md`, `inference_cost.md`.
 Question: what does the model of step 5 (`models/dark_area_loss/checkpoint_10000.pt`) cost to
 run, and in which format does Alcedo Studio store its result?
 
-On Windows, Alcedo Studio runs the model in FP32 in ONNX Runtime with the DirectML execution
-provider, from its C++ code (changed on 2026-11-22 after the DirectML measurement,
-[findings/inference_cost.md](findings/inference_cost.md)). On macOS, Alcedo Studio runs the
-model in FP16 on the Neural Engine in ONNX Runtime with the Core ML execution provider, also
-from its C++ code (2026-11-22, after the measurements of ONNX Runtime on macOS and of FP16 on
-the Neural Engine in the same file). The lab exports the FP32 ONNX graph from the safetensors
-weights, and for macOS an FP16 graph of the rescaled layers. Before the macOS phase (DN10 of
-Alcedo Studio), the lab calibrates the rescale on all evaluation photos and on crops of the
-RawNIND test split, so that photos outside the calibration keep a margin of 8 times or more to
-the largest FP16 value, and makes sheets of the FP16 and the FP32 output for a check by eye by
-the user. Linux gets its forward code later. Alcedo Studio does not use TensorRT or
+Alcedo Studio runs the model in FP16 in ONNX Runtime from its C++ code: on Windows with the
+DirectML execution provider, on macOS on the Neural Engine with the Core ML execution provider
+(2026-11-22, after the measurements of ONNX Runtime DirectML, ONNX Runtime on macOS, and FP16 in
+[findings/inference_cost.md](findings/inference_cost.md)). The lab exports one FP16 graph of the
+rescaled layers from the safetensors weights. In phase DN2 of Alcedo Studio, the lab calibrates
+the rescale on all evaluation photos and on crops of the RawNIND test split, so that photos
+outside the calibration keep a margin of 8 times or more to the largest FP16 value, and makes
+sheets of the FP16 and the FP32 output for a check by eye by the user. Linux gets its forward
+code later. Alcedo Studio does not use TensorRT or
 cuDNN.
 
 - Export the weights to safetensors, with the SHA-256, the name and the shape of each tensor,
@@ -408,8 +406,9 @@ cuDNN.
   with the GPU temperature and clock of each run. This is the reference of the lab; the time of
   the forward code of Alcedo Studio is measured in the Alcedo Studio repository and compared
   with `target_time`.
-- Stored result: the sidecar file holds the gain-matched linear camera RGB output at the full
-  size. Measure the size per megapixel and the error against the FP32 output for FP16 with
+- Stored result (measured 2026-11-21; the user removed the stored result on 2026-11-22, so this
+  measurement has no further use): the sidecar file holds the gain-matched linear camera RGB
+  output at the full size. Measure the size per megapixel and the error against the FP32 output for FP16 with
   lossless compression (byte planes and zstd), and for lossy JPEG XL at some distances, on
   linear and on log-encoded values. The error is the developed PSNR at +2 EV and +5 EV on the
   whole image, on dark crops, and on detail crops, and a check by eye on the evaluation photos.
@@ -424,30 +423,22 @@ Findings: `inference_cost.md`, `quality.md` (errors of the stored formats).
 - Write `docs/alcedo_integration.md`: tensor layout, value range, gain match, color matrix of the
   Bayer output, tile size and overlap, FP32, and the weights file with its hash and license.
   Also:
-  - The place of the result in the Develop stage: the stored image is a second input of Develop
-    and replaces the linearization and the demosaic of `SensorDevelopPass`; the highlight
-    recovery uses the clip mask of the sidecar file or the original mosaic.
-  - The sidecar file: the stored image in the format that step 7 selects, the clip mask, the
-    content hash of the RAW file, the SHA-256 of the weights, the version of the input
-    preparation, the size, the active area, and the CFA phase. A sidecar file whose RAW hash or
-    weights hash does not agree is not used, and Alcedo Studio states why.
-  - The preview at a reduced decode size comes from the stored full-size image. The model does
-    not run on a downsampled mosaic.
-  - The denoise job: one photo at a time on the GPU, tiles of the size that the free GPU memory
-    permits, a progress display and a cancel between tiles, the next RAW file unpacked on the CPU
-    while the GPU runs, and the sidecar written to a temporary file and then renamed. In a batch,
-    a photo that the model does not support (X-Trans, monochrome) is reported for that photo,
-    and the batch continues with the other photos.
+  - The place of the result in the Develop stage: the model output is a second prepared input
+    of Develop and replaces the linearization and the demosaic of `SensorDevelopPass`; the
+    highlight recovery runs on the model output (no clip mask).
+  - The model run: in the loader of Alcedo Studio for a render at the full size, in tiles of the
+    size that the free memory permits, with the FP16 graph and one session that stays between
+    renders. A thumbnail at a reduced decode size does not run the model. A photo that the model
+    does not support (X-Trans, monochrome) is reported.
+  - The FP16 graph: the rescale of the layers, its calibration, `output_scale`, and the check of
+    the output for values that are not finite (2026-11-22).
 - Open the integration issue in the Alcedo Studio repository with a link to this file.
 
 ## Items that need the user
 
-- The pixel format and the compression of the sidecar file (issue zidage/AlcedoStudio#1033,
-  decision U2 of the integration plan): the table and the sheets are in
-  [findings/quality.md](findings/quality.md) (2026-11-21, stored result formats) and
-  `results/export/images/` (made again by `scripts/export/measure_stored_formats.py`). After
-  the answer, `scripts/export/write_stored_result.py` writes sidecar files in that format for
-  the early check of Alcedo Studio.
+- The check by eye of the FP16 output against the FP32 output, on the sheets of
+  `scripts/export/make_fp16_sheets.py` (phase DN2 of the integration plan), before Alcedo Studio
+  uses the FP16 graph.
 - `budget_cap`: the amount available for the remaining rented runs in steps 5 and 6.
 - `target_time` (no value now; the user sets it after the measured time of the full model in
   Alcedo Studio exists, 2026-11-21): the largest time for one 45 megapixel photo in Alcedo Studio on the RTX 3080
