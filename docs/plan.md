@@ -383,9 +383,11 @@ Findings: `methods.md`, `training.md`, `quality.md`, `inference_cost.md`.
 Question: what does the model of step 5 (`models/dark_area_loss/checkpoint_10000.pt`) cost to
 run, and in which format does Alcedo Studio store its result?
 
-Alcedo Studio runs the model in its own forward code: the topology is fixed in C++, the kernels
-are FP32 CUDA, OpenCL, and Metal kernels, and the weights come from a safetensors file, as for
-the DemosaicNet student. Alcedo Studio does not use ONNX Runtime, TensorRT, or cuDNN.
+On Windows, Alcedo Studio runs the model in FP32 in ONNX Runtime with the DirectML execution
+provider, from its C++ code (changed on 2026-11-22 after the DirectML measurement,
+[findings/inference_cost.md](findings/inference_cost.md)). The lab exports the ONNX graph from
+the safetensors weights. macOS and Linux get their forward code later. Alcedo Studio does not use
+TensorRT or cuDNN.
 
 - Export the weights to safetensors, with the SHA-256, the name and the shape of each tensor,
   and the slope of LeakyReLU. Make expected outputs of fixed inputs in PyTorch FP32 (TF32 off)
