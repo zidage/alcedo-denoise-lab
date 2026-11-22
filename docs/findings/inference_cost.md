@@ -12,8 +12,11 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
   of the Metal DemosaicNet student and of the RAW processing of macOS (Core Image, 0.36 to 0.60 s
   for a whole photo). Against the FP32 output, the developed PSNR is 75.7 to 80.6 dB at +2 EV on
   the whole image and 60.2 to 75.2 dB at +5 EV on the dark crops (the float16 stored result:
-  81.8 dB). The rescale calibrated on 3 crops leaves a margin of 19 times to the largest FP16
-  value on 11 photos. On the GPU, FP16 saves only 7% to 15% on the M4. On DirectML, FP16 halves the GPU
+  81.8 dB). The FP16 graph of Alcedo Studio is calibrated on the 11 evaluation photos and on
+  138 crops of the RawNIND test split; it leaves a margin of 71.7 times or more to the largest
+  FP16 value on 78 held-out RawNIND photos, and gives the expected outputs on DirectML within
+  4.1e-3 of the largest value, in Python and in the C++ session of Alcedo Studio (2026-11-22,
+  FP16 graph of Alcedo Studio). On the GPU, FP16 saves only 7% to 15% on the M4. On DirectML, FP16 halves the GPU
   time of a tile of 1536 on the RTX 3080 Laptop GPU (0.044 s against 0.090 s), but the full run
   with the tile input and output through host memory is only 1.2 to 1.4 times faster (0.72 s
   against 0.94 s at 45.4 megapixels); the Intel Iris Xe is 1.3 times faster (5.2 s against
@@ -107,6 +110,36 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
   stores the denoised result and computes it one time for each photo.
 
 ## Entries
+
+### 2026-11-22 FP16 graph of Alcedo Studio
+
+- **Source**: `results/export/fp16_calibration.json`, `results/export/onnx_fp32_graph.json`;
+  export_onnx.py and export_fp16_onnx.py, commands in the README of `scripts/export/`. PyTorch
+  2.11.0, CUDA, IEEE FP32 for the calibration; ONNX Runtime 1.24.4 (`onnxruntime-directml`) on
+  the RTX 3080 Laptop GPU for the check. The C++ session: `UtNet2DirectMlTest` of Alcedo Studio
+  (phase DN2 of the integration plan), the NuGet package `Microsoft.ML.OnnxRuntime.DirectML`
+  1.24.4.
+- **Result**, calibration: 11 whole evaluation photos (tiles of 1536, overlap 96) and 138 centre
+  crops of 1536 packed px of the RawNIND test split (the clean frames of the `gt` folders
+  included). The largest FP32 activations before the rescale are 1.88e5 (`tconvs4.2`) and 1.74e5
+  (`output_module.0`); the rescale target is 1024, and `output_scale` is 170.34. On
+  `rawnind_crop_512`, the rescaled model in FP32 times `output_scale` differs from the model by
+  8.4e-7 of the largest value.
+- **Result**, held-out check: 78 whole raw files of the 8 RawNIND scenes outside the test split
+  (6.1 to 24.5 megapixels, ISO 50 to 65,535 in the names of 77 files, 14 clean frames). The smallest margin to 65,504 is
+  71.7 times (`Bayer_MuseeL-C500D-mammal_ISO3200`, layer `output_module.0`); the largest is 223
+  times. The largest activation after the rescale is in `output_module.0` on 75 photos and in
+  `tconvs4.0` on 3. The earlier graph, calibrated on 3 centre crops of 1536, had a margin of 19
+  times on the 11 evaluation photos (entry of the same date, FP16 on the Neural Engine).
+- **Result**, the FP16 graph (15.6 MB, float16 input and output, SHA-256 `0bc98084...`) on
+  DirectML, against the FP32 expected outputs of DN0: 4.07e-3 (`random_64`), 3.76e-3
+  (`random_256`), and 2.76e-3 (`rawnind_crop_512`) of the largest expected value. The C++
+  session of Alcedo Studio (float16 conversion with OpenCV on the host) gives the same three
+  values. The FP32 graph on the CPU execution provider gives `random_64` within 9.2e-7.
+- **Effect**: the sentence on the calibration of the FP16 graph in Current state, and the FP16
+  tolerance of 7e-3 in [docs/alcedo_integration.md](../alcedo_integration.md). Not measured: the
+  new graph on the Neural Engine and on the Intel Iris Xe; its output on whole photos against
+  FP32 (quality.md, the entry of the same date, sheets of the FP16 graph).
 
 ### 2026-11-22 FP16 on DirectML
 

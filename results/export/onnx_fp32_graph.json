@@ -1,0 +1,23 @@
+{
+ "exported": true,
+ "export_seconds": 0.41,
+ "torch": "2.11.0+cu128",
+ "path": "D:\\Projects\\alcedo-denoise-lab\\models\\export\\dark_area_loss\\utnet2_bayer_dark_loss_10k.onnx",
+ "sha256": "ee8f6fc89a3f876d06a269e59bd8d308a1b8cbb635cdd30f302a904d48c594ba",
+ "bytes": 31053461,
+ "opset": 17,
+ "onnx": "1.23.2",
+ "operators": {
+  "Concat": 4,
+  "Conv": 19,
+  "ConvTranspose": 4,
+  "DepthToSpace": 1,
+  "LeakyRelu": 18,
+  "MaxPool": 4
+ },
+ "nodes": 50,
+ "cpu_random_64_relative_difference": 9.175884267222549e-07,
+ "weights_sha256": "0bfb9ddb07e6e6c20e6764dfc30336d9314d5760f875992f2144f13dd0df13a5",
+ "onnxruntime": "1.24.4",
+ "date": "2026-11-22"
+}

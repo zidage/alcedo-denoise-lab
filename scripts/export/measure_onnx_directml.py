@@ -76,53 +76,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import measurement_common as common  # noqa: E402
 import measure_photo_time as photo_time  # noqa: E402
 
-DEFAULT_ONNX = Path("models/export/dark_area_loss/utnet2_bayer_dark_loss_10k.onnx")
-DEFAULT_EXPECTED = Path("models/export/dark_area_loss/expected_outputs")
-EXPECTED_NAMES = ("random_64", "random_256", "rawnind_crop_512")
-TOLERANCE_RELATIVE = 1e-5
-OPSET = 17
-
-
-# --- Graph -------------------------------------------------------------------------------------
-
-def export_onnx(weights: Path, authors_repo: Path, tmp_dir: Path, onnx_path: Path) -> dict:
-    """Write the ONNX graph of the model with the exported weights (CPU, FP32)."""
-    import torch
-
-    model, _ = common.load_model(weights, authors_repo, tmp_dir, torch.device("cpu"))
-    example = torch.rand((1, 4, 256, 256), generator=torch.Generator().manual_seed(0))
-    onnx_path.parent.mkdir(parents=True, exist_ok=True)
-    started = time.perf_counter()
-    with torch.no_grad():
-        torch.onnx.export(model, (example,), str(onnx_path), input_names=["input"],
-                          output_names=["output"], opset_version=OPSET, dynamo=False,
-                          do_constant_folding=True,
-                          dynamic_axes={"input": {2: "height", 3: "width"},
-                                        "output": {2: "output_height", 3: "output_width"}})
-    return {"exported": True, "export_seconds": round(time.perf_counter() - started, 2),
-            "torch": torch.__version__}
-
-
-def graph_record(onnx_path: Path) -> dict:
-    import onnx
-
-    graph = onnx.load(str(onnx_path))
-    onnx.checker.check_model(graph)
-    operators = collections.Counter(node.op_type for node in graph.graph.node)
-    return {"path": str(onnx_path), "sha256": common.sha256_of(onnx_path),
-            "bytes": onnx_path.stat().st_size, "opset": OPSET, "onnx": onnx.__version__,
-            "operators": dict(sorted(operators.items())), "nodes": len(graph.graph.node)}
-
-
-def load_expected(expected_dir: Path, name: str) -> tuple[np.ndarray, np.ndarray]:
-    from safetensors.numpy import load_file
-
-    tensors = load_file(str(expected_dir / f"{name}.safetensors"))
-    return tensors["input"][None], tensors["output"][None]
-
-
-def relative_difference(result: np.ndarray, expected: np.ndarray) -> float:
-    return float(np.abs(result.astype(np.float64) - expected).max() / np.abs(expected).max())
+from export_onnx import (DEFAULT_EXPECTED, DEFAULT_ONNX, EXPECTED_NAMES,  # noqa: E402
+                         TOLERANCE_RELATIVE, export_onnx, graph_record, load_expected,
+                         relative_difference)
 
 
 # --- Sessions ----------------------------------------------------------------------------------

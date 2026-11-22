@@ -61,11 +61,14 @@ commit in the integration plan. They are the assets of the release
 | `random_64.safetensors` | 5,441,840 | `270c3d5f99abc97b03806a51680681eb7f0e4ba8575a77936c85ce4c45ecf471` |
 | `random_256.safetensors` | 4,194,712 | `8050f6a46b149cfd7a4c4ab0958e45ce690e77ff4a5ec3a583b46ebee24db517` |
 | `rawnind_crop_512.safetensors` | 16,777,852 | `e23830f7916f3b3b99947020cca55b64b1b3215ba316bb0a787aef6857eb8ec3` |
+| `utnet2_bayer_dark_loss_10k_fp16.onnx` (2026-11-22, phase DN2) | 15,552,242 | `0bc98084c9bff16d489945ec357fd008465414813e5330f4a6077f205b668469` |
+| `fp16_calibration.json` (the record of the FP16 graph) | | the file `results/export/fp16_calibration.json` of this repository |
 
 ```bash
 T=export-utnet2-bayer-dark-loss-10k
 gh release download $T -R zidage/alcedo-denoise-lab -p "utnet2_*" -D models/export/dark_area_loss
 gh release download $T -R zidage/alcedo-denoise-lab -p "r*_*.safetensors" -D models/export/dark_area_loss/expected_outputs
+gh release download $T -R zidage/alcedo-denoise-lab -p "utnet2_*_fp16.onnx" -D models/export/dark_area_loss
 sha256sum models/export/dark_area_loss/utnet2_*.safetensors models/export/dark_area_loss/expected_outputs/*
 ```
 
@@ -183,6 +186,31 @@ $P scripts/export/measure_directml_fp16_variants.py --fp16-dir $F --adapters min
 D=build/tmp/directml_fp16_out/high_performance
 $P scripts/export/compare_photo_output.py --labels directml_fp32:directml_fp16_float32_io --out results/export/directml_fp16_photo_output.json 24mp:$D/fp32/24mp_tile1536.f32:$D/fp16_float32_io/24mp_tile1536.f32 32mp:$D/fp32/32mp_tile1536.f32:$D/fp16_float32_io/32mp_tile1536.f32 42mp:$D/fp32/42mp_tile1536.f32:$D/fp16_float32_io/42mp_tile1536.f32
 ```
+
+## FP16 graph of Alcedo Studio (phase DN2)
+
+The graph that Alcedo Studio runs on Windows (DirectML) and macOS (the Neural Engine); its
+specification is [docs/alcedo_integration.md](../../docs/alcedo_integration.md), "FP16 graph".
+
+| Script | Output | Findings |
+| --- | --- | --- |
+| `export_onnx.py` | `models/export/dark_area_loss/utnet2_bayer_dark_loss_10k.onnx` (not committed), `results/export/onnx_fp32_graph.json` | inference_cost.md, 2026-11-22, FP16 graph of Alcedo Studio |
+| `export_fp16_onnx.py` | `models/export/dark_area_loss/utnet2_bayer_dark_loss_10k_fp16.onnx` (release asset), `results/export/fp16_calibration.json` | the same |
+| `make_fp16_sheets.py` | `results/export/images/fp16_sheets/*.png` (not committed), `results/export/fp16_sheets.json` | quality.md, 2026-11-22, sheets of the FP16 graph |
+
+The calibration needs the RawNIND test split and the scenes outside it in `data/rawnind/src/Bayer`
+(`download_rawnind_subset.py` of step 1). GPU jobs, one at a time:
+
+```bash
+$P scripts/export/export_onnx.py $A
+$P scripts/export/export_fp16_onnx.py $A
+$P scripts/export/make_fp16_sheets.py $A
+gh release upload export-utnet2-bayer-dark-loss-10k -R zidage/alcedo-denoise-lab models/export/dark_area_loss/utnet2_bayer_dark_loss_10k_fp16.onnx results/export/fp16_calibration.json
+```
+
+The tests of Alcedo Studio (`UtNet2DirectMlTest`) read the FP16 graph, the FP32 graph, and the
+three expected outputs from one folder (the environment variable
+`ALCEDO_AI_DENOISE_TEST_ASSETS`).
 
 ## Tolerance of the forward tests
 
