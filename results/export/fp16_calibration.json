@@ -1,0 +1,824 @@
+{
+ "date": "2026-11-22",
+ "fp16_max": 65504.0,
+ "rescale_target": 1024.0,
+ "required_margin": 8.0,
+ "crop_size": 1536,
+ "tile": 1536,
+ "overlap": 96,
+ "weights_sha256": "0bfb9ddb07e6e6c20e6764dfc30336d9314d5760f875992f2144f13dd0df13a5",
+ "calibration": [
+  "data/evaluation_photos/20220827-9578.cr3",
+  "data/evaluation_photos/astro/_DSC8539.ARW",
+  "data/evaluation_photos/demosaic/P1832629.RW2",
+  "data/evaluation_photos/demosaic/_DSC0729.ARW",
+  "data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3",
+  "data/evaluation_photos/high_iso_gh6/1296625388.rw2",
+  "data/evaluation_photos/high_iso_gh6/5721990840.rw2",
+  "data/evaluation_photos/high_iso_nikon/_DSC2403.NEF",
+  "data/evaluation_photos/high_iso_nikon/_DSC2546.NEF",
+  "data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF",
+  "data/evaluation_photos/high_iso_s5m2/P2625452.RW2",
+  "crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO12800_sha1=f378ff0b6b1eea30b0184671a4a223dd93b4f271.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO1600_sha1=e0fd5d8ea741c04720fff56b7cea8b1f1fab957b.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO200_sha1=c6ccb7b43da198563b01389b6a7e31ab005c2036.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO3200_sha1=f19f95be6be4bb004bc5d9fd5f4457da854e0e8f.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO400_sha1=b1286856f5104a3c2f5ba71034a0e548cfa8c6bc.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO6400_sha1=4bd470a54a5ca3485bcb3fe72b346eb61b5a7424.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO800_sha1=34f658b8c99e10ec0c6586ed559c576c25290bd0.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_7D-2/gt/Bayer_TEST_7D-2_GT_ISO100_sha1=45803fc993c395c515b165a1f5d7417f4af4fe1e.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO10000_sha1=c6e8e34be44a4b5d4b26b3a0339e646483225553.arw",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO160_sha1=70930df23b135ef322c1250e883b4df462610024.arw",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO250_sha1=9fc429037d8a0a985d2f07602ff5e383b606e98e.arw",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO40000_sha1=cd6b192df4f6159afff01b16ec05824fd4454335.arw",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO4000_sha1=cc425c1cf9a62e75d271752f7b3737f3408fc464.arw",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO400_sha1=35c0a52a2f6a8df31251dc87dc1db95e5a080212.arw",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO500_sha1=003a898df4c4a549f4f951824561439e8fe9352e.arw",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO51200_sha1=225b8e7d27b40f3052ccc4c4032e2515436e35ad.arw",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO64000_sha1=7c421d49c4d2ffa0c023007c7c3f2e7cae8575d1.arw",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO6400_sha1=5487ebb29f064df3c60a0ede13609e4b361f46c7.arw",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO640_sha1=6c3b65be5c02949ad8694efcd2415bfc4f40c6fd.arw",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO65535_sha1=dde98261ee15a51d79768467f36352532406802f.arw",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/gt/Bayer_TEST_boardgames_top_GT_ISO50_sha1=8c121e3c1038766ee9f96565376eb264cf15b509.arw",
+  "crop:data/rawnind/src/Bayer/TEST_boardgames_top/gt/Bayer_TEST_boardgames_top_GT_ISO50_sha1=dfd6ae10e652751bc54c997af3547b33de5f824a.arw",
+  "crop:data/rawnind/src/Bayer/TEST_D60-1/Bayer_TEST_D60-1_ISO1037_sha1=b192a6f4c6c46c7f5d3c22f85d2f1a2dd1174b80.crw",
+  "crop:data/rawnind/src/Bayer/TEST_D60-1/Bayer_TEST_D60-1_ISO200_sha1=5c1b45a8f62f8e31c6e7469846a03ef55a62359f.crw",
+  "crop:data/rawnind/src/Bayer/TEST_D60-1/Bayer_TEST_D60-1_ISO400_sha1=545432bec2d5a857734fdbd721b6c81a3a1370a6.crw",
+  "crop:data/rawnind/src/Bayer/TEST_D60-1/Bayer_TEST_D60-1_ISO800_sha1=b650fb7af03f1b337bd0da2fa416ff0ce92300f3.crw",
+  "crop:data/rawnind/src/Bayer/TEST_D60-1/gt/Bayer_TEST_D60-1_GT_ISO100_sha1=8ed4d50624a199ed767b2c7167b172a1d5eb4031.crw",
+  "crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/Bayer_TEST_Laura_Lemons_platformer_ISO1000_sha1=c9149b6db578870fd1a8c2fda0b410ea320711b5.arw",
+  "crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/Bayer_TEST_Laura_Lemons_platformer_ISO1600_sha1=6c8d19446f63243d5c471b1e2752179efdaff0f7.arw",
+  "crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/Bayer_TEST_Laura_Lemons_platformer_ISO2500_sha1=4e5853cd3e558c952b3cd79078c10e011c079b33.arw",
+  "crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/Bayer_TEST_Laura_Lemons_platformer_ISO4000_sha1=f23184eb1b510ba49f9db986a0aa56fc1098e31c.arw",
+  "crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/Bayer_TEST_Laura_Lemons_platformer_ISO400_sha1=86219c8c7f25452b662b449c499043ece15c7493.arw",
+  "crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/Bayer_TEST_Laura_Lemons_platformer_ISO5000_sha1=e29fc8c8cf6505f84a3135ee82e6473884539c1a.arw",
+  "crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/gt/Bayer_TEST_Laura_Lemons_platformer_GT_ISO50_sha1=3e34f36581d12caf9233bde0bf38586e9a1abe7d.arw",
+  "crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/gt/Bayer_TEST_Laura_Lemons_platformer_GT_ISO50_sha1=e65e60c925d304bbb01cf8bb1310c41e85a05d62.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO125_sha1=4a6064cb0dfffb671c3ee38af56d0751929796bb.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO16000_sha1=e4031d1853423a4f294807864845d60da22eecdd.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO4000_sha1=bf86d09a71c8cfbd978faf1c6b490e92d5fc98e2.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO400_sha1=fbc193840487528cb58d0121560739f6a1aff0be.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO5000_sha1=854e9f603bc26ac5bca8a1664bb08e1a9c168d0c.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO64000_sha1=00b3c2f6a7c75ff501a25b8b1fc704c5eb7aa2d6.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=221c23e21a205b6bfec5803c567a008b7246c9a5.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=2d31480808a4068d0f6c17a9204cb375f35b3a78.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=2f90542b817285707471d1c595d90f6091a1a318.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=9932ab9a8c1398acd2898d68834f8610d317765f.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=eb9cb3e1d80f48b93d0aabe20458870c5c1ef2fa.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO800_sha1=020285d512ac336fe0443aae92c034149f604a57.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/gt/Bayer_TEST_MuseeL-bluebirds-A7C_GT_ISO50_sha1=3156b462861d9e67f6e0305d8d55ad695a4d937c.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/gt/Bayer_TEST_MuseeL-bluebirds-A7C_GT_ISO50_sha1=862fee8e80372d815f0875558939b938c62bb00d.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/Bayer_TEST_MuseeL-Saint-Pierre-C500D_ISO1600_sha1=c47c1343b8d0485a5d8f1c2d69e84a0cf9fae3ec.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/Bayer_TEST_MuseeL-Saint-Pierre-C500D_ISO200_sha1=1ef976d7f39b765a233e992fad84d5f7e646860b.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/Bayer_TEST_MuseeL-Saint-Pierre-C500D_ISO3200_sha1=4b71ad313b4fb8d70ba3c5d8cf5a5b9839f8ed80.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/Bayer_TEST_MuseeL-Saint-Pierre-C500D_ISO3200_sha1=e8999899edefe623b28db4193af57e3f783edf9e.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/Bayer_TEST_MuseeL-Saint-Pierre-C500D_ISO400_sha1=050544300c731d701b5c915eda4eb05f1ef394c4.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/Bayer_TEST_MuseeL-Saint-Pierre-C500D_ISO800_sha1=71ded18530db93a41c5dc96d7463912beb271602.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/gt/Bayer_TEST_MuseeL-Saint-Pierre-C500D_GT_ISO100_sha1=f71bff2d267cefbf243971b98beb973daeee84db.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO100_sha1=cab25e54fbc8ab5b93a81c2f9165de2af04400f6.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO125_sha1=9344ce38ef08a79b9b3dd6af43c74062c88a8b64.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO12800_sha1=7d67a13a47ade45e608a1630354a378a0d899e63.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO16000_sha1=c3c2d8dffb2a53143b4a1000c8e710aef1f44612.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO2000_sha1=57212201f2f6f11e85cbd2d19ad0a6a20daf5995.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO250_sha1=f5d5aac54bd3a8b146a879b26789e838bc942f6c.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO320_sha1=433ff480ec01429b5e26c703e24ed9925f780f37.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO40000_sha1=bf6f7b3df7af7ab9152411a2bae3a4e7a68e08ca.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO4000_sha1=e52f6253076eaea5b5d65101f4b85c817b0b2aa0.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO64000_sha1=736eda054de38c5f51f4e4825cf4554fc5f0a24d.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO65535_sha1=a59bdd07a02139e6e663cb03673e9120ecd56d4b.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/gt/Bayer_TEST_MuseeL-vases-A7C_GT_ISO50_sha1=128aac6285487ec36b828f31db6d634b094f7ae3.arw",
+  "crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/gt/Bayer_TEST_MuseeL-vases-A7C_GT_ISO50_sha1=3512b789004767165f4330b1e82c6fdce766b221.arw",
+  "crop:data/rawnind/src/Bayer/TEST_Pen-pile/Bayer_TEST_Pen-pile_ISO1600_sha1=1a26389f4df2b7ab54656f7ea9f80347d6dfda91.dng",
+  "crop:data/rawnind/src/Bayer/TEST_Pen-pile/Bayer_TEST_Pen-pile_ISO200_sha1=84d4958f9cf2d58a9b40ca402d6f80cb7c74a4c4.dng",
+  "crop:data/rawnind/src/Bayer/TEST_Pen-pile/Bayer_TEST_Pen-pile_ISO3200_sha1=a3221270fde0f61f690b4b4619d74ec32dce6e31.dng",
+  "crop:data/rawnind/src/Bayer/TEST_Pen-pile/Bayer_TEST_Pen-pile_ISO400_sha1=fad719aac1eccd9a0e87409fd6c5249ab21aa60c.dng",
+  "crop:data/rawnind/src/Bayer/TEST_Pen-pile/Bayer_TEST_Pen-pile_ISO800_sha1=e48346de57cfca98afea83979cf3f700482403b5.dng",
+  "crop:data/rawnind/src/Bayer/TEST_Pen-pile/gt/Bayer_TEST_Pen-pile_GT_ISO100_sha1=dead5469f750d32cd50f8673f1ae3608bdb9a99d.dng",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO10000_sha1=bfe16373ad03fc0b92985f5f1f90eb571d469473.arw",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO1000_sha1=351ce265b9711cb0077f4de7a0b5b84ed1fdaf86.arw",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO1250_sha1=4bc1beffb01ff1e54ca27eb36687fbdda78e1a16.arw",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO1600_sha1=c3cc7dda4fa0b8a5d312f81dbb90ef4b19849b27.arw",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO20000_sha1=facd35d26b836c6a9aac5d8e47fb1d0511e30379.arw",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO2000_sha1=edfd36ce1237b410f777d587690a39b688e2a203.arw",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO25600_sha1=d7a77e6f2d966ca6cd3106df3511646456fa3490.arw",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO3200_sha1=407af1bec1d611c18e6acc5fd35cdf4c58fb2687.arw",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO40000_sha1=dadfe0c1e030616884ce54c0999cc63ed40f9ee9.arw",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO4000_sha1=e4e5de2ebc10683d830b5d4aaf570575c8246dbe.arw",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO51200_sha1=f53dcfac22bc336c274c4dc4f3c8248db64f1adc.arw",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/gt/Bayer_TEST_TitusToys_GT_ISO50_sha1=85c54ed5174f0ca97385984e6301a1fab08cbdbe.arw",
+  "crop:data/rawnind/src/Bayer/TEST_TitusToys/gt/Bayer_TEST_TitusToys_GT_ISO50_sha1=daecb17e3525d230e7e3441d1335f00ca9446405.arw",
+  "crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO12800_sha1=d61bb9bdc1aaea030d66b5ed34e76c66255d340c.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO1600_sha1=870f13fb550edc7226ab1a931096b7c218dea2fc.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO200_sha1=2160d126ad1e6b6eb0814d4b76ff44f836f9981e.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO25600_sha1=2db77c72773125e518c2c8d5301d7513f9b84ced.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO3200_sha1=27cfa8ba31cd13c59d4813199a94f68826a5285f.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO400_sha1=6d50b8c8c986e54f341a7b1ae002507eabb67cb8.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO51200_sha1=8f05f5f4e6e8e39719b8c4daf5aeacbca79240ec.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO6400_sha1=0aa8469159ceaac0abd3a896a6b1807a22a5359e.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO65535_sha1=03f25da2ca87f0caa2d066992ab5c4ab277bc83f.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO800_sha1=d07ba37c1977339b59aedca8761ed52c12f0e950.cr2",
+  "crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/gt/Bayer_TEST_Vaxt-i-trad_GT_ISO100_sha1=ca77ec885c0198357c413895c343b965c1ebcafb.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_board/Bayer_UNK_TEST_LucieB_board_ISO1600_sha1=31b019502ac7b100d351ec1000ab7ae94fb05964.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_board/Bayer_UNK_TEST_LucieB_board_ISO25600_sha1=34714a832479e2a80bdd6153c8252a342e657743.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_board/Bayer_UNK_TEST_LucieB_board_ISO400_sha1=b206ec3dc2d16bc3c1374fc033651aadbd12ff57.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_board/Bayer_UNK_TEST_LucieB_board_ISO400_sha1=e63f186e649b70e8341841c06bf3ba89d2f83673.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_board/Bayer_UNK_TEST_LucieB_board_ISO6400_sha1=469fa354eab99934d85b309e4dc7d0c669a35e68.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_board/gt/Bayer_UNK_TEST_LucieB_board_GT_ISO100_sha1=3300aa5ce5517dfbe1b2fc7c7e1a0a0cf40b8972.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/Bayer_UNK_TEST_LucieB_bw_drawing1_ISO12800_sha1=fd7bd9e4b1e91a6b6099ffdb67160e6b2111012c.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/Bayer_UNK_TEST_LucieB_bw_drawing1_ISO200_sha1=c99d1371f9baceef41f95317ceb772ffeca55b76.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/Bayer_UNK_TEST_LucieB_bw_drawing1_ISO25600_sha1=9655eaa7d80a329d5543552d04123b8408d8dede.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/Bayer_UNK_TEST_LucieB_bw_drawing1_ISO4000_sha1=c19584a17be379ba06983b2f975c1f9d2f80b6c2.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/Bayer_UNK_TEST_LucieB_bw_drawing1_ISO800_sha1=1b8d592d40ff35c2c0ca263374a8d0b6571e24f0.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/gt/Bayer_UNK_TEST_LucieB_bw_drawing1_GT_ISO100_sha1=8b07bb35e782274c8c3d0fe54a184dd299bbec2e.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/gt/Bayer_UNK_TEST_LucieB_bw_drawing1_GT_ISO100_sha1=ac88e9ee646fd6b39f6608f970ae2b9a41c05cd5.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing2/Bayer_UNK_TEST_LucieB_bw_drawing2_ISO1600_sha1=7120491c03845c078a9fdc5cad9a5a840ac170c3.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing2/Bayer_UNK_TEST_LucieB_bw_drawing2_ISO25600_sha1=058ee86c97024f1227a844006acc1598dd5298d4.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing2/Bayer_UNK_TEST_LucieB_bw_drawing2_ISO400_sha1=c10dd5fe9f9999e9e3608ca1fcb4528f7f049f76.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing2/Bayer_UNK_TEST_LucieB_bw_drawing2_ISO6400_sha1=0f45c01c58bf4f141c977e5b3868238beb0bd0b8.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing2/gt/Bayer_UNK_TEST_LucieB_bw_drawing2_GT_ISO100_sha1=04f3bdc33cab351daed498fc2f4d643f3eb3d689.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/Bayer_UNK_TEST_LucieB_groceries_ISO12800_sha1=197b4576ef107e9dd85a96fe43a8d984c52a10a3.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/Bayer_UNK_TEST_LucieB_groceries_ISO25600_sha1=38b185d6e0a7a57349a6c221840fd217ebd12519.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/Bayer_UNK_TEST_LucieB_groceries_ISO3200_sha1=36ea4b0a01d5dd95547cad7b386a48689a7c10fe.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/Bayer_UNK_TEST_LucieB_groceries_ISO400_sha1=fa4ae6699ca73de672e81ff32beef686d6c3f166.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/Bayer_UNK_TEST_LucieB_groceries_ISO800_sha1=651efd60cab28bfc0fd7b47a2c87a1a22ddb983f.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/gt/Bayer_UNK_TEST_LucieB_groceries_GT_ISO100_sha1=9ed597d2ab9e40f3a81317271c31e7400a95552a.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/gt/Bayer_UNK_TEST_LucieB_groceries_GT_ISO100_sha1=ec49e2743aab20d6b614b5a85af2c15a1ed87717.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_plants/Bayer_UNK_TEST_LucieB_painted_plants_ISO1600_sha1=8cdd86b6b95ed1398059cea7e41003ce26251083.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_plants/Bayer_UNK_TEST_LucieB_painted_plants_ISO25600_sha1=d725b518e4a4c2d0d50902180a8be07b47e835bf.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_plants/Bayer_UNK_TEST_LucieB_painted_plants_ISO400_sha1=1c6ce227ee9d1f64003d716170a16fce70aa58a4.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_plants/Bayer_UNK_TEST_LucieB_painted_plants_ISO6400_sha1=f0df20fee800ed6d5f86a6675c8340a8a54ccb3a.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_plants/gt/Bayer_UNK_TEST_LucieB_painted_plants_GT_ISO100_sha1=52780251b69313b6f276be4a91d2250d7e55a45a.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_plants/gt/Bayer_UNK_TEST_LucieB_painted_plants_GT_ISO100_sha1=a126b73e171720aa187a33958a8a00f1bc5cea1d.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/Bayer_UNK_TEST_LucieB_painted_wallpaper_ISO12800_sha1=aec37400187b027cf98f7de376e13a9ed05c73fa.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/Bayer_UNK_TEST_LucieB_painted_wallpaper_ISO200_sha1=01182d059cc822dfd40d9df76642d8833deafdf0.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/Bayer_UNK_TEST_LucieB_painted_wallpaper_ISO25600_sha1=90740f25eacf924434a9fe70fa509ecdacf81acb.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/Bayer_UNK_TEST_LucieB_painted_wallpaper_ISO3200_sha1=8635e460f25aa6e056049c803e423c07c07cf605.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/Bayer_UNK_TEST_LucieB_painted_wallpaper_ISO800_sha1=d3341d18e8f5ddf675f386a12666cfd2a8a2f737.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/gt/Bayer_UNK_TEST_LucieB_painted_wallpaper_GT_ISO100_sha1=4602545744cd1d2942b45aa5e6ebe81bfa1be39b.cr2",
+  "crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/gt/Bayer_UNK_TEST_LucieB_painted_wallpaper_GT_ISO100_sha1=c3d68aaedcc525bb312105e99c679da85a463509.cr2"
+ ],
+ "held_out": [
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/Bayer_2pilesofplates_ISO1250_sha1=9121efbd50e2f2392665cb17b435b2526df8e9ae.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 505.4747009277344,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 129.58907711854968
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/Bayer_2pilesofplates_ISO125_sha1=58c56d2ccf6cfcc49292f8b09ccba1609111380a.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 492.3692626953125,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 133.03836157728458
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/Bayer_2pilesofplates_ISO12800_sha1=7c5f212c12b86bd8c4ecde91ba37de415b3744de.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 488.54248046875,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 134.08045895445937
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/Bayer_2pilesofplates_ISO16000_sha1=3b38449e04f75c3b68443e888c9c02fa99eddde6.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 497.0436706542969,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 131.78721280923273
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/Bayer_2pilesofplates_ISO160_sha1=17018efcc6228c02fd3a024abc70ef08c64a7622.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 486.8044128417969,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 134.55917463362783
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/Bayer_2pilesofplates_ISO2000_sha1=31fac4e2aeaa235193744d7e49c503734b6346b2.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 473.6654968261719,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 138.2916856704025
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/Bayer_2pilesofplates_ISO2500_sha1=c08ac26ca1d57b6c258f4c4706ad312de0936ec9.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 479.5423889160156,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 136.596892191468
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/Bayer_2pilesofplates_ISO320_sha1=080e42669f295009fcd3fb9dda0ac72b1148f93a.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 480.6617126464844,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 136.27879707609804
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/Bayer_2pilesofplates_ISO400_sha1=6637f1f7485046ba8e6e09978bd26b91042568e6.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 493.4761962890625,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 132.7399386081631
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/Bayer_2pilesofplates_ISO640_sha1=e11074913f99cdc64f7f41368a5bc99421a4ad23.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 490.017822265625,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 133.67677056548385
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/Bayer_2pilesofplates_ISO65535_sha1=b5c1ca049cd080144d2853ef5a78b0247a50cf3f.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 469.5545349121094,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 139.5024329011346
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/Bayer_2pilesofplates_ISO800_sha1=1353e69380a30ec67df3cd21be3cf8ce3c6db222.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 466.9554748535156,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 140.27889922598865
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/gt/Bayer_2pilesofplates_GT_ISO100_sha1=854554a34b339413462eb1538d4cb0fa95d468b5.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 489.8966064453125,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 133.70984640064506
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/2pilesofplates/gt/Bayer_2pilesofplates_GT_ISO100_sha1=8593a92d470192bac4434f3abeb2f0bcd8cf03ad.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 461.2204284667969,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 142.02319749311715
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/7D-1/Bayer_7D-1_ISO12800_sha1=5322313f9650a7b94028d69567c1f6c66bac8765.cr2",
+   "mosaic_megapixels": 18.03,
+   "largest_abs_after": 393.4503173828125,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 166.48607741817386
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/7D-1/Bayer_7D-1_ISO1600_sha1=9b21ad6490fbd55426bad0791a6f3990d8b0e395.cr2",
+   "mosaic_megapixels": 18.03,
+   "largest_abs_after": 396.2279357910156,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 165.31898456182827
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/7D-1/Bayer_7D-1_ISO200_sha1=c16e05e17a5bade967e5edef6e3b580a449e170a.cr2",
+   "mosaic_megapixels": 18.03,
+   "largest_abs_after": 399.4319152832031,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 163.99290465699693
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/7D-1/Bayer_7D-1_ISO3200_sha1=61536b7de6506deb768693f6e495af67fc8d2562.cr2",
+   "mosaic_megapixels": 18.03,
+   "largest_abs_after": 376.3877868652344,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 174.03327707722275
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/7D-1/Bayer_7D-1_ISO400_sha1=ce125be3071119883a0e7118069bdf59d14af465.cr2",
+   "mosaic_megapixels": 18.03,
+   "largest_abs_after": 414.3895263671875,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 158.07349325223387
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/7D-1/Bayer_7D-1_ISO6400_sha1=733cb095be69607aa14eca55b1f9f471bd0f00a3.cr2",
+   "mosaic_megapixels": 18.03,
+   "largest_abs_after": 378.3408508300781,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 173.13488579487125
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/7D-1/Bayer_7D-1_ISO800_sha1=11d2f7ac51732304c1ed32e352f3dd080f546c4b.cr2",
+   "mosaic_megapixels": 18.03,
+   "largest_abs_after": 411.8747863769531,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 159.0386257343024
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/7D-1/gt/Bayer_7D-1_GT_ISO100_sha1=22aef4a5b4038e241082741117827f364ce6a5ac.cr2",
+   "mosaic_megapixels": 18.03,
+   "largest_abs_after": 396.7797546386719,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 165.0890682657217
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/bananapi/Bayer_bananapi_ISO100_sha1=6f0d7783ca6c6d3ce1b7d17df19e47ccfbbe7c00.nef",
+   "mosaic_megapixels": 24.5,
+   "largest_abs_after": 301.6688232421875,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 217.13877919499723
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/bananapi/Bayer_bananapi_ISO125_sha1=216d897b3e67abcc7cfe78626f1a2ae67aae50c7.nef",
+   "mosaic_megapixels": 24.5,
+   "largest_abs_after": 300.497314453125,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 217.98530918391307
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/bananapi/Bayer_bananapi_ISO12800_sha1=6f58c20387d64acbfe1dfa7c2e3e9708c667d999.nef",
+   "mosaic_megapixels": 24.5,
+   "largest_abs_after": 293.8384704589844,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 222.92520069846816
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/bananapi/Bayer_bananapi_ISO1600_sha1=6e34b932272957147529bb0d1d106f4b3923f6a0.nef",
+   "mosaic_megapixels": 24.5,
+   "largest_abs_after": 300.21539306640625,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 218.19001128136964
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/bananapi/Bayer_bananapi_ISO200_sha1=ddd416d6ebcc6b1f0b1b6bb8f612ec20194e3a27.nef",
+   "mosaic_megapixels": 24.5,
+   "largest_abs_after": 305.0509033203125,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 214.73137527876406
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/bananapi/Bayer_bananapi_ISO25600_sha1=435611a9eb0a453fe6e69796332c7651a7a775de.nef",
+   "mosaic_megapixels": 24.5,
+   "largest_abs_after": 308.0669860839844,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 212.62908055374191
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/bananapi/Bayer_bananapi_ISO3200_sha1=d32e5fc3e05312522b2e766315ee14672627f323.nef",
+   "mosaic_megapixels": 24.5,
+   "largest_abs_after": 302.0378112792969,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 216.87350905687734
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/bananapi/Bayer_bananapi_ISO400_sha1=5c5c999b15fec5c681417dc2576766888dbdb268.nef",
+   "mosaic_megapixels": 24.5,
+   "largest_abs_after": 301.1358642578125,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 217.52307770262738
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/bananapi/Bayer_bananapi_ISO51200_sha1=1eb6e9df8fe7ff9c5a8283cd354d8579dd25c579.nef",
+   "mosaic_megapixels": 24.5,
+   "largest_abs_after": 345.2560729980469,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 189.72584444697245
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/bananapi/Bayer_bananapi_ISO63_sha1=20c7b440df36db62a2a986f2babe5f43efe2ec07.nef",
+   "mosaic_megapixels": 24.5,
+   "largest_abs_after": 470.5957336425781,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 139.19378208760153
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/bananapi/Bayer_bananapi_ISO6400_sha1=b216b89a4246cadcd120ce15c241a3ff5c7b4e99.nef",
+   "mosaic_megapixels": 24.5,
+   "largest_abs_after": 294.1724853515625,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 222.67208274668124
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/bananapi/Bayer_bananapi_ISO800_sha1=d32402bc4291d5f77c612f5304721ebd028766fe.nef",
+   "mosaic_megapixels": 24.5,
+   "largest_abs_after": 304.54681396484375,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 215.08680109706106
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/bananapi/gt/Bayer_bananapi_GT_ISO50_sha1=b51647bb06fe46798561086f3d7d37169c4f6361.nef",
+   "mosaic_megapixels": 24.5,
+   "largest_abs_after": 598.3307495117188,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 109.4779100914603
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Bark/Bayer_Bark_ISO12800_sha1=1b272e3c62cb33ea2031e1480b46182bbc1e3a3c.cr2",
+   "mosaic_megapixels": 20.17,
+   "largest_abs_after": 503.0782165527344,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 130.20639305127546
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Bark/Bayer_Bark_ISO1600_sha1=db6334331fcca3e28c71fa33cea02002b7d98767.cr2",
+   "mosaic_megapixels": 20.17,
+   "largest_abs_after": 502.2077331542969,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 130.4320815384074
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Bark/Bayer_Bark_ISO200_sha1=99fab2fa41b309d7eb3308a8ca7e22853afa2150.cr2",
+   "mosaic_megapixels": 20.17,
+   "largest_abs_after": 429.739013671875,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 152.42739876071676
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Bark/Bayer_Bark_ISO25600_sha1=ba3f6ea87665d32bd75999757b9f6406dafe9142.cr2",
+   "mosaic_megapixels": 20.17,
+   "largest_abs_after": 496.3321228027344,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 131.97614458259505
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Bark/Bayer_Bark_ISO3200_sha1=d41dde59ad1b1f6dd4ab8673488c6eff4dac3452.cr2",
+   "mosaic_megapixels": 20.17,
+   "largest_abs_after": 498.2742614746094,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 131.46173716889427
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Bark/Bayer_Bark_ISO400_sha1=0bba64bdba1bdc5252f951bdad60cdc3a47aceda.cr2",
+   "mosaic_megapixels": 20.17,
+   "largest_abs_after": 498.8240966796875,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 131.31683179704612
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Bark/Bayer_Bark_ISO51200_sha1=bb57eda9b65eb7d18bcd38a58145437af2b82d23.cr2",
+   "mosaic_megapixels": 20.17,
+   "largest_abs_after": 541.5547485351562,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 120.95545312303297
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Bark/Bayer_Bark_ISO6400_sha1=7347aef21040f72ba4cda39685af93dc3f0846c2.cr2",
+   "mosaic_megapixels": 20.17,
+   "largest_abs_after": 504.66033935546875,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 129.7981927481343
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Bark/Bayer_Bark_ISO65535_sha1=6ba8ed5f7fff42c4c900812c02701649f4f2d49e.cr2",
+   "mosaic_megapixels": 20.17,
+   "largest_abs_after": 536.425537109375,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 122.11200897142226
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Bark/Bayer_Bark_ISO800_sha1=ba86f1da64a4bb534d9216e96c1c72177ed1e625.cr2",
+   "mosaic_megapixels": 20.17,
+   "largest_abs_after": 502.61767578125,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 130.3256991473351
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Bark/gt/Bayer_Bark_GT_ISO100_sha1=f15da1140d949ee30c15ce7b251839a7b7a41de7.cr2",
+   "mosaic_megapixels": 20.17,
+   "largest_abs_after": 397.33746337890625,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 164.8573468078305
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/D60-2/Bayer_D60-2_ISO1037_sha1=aaa5a0772e45a487b03bd39beec503f2dc439c87.crw",
+   "mosaic_megapixels": 6.35,
+   "largest_abs_after": 644.5711059570312,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 101.62416433908017
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/D60-2/Bayer_D60-2_ISO200_sha1=168089b71f4106cfc85febf1d689869e41e64687.crw",
+   "mosaic_megapixels": 6.35,
+   "largest_abs_after": 676.8485107421875,
+   "largest_layer_after": "tconvs4.0",
+   "fp16_margin": 96.77793326038736
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/D60-2/Bayer_D60-2_ISO400_sha1=9f411646fa1d0f9a69cebb8546b0377efde699b0.crw",
+   "mosaic_megapixels": 6.35,
+   "largest_abs_after": 670.7528076171875,
+   "largest_layer_after": "tconvs4.0",
+   "fp16_margin": 97.65743692180635
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/D60-2/Bayer_D60-2_ISO800_sha1=67a5e80d99f1c3c44f17e04cf2b4292154d073cf.crw",
+   "mosaic_megapixels": 6.35,
+   "largest_abs_after": 698.2884521484375,
+   "largest_layer_after": "tconvs4.0",
+   "fp16_margin": 93.80650617730049
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/D60-2/gt/Bayer_D60-2_GT_ISO100_sha1=29f5b93638b1cf60d4afbd83fb2c1caca5c1ac38.crw",
+   "mosaic_megapixels": 6.35,
+   "largest_abs_after": 668.5300903320312,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 97.98212667954388
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/European_hornbeam_bark/Bayer_European_hornbeam_bark_ISO12800_sha1=dfa2b938687ef346193b4affcf896e7501e814fb.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 322.5028381347656,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 203.11139082945857
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/European_hornbeam_bark/Bayer_European_hornbeam_bark_ISO16000_sha1=3329a0b932c020d02f491e77288ddfe3397bc17a.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 318.813720703125,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 205.46167164805442
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/European_hornbeam_bark/Bayer_European_hornbeam_bark_ISO20000_sha1=66fba77cb11f1f7fcd15cc247e72091070fd956a.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 331.2742004394531,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 197.7334785295849
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/European_hornbeam_bark/Bayer_European_hornbeam_bark_ISO2000_sha1=ba29d3872d890d6659c4d769188b809d67562d40.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 305.65325927734375,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 214.30820058935788
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/European_hornbeam_bark/Bayer_European_hornbeam_bark_ISO400_sha1=3cedecdc044d6943b0bb41c466758f7337471264.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 306.06396484375,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 214.02062158294498
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/European_hornbeam_bark/Bayer_European_hornbeam_bark_ISO64000_sha1=614632497540ec1f019af6f47397f428cb724c0d.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 330.7131042480469,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 198.0689581349931
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/European_hornbeam_bark/Bayer_European_hornbeam_bark_ISO64000_sha1=9413aab17b6bfa3b7511860ec9c7966fad3a2a30.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 330.1959228515625,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 198.37919085829208
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/European_hornbeam_bark/Bayer_European_hornbeam_bark_ISO64000_sha1=a5565617851eada2224898782ffaa19ce98ca42c.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 324.6847839355469,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 201.74644221394493
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/European_hornbeam_bark/Bayer_European_hornbeam_bark_ISO6400_sha1=90059412835df82bd73cdad790e01cde647a1693.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 309.7376403808594,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 211.4822077144225
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/European_hornbeam_bark/gt/Bayer_European_hornbeam_bark_GT_ISO50_sha1=0a4390ebc39e2ce2920d3585890ee3855e3bc207.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 591.8956298828125,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 110.66815954185863
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/European_hornbeam_bark/gt/Bayer_European_hornbeam_bark_GT_ISO50_sha1=2ad1b180b942a5db64b31eb7f319a653955acf02.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 602.43408203125,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 108.73222806242579
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/European_hornbeam_bark/gt/Bayer_European_hornbeam_bark_GT_ISO50_sha1=ebd5d455fe29e44c838304bff08ddc408dfdb9e9.arw",
+   "mosaic_megapixels": 24.24,
+   "largest_abs_after": 603.28662109375,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 108.57857228997086
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Iain01/Bayer_Iain01_ISO1600_sha1=e6747c75607d311078c660bff37499a1878e6d07.nef",
+   "mosaic_megapixels": 6.13,
+   "largest_abs_after": 776.3153076171875,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 84.37808627148827
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Iain01/Bayer_Iain01_ISO400_sha1=b8635e7e2bc37f1ce7431a5a617fe191400990ff.nef",
+   "mosaic_megapixels": 6.13,
+   "largest_abs_after": 779.0314331054688,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 84.08389856476019
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Iain01/Bayer_Iain01_ISO800_sha1=6a32967acd99ba10e13f9c9ffdc8f16249b4df53.nef",
+   "mosaic_megapixels": 6.13,
+   "largest_abs_after": 774.8685302734375,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 84.53563080808662
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Iain01/Bayer_Iain01_ISOHi 3200_sha1=77c2cb900395f6b4b1a05a0205e2a12bada70bf1.nef",
+   "mosaic_megapixels": 6.13,
+   "largest_abs_after": 789.9219360351562,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 82.92464990753805
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Iain01/gt/Bayer_Iain01_GT_ISO200_sha1=4dd7a49d600fb1d1d60c741be0e89911f7e05308.nef",
+   "mosaic_megapixels": 6.13,
+   "largest_abs_after": 776.08154296875,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 84.40350191737211
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Iain01/gt/Bayer_Iain01_GT_ISO200_sha1=7b25507a3b470b770d31852317a1c3c948dd3cc5.nef",
+   "mosaic_megapixels": 6.13,
+   "largest_abs_after": 774.9371948242188,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 84.52814039318174
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Iain01/gt/Bayer_Iain01_GT_ISO200_sha1=9320c486b6b51f6f26a1f2feaecd443f36f1fbef.nef",
+   "mosaic_megapixels": 6.13,
+   "largest_abs_after": 774.848388671875,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 84.53782824828068
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/Iain01/gt/Bayer_Iain01_GT_ISO200_sha1=ad69abfa4a723e0dedfc235d6b4c3ad488cead1f.nef",
+   "mosaic_megapixels": 6.13,
+   "largest_abs_after": 775.9650268554688,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 84.41617564318499
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/MuseeL-C500D-mammal/Bayer_MuseeL-C500D-mammal_ISO1600_sha1=61428e0817b9456d84bf30b4a4e61a9e84844ca0.cr2",
+   "mosaic_megapixels": 15.16,
+   "largest_abs_after": 839.0962524414062,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 78.06494166719463
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/MuseeL-C500D-mammal/Bayer_MuseeL-C500D-mammal_ISO200_sha1=0f5daff16e841bcca6849e4f7f8eeda0731e5212.cr2",
+   "mosaic_megapixels": 15.16,
+   "largest_abs_after": 803.88818359375,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 81.48396920970649
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/MuseeL-C500D-mammal/Bayer_MuseeL-C500D-mammal_ISO3200_sha1=03c0012a5590aa688faf9c1e5560bcb5a6af7b45.cr2",
+   "mosaic_megapixels": 15.16,
+   "largest_abs_after": 614.3604125976562,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 106.6214532330202
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/MuseeL-C500D-mammal/Bayer_MuseeL-C500D-mammal_ISO3200_sha1=b8f6b00c1983be101691c2264d355593d0945a36.cr2",
+   "mosaic_megapixels": 15.16,
+   "largest_abs_after": 913.1676635742188,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 71.73271964494621
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/MuseeL-C500D-mammal/Bayer_MuseeL-C500D-mammal_ISO400_sha1=7f48f0ed775f4d737aa26d11a2a084c7593643ef.cr2",
+   "mosaic_megapixels": 15.16,
+   "largest_abs_after": 877.0409545898438,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 74.68750422337295
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/MuseeL-C500D-mammal/Bayer_MuseeL-C500D-mammal_ISO800_sha1=fcdf3d105fa11ec6e351905514426bb38e247037.cr2",
+   "mosaic_megapixels": 15.16,
+   "largest_abs_after": 833.0521850585938,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 78.63132847480941
+  },
+  {
+   "raw_path": "data/rawnind/src/Bayer/MuseeL-C500D-mammal/gt/Bayer_MuseeL-C500D-mammal_GT_ISO100_sha1=53e8a797952880f32bddefcc62f031b1a0f515ca.cr2",
+   "mosaic_megapixels": 15.16,
+   "largest_abs_after": 772.9511108398438,
+   "largest_layer_after": "output_module.0",
+   "fp16_margin": 84.74533393040494
+  }
+ ],
+ "skipped": [],
+ "smallest_held_out_margin": 71.73271964494621,
+ "scales": {
+  "convs1.0": 1.0,
+  "convs1.2": 1.0,
+  "convs2.0": 1.0,
+  "convs2.2": 1.0,
+  "convs3.0": 1.0,
+  "convs3.2": 1.0,
+  "convs4.0": 1.4249800443649292,
+  "convs4.2": 2.187906503677368,
+  "bottom.0": 2.3031115531921387,
+  "bottom.2": 4.1690239906311035,
+  "up1": 1.6175086498260498,
+  "tconvs1.0": 3.4378535747528076,
+  "tconvs1.2": 3.039124011993408,
+  "up2": 1.0,
+  "tconvs2.0": 2.2037413120269775,
+  "tconvs2.2": 2.8225820064544678,
+  "up3": 1.3016606569290161,
+  "tconvs3.0": 4.695138454437256,
+  "tconvs3.2": 28.501070022583008,
+  "up4": 12.340283393859863,
+  "tconvs4.0": 25.905803680419922,
+  "tconvs4.2": 183.90853881835938,
+  "output_module.0": 170.34384155273438
+ },
+ "output_scale": 170.34384155273438,
+ "largest_abs_before": {
+  "convs1.0": 4.1599249839782715,
+  "convs1.2": 32.001556396484375,
+  "convs2.0": 54.97069549560547,
+  "convs2.2": 287.6778869628906,
+  "convs3.0": 339.4992980957031,
+  "convs3.2": 754.299560546875,
+  "convs4.0": 1459.1795654296875,
+  "convs4.2": 2240.416259765625,
+  "bottom.0": 2358.38623046875,
+  "bottom.2": 4269.08056640625,
+  "up1": 1656.328857421875,
+  "tconvs1.0": 3520.362060546875,
+  "tconvs1.2": 3112.06298828125,
+  "up2": 611.5689086914062,
+  "tconvs2.0": 2256.631103515625,
+  "tconvs2.2": 2890.323974609375,
+  "up3": 1332.9005126953125,
+  "tconvs3.0": 4807.82177734375,
+  "tconvs3.2": 29185.095703125,
+  "up4": 12636.4501953125,
+  "tconvs4.0": 26527.54296875,
+  "tconvs4.2": 188322.34375,
+  "output_module.0": 174432.09375
+ },
+ "largest_abs_after_on_calibration": {
+  "convs1.0": 4.1599249839782715,
+  "convs1.2": 32.001556396484375,
+  "convs2.0": 54.97069549560547,
+  "convs2.2": 287.6778869628906,
+  "convs3.0": 339.4992980957031,
+  "convs3.2": 754.299560546875,
+  "convs4.0": 1024.0,
+  "convs4.2": 1024.0,
+  "bottom.0": 1024.0,
+  "bottom.2": 1024.0,
+  "up1": 1024.0,
+  "tconvs1.0": 1024.0,
+  "tconvs1.2": 1024.0,
+  "up2": 611.5689086914062,
+  "tconvs2.0": 1024.0,
+  "tconvs2.2": 1024.0,
+  "up3": 1024.0,
+  "tconvs3.0": 1024.0,
+  "tconvs3.2": 1024.0,
+  "up4": 1024.0,
+  "tconvs4.0": 1024.0,
+  "tconvs4.2": 1024.0,
+  "output_module.0": 1024.0
+ },
+ "rescaled_fp32_relative_difference": 8.438322947445449e-07,
+ "seconds": 257.2,
+ "graph": {
+  "path": "D:\\Projects\\alcedo-denoise-lab\\models\\export\\dark_area_loss\\utnet2_bayer_dark_loss_10k_fp16.onnx",
+  "sha256": "0bc98084c9bff16d489945ec357fd008465414813e5330f4a6077f205b668469",
+  "bytes": 15552242,
+  "opset": 17,
+  "onnx": "1.23.2",
+  "operators": {
+   "Concat": 4,
+   "Conv": 19,
+   "ConvTranspose": 4,
+   "DepthToSpace": 1,
+   "LeakyRelu": 18,
+   "MaxPool": 4
+  },
+  "nodes": 50,
+  "metadata": {
+   "architecture": "utnet2_bayer_funit32",
+   "leaky_relu_slope": "0.2",
+   "input_preparation_version": "1",
+   "weights_sha256": "0bfb9ddb07e6e6c20e6764dfc30336d9314d5760f875992f2144f13dd0df13a5",
+   "precision": "float16",
+   "output_scale": "170.34384155273438",
+   "rescale_target": "1024.0",
+   "calibration_photos": "[\"data/evaluation_photos/20220827-9578.cr3\", \"data/evaluation_photos/astro/_DSC8539.ARW\", \"data/evaluation_photos/demosaic/P1832629.RW2\", \"data/evaluation_photos/demosaic/_DSC0729.ARW\", \"data/evaluation_photos/high_iso_canon_90d/IMG_4968.CR3\", \"data/evaluation_photos/high_iso_gh6/1296625388.rw2\", \"data/evaluation_photos/high_iso_gh6/5721990840.rw2\", \"data/evaluation_photos/high_iso_nikon/_DSC2403.NEF\", \"data/evaluation_photos/high_iso_nikon/_DSC2546.NEF\", \"data/evaluation_photos/high_iso_nikon_d7200/Ric_Developer.NEF\", \"data/evaluation_photos/high_iso_s5m2/P2625452.RW2\", \"crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO12800_sha1=f378ff0b6b1eea30b0184671a4a223dd93b4f271.cr2\", \"crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO1600_sha1=e0fd5d8ea741c04720fff56b7cea8b1f1fab957b.cr2\", \"crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO200_sha1=c6ccb7b43da198563b01389b6a7e31ab005c2036.cr2\", \"crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO3200_sha1=f19f95be6be4bb004bc5d9fd5f4457da854e0e8f.cr2\", \"crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO400_sha1=b1286856f5104a3c2f5ba71034a0e548cfa8c6bc.cr2\", \"crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO6400_sha1=4bd470a54a5ca3485bcb3fe72b346eb61b5a7424.cr2\", \"crop:data/rawnind/src/Bayer/TEST_7D-2/Bayer_TEST_7D-2_ISO800_sha1=34f658b8c99e10ec0c6586ed559c576c25290bd0.cr2\", \"crop:data/rawnind/src/Bayer/TEST_7D-2/gt/Bayer_TEST_7D-2_GT_ISO100_sha1=45803fc993c395c515b165a1f5d7417f4af4fe1e.cr2\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO10000_sha1=c6e8e34be44a4b5d4b26b3a0339e646483225553.arw\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO160_sha1=70930df23b135ef322c1250e883b4df462610024.arw\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO250_sha1=9fc429037d8a0a985d2f07602ff5e383b606e98e.arw\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO40000_sha1=cd6b192df4f6159afff01b16ec05824fd4454335.arw\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO4000_sha1=cc425c1cf9a62e75d271752f7b3737f3408fc464.arw\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO400_sha1=35c0a52a2f6a8df31251dc87dc1db95e5a080212.arw\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO500_sha1=003a898df4c4a549f4f951824561439e8fe9352e.arw\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO51200_sha1=225b8e7d27b40f3052ccc4c4032e2515436e35ad.arw\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO64000_sha1=7c421d49c4d2ffa0c023007c7c3f2e7cae8575d1.arw\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO6400_sha1=5487ebb29f064df3c60a0ede13609e4b361f46c7.arw\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO640_sha1=6c3b65be5c02949ad8694efcd2415bfc4f40c6fd.arw\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/Bayer_TEST_boardgames_top_ISO65535_sha1=dde98261ee15a51d79768467f36352532406802f.arw\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/gt/Bayer_TEST_boardgames_top_GT_ISO50_sha1=8c121e3c1038766ee9f96565376eb264cf15b509.arw\", \"crop:data/rawnind/src/Bayer/TEST_boardgames_top/gt/Bayer_TEST_boardgames_top_GT_ISO50_sha1=dfd6ae10e652751bc54c997af3547b33de5f824a.arw\", \"crop:data/rawnind/src/Bayer/TEST_D60-1/Bayer_TEST_D60-1_ISO1037_sha1=b192a6f4c6c46c7f5d3c22f85d2f1a2dd1174b80.crw\", \"crop:data/rawnind/src/Bayer/TEST_D60-1/Bayer_TEST_D60-1_ISO200_sha1=5c1b45a8f62f8e31c6e7469846a03ef55a62359f.crw\", \"crop:data/rawnind/src/Bayer/TEST_D60-1/Bayer_TEST_D60-1_ISO400_sha1=545432bec2d5a857734fdbd721b6c81a3a1370a6.crw\", \"crop:data/rawnind/src/Bayer/TEST_D60-1/Bayer_TEST_D60-1_ISO800_sha1=b650fb7af03f1b337bd0da2fa416ff0ce92300f3.crw\", \"crop:data/rawnind/src/Bayer/TEST_D60-1/gt/Bayer_TEST_D60-1_GT_ISO100_sha1=8ed4d50624a199ed767b2c7167b172a1d5eb4031.crw\", \"crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/Bayer_TEST_Laura_Lemons_platformer_ISO1000_sha1=c9149b6db578870fd1a8c2fda0b410ea320711b5.arw\", \"crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/Bayer_TEST_Laura_Lemons_platformer_ISO1600_sha1=6c8d19446f63243d5c471b1e2752179efdaff0f7.arw\", \"crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/Bayer_TEST_Laura_Lemons_platformer_ISO2500_sha1=4e5853cd3e558c952b3cd79078c10e011c079b33.arw\", \"crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/Bayer_TEST_Laura_Lemons_platformer_ISO4000_sha1=f23184eb1b510ba49f9db986a0aa56fc1098e31c.arw\", \"crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/Bayer_TEST_Laura_Lemons_platformer_ISO400_sha1=86219c8c7f25452b662b449c499043ece15c7493.arw\", \"crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/Bayer_TEST_Laura_Lemons_platformer_ISO5000_sha1=e29fc8c8cf6505f84a3135ee82e6473884539c1a.arw\", \"crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/gt/Bayer_TEST_Laura_Lemons_platformer_GT_ISO50_sha1=3e34f36581d12caf9233bde0bf38586e9a1abe7d.arw\", \"crop:data/rawnind/src/Bayer/TEST_Laura_Lemons_platformer/gt/Bayer_TEST_Laura_Lemons_platformer_GT_ISO50_sha1=e65e60c925d304bbb01cf8bb1310c41e85a05d62.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO125_sha1=4a6064cb0dfffb671c3ee38af56d0751929796bb.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO16000_sha1=e4031d1853423a4f294807864845d60da22eecdd.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO4000_sha1=bf86d09a71c8cfbd978faf1c6b490e92d5fc98e2.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO400_sha1=fbc193840487528cb58d0121560739f6a1aff0be.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO5000_sha1=854e9f603bc26ac5bca8a1664bb08e1a9c168d0c.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO64000_sha1=00b3c2f6a7c75ff501a25b8b1fc704c5eb7aa2d6.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=221c23e21a205b6bfec5803c567a008b7246c9a5.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=2d31480808a4068d0f6c17a9204cb375f35b3a78.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=2f90542b817285707471d1c595d90f6091a1a318.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=9932ab9a8c1398acd2898d68834f8610d317765f.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO65535_sha1=eb9cb3e1d80f48b93d0aabe20458870c5c1ef2fa.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/Bayer_TEST_MuseeL-bluebirds-A7C_ISO800_sha1=020285d512ac336fe0443aae92c034149f604a57.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/gt/Bayer_TEST_MuseeL-bluebirds-A7C_GT_ISO50_sha1=3156b462861d9e67f6e0305d8d55ad695a4d937c.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-bluebirds-A7C/gt/Bayer_TEST_MuseeL-bluebirds-A7C_GT_ISO50_sha1=862fee8e80372d815f0875558939b938c62bb00d.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/Bayer_TEST_MuseeL-Saint-Pierre-C500D_ISO1600_sha1=c47c1343b8d0485a5d8f1c2d69e84a0cf9fae3ec.cr2\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/Bayer_TEST_MuseeL-Saint-Pierre-C500D_ISO200_sha1=1ef976d7f39b765a233e992fad84d5f7e646860b.cr2\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/Bayer_TEST_MuseeL-Saint-Pierre-C500D_ISO3200_sha1=4b71ad313b4fb8d70ba3c5d8cf5a5b9839f8ed80.cr2\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/Bayer_TEST_MuseeL-Saint-Pierre-C500D_ISO3200_sha1=e8999899edefe623b28db4193af57e3f783edf9e.cr2\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/Bayer_TEST_MuseeL-Saint-Pierre-C500D_ISO400_sha1=050544300c731d701b5c915eda4eb05f1ef394c4.cr2\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/Bayer_TEST_MuseeL-Saint-Pierre-C500D_ISO800_sha1=71ded18530db93a41c5dc96d7463912beb271602.cr2\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-Saint-Pierre-C500D/gt/Bayer_TEST_MuseeL-Saint-Pierre-C500D_GT_ISO100_sha1=f71bff2d267cefbf243971b98beb973daeee84db.cr2\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO100_sha1=cab25e54fbc8ab5b93a81c2f9165de2af04400f6.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO125_sha1=9344ce38ef08a79b9b3dd6af43c74062c88a8b64.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO12800_sha1=7d67a13a47ade45e608a1630354a378a0d899e63.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO16000_sha1=c3c2d8dffb2a53143b4a1000c8e710aef1f44612.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO2000_sha1=57212201f2f6f11e85cbd2d19ad0a6a20daf5995.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO250_sha1=f5d5aac54bd3a8b146a879b26789e838bc942f6c.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO320_sha1=433ff480ec01429b5e26c703e24ed9925f780f37.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO40000_sha1=bf6f7b3df7af7ab9152411a2bae3a4e7a68e08ca.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO4000_sha1=e52f6253076eaea5b5d65101f4b85c817b0b2aa0.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO64000_sha1=736eda054de38c5f51f4e4825cf4554fc5f0a24d.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/Bayer_TEST_MuseeL-vases-A7C_ISO65535_sha1=a59bdd07a02139e6e663cb03673e9120ecd56d4b.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/gt/Bayer_TEST_MuseeL-vases-A7C_GT_ISO50_sha1=128aac6285487ec36b828f31db6d634b094f7ae3.arw\", \"crop:data/rawnind/src/Bayer/TEST_MuseeL-vases-A7C/gt/Bayer_TEST_MuseeL-vases-A7C_GT_ISO50_sha1=3512b789004767165f4330b1e82c6fdce766b221.arw\", \"crop:data/rawnind/src/Bayer/TEST_Pen-pile/Bayer_TEST_Pen-pile_ISO1600_sha1=1a26389f4df2b7ab54656f7ea9f80347d6dfda91.dng\", \"crop:data/rawnind/src/Bayer/TEST_Pen-pile/Bayer_TEST_Pen-pile_ISO200_sha1=84d4958f9cf2d58a9b40ca402d6f80cb7c74a4c4.dng\", \"crop:data/rawnind/src/Bayer/TEST_Pen-pile/Bayer_TEST_Pen-pile_ISO3200_sha1=a3221270fde0f61f690b4b4619d74ec32dce6e31.dng\", \"crop:data/rawnind/src/Bayer/TEST_Pen-pile/Bayer_TEST_Pen-pile_ISO400_sha1=fad719aac1eccd9a0e87409fd6c5249ab21aa60c.dng\", \"crop:data/rawnind/src/Bayer/TEST_Pen-pile/Bayer_TEST_Pen-pile_ISO800_sha1=e48346de57cfca98afea83979cf3f700482403b5.dng\", \"crop:data/rawnind/src/Bayer/TEST_Pen-pile/gt/Bayer_TEST_Pen-pile_GT_ISO100_sha1=dead5469f750d32cd50f8673f1ae3608bdb9a99d.dng\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO10000_sha1=bfe16373ad03fc0b92985f5f1f90eb571d469473.arw\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO1000_sha1=351ce265b9711cb0077f4de7a0b5b84ed1fdaf86.arw\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO1250_sha1=4bc1beffb01ff1e54ca27eb36687fbdda78e1a16.arw\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO1600_sha1=c3cc7dda4fa0b8a5d312f81dbb90ef4b19849b27.arw\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO20000_sha1=facd35d26b836c6a9aac5d8e47fb1d0511e30379.arw\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO2000_sha1=edfd36ce1237b410f777d587690a39b688e2a203.arw\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO25600_sha1=d7a77e6f2d966ca6cd3106df3511646456fa3490.arw\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO3200_sha1=407af1bec1d611c18e6acc5fd35cdf4c58fb2687.arw\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO40000_sha1=dadfe0c1e030616884ce54c0999cc63ed40f9ee9.arw\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO4000_sha1=e4e5de2ebc10683d830b5d4aaf570575c8246dbe.arw\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO51200_sha1=f53dcfac22bc336c274c4dc4f3c8248db64f1adc.arw\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/Bayer_TEST_TitusToys_ISO6400_sha1=bedd147574be163498fb95292674c6c4122682c2.arw\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/gt/Bayer_TEST_TitusToys_GT_ISO50_sha1=85c54ed5174f0ca97385984e6301a1fab08cbdbe.arw\", \"crop:data/rawnind/src/Bayer/TEST_TitusToys/gt/Bayer_TEST_TitusToys_GT_ISO50_sha1=daecb17e3525d230e7e3441d1335f00ca9446405.arw\", \"crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO12800_sha1=d61bb9bdc1aaea030d66b5ed34e76c66255d340c.cr2\", \"crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO1600_sha1=870f13fb550edc7226ab1a931096b7c218dea2fc.cr2\", \"crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO200_sha1=2160d126ad1e6b6eb0814d4b76ff44f836f9981e.cr2\", \"crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO25600_sha1=2db77c72773125e518c2c8d5301d7513f9b84ced.cr2\", \"crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO3200_sha1=27cfa8ba31cd13c59d4813199a94f68826a5285f.cr2\", \"crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO400_sha1=6d50b8c8c986e54f341a7b1ae002507eabb67cb8.cr2\", \"crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO51200_sha1=8f05f5f4e6e8e39719b8c4daf5aeacbca79240ec.cr2\", \"crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO6400_sha1=0aa8469159ceaac0abd3a896a6b1807a22a5359e.cr2\", \"crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO65535_sha1=03f25da2ca87f0caa2d066992ab5c4ab277bc83f.cr2\", \"crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/Bayer_TEST_Vaxt-i-trad_ISO800_sha1=d07ba37c1977339b59aedca8761ed52c12f0e950.cr2\", \"crop:data/rawnind/src/Bayer/TEST_Vaxt-i-trad/gt/Bayer_TEST_Vaxt-i-trad_GT_ISO100_sha1=ca77ec885c0198357c413895c343b965c1ebcafb.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_board/Bayer_UNK_TEST_LucieB_board_ISO1600_sha1=31b019502ac7b100d351ec1000ab7ae94fb05964.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_board/Bayer_UNK_TEST_LucieB_board_ISO25600_sha1=34714a832479e2a80bdd6153c8252a342e657743.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_board/Bayer_UNK_TEST_LucieB_board_ISO400_sha1=b206ec3dc2d16bc3c1374fc033651aadbd12ff57.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_board/Bayer_UNK_TEST_LucieB_board_ISO400_sha1=e63f186e649b70e8341841c06bf3ba89d2f83673.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_board/Bayer_UNK_TEST_LucieB_board_ISO6400_sha1=469fa354eab99934d85b309e4dc7d0c669a35e68.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_board/gt/Bayer_UNK_TEST_LucieB_board_GT_ISO100_sha1=3300aa5ce5517dfbe1b2fc7c7e1a0a0cf40b8972.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/Bayer_UNK_TEST_LucieB_bw_drawing1_ISO12800_sha1=fd7bd9e4b1e91a6b6099ffdb67160e6b2111012c.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/Bayer_UNK_TEST_LucieB_bw_drawing1_ISO200_sha1=c99d1371f9baceef41f95317ceb772ffeca55b76.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/Bayer_UNK_TEST_LucieB_bw_drawing1_ISO25600_sha1=9655eaa7d80a329d5543552d04123b8408d8dede.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/Bayer_UNK_TEST_LucieB_bw_drawing1_ISO4000_sha1=c19584a17be379ba06983b2f975c1f9d2f80b6c2.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/Bayer_UNK_TEST_LucieB_bw_drawing1_ISO800_sha1=1b8d592d40ff35c2c0ca263374a8d0b6571e24f0.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/gt/Bayer_UNK_TEST_LucieB_bw_drawing1_GT_ISO100_sha1=8b07bb35e782274c8c3d0fe54a184dd299bbec2e.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing1/gt/Bayer_UNK_TEST_LucieB_bw_drawing1_GT_ISO100_sha1=ac88e9ee646fd6b39f6608f970ae2b9a41c05cd5.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing2/Bayer_UNK_TEST_LucieB_bw_drawing2_ISO1600_sha1=7120491c03845c078a9fdc5cad9a5a840ac170c3.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing2/Bayer_UNK_TEST_LucieB_bw_drawing2_ISO25600_sha1=058ee86c97024f1227a844006acc1598dd5298d4.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing2/Bayer_UNK_TEST_LucieB_bw_drawing2_ISO400_sha1=c10dd5fe9f9999e9e3608ca1fcb4528f7f049f76.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing2/Bayer_UNK_TEST_LucieB_bw_drawing2_ISO6400_sha1=0f45c01c58bf4f141c977e5b3868238beb0bd0b8.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_bw_drawing2/gt/Bayer_UNK_TEST_LucieB_bw_drawing2_GT_ISO100_sha1=04f3bdc33cab351daed498fc2f4d643f3eb3d689.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/Bayer_UNK_TEST_LucieB_groceries_ISO12800_sha1=197b4576ef107e9dd85a96fe43a8d984c52a10a3.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/Bayer_UNK_TEST_LucieB_groceries_ISO25600_sha1=38b185d6e0a7a57349a6c221840fd217ebd12519.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/Bayer_UNK_TEST_LucieB_groceries_ISO3200_sha1=36ea4b0a01d5dd95547cad7b386a48689a7c10fe.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/Bayer_UNK_TEST_LucieB_groceries_ISO400_sha1=fa4ae6699ca73de672e81ff32beef686d6c3f166.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/Bayer_UNK_TEST_LucieB_groceries_ISO800_sha1=651efd60cab28bfc0fd7b47a2c87a1a22ddb983f.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/gt/Bayer_UNK_TEST_LucieB_groceries_GT_ISO100_sha1=9ed597d2ab9e40f3a81317271c31e7400a95552a.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_groceries/gt/Bayer_UNK_TEST_LucieB_groceries_GT_ISO100_sha1=ec49e2743aab20d6b614b5a85af2c15a1ed87717.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_plants/Bayer_UNK_TEST_LucieB_painted_plants_ISO1600_sha1=8cdd86b6b95ed1398059cea7e41003ce26251083.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_plants/Bayer_UNK_TEST_LucieB_painted_plants_ISO25600_sha1=d725b518e4a4c2d0d50902180a8be07b47e835bf.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_plants/Bayer_UNK_TEST_LucieB_painted_plants_ISO400_sha1=1c6ce227ee9d1f64003d716170a16fce70aa58a4.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_plants/Bayer_UNK_TEST_LucieB_painted_plants_ISO6400_sha1=f0df20fee800ed6d5f86a6675c8340a8a54ccb3a.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_plants/gt/Bayer_UNK_TEST_LucieB_painted_plants_GT_ISO100_sha1=52780251b69313b6f276be4a91d2250d7e55a45a.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_plants/gt/Bayer_UNK_TEST_LucieB_painted_plants_GT_ISO100_sha1=a126b73e171720aa187a33958a8a00f1bc5cea1d.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/Bayer_UNK_TEST_LucieB_painted_wallpaper_ISO12800_sha1=aec37400187b027cf98f7de376e13a9ed05c73fa.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/Bayer_UNK_TEST_LucieB_painted_wallpaper_ISO200_sha1=01182d059cc822dfd40d9df76642d8833deafdf0.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/Bayer_UNK_TEST_LucieB_painted_wallpaper_ISO25600_sha1=90740f25eacf924434a9fe70fa509ecdacf81acb.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/Bayer_UNK_TEST_LucieB_painted_wallpaper_ISO3200_sha1=8635e460f25aa6e056049c803e423c07c07cf605.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/Bayer_UNK_TEST_LucieB_painted_wallpaper_ISO800_sha1=d3341d18e8f5ddf675f386a12666cfd2a8a2f737.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/gt/Bayer_UNK_TEST_LucieB_painted_wallpaper_GT_ISO100_sha1=4602545744cd1d2942b45aa5e6ebe81bfa1be39b.cr2\", \"crop:data/rawnind/src/Bayer/UNK_TEST_LucieB_painted_wallpaper/gt/Bayer_UNK_TEST_LucieB_painted_wallpaper_GT_ISO100_sha1=c3d68aaedcc525bb312105e99c679da85a463509.cr2\"]",
+   "held_out_photo_count": "78",
+   "smallest_held_out_margin": "71.733"
+  }
+ },
+ "directml_check": {
+  "onnxruntime": "1.24.4",
+  "adapter": "high_performance",
+  "random_64": 0.004069045878299839,
+  "random_256": 0.0037621610901625315,
+  "rawnind_crop_512": 0.002758037727629387
+ }
+}

@@ -133,8 +133,46 @@ Image quality that the lab measured: metrics and checks by eye. The rules of thi
   gives 26 to 54 dB on the parts of the image, and on linear values it shows color blocks in dark areas at +5 EV from
   distance 0.5; a log encoding removes most of them and costs detail. A clip mask of the
   highlights adds at most 3 KB (2026-11-21, stored result formats).
+- The FP16 graph of Alcedo Studio on DirectML gives the developed image of the FP32 model at
+  68.2 to 76.5 dB at +2 EV on the whole image of the 11 evaluation photos, 73.3 dB or more on the
+  dark crops, and 60.8 to 75.3 dB at +5 EV on the whole image. The lowest values are in areas
+  that clip at the development gain (52.9 dB on a detail crop of a lit lantern at +2 EV). The
+  user checked the sheets by eye, saw no difference, and accepted FP16 (2026-11-22, sheets of
+  the FP16 graph).
 
 ## Entries
+
+### 2026-11-22 Sheets of the FP16 graph
+
+- **Source**: `results/export/fp16_sheets.json`, sheets `results/export/images/fp16_sheets/`
+  (not committed); make_fp16_sheets.py, command in the README of `scripts/export/`. FP32: the
+  model in PyTorch, CUDA, IEEE FP32. FP16: `utnet2_bayer_dark_loss_10k_fp16.onnx` (SHA-256
+  `0bc98084...`) in ONNX Runtime 1.24.4 with DirectML on the RTX 3080 Laptop GPU, float16 tile
+  input and output, the output times `output_scale`. Both: tiles of 1536, overlap 96, last tile
+  shrunk; each output gain matched on its own; the metrics of the stored formats entry.
+- **Result**, developed PSNR of FP16 against FP32, and the largest linear difference relative to
+  the largest FP32 value:
+
+  | Photo | +2 EV whole | +2 EV dark | +2 EV detail | +5 EV whole | +5 EV dark | Linear |
+  | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+  | 20220827-9578 (Canon EOS R3) | 72.7 dB | 77.7 dB | 69.8 dB | 71.8 dB | 70.3 dB | 3.6e-3 |
+  | _DSC8539 (astro) | 73.9 dB | 82.6 dB | 71.3 dB | 72.2 dB | 75.1 dB | 3.3e-3 |
+  | P1832629 (demosaic) | 70.7 dB | 73.3 dB | 69.0 dB | 75.3 dB | 67.1 dB | 1.5e-3 |
+  | _DSC0729 (demosaic) | 70.1 dB | 77.5 dB | 72.4 dB | 70.8 dB | 69.9 dB | 3.6e-3 |
+  | IMG_4968 (Canon EOS 90D) | 71.9 dB | 76.5 dB | 71.2 dB | 66.2 dB | 69.0 dB | 2.0e-3 |
+  | 1296625388 (GH6) | 68.2 dB | 81.0 dB | 52.9 dB | 60.8 dB | 73.5 dB | 3.7e-3 |
+  | 5721990840 (GH6) | 71.3 dB | 76.2 dB | 65.8 dB | 66.8 dB | 69.1 dB | 4.6e-3 |
+  | _DSC2403 (Nikon) | 73.7 dB | 76.4 dB | 70.0 dB | 69.9 dB | 69.2 dB | 3.1e-3 |
+  | _DSC2546 (Nikon) | 76.5 dB | 80.0 dB | 74.8 dB | 70.6 dB | 72.5 dB | 2.1e-3 |
+  | Ric_Developer (Nikon D7200) | 71.6 dB | 78.2 dB | 68.5 dB | 66.2 dB | 70.6 dB | 3.3e-3 |
+  | P2625452 (S5 II) | 71.1 dB | 80.6 dB | 65.2 dB | 67.2 dB | 73.1 dB | 4.2e-3 |
+
+  - Check by eye of the implementer on the sheet of 1296625388 (the lowest values): the FP16 and
+    the FP32 crops at +2 EV and +5 EV show no difference; the difference times 64 at +5 EV is
+    a fine noise in the areas that clip at +5 EV (the lit lantern), and black in the dark crops.
+  - Check by eye of the user on the 11 sheets (2026-11-22): no visible difference; FP16
+    accepted.
+- **Effect**: the sentence on the FP16 graph in Current state.
 
 ### 2026-11-21 Stored result formats
 

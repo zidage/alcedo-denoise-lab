@@ -11,7 +11,8 @@ Each statement about the authors' code gives the file and the lines that prove i
 file under `results/export/` and the entry of
 [findings/inference_cost.md](findings/inference_cost.md).
 
-This file covers the weights file, the tensors, the input preparation, the tiles, and the output.
+This file covers the weights file, the tensors, the input preparation, the tiles, the output,
+and the FP16 graph.
 The highlight handling and the stored result format are added to this file when Alcedo Studio
 selects them from the measurements of step 7 of [the plan](plan.md)
 ([findings/quality.md](findings/quality.md), 2026-11-21).
@@ -298,3 +299,46 @@ The manifest `results/export/expected_outputs_manifest.json` gives the product a
 for each tensor. The value 1e-5 is 4 times the largest difference between the CPU and the GPU
 output of PyTorch over all 26 compared tensors (2.4e-6 of the largest value, layer `tconvs1.0`), rounded up
 to one significant digit ([findings/inference_cost.md](findings/inference_cost.md), 2026-11-21).
+
+## FP16 graph
+
+Alcedo Studio runs the model in FP16 in ONNX Runtime, on Windows with DirectML and on macOS on
+the Neural Engine ([plan](plan.md), Constraints from the user). Both run one graph:
+`utnet2_bayer_dark_loss_10k_fp16.onnx`, a release asset beside the weights file
+([scripts/export/README.md](../scripts/export/README.md)), made by
+`scripts/export/export_fp16_onnx.py` from the weights file.
+
+The layers are rescaled before the conversion to FP16. The output of each convolution layer is
+divided by a constant and the next layers are multiplied by it on the matching input channels,
+so the rescaled model in FP32 computes the model function divided by the constant of the last
+layer, `output_scale`. On `rawnind_crop_512`, the rescaled FP32 output times `output_scale`
+differs from the model output by 8.4e-7 of the largest value. The constant of a layer is its
+largest FP32 activation on the calibration set divided by 1024 (not below 1).
+
+| Property | Value |
+| --- | --- |
+| Input | `input`, float16, (1, 4, height, width); height and width free, multiples of 16 |
+| Output | `output`, float16, (1, 3, 2 height, 2 width) |
+| Operators | Conv, LeakyRelu, MaxPool, ConvTranspose, Concat, DepthToSpace; opset 17; float16 weights |
+| `metadata_props` | `architecture`, `leaky_relu_slope`, `input_preparation_version` (the values of the weights file), `weights_sha256`, `precision` = `float16`, `output_scale`, `rescale_target`, `calibration_photos` (JSON list), `held_out_photo_count`, `smallest_held_out_margin` |
+
+The caller converts the prepared input (input preparation version 1) to float16, and the
+float16 output to float32 times `output_scale`. The result is the output of the FP32 model,
+before the gain match. An output value that is not finite is an FP16 overflow; the run reports
+it as an error and does not continue with that tile.
+
+Calibration set: the whole evaluation photos and a centre crop of 1536 packed px of each raw
+file of the RawNIND test split. Held-out check: the whole raw files of the RawNIND scenes outside
+the test split. The graph is written only when the largest activation of each held-out photo is
+at most 65,504 / 8; the record is `results/export/fp16_calibration.json`
+([findings/inference_cost.md](findings/inference_cost.md), 2026-11-22, FP16 graph of Alcedo
+Studio).
+
+Comparison rule of the FP16 tests of Alcedo Studio, against the FP32 expected outputs above:
+
+```text
+max |alcedo - expected| <= 7e-3 * max |expected|
+```
+
+The value is 1.5 times the largest difference of the FP16 graph on DirectML over the three
+expected outputs (4.1e-3 of the largest value, `random_64`), rounded up to one significant digit.
