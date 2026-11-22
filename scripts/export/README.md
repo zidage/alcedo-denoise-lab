@@ -86,6 +86,7 @@ weights file of the release asset and the packages of the last lines of `require
 | `measure_photo_time.py` | `results/export/photo_time.json` | inference_cost.md, 2026-11-21, PyTorch time |
 | `measure_clipped_areas.py` | `results/export/clipped_areas.json` | quality.md, 2026-11-21, clipped highlights |
 | `measure_stored_formats.py` | `results/export/stored_formats.json`, `results/export/images/*_sheet.png` (not committed) | quality.md, 2026-11-21, stored result formats |
+| `measure_onnx_directml.py` | `models/export/dark_area_loss/utnet2_bayer_dark_loss_10k.onnx` (not committed), `results/export/onnx_directml.json`, `results/export/onnx_directml_integrated_gpu.json` | inference_cost.md, 2026-11-22, ONNX Runtime DirectML |
 | `measurement_common.py` | Input preparation 1, tile planner, tile loop, gain match, development, NVML sampler (imported) | |
 
 GPU jobs, one at a time, in this order (the later scripts read the overlap table of the first):
@@ -102,6 +103,11 @@ $P scripts/export/measure_stored_formats.py $A
 O="--overlap-by-tile 768:96 1024:96 1536:96"
 $P scripts/export/measure_photo_time.py $A $O --last-tile full --modes ieee_fp32 ieee_fp32_autotuned tf32 tf32_autotuned --out results/export/photo_time_precision.json
 $P scripts/export/measure_photo_time.py $A $O --last-tile shrunk --modes ieee_fp32 ieee_fp32_autotuned --out results/export/photo_time_shrunk_last_tile.json
+# 2026-11-22: ONNX Runtime DirectML (writes the ONNX graph on the first run), then PyTorch in the
+# same session for the comparison, then the integrated GPU.
+$P scripts/export/measure_onnx_directml.py $A --arena-off
+$P scripts/export/measure_photo_time.py $A $O --last-tile shrunk --modes ieee_fp32_autotuned --out results/export/photo_time_beside_directml.json
+$P scripts/export/measure_onnx_directml.py $A --adapters --time-adapter minimum_power --photos 24mp 45mp --tiles 1024 --strategies free --repeats 1 --device-check-tile 0 --out results/export/onnx_directml_integrated_gpu.json
 ```
 
 ## Tolerance of the forward tests

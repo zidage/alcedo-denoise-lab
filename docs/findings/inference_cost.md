@@ -5,6 +5,22 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
 
 ## Current state
 
+- In ONNX Runtime with the DirectML execution provider (FP32, DirectML 1.15.4, the DirectML.dll
+  of Alcedo Studio), the model of step 5 gives the PyTorch output within 1.7e-6 of the largest
+  value on the RTX 3080 Laptop GPU and on the Intel Iris Xe integrated GPU, below the tolerance
+  of 1e-5 of the forward tests. The graph has 50 nodes and each node runs on DirectML. With one
+  session of free height and width and tiles of 1536 packed px (the planner of the PyTorch
+  time), the RTX 3080 Laptop GPU denoises a 45.4 megapixel mosaic in 0.82 s, a 36.2 megapixel
+  mosaic in 0.71 s, and a 24.3 megapixel mosaic in 0.49 s, with 3.3 GiB of used GPU memory of
+  the process; with tiles of 1024 it is 1.06 s at 45.4 megapixels with 1.0 GiB. This is 1.2 to
+  1.3 times the fastest FP32 time of PyTorch in the same session (0.69, 0.56, 0.41 s). About
+  35 ms of each tile of 1536 is the copy of its input and output between host and device
+  memory; without the copies, the run time of a tile is 0.079 s against 0.114 s. One session
+  for each tile shape is 9% to 17% faster when its GPU memory fits, but each session keeps its
+  own memory arena, and at tiles of 1536 the four sessions use 5.7 GiB and spill to shared
+  memory on this 8 GB GPU (6.6 s at 45.4 megapixels). Without the memory arena, the time is 1.1
+  to 2.5 times longer. The Intel Iris Xe takes 6.9 s for 45.4 megapixels and 3.5 s for 24.3
+  megapixels (2026-11-22, ONNX Runtime DirectML of the model of step 5).
 - In PyTorch IEEE FP32 (TF32 off) on the RTX 3080 Laptop GPU, the model of step 5 denoises a
   45.4 megapixel mosaic in 0.69 s and a 36.2 megapixel mosaic in 0.64 s, in tiles of 1536 packed
   px (overlap 96, the last tile of each axis shrunk to its need) with the fastest cuDNN algorithm
@@ -61,6 +77,73 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
   stores the denoised result and computes it one time for each photo.
 
 ## Entries
+
+### 2026-11-22 ONNX Runtime DirectML of the model of step 5
+
+- **Source**: `results/export/onnx_directml.json` (RTX 3080 Laptop GPU),
+  `results/export/onnx_directml_integrated_gpu.json` (Intel Iris Xe), and
+  `results/export/photo_time_beside_directml.json` (PyTorch, run directly after the DirectML
+  run); measure_onnx_directml.py and measure_photo_time.py, commands in the README of
+  `scripts/export/`. ONNX Runtime 1.24.4 (`onnxruntime-directml`, the last version of the package
+  on PyPI), DirectML 1.15.4, the same DirectML.dll as Alcedo Studio ships beside ONNX Runtime 1.28
+  of its AI Mask sidecar. The ONNX graph is made from the safetensors weights by the TorchScript
+  exporter of PyTorch 2.11 (opset 17; height and width free). The photos, the tile planner (overlap
+  96 packed px, last tile shrunk), the run procedure (3 runs after one run that is not measured, 1 s
+  pause), and the NVML samples of the PyTorch time entries. 4 CPU threads.
+- **Graph**: 50 nodes: 19 Conv, 18 LeakyRelu, 4 MaxPool, 4 ConvTranspose, 4 Concat, 1
+  DepthToSpace (PixelShuffle). The sessions refuse a CPU fallback
+  (`session.disable_cpu_ep_fallback`), so each node runs on DirectML. The CPU execution provider
+  gives the PyTorch output of `random_64` within 9.2e-7 of the largest value.
+- **Precision** (largest difference to the expected output of DN0, relative to the largest
+  value; tolerance 1e-5):
+
+  | Input | RTX 3080 Laptop GPU | Intel Iris Xe |
+  | --- | ---: | ---: |
+  | `random_64` | 1.0e-6 | 1.3e-6 |
+  | `random_256` | 1.7e-6 | 1.5e-6 |
+  | `rawnind_crop_512` | 9.6e-7 | 9.6e-7 |
+
+- **Session strategies**: `free` (one session with free height and width), `per_shape` (one
+  session for each tile input shape, the shape fixed with `add_free_dimension_override_by_name`),
+  `fixed` (one session for each tile size; the last tile of an axis filled by reflection to the
+  full tile size). `free` and `per_shape` give the same output (difference 0). `fixed` changes
+  the output at the bottom and the right border of the image by up to 7.7e-2 of the largest value
+  (the reflection replaces the zero padding of the convolutions there), so it does not give the
+  one-pass output.
+- **Result**, RTX 3080 Laptop GPU, memory arena on, median seconds of the full run
+  (`free` / `per_shape`), and PyTorch with the fastest cuDNN algorithms (IEEE FP32) of the same
+  session:
+
+  | Tile | 24.3 MP | 32.5 MP | 36.2 MP | 42.4 MP | 45.4 MP |
+  | ---: | --- | --- | --- | --- | --- |
+  | 768 | 0.70 / 0.58 | 0.88 / 0.79 | 1.01 / 0.87 | 1.23 / 1.05 | 1.41 / 1.19 |
+  | 1024 | 0.57 / 0.49 | 0.93 / 0.85 | 0.83 / 0.76 | 0.94 / 0.82 | 1.06 / 0.91 |
+  | 1536 | 0.49 / 0.44 | 0.69 / 2.91 | 0.71 / 4.36 | 0.97 / 6.10 | 0.82 / 6.63 |
+  | PyTorch, 1536 | 0.41 | 0.51 | 0.56 | 0.68 | 0.69 |
+
+  - Used GPU memory of the process (NVML, the largest used memory of the device minus the 1.8 GiB
+    before the process): `free` 0.9 to 1.0 GiB (768 and 1024), 3.3 GiB (1536); `per_shape` 1.9
+    to 2.1 GiB (768), 2.9 to 3.8 GiB (1024), 4.6 to 5.8 GiB (1536). PyTorch: 4.8 GiB with its
+    cache. A `per_shape` run of tiles of 1536 on 32.5 MP and larger (5.6 to 5.8 GiB) spills to
+    shared memory (at 45.4 MP, the first run of the third and the fourth session takes 3.4 and
+    3.7 s).
+  - The memory arena off (`ep.dml.disable_memory_arena`): `free` 1.3 to 2.5 times longer
+    (1.88 s at 45.4 MP and tiles of 1536) and more used memory (4.5 GiB); `per_shape` 1.1 to 1.7
+    times longer than with the arena (1.12 s at 45.4 MP, 2.5 GiB).
+  - Session creation: 0.07 to 0.13 s. First run of a session: 0.16 to 0.53 s at the tile sizes
+    of the run (without a spill).
+  - One tile of 1536 with the memory arena: 0.114 s with host input and output, 0.079 s with the
+    input and the output in DirectML device memory (`IOBinding`, the same output). The 6 tiles of
+    the 45.4 MP photo spend about 0.2 s of the 0.82 s in these copies.
+  - GPU state: DirectML runs at 65 to 79 C, PyTorch at 72 to 88 C; median SM clock 1,485 to
+    1,800 MHz in both.
+- **Result**, Intel Iris Xe (`performance_preference` = `minimum_power`; the NVIDIA GPU stayed at
+  210 MHz), `free`, tiles of 1024, one run: 3.53 s (24.3 MP), 6.90 s (45.4 MP). The first run of
+  the session took 7.8 s.
+- **Effect**: a new statement of Current state. The ratio to the DemosaicNet student of Alcedo
+  Studio (376 ms on 36.3 MP, entry of 2026-11-22, last tile and cuDNN algorithms): 0.71 s is 1.9
+  times. Not measured: ONNX Runtime 1.28, AMD GPUs, the Core ML execution provider, the copies
+  overlapped with the run.
 
 ### 2026-11-22 Last tile and cuDNN algorithms of the model of step 5
 
