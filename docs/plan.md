@@ -63,6 +63,8 @@ list of decisions.
   input MS-SSIM below 0.85) is outside the use of the model. The lift of the dark areas there
   is not a reason to train more. For now the lab does not train the model further after step 5,
   and collects results on more photos of the use (2026-11-20).
+- The sidecar file has no clip mask of the highlights. High-noise photos have a low dynamic
+  range, and many scenes that need the highlight recovery are not at a high ISO (2026-11-22).
 
 ## Terms
 
