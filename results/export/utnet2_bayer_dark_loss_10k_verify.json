@@ -1,0 +1,56 @@
+{
+ "weights": {
+  "file": "utnet2_bayer_dark_loss_10k.safetensors",
+  "sha256": "0bfb9ddb07e6e6c20e6764dfc30336d9314d5760f875992f2144f13dd0df13a5"
+ },
+ "checks": {
+  "sha256_equals_table": true,
+  "tensors_equal_checkpoint_bit_for_bit": true,
+  "unequal_tensors": [],
+  "metadata_equals_table": true,
+  "outputs": [
+   {
+    "file": "random_256.safetensors",
+    "input_shape": [
+     4,
+     256,
+     256
+    ],
+    "export_vs_checkpoint_max_abs": 0.0,
+    "export_vs_stored_expected_max_abs": 0.0
+   },
+   {
+    "file": "random_64.safetensors",
+    "input_shape": [
+     4,
+     64,
+     64
+    ],
+    "export_vs_checkpoint_max_abs": 0.0,
+    "export_vs_stored_expected_max_abs": 0.0
+   },
+   {
+    "file": "rawnind_crop_512.safetensors",
+    "input_shape": [
+     4,
+     512,
+     512
+    ],
+    "export_vs_checkpoint_max_abs": 0.0,
+    "export_vs_stored_expected_max_abs": 0.0
+   }
+  ],
+  "outputs_checked": 3
+ },
+ "passed": true,
+ "torch": "2.11.0+cu128",
+ "gpu": "NVIDIA GeForce RTX 3080 Laptop GPU",
+ "tf32": false,
+ "date": "2026-11-21",
+ "run": {
+  "command": "python -I scripts/export/export_weights.py --authors-repo build/tmp/reference_measurement/rawnind_jddc --verify",
+  "repository_commit": "5a7a2963959b4ed4c732bf8133bdf720f0eca8fa",
+  "scripts_changed_after_commit": false,
+  "machine": "MSI Windows"
+ }
+}
