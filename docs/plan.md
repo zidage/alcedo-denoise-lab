@@ -23,7 +23,8 @@ list of decisions.
 - The training data is real photographs of real noise. Synthetic noise is not part of this plan.
 - The lab does not photograph its own training pairs.
 - The model has no strength control. It has one output for one input.
-- The model runs in FP32 in Alcedo Studio. 16-bit float is not part of this plan. A lower cost
+- The model runs in FP32 in Alcedo Studio on Windows. On macOS it runs in FP16 on the Neural
+  Engine, after an exact rescale of its layers (the user, 2026-11-22). A lower cost on Windows
   comes from a smaller model.
 - The training budget is low. The rented compute is Google Colab and RunPod.
 - The development machine does not get all of RawNIND (120.2 GB). It downloads only the scenes
@@ -386,10 +387,14 @@ run, and in which format does Alcedo Studio store its result?
 On Windows, Alcedo Studio runs the model in FP32 in ONNX Runtime with the DirectML execution
 provider, from its C++ code (changed on 2026-11-22 after the DirectML measurement,
 [findings/inference_cost.md](findings/inference_cost.md)). On macOS, Alcedo Studio runs the
-model in FP32 in ONNX Runtime with the Core ML execution provider on the GPU, also from its C++
-code (2026-11-22, after the measurement of ONNX Runtime on macOS in the same file). The lab
-exports the ONNX graph from the safetensors weights, and for macOS a copy without the last
-DepthToSpace node. Linux gets its forward code later. Alcedo Studio does not use TensorRT or
+model in FP16 on the Neural Engine in ONNX Runtime with the Core ML execution provider, also
+from its C++ code (2026-11-22, after the measurements of ONNX Runtime on macOS and of FP16 on
+the Neural Engine in the same file). The lab exports the FP32 ONNX graph from the safetensors
+weights, and for macOS an FP16 graph of the rescaled layers. Before the macOS phase (DN10 of
+Alcedo Studio), the lab calibrates the rescale on all evaluation photos and on crops of the
+RawNIND test split, so that photos outside the calibration keep a margin of 8 times or more to
+the largest FP16 value, and makes sheets of the FP16 and the FP32 output for a check by eye by
+the user. Linux gets its forward code later. Alcedo Studio does not use TensorRT or
 cuDNN.
 
 - Export the weights to safetensors, with the SHA-256, the name and the shape of each tensor,
