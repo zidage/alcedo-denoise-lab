@@ -1,0 +1,418 @@
+{
+ "file": "utnet2_bayer_dark_loss_10k.safetensors",
+ "sha256": "0bfb9ddb07e6e6c20e6764dfc30336d9314d5760f875992f2144f13dd0df13a5",
+ "bytes": 31047448,
+ "checkpoint": "models/dark_area_loss/checkpoint_10000.pt",
+ "metadata": {
+  "architecture": "utnet2_bayer_funit32",
+  "checkpoint_sha256": "b2244dec55f9f0ee82eaded6b9b053b7460a60638814ed1f2faa5ea1bb7a5818",
+  "checkpoint_step": "10000",
+  "leaky_relu_slope": "0.2",
+  "input_preparation_version": "1",
+  "license": "GPL-3.0 AND CC-BY-4.0",
+  "license_note": "Fine-tuned from the RawNIND UtNet2 Bayer weights of B. Brummer and C. De Vleeschouwer (rawnind_jddc, dual licensed GPL-3.0 and CC BY 4.0) on RawNIND images (CC BY-SA 4.0).",
+  "authors_commit": "e80fb7b14dc440bba38c01f312fd3cc02deb566c",
+  "layout": "PyTorch state_dict layout: Conv2d weight OIHW, ConvTranspose2d weight IOHW, float32"
+ },
+ "parameters": 7760748,
+ "tensors": [
+  {
+   "name": "convs1.0.weight",
+   "shape": [
+    32,
+    4,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs1.0.bias",
+   "shape": [
+    32
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs1.2.weight",
+   "shape": [
+    32,
+    32,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs1.2.bias",
+   "shape": [
+    32
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs2.0.weight",
+   "shape": [
+    64,
+    32,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs2.0.bias",
+   "shape": [
+    64
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs2.2.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs2.2.bias",
+   "shape": [
+    64
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs3.0.weight",
+   "shape": [
+    128,
+    64,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs3.0.bias",
+   "shape": [
+    128
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs3.2.weight",
+   "shape": [
+    128,
+    128,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs3.2.bias",
+   "shape": [
+    128
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs4.0.weight",
+   "shape": [
+    256,
+    128,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs4.0.bias",
+   "shape": [
+    256
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs4.2.weight",
+   "shape": [
+    256,
+    256,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "convs4.2.bias",
+   "shape": [
+    256
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "bottom.0.weight",
+   "shape": [
+    512,
+    256,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "bottom.0.bias",
+   "shape": [
+    512
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "bottom.2.weight",
+   "shape": [
+    512,
+    512,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "bottom.2.bias",
+   "shape": [
+    512
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "up1.weight",
+   "shape": [
+    512,
+    256,
+    2,
+    2
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "up1.bias",
+   "shape": [
+    256
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs1.0.weight",
+   "shape": [
+    256,
+    512,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs1.0.bias",
+   "shape": [
+    256
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs1.2.weight",
+   "shape": [
+    256,
+    256,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs1.2.bias",
+   "shape": [
+    256
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "up2.weight",
+   "shape": [
+    256,
+    128,
+    2,
+    2
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "up2.bias",
+   "shape": [
+    128
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs2.0.weight",
+   "shape": [
+    128,
+    256,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs2.0.bias",
+   "shape": [
+    128
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs2.2.weight",
+   "shape": [
+    128,
+    128,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs2.2.bias",
+   "shape": [
+    128
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "up3.weight",
+   "shape": [
+    128,
+    64,
+    2,
+    2
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "up3.bias",
+   "shape": [
+    64
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs3.0.weight",
+   "shape": [
+    64,
+    128,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs3.0.bias",
+   "shape": [
+    64
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs3.2.weight",
+   "shape": [
+    64,
+    64,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs3.2.bias",
+   "shape": [
+    64
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "up4.weight",
+   "shape": [
+    64,
+    32,
+    2,
+    2
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "up4.bias",
+   "shape": [
+    32
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs4.0.weight",
+   "shape": [
+    32,
+    64,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs4.0.bias",
+   "shape": [
+    32
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs4.2.weight",
+   "shape": [
+    32,
+    32,
+    3,
+    3
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "tconvs4.2.bias",
+   "shape": [
+    32
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "output_module.0.weight",
+   "shape": [
+    12,
+    32,
+    1,
+    1
+   ],
+   "dtype": "float32"
+  },
+  {
+   "name": "output_module.0.bias",
+   "shape": [
+    12
+   ],
+   "dtype": "float32"
+  }
+ ],
+ "torch": "2.11.0+cu128",
+ "run": {
+  "command": "python -I scripts/export/export_weights.py --authors-repo build/tmp/reference_measurement/rawnind_jddc",
+  "repository_commit": "5a7a2963959b4ed4c732bf8133bdf720f0eca8fa",
+  "scripts_changed_after_commit": false,
+  "machine": "MSI Windows"
+ }
+}

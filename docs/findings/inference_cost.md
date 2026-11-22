@@ -7,6 +7,13 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
 
 - The lab has no cost measurement of a fine-tuned or smaller model. Steps 6 and 7 of
   [the plan](../plan.md) make it.
+- The model of step 5 is exported to safetensors for the forward code of Alcedo Studio and gives
+  the checkpoint output with a difference of 0. In IEEE FP32, the CPU and the GPU output of PyTorch
+  differ by at most 2.4e-6 of the largest value of a tensor, so the forward tests of Alcedo Studio
+  compare with a tolerance of 1e-5 of the largest value. The output before the gain match is about
+  1e5 times the input, so the gain match is a required step of the integration
+  ([alcedo_integration.md](../alcedo_integration.md); 2026-11-21, weights export of the model of
+  step 5).
 - In PyTorch FP32 (with the TF32 convolutions of cuDNN, the PyTorch default) on the RTX 3080
   Laptop GPU, the public Bayer model runs a 24 megapixel photo
   (Sony ILCE-7C) in one pass in 0.84 s with a peak of 4.98 GB of allocated GPU memory. The public
@@ -34,6 +41,44 @@ Run time, memory, and numeric precision of a model on each backend. The rules of
   stores the denoised result and computes it one time for each photo.
 
 ## Entries
+
+### 2026-11-21 Weights export of the model of step 5
+
+- **Source**: `results/export/utnet2_bayer_dark_loss_10k_tensors.json` (export_weights.py),
+  `results/export/expected_outputs_manifest.json` (make_expected_outputs.py), and
+  `results/export/utnet2_bayer_dark_loss_10k_verify.json` (export_weights.py `--verify`);
+  commands in the README of `scripts/export/`. PyTorch 2.11.0+cu128 on the RTX 3080 Laptop GPU
+  in IEEE FP32 (TF32 off, deterministic cuDNN algorithms), and on the CPU with 4 threads.
+  Checkpoint `models/dark_area_loss/checkpoint_10000.pt` (SHA-256 `b2244dec...7a5818`).
+- **Inputs**: two random tensors (4 x 64 x 64 and 4 x 256 x 256, uniform 0 to 1, seed
+  20261121) and a crop of 4 x 512 x 512 packed px from the centre of
+  `Bayer_TEST_TitusToys_ISO6400_sha1=bedd1475...arw` (Sony ILCE-7C, test split), prepared as the
+  authors prepare a network input.
+- **Result**:
+  - The safetensors file has 46 tensors and 7,760,748 parameters (31,047,448 bytes, SHA-256
+    `0bfb9ddb...df13a5`). The tensor names and shapes agree with the topology of the authors'
+    UtNet2; a missing tensor, a different shape, an extra tensor, or a float64 tensor stops the
+    export with an error that names the tensor (one check of each case).
+  - Two runs of the export and of make_expected_outputs.py give the same bytes for the four
+    files. A first version wrote the files with `safetensors.torch.save_file`, whose metadata
+    order changes from run to run, so its SHA-256 changed; the scripts now write the header
+    with sorted metadata keys (`write_safetensors`), and the `safetensors` package 0.8.0 reads
+    the files.
+  - The file loads into a new authors' UtNet2 with `strict=True`. Each tensor equals the
+    checkpoint tensor bit for bit, and on the three inputs the outputs of the new model and of the
+    checkpoint model differ by 0 on the GPU.
+  - The largest difference between the CPU and the GPU output, relative to the largest value of
+    the tensor: 9.6e-7 to 1.5e-6 for the three model outputs, 1.5e-7 to 2.4e-6 for the 23 layer
+    outputs of the 64 x 64 input (largest at `tconvs1.0`).
+  - The activations grow from 3.2 (first layer) to 7.7e4 (output) on the 64 x 64 input. The
+    output before the gain match is about 1e5 times the input: the gain match factor of the crop
+    is 9.69e-6. The factor from the mean of each CFA color differs from the authors' factor (mean
+    of the Rec.2020 OpenCV demosaic) by 3.4e-4 of the factor.
+  - Peak of allocated GPU memory 0.23 GB (the 512 x 512 crop in one pass), peak working set
+    1.72 GB (with the full raw file in memory).
+  - Not measured: the time of the model, inputs larger than 512 x 512 packed px, tiles, TF32.
+- **Effect**: the statement of Current state about the weights file and the tolerance of the
+  forward tests of Alcedo Studio.
 
 ### 2026-11-18 16-bit float of the public weights
 

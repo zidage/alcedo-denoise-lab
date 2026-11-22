@@ -51,16 +51,16 @@ $P scripts/export/export_weights.py $A --verify
 
 ## Release asset
 
-The weights file and the expected outputs are 57.4 MB together, above the limit of 40 MB for a
+The weights file and the expected outputs are 57.5 MB together, above the limit of 40 MB for a
 commit in the integration plan. They are the assets of the release
 [`export-utnet2-bayer-dark-loss-10k`](https://github.com/zidage/alcedo-denoise-lab/releases/tag/export-utnet2-bayer-dark-loss-10k):
 
 | Asset | Bytes | SHA-256 |
 | --- | ---: | --- |
-| `utnet2_bayer_dark_loss_10k.safetensors` | 31,047,504 | `d3c1368669609fed27afac82fbd7a997108d0e18a6cd9e4e0100bed70412f1f9` |
-| `random_64.safetensors` | 5,441,832 | `01bc87cdac50dbaa9e2804eff5ee69674c8c2c4d9e30b48361dca60915ffe150` |
-| `random_256.safetensors` | 4,194,712 | `419fea773a4ca69700440089e8da3548302f5fbc8a35d3944a5688bd1d0370ed` |
-| `rawnind_crop_512.safetensors` | 16,777,852 | `d905100fc3025c98a009398c2adb31b06f879f4ad4bcf224407f8e6860228b42` |
+| `utnet2_bayer_dark_loss_10k.safetensors` | 31,047,448 | `0bfb9ddb07e6e6c20e6764dfc30336d9314d5760f875992f2144f13dd0df13a5` |
+| `random_64.safetensors` | 5,441,840 | `270c3d5f99abc97b03806a51680681eb7f0e4ba8575a77936c85ce4c45ecf471` |
+| `random_256.safetensors` | 4,194,712 | `8050f6a46b149cfd7a4c4ab0958e45ce690e77ff4a5ec3a583b46ebee24db517` |
+| `rawnind_crop_512.safetensors` | 16,777,852 | `e23830f7916f3b3b99947020cca55b64b1b3215ba316bb0a787aef6857eb8ec3` |
 
 ```bash
 T=export-utnet2-bayer-dark-loss-10k
